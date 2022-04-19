@@ -1,0 +1,36 @@
+{
+  "projectName": "package-template",
+  "projectOwner": "imranbarbhuiya",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "imranbarbhuiya",
+      "name": "Parbez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74945038?v=4",
+      "profile": "https://github.com/imranbarbhuiya",
+      "contributions": [
+        "code",
+        "maintenance",
+        "ideas"
+      ]
+    },
+    {
+      "login": "renovate-bot",
+      "name": "WhiteSource Renovate",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25180681?v=4",
+      "profile": "https://renovate.whitesourcesoftware.com",
+      "contributions": [
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
+}

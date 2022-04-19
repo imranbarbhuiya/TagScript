@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3.0.1
+
+      - name: Install node.js v16
+        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854 # tag=v3.1.1
+        with:
+          node-version: 16
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
+
+      - name: Install dependencies
+        run: yarn --immutable
+
+      - name: Test
+        run: yarn test --coverage --passWithNoTests
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@e3c560433a6cc60aec8812599b7844a7b4fa0d71 # tag=v3.0.0
+        with:
+          file: ./coverage/coverage-final.json
