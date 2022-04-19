@@ -1,7 +1,13 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    }
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"search.exclude": {
+		".yarn": true,
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/*.code-search": true
+	}
 }

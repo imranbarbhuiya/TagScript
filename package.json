@@ -1,7 +1,7 @@
 {
-	"name": "template",
-	"version": "0.0.0",
-	"description": "Package description.",
+	"name": "tagscript",
+	"version": "0.0.1",
+	"description": "A simple and safe template engine.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"browser": "dist/index.global.js",
@@ -15,9 +15,6 @@
 	"sideEffects": false,
 	"license": "MIT",
 	"author": "@imranbarbhuiya",
-	"engines": {
-		"node": ">=8"
-	},
 	"scripts": {
 		"docs": "typedoc",
 		"build": "tsup && tsc -b src",
@@ -39,14 +36,15 @@
 		"@commitlint/cli": "^16.2.3",
 		"@commitlint/config-angular": "^16.2.3",
 		"@favware/rollup-type-bundler": "^1.0.7",
+		"@sapphire/eslint-config": "^4.3.3",
 		"@types/jest": "^27.4.1",
 		"@types/prettier": "^2",
 		"@typescript-eslint/eslint-plugin": "^5.19.0",
 		"@typescript-eslint/parser": "^5.19.0",
 		"conventional-changelog-cli": "^2.2.2",
 		"eslint": "^8.13.0",
-		"eslint-config-marine": "^9.4.1",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"husky": "^7.0.4",
 		"jest": "^27.5.1",
@@ -64,12 +62,11 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/imranbarbhuiya/template.git"
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git"
 	},
 	"bugs": {
-		"url": "https://github.com/imranbarbhuiya/template/issues"
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
 	},
-	"homepage": "https://template.js.org/",
 	"packageManager": "yarn@3.2.0",
 	"lint-staged": {
 		"*.ts": [

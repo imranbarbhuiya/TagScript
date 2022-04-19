@@ -1,7 +1,7 @@
 {
-  "out": "./docs/",
-  "readme": "./README.md",
-  "name": "template",
-  "entryPoints": ["src/index.ts"],
-  "tsconfig": "./src/tsconfig.json"
+	"out": "./docs/",
+	"readme": "./README.md",
+	"name": "TagScript",
+	"entryPoints": ["src/index.ts"],
+	"tsconfig": "./src/tsconfig.json"
 }

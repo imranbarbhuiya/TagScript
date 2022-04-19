@@ -1,27 +1,20 @@
 <div align="center">
 
-# @imranbarbhuiya/template
+# tagscript
 
-**Template for Parbez's Repositories.**
+**A simple and safe template engine.**
 
-[![GitHub](https://img.shields.io/github/license/imranbarbhuiya/package-template)](https://github.com/imranbarbhuiya/package-template/blob/main/LICENSE)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/template/branch/main/graph/badge.svg?token=token)](https://codecov.io/gh/imranbarbhuiya/template)
-[![npm](https://img.shields.io/npm/v/@imranbarbhuiya/template?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@imranbarbhuiya/template)
+[![GitHub](https://img.shields.io/github/license/imranbarbhuiya/tagscript)](https://github.com/imranbarbhuiya/tagscript/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?token=token)](https://codecov.io/gh/imranbarbhuiya/tagscript)
+[![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
 
 </div>
-
-## Steps after creating a repo with this template
-
-1. Find and replace all instances of `template` with the package name.
-2. Ensure branch protection is on
-3. Enable Codecov for the repository
-4. Remove this section from the README
 
 ## Description
 
 A description of the package.
 
-Read Full Documentation [here](https://template.js.org/).
+<!-- Read Full Documentation [here](https://tagscript.js.org/). -->
 
 ## Features
 
@@ -33,23 +26,20 @@ Read Full Documentation [here](https://template.js.org/).
 
 ```bash
 # npm
-# TODO: change name
-npm i template
+npm i tagscript
 
 # yarn
-yarn add template
+yarn add tagscript
 
 ```
 
 ## Usage
 
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { package } from 'package-name'` is the same as `const { mahrin } = require('template')`.
+**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { TagScript } from 'tagscript'` is the same as `const { TagScript } = require('tagscript')`.
 
 ```ts
-import { mahrin } from 'template';
+import { Interpreter } from 'tagscript';
 ```
-
-### Some contents goes here //TODO
 
 ## Contributors ✨
 
@@ -60,7 +50,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/imranbarbhuiya"><img src="https://avatars.githubusercontent.com/u/74945038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Parbez</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/package-template/commits?author=imranbarbhuiya" title="Code">💻</a> <a href="#maintenance-imranbarbhuiya" title="Maintenance">🚧</a> <a href="#ideas-imranbarbhuiya" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/imranbarbhuiya"><img src="https://avatars.githubusercontent.com/u/74945038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Parbez</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=imranbarbhuiya" title="Code">💻</a> <a href="#maintenance-imranbarbhuiya" title="Maintenance">🚧</a> <a href="#ideas-imranbarbhuiya" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://renovate.whitesourcesoftware.com"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="#maintenance-renovate-bot" title="Maintenance">🚧</a></td>
   </tr>
 </table>
