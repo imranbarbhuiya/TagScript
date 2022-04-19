@@ -35,7 +35,7 @@ yarn add tagscript
 
 ## Usage
 
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { TagScript } from 'tagscript'` is the same as `const { TagScript } = require('tagscript')`.
+**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { Interpreter } from 'tagscript'` is the same as `const { Interpreter } = require('tagscript')`.
 
 ```ts
 import { Interpreter } from 'tagscript';

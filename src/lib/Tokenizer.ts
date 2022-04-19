@@ -41,7 +41,7 @@ export class Tokenizer {
 		this.decStart = 0;
 		this.skipNext = false;
 
-		const parse_parameter = this.dotParameter
+		const parseParameter = this.dotParameter
 			? this.parseDotParameter.bind(this)
 			: this.parseParenthesisParameter.bind(this);
 
@@ -58,7 +58,7 @@ export class Tokenizer {
 			if (char === ':' && !this.decDepth) {
 				this.setPayload();
 				return;
-			} else if (parse_parameter(i, char)) return;
+			} else if (parseParameter(i, char)) return;
 			this.setPayload();
 		}
 	}
@@ -76,7 +76,7 @@ export class Tokenizer {
 	}
 
 	private setPayload() {
-		const [declaration, payload] = this.parsedInput.split(':', 1);
+		const [declaration, payload] = this.parsedInput.split(':');
 		if (payload) this.payload = payload;
 		this.declaration = declaration;
 	}
