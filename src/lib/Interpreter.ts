@@ -51,8 +51,8 @@ const buildNodeTree = (message: string): Node[] => {
 class Response {
 	public body: string | null;
 	public variables: { [key: string]: Adapter };
-	private actions: { [key: string]: unknown };
-	private keyValues: { [key: string]: unknown };
+	public actions: { [key: string]: unknown };
+	public keyValues: { [key: string]: unknown };
 
 	public constructor(
 		variables: { [key: string]: Adapter } | null = null,
