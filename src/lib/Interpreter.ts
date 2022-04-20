@@ -1,4 +1,5 @@
 import { Tokenizer } from './Tokenizer';
+import { asyncFilter, Awaitable } from './Utils/Util';
 
 class Node {
 	public coordinates: [number, number];
@@ -117,10 +118,7 @@ export class Interpreter {
 	}
 
 	protected getAcceptors(ctx: Context) {
-		const acceptors = this.parsers.filter(async (b) => {
-			const value = await b.willAccept(ctx);
-			return value;
-		});
+		const acceptors = asyncFilter(this.parsers, (p) => p.willAccept(ctx));
 		return acceptors;
 	}
 
@@ -137,8 +135,8 @@ export class Interpreter {
 		return new Context(node.token, response, this, originalMessage);
 	}
 
-	private async processBlocks(ctx: Context, node: Node) {
-		const acceptors = this.getAcceptors(ctx);
+	private async processTokens(ctx: Context, node: Node) {
+		const acceptors = await this.getAcceptors(ctx);
 		for (const b of acceptors) {
 			const value = await b.process(ctx);
 			if (value !== null) {
@@ -207,7 +205,7 @@ export class Interpreter {
 			const ctx = this.getContext(node, final, response, message, tokenLimit, dotParameter);
 			let output;
 			try {
-				output = await this.processBlocks(ctx, node);
+				output = await this.processTokens(ctx, node);
 			} catch (error) {
 				return `${final.slice(start)} ${error}`;
 			}
@@ -237,5 +235,3 @@ export interface Parser {
 	willAccept(ctx: Context): Awaitable<boolean>;
 	process(ctx: Context): Awaitable<string | null>;
 }
-
-export type Awaitable<T> = T | PromiseLike<T>;

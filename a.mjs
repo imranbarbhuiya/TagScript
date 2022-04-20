@@ -1,5 +1,6 @@
-import { Interpreter, RandomParser, RangeParser } from './dist/index.mjs';
-const interpreter = new Interpreter(new RandomParser(), new RangeParser());
+import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser } from './dist/index.mjs';
+const interpreter = new Interpreter(new FiftyFiftyParser(), new IfStatementParser());
 
-const result = await interpreter.parse('{random:} attempts to pick the lock!');
-console.log(result);
+// const result = await interpreter.parse('{random: Parbez,Rkn,Priyansh} attempts to pick the lock!');
+const result1 = await interpreter.parse('I pick {if({5050:.}!=):heads|tails}');
+console.log(result1);

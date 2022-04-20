@@ -79,7 +79,7 @@ export class Tokenizer {
 		const [declaration, ...payloads] = this.parsedInput.split(':');
 		const payload = payloads.join(':');
 		if (payload.length) this.payload = payload;
-		this.declaration = declaration;
+		if (!this.declaration) this.declaration = declaration;
 	}
 
 	private openParameter(i: number) {
@@ -92,9 +92,7 @@ export class Tokenizer {
 		this.decDepth -= 1;
 		if (this.decDepth === 0) {
 			this.parameter = this.parsedInput.slice(this.decStart + 1, i);
-			try {
-				if (this.parsedInput[i + 1] === ':') this.payload = this.parsedInput.slice(i + 2);
-			} catch {}
+			if (this.parsedInput[i + 1] === ':') this.payload = this.parsedInput.slice(i + 2);
 			return true;
 		}
 		return false;
