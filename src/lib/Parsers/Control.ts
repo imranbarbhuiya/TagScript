@@ -4,16 +4,12 @@ import { split, parseIf } from './helpers';
 
 export class IfStatementParser extends BaseParser implements Parser {
 	protected override acceptedNames: string[] = ['if'];
+	protected override requiredParameter = true;
+	protected override requiredPayload = true;
 
 	public process(ctx: Context) {
-		if (!ctx.token.parameter) throw this.throwError(ctx, 'No parameter provided');
-		if (!ctx.token.payload) throw this.throwError(ctx, 'No payload provided');
-		const result = parseIf(ctx.token.parameter);
-		return parseIntoOutput(ctx.token.payload, result);
-	}
-
-	private throwError(ctx: Context, message: string) {
-		return new SyntaxError(`${message} at ${ctx.token.toString()} when parsing if statement`);
+		const result = parseIf(ctx.token.parameter!);
+		return parseIntoOutput(ctx.token.payload!, result);
 	}
 }
 
