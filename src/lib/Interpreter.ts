@@ -154,7 +154,7 @@ export class Interpreter {
 		totalWork += output.length;
 		if (totalWork > charlimit) {
 			throw new Error(
-				'The TSE interpreter had its workload exceeded. The total characters ' +
+				'The TS interpreter had its workload exceeded. The total characters ' +
 					`attempted were ${totalWork}/${charlimit}`,
 			);
 		}

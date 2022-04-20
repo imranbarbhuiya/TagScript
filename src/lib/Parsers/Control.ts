@@ -13,7 +13,7 @@ export class IfStatementParser extends BaseParser implements Parser {
 	}
 
 	private throwError(ctx: Context, message: string) {
-		return new TypeError(`${message} at ${ctx.token.toString()} when parsing if statement`);
+		return new SyntaxError(`${message} at ${ctx.token.toString()} when parsing if statement`);
 	}
 }
 
