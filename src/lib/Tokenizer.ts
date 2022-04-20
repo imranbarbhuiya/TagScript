@@ -76,8 +76,9 @@ export class Tokenizer {
 	}
 
 	private setPayload() {
-		const [declaration, payload] = this.parsedInput.split(':');
-		if (payload) this.payload = payload;
+		const [declaration, ...payloads] = this.parsedInput.split(':');
+		const payload = payloads.join(':');
+		if (payload.length) this.payload = payload;
 		this.declaration = declaration;
 	}
 

@@ -5,6 +5,7 @@ export class FiftyFiftyParser extends BaseParser implements Parser {
 	protected override acceptedNames: string[] = ['5050', '50', '?'];
 
 	public process(ctx: Context) {
+		if (!ctx.token.payload) throw new TypeError(`payload is empty at ${ctx.token.toString()}`);
 		const spl = ['', ctx.token.payload];
 
 		const index = Math.floor(Math.random() * spl.length);

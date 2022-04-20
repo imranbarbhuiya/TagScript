@@ -98,7 +98,7 @@ export class Context {
 
 export class Interpreter {
 	protected parsers: Parser[];
-	public constructor(parsers: Parser[]) {
+	public constructor(...parsers: Parser[]) {
 		this.parsers = parsers;
 	}
 
@@ -209,7 +209,7 @@ export class Interpreter {
 			try {
 				output = await this.processBlocks(ctx, node);
 			} catch (error) {
-				return final.slice(start) + (error as Error).message;
+				return `${final.slice(start)} ${error}`;
 			}
 			if (output === null) {
 				continue;
