@@ -49,6 +49,7 @@ const buildNodeTree = (message: string): Node[] => {
 };
 
 class Response {
+	public raw!: string;
 	public body: string | null;
 	public variables: { [key: string]: Adapter };
 	public actions: { [key: string]: unknown };
@@ -114,7 +115,7 @@ export class Interpreter {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
 		const output = await this.solve(message, nodeOrderedList, response, charlimit, tokenLimit, dotParameter);
-		return this.returnResponse(response, output);
+		return this.returnResponse(response, output, message);
 	}
 
 	protected getAcceptors(ctx: Context) {
@@ -220,10 +221,11 @@ export class Interpreter {
 		return final;
 	}
 
-	private returnResponse(response: Response, output: string): Response {
+	private returnResponse(response: Response, output: string, message: string): Response {
 		if (response.body === null) response.body = output.trim();
 		else response.body = response.body.trim();
 
+		response.raw = message;
 		return response;
 	}
 }

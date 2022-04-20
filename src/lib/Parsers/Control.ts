@@ -6,8 +6,8 @@ export class IfStatementParser extends BaseParser implements Parser {
 	protected override acceptedNames: string[] = ['if'];
 
 	public process(ctx: Context) {
-		if (!ctx.token.parameter) throw this.throwError(ctx, 'parameter is empty');
-		if (!ctx.token.payload) throw this.throwError(ctx, 'payload is empty');
+		if (!ctx.token.parameter) throw this.throwError(ctx, 'No parameter provided');
+		if (!ctx.token.payload) throw this.throwError(ctx, 'No payload provided');
 		const result = parseIf(ctx.token.parameter);
 		return parseIntoOutput(ctx.token.payload, result);
 	}
