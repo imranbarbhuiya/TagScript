@@ -970,7 +970,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/eslint-config@npm:^4.3.3":
+"@sapphire/eslint-config@npm:^4.3.4":
   version: 4.3.4
   resolution: "@sapphire/eslint-config@npm:4.3.4"
   dependencies:
@@ -6849,7 +6849,7 @@ __metadata:
     "@commitlint/cli": ^16.2.3
     "@commitlint/config-angular": ^16.2.3
     "@favware/rollup-type-bundler": ^1.0.7
-    "@sapphire/eslint-config": ^4.3.3
+    "@sapphire/eslint-config": ^4.3.4
     "@types/jest": ^27.4.1
     "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.19.0
