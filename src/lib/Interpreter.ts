@@ -70,7 +70,7 @@ class Response {
 			body: this.body,
 			actions: this.actions,
 			variables: this.variables,
-			extraKwargs: this.keyValues,
+			keyValues: this.keyValues,
 		};
 	}
 }
