@@ -41,6 +41,21 @@ yarn add tagscript
 import { Interpreter } from 'tagscript';
 ```
 
+```ts
+import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+const interpreter = new Interpreter(
+	new SliceParser(),
+	new FiftyFiftyParser(),
+	new RandomParser(),
+	new IfStatementParser(),
+);
+
+const result = await interpreter.parse(
+	'{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, \nI pick {if({5050:.}!=):heads|tails} \n{slice(1):ok} \n{slice(1-5):Hi RKN}',
+);
+console.log(result);
+```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

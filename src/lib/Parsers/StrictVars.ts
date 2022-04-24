@@ -1,8 +1,8 @@
 import { Context, Parser } from '../Interpreter';
 
 export class LooseVarsParser implements Parser {
-	public willAccept() {
-		return true;
+	public willAccept(ctx: Context) {
+		return ctx.token.declaration! in ctx.response.variables;
 	}
 
 	public process(ctx: Context) {

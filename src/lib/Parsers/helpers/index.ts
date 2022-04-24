@@ -1,4 +1,5 @@
 const splitRegex = /(?<!\\)\|/;
+
 export const parseIf = (str: string) => {
 	const value = implicitBool(str);
 	if (value !== null) return value;
@@ -42,4 +43,10 @@ export const split = (str: string, easy: boolean): string[] | null => {
 	if (easy && str.includes('~')) return str.split('~');
 	if (easy && str.includes(',')) return str.split(',');
 	return null;
+};
+
+export const parseListIf = (str: string) => {
+	const splitted = split(str, false);
+	if (splitted === null) return [parseIf(str)];
+	return splitted.map((s) => parseIf(s));
 };
