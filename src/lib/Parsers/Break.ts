@@ -1,13 +1,16 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 import { parseIf } from './helpers';
 
-export class BreakParser extends BaseParser implements Parser {
-	protected acceptedNames = ['break', 'exit', 'end', 'stop'];
+export class BreakParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['break', 'exit', 'end', 'stop']);
+	}
 
 	public process(ctx: Context) {
-		if (parseIf(ctx.token.parameter!)) {
-			ctx.response.body = ctx.token.payload ?? '';
+		if (parseIf(ctx.tag.parameter!)) {
+			ctx.response.body = ctx.tag.payload ?? '';
 		}
 		return '';
 	}

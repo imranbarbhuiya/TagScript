@@ -1,16 +1,17 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class IncludesParser extends BaseParser implements Parser {
-	protected override acceptedNames = ['includes', 'in', 'indexOf'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+export class IncludesParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['includes', 'in', 'indexOf'], true, true);
+	}
 
 	public process(ctx: Context) {
-		const dec = ctx.token.declaration!.toLowerCase();
+		const dec = ctx.tag.declaration!.toLowerCase();
 		if (['includes', 'in'].includes(dec)) {
-			return `${ctx.token.payload!.includes(ctx.token.parameter!)}`;
+			return `${ctx.tag.payload!.includes(ctx.tag.parameter!)}`;
 		}
-		return `${ctx.token.payload!.indexOf(ctx.token.parameter!)}`;
+		return `${ctx.tag.payload!.indexOf(ctx.tag.parameter!)}`;
 	}
 }

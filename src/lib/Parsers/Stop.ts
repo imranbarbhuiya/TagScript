@@ -1,13 +1,15 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 import { parseIf } from './helpers';
 
-export class StopParser extends BaseParser implements Parser {
-	protected override acceptedNames = ['stop', 'halt', 'error'];
-	protected override requiredParameter = true;
+export class StopParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['stop', 'halt', 'error'], true);
+	}
 
 	public process(ctx: Context) {
-		if (parseIf(ctx.token.parameter!)) throw new Error(ctx.token.payload ?? '');
+		if (parseIf(ctx.tag.parameter!)) throw new Error(ctx.tag.payload ?? '');
 		return '';
 	}
 }

@@ -1,22 +1,23 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class SliceParser extends BaseParser implements Parser {
-	protected override acceptedNames = ['slice', 'substr', 'substring'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+export class SliceParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['slice', 'substr', 'substring'], true, true);
+	}
 
 	public process(ctx: Context) {
-		if (!ctx.token.parameter!.includes('-')) return ctx.token.payload!.slice(parseInt(ctx.token.parameter!, 10));
+		if (!ctx.tag.parameter!.includes('-')) return ctx.tag.payload!.slice(parseInt(ctx.tag.parameter!, 10));
 
-		const spl = ctx.token.parameter!.split('-');
+		const spl = ctx.tag.parameter!.split('-');
 		if (spl.length !== 2) throw this.throwError(ctx, 'Invalid parameter');
 		const start = parseInt(spl[0], 10);
 		const end = parseInt(spl[1], 10);
-		return ctx.token.payload!.slice(start, end);
+		return ctx.tag.payload!.slice(start, end);
 	}
 
 	private throwError(ctx: Context, message: string) {
-		return new SyntaxError(`${message} at ${ctx.token.toString()} when parsing slice token`);
+		return new SyntaxError(`${message} at ${ctx.tag.toString()} when parsing slice tag`);
 	}
 }

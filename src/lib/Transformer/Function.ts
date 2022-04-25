@@ -1,8 +1,8 @@
-import { Adapter } from '../Interpreter';
+import { ITransformer } from '../interfaces';
 
 type AdapterFunction = (...args: unknown[]) => string;
 
-export class FunctionAdapter implements Adapter {
+export class FunctionTransformer implements ITransformer {
 	private fn: AdapterFunction;
 	public constructor(fn: AdapterFunction) {
 		this.fn = fn;

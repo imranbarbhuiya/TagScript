@@ -1,7 +1,7 @@
-import { Adapter } from '../Interpreter';
-import { Tokenizer } from '../Tokenizer';
+import { ITransformer } from '../interfaces';
+import { Lexer } from '../Interpreter';
 
-export class StringAdapter implements Adapter {
+export class StringTransformer implements ITransformer {
 	private str: string;
 	private escape: boolean;
 	public constructor(str: string, escape = false) {
@@ -9,11 +9,11 @@ export class StringAdapter implements Adapter {
 		this.escape = escape;
 	}
 
-	public getValue(ctx: Tokenizer) {
+	public getValue(ctx: Lexer) {
 		return this.returnValue(this.handleContext(ctx));
 	}
 
-	private handleContext(ctx: Tokenizer): string {
+	private handleContext(ctx: Lexer): string {
 		if (ctx.parameter === null) return this.str;
 		try {
 			if (!ctx.parameter.includes('+')) {

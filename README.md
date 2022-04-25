@@ -21,6 +21,8 @@ A description of the package.
 - Written In Typescript
 - Offers CJS, ESM and UMD builds
 - Full TypeScript & JavaScript support
+- Faster than ⚡
+- simple, expressive and safe template engine.
 
 ## Install
 
@@ -43,15 +45,10 @@ import { Interpreter } from 'tagscript';
 
 ```ts
 import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const interpreter = new Interpreter(
-	new SliceParser(),
-	new FiftyFiftyParser(),
-	new RandomParser(),
-	new IfStatementParser(),
-);
+const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-const result = await interpreter.parse(
-	'{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, \nI pick {if({5050:.}!=):heads|tails} \n{slice(1):ok} \n{slice(1-5):Hi RKN}',
+const result = await ts.run(
+	'{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, \nI pick {if({5050:.}!=):heads|tails}',
 );
 console.log(result);
 ```

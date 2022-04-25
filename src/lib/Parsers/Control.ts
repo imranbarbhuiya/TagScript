@@ -1,4 +1,5 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { all, any } from '../Utils/Util';
 import { BaseParser } from './Base';
 import { split, parseIf, parseListIf } from './helpers';
@@ -16,35 +17,35 @@ const parseIntoOutput = (payload: string, result: boolean | null) => {
 		return null;
 	}
 };
-export class IfStatementParser extends BaseParser implements Parser {
-	protected override acceptedNames = ['if'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+export class IfStatementParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['if'], true, true);
+	}
 
 	public process(ctx: Context) {
-		const result = parseIf(ctx.token.parameter!);
-		return parseIntoOutput(ctx.token.payload!, result);
+		const result = parseIf(ctx.tag.parameter!);
+		return parseIntoOutput(ctx.tag.payload!, result);
 	}
 }
 
-export class UnionStatementParser extends BaseParser implements Parser {
+export class UnionStatementParser extends BaseParser implements IParser {
 	protected override acceptedNames = ['union', 'any', 'or'];
 	protected override requiredParameter = true;
 	protected override requiredPayload = true;
 
 	public process(ctx: Context) {
-		const result = any(parseListIf(ctx.token.parameter!));
-		return parseIntoOutput(ctx.token.payload!, result);
+		const result = any(parseListIf(ctx.tag.parameter!));
+		return parseIntoOutput(ctx.tag.payload!, result);
 	}
 }
 
-export class IntersectionStatementParser extends BaseParser implements Parser {
+export class IntersectionStatementParser extends BaseParser implements IParser {
 	protected override acceptedNames = ['intersection', 'all', 'and'];
 	protected override requiredParameter = true;
 	protected override requiredPayload = true;
 
 	public process(ctx: Context) {
-		const result = all(parseListIf(ctx.token.parameter!));
-		return parseIntoOutput(ctx.token.payload!, result);
+		const result = all(parseListIf(ctx.tag.parameter!));
+		return parseIntoOutput(ctx.tag.payload!, result);
 	}
 }

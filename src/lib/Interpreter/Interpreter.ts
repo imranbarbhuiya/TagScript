@@ -1,29 +1,6 @@
-import { Tokenizer } from './Tokenizer';
-import { asyncFilter, Awaitable } from './Utils/Util';
-
-class Node {
-	public coordinates: [number, number];
-	public token: Tokenizer | null;
-	public output: string | null;
-	public constructor(coordinates: [number, number], token: Tokenizer | null) {
-		this.output = null;
-		this.token = token;
-		this.coordinates = coordinates;
-	}
-
-	public toString() {
-		const [start, end] = this.coordinates;
-		return `${this.token} at ${start}-${end}`;
-	}
-
-	public toJSON() {
-		return {
-			output: this.output,
-			token: this.token,
-			coordinates: this.coordinates,
-		};
-	}
-}
+import { ITransformer, IParser } from '../interfaces';
+import { asyncFilter } from '../Utils/Util';
+import { Context, Node, Response, Lexer } from '.';
 
 const buildNodeTree = (message: string): Node[] => {
 	const nodes: Node[] = [];
@@ -48,74 +25,24 @@ const buildNodeTree = (message: string): Node[] => {
 	return nodes;
 };
 
-class Response {
-	public raw!: string;
-	public body: string | null;
-	public variables: { [key: string]: Adapter };
-	public actions: { [key: string]: unknown };
-	public keyValues: { [key: string]: unknown };
-
-	public constructor(
-		variables: { [key: string]: Adapter } | null = null,
-		keyValues: { [key: string]: unknown } | null = null,
-	) {
-		this.body = null;
-		this.actions = {};
-		this.variables = variables ?? {};
-		this.keyValues = keyValues ?? {};
-	}
-
-	public toJSON() {
-		return {
-			body: this.body,
-			actions: this.actions,
-			variables: this.variables,
-			keyValues: this.keyValues,
-		};
-	}
-}
-
-export class Context {
-	public token: Tokenizer;
-	public response: Response;
-	private originalMessage: string;
-	private interpreter: Interpreter;
-
-	public constructor(token: Tokenizer, res: Response, interpreter: Interpreter, originalMessage: string) {
-		this.token = token;
-		this.originalMessage = originalMessage;
-		this.interpreter = interpreter;
-		this.response = res;
-	}
-
-	public toJSON() {
-		return {
-			token: this.token,
-			originalMessage: this.originalMessage,
-			interpreter: this.interpreter,
-			response: this.response,
-		};
-	}
-}
-
 export class Interpreter {
-	protected parsers: Parser[];
-	public constructor(...parsers: Parser[]) {
+	protected parsers: IParser[];
+	public constructor(...parsers: IParser[]) {
 		this.parsers = parsers;
 	}
 
-	public async parse(
+	public async run(
 		message: string,
-		seedVariables: { [key: string]: Adapter } = {},
+		seedVariables: { [key: string]: ITransformer } = {},
 		charlimit: number | null = null,
-		tokenLimit = 2000,
+		tagLimit = 2000,
 		dotParameter = false,
 		keyValues: { [key: string]: unknown } = {},
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
-		const output = await this.solve(message, nodeOrderedList, response, charlimit, tokenLimit, dotParameter);
-		return this.returnResponse(response, output, message);
+		const output = await this.solve(message, nodeOrderedList, response, charlimit, tagLimit, dotParameter);
+		return response.setValues(output, message);
 	}
 
 	protected getAcceptors(ctx: Context) {
@@ -128,15 +55,15 @@ export class Interpreter {
 		final: string,
 		response: Response,
 		originalMessage: string,
-		tokenLimit: number,
+		tagLimit: number,
 		dotParameter: boolean,
 	) {
 		const [start, end] = node.coordinates;
-		node.token = new Tokenizer(final.slice(start, end + 1), tokenLimit, dotParameter);
-		return new Context(node.token, response, this, originalMessage);
+		node.tag = new Lexer(final.slice(start, end + 1), tagLimit, dotParameter);
+		return new Context(node.tag, response, this, originalMessage);
 	}
 
-	private async processTokens(ctx: Context, node: Node) {
+	private async processTags(ctx: Context, node: Node) {
 		const acceptors = await this.getAcceptors(ctx);
 		for (const b of acceptors) {
 			const value = await b.process(ctx);
@@ -195,7 +122,7 @@ export class Interpreter {
 		nodeOrderedList: Node[],
 		response: Response,
 		charlimit: number | null,
-		tokenLimit = 2000,
+		tagLimit = 2000,
 		dotParameter = false,
 	) {
 		let final = message;
@@ -203,10 +130,10 @@ export class Interpreter {
 		for (let index = 0; index < nodeOrderedList.length; index++) {
 			const node = nodeOrderedList[index];
 			const [start, end] = node.coordinates;
-			const ctx = this.getContext(node, final, response, message, tokenLimit, dotParameter);
+			const ctx = this.getContext(node, final, response, message, tagLimit, dotParameter);
 			let output;
 			try {
-				output = await this.processTokens(ctx, node);
+				output = await this.processTags(ctx, node);
 			} catch (error) {
 				return `${final.slice(start)} ${error}`;
 			}
@@ -220,20 +147,4 @@ export class Interpreter {
 		}
 		return final;
 	}
-
-	private returnResponse(response: Response, output: string, message: string): Response {
-		if (response.body === null) response.body = output.trim();
-		else response.body = response.body.trim();
-
-		response.raw = message;
-		return response;
-	}
-}
-
-export interface Adapter {
-	getValue(ctx: Tokenizer): string | null;
-}
-export interface Parser {
-	willAccept(ctx: Context): Awaitable<boolean>;
-	process(ctx: Context): Awaitable<string | null>;
 }

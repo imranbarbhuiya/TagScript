@@ -1,4 +1,15 @@
-export class Tokenizer {
+export enum Part {
+	tagStart = '{',
+	tagEnd = '}',
+	colon = ':',
+	comma = ',',
+	dot = '.',
+	parenStart = '(',
+	parenEnd = ')',
+	comment = '\\',
+	pipe = '|',
+}
+export class Lexer {
 	public parameter: string | null;
 	public declaration: string | null;
 	public payload: string | null;
@@ -14,15 +25,19 @@ export class Tokenizer {
 		this.parameter = null;
 		this.payload = null;
 		this.dotParameter = dotParameter;
-		this.tokenize(input, limit);
+		this.lex(input, limit);
 	}
 
 	public toString() {
-		let response = '{';
+		let response: string = Part.tagStart;
 		if (this.declaration !== null) response += this.declaration;
-		if (this.parameter !== null) response += this.dotParameter ? `.${this.parameter}` : `(${this.parameter})`;
-		if (this.payload !== null) response += `:${this.payload}`;
-		return `${response}}`;
+		if (this.parameter !== null)
+			response += this.dotParameter
+				? `${Part.dot}${this.parameter}`
+				: `${Part.parenStart}${this.parameter}${Part.parenEnd}`;
+		if (this.payload !== null) response += `${Part.colon}${this.payload}`;
+		response += Part.tagEnd;
+		return response;
 	}
 
 	public toJSON() {
@@ -34,7 +49,7 @@ export class Tokenizer {
 		};
 	}
 
-	private tokenize(input: string, limit: number) {
+	private lex(input: string, limit: number) {
 		this.parsedInput = input.slice(1, -1).slice(0, limit);
 		this.parsedLength = this.parsedInput.length;
 		this.decDepth = 0;
@@ -50,12 +65,12 @@ export class Tokenizer {
 			if (this.skipNext) {
 				this.skipNext = false;
 				continue;
-			} else if (char === '\\') {
+			} else if (char === Part.comment) {
 				this.skipNext = true;
 				continue;
 			}
 
-			if (char === ':' && !this.decDepth) {
+			if (char === Part.colon && !this.decDepth) {
 				this.setPayload();
 				return;
 			} else if (parseParameter(i, char)) return;
@@ -64,20 +79,21 @@ export class Tokenizer {
 	}
 
 	private parseDotParameter(index: number, char: string) {
-		if (char === '.') this.openParameter(index);
-		else if ((char === ':' || index === this.parsedLength - 1) && this.decDepth) return this.closeParameter(index + 1);
+		if (char === Part.dot) this.openParameter(index);
+		else if ((char === Part.colon || index === this.parsedLength - 1) && this.decDepth)
+			return this.closeParameter(index + 1);
 		return false;
 	}
 
 	private parseParenthesisParameter(index: number, char: string) {
-		if (char === '(') this.openParameter(index);
-		else if (char === ')' && this.decDepth) return this.closeParameter(index);
+		if (char === Part.parenStart) this.openParameter(index);
+		else if (char === Part.parenEnd && this.decDepth) return this.closeParameter(index);
 		return false;
 	}
 
 	private setPayload() {
 		const [declaration, ...payloads] = this.parsedInput.split(':');
-		const payload = payloads.join(':');
+		const payload = payloads.join(Part.colon);
 		if (payload.length) this.payload = payload;
 		if (!this.declaration) this.declaration = declaration;
 	}
@@ -92,7 +108,7 @@ export class Tokenizer {
 		this.decDepth -= 1;
 		if (this.decDepth === 0) {
 			this.parameter = this.parsedInput.slice(this.decStart + 1, i);
-			if (this.parsedInput[i + 1] === ':') this.payload = this.parsedInput.slice(i + 2);
+			if (this.parsedInput[i + 1] === Part.colon) this.payload = this.parsedInput.slice(i + 2);
 			return true;
 		}
 		return false;

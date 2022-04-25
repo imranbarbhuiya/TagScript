@@ -1,16 +1,22 @@
 import { Context } from '../Interpreter';
 
 export abstract class BaseParser {
-	protected acceptedNames: string[] = [];
-	protected requiredParameter = false;
-	protected requiredPayload = false;
+	protected acceptedNames: string[];
+	protected requiredParameter: boolean;
+	protected requiredPayload: boolean;
+
+	public constructor(acceptedNames: string[], requiredParameter = false, requiredPayload = false) {
+		this.acceptedNames = acceptedNames;
+		this.requiredParameter = requiredParameter;
+		this.requiredPayload = requiredPayload;
+	}
 
 	public willAccept(ctx: Context): boolean {
-		const dec = ctx.token.declaration?.toLowerCase();
+		const dec = ctx.tag.declaration?.toLowerCase();
 		return (
 			this.acceptedNames.includes(dec!) &&
-			Boolean(!this.requiredParameter || ctx.token.parameter) &&
-			Boolean(!this.requiredPayload || ctx.token.payload)
+			Boolean(!this.requiredParameter || ctx.tag.parameter) &&
+			Boolean(!this.requiredPayload || ctx.tag.payload)
 		);
 	}
 }

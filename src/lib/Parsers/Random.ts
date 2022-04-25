@@ -1,14 +1,17 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class RandomParser extends BaseParser implements Parser {
-	protected override acceptedNames: string[] = ['random', 'rand'];
-	protected override requiredPayload = true;
+export class RandomParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['random', 'rand'], false, true);
+	}
 
 	public process(ctx: Context) {
 		let spl = [];
-		if (ctx.token.payload!.includes('~')) spl = ctx.token.payload!.split('~');
-		else spl = ctx.token.payload!.split(',');
+		// TODO: recheck
+		if (ctx.tag.payload!.includes('~')) spl = ctx.tag.payload!.split('~');
+		else spl = ctx.tag.payload!.split(',');
 
 		const index = Math.floor(Math.random() * spl.length);
 		return spl[index];

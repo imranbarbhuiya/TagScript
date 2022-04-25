@@ -1,13 +1,14 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 
-export class LooseVarsParser implements Parser {
+export class StrictVarsParser implements IParser {
 	public willAccept(ctx: Context) {
-		return ctx.token.declaration! in ctx.response.variables;
+		return ctx.tag.declaration! in ctx.response.variables;
 	}
 
 	public process(ctx: Context) {
-		if (ctx.token.declaration! in ctx.response.variables)
-			return ctx.response.variables[ctx.token.declaration!].getValue(ctx.token);
+		if (ctx.tag.declaration! in ctx.response.variables)
+			return ctx.response.variables[ctx.tag.declaration!].getValue(ctx.tag);
 		return null;
 	}
 }

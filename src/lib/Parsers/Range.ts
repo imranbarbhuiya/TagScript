@@ -1,13 +1,15 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class RangeParser extends BaseParser implements Parser {
-	protected override acceptedNames: string[] = ['rangef', 'range'];
-	protected override requiredPayload = true;
+export class RangeParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['rangef', 'range'], false, true);
+	}
 
 	public process(ctx: Context) {
-		const spl = ctx.token.payload!.split('-');
-		if (ctx.token.declaration!.toLowerCase() === 'rangef') {
+		const spl = ctx.tag.payload!.split('-');
+		if (ctx.tag.declaration!.toLowerCase() === 'rangef') {
 			const lower = parseFloat(spl[0]);
 			const upper = parseFloat(spl[1]);
 			const base = Math.floor(Math.random() * (upper * 10 - lower * 10) + lower * 10) / 10;

@@ -1,6 +1,6 @@
-import { Adapter } from '../Interpreter';
+import { ITransformer } from '../interfaces';
 
-export class IntegerAdapter implements Adapter {
+export class IntegerTransformer implements ITransformer {
 	private integer: number;
 	public constructor(int: string) {
 		this.integer = parseInt(int, 10);

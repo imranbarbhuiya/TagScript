@@ -1,11 +1,13 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class UrlEncodeParser extends BaseParser implements Parser {
-	protected override acceptedNames: string[] = ['urlencode'];
-	protected override requiredPayload = true;
+export class UrlEncodeParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['urlencode', 'encodeuri'], false, true);
+	}
 
 	public process(ctx: Context) {
-		return encodeURI(ctx.token.payload!);
+		return encodeURI(ctx.tag.payload!);
 	}
 }

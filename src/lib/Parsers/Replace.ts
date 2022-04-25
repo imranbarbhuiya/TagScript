@@ -1,15 +1,16 @@
-import { Context, Parser } from '../Interpreter';
+import { IParser } from '../interfaces';
+import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class ReplaceParser extends BaseParser implements Parser {
-	protected override acceptedNames = ['replace'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+export class ReplaceParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['replace'], true, true);
+	}
 
 	public process(ctx: Context) {
-		const [before, ...rest] = ctx.token.parameter!.split(',');
+		const [before, ...rest] = ctx.tag.parameter!.split(',');
 		const after = rest.join(',') || '';
 
-		return ctx.token.payload!.replaceAll(before, after);
+		return ctx.tag.payload!.replaceAll(before, after);
 	}
 }

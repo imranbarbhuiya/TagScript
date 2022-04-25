@@ -9,4 +9,5 @@ export * from './Random';
 export * from './Range';
 export * from './Replace';
 export * from './Slice';
+export * from './StrictVars';
 export * from './UrlEncoded';
