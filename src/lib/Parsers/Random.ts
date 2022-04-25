@@ -7,7 +7,7 @@ export class RandomParser extends BaseParser implements IParser {
 		super(['random', 'rand'], false, true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		let spl = [];
 		// TODO: recheck
 		if (ctx.tag.payload!.includes('~')) spl = ctx.tag.payload!.split('~');

@@ -7,7 +7,7 @@ export class SliceParser extends BaseParser implements IParser {
 		super(['slice', 'substr', 'substring'], true, true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		if (!ctx.tag.parameter!.includes('-')) return ctx.tag.payload!.slice(parseInt(ctx.tag.parameter!, 10));
 
 		const spl = ctx.tag.parameter!.split('-');

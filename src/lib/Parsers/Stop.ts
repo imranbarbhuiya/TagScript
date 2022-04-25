@@ -8,7 +8,7 @@ export class StopParser extends BaseParser implements IParser {
 		super(['stop', 'halt', 'error'], true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		if (parseIf(ctx.tag.parameter!)) throw new Error(ctx.tag.payload ?? '');
 		return '';
 	}

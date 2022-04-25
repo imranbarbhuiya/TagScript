@@ -1,8 +1,20 @@
 import { ITransformer } from '../interfaces';
 
+/**
+ * An object containing information on a completed TagScript process.
+ */
 export class Response {
+	/**
+	 * The raw string that was used to generate this response.
+	 */
 	public raw!: string;
+	/**
+	 * The cleaned message with all tags interpreted.
+	 */
 	public body: string | null;
+	/**
+	 * An object with all the variables that parsers such as the `LooseVarsParser` can access.
+	 */
 	public variables: { [key: string]: ITransformer };
 	public actions: { [key: string]: unknown };
 	public keyValues: { [key: string]: unknown };

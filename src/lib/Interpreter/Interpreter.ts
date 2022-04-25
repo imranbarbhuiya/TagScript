@@ -1,7 +1,16 @@
 import { ITransformer, IParser } from '../interfaces';
 import { asyncFilter } from '../Utils/Util';
-import { Context, Node, Response, Lexer } from '.';
+import { Context } from './Context';
+import { Lexer } from './Lexer';
+import { Node } from './Node';
+import { Response } from './Response';
 
+/**
+ * 
+    Function that finds all possible nodes in a string.
+ * @param message 
+ * @returns A list of all possible text bracket tags.
+ */
 const buildNodeTree = (message: string): Node[] => {
 	const nodes: Node[] = [];
 	let previous = '';
@@ -25,23 +34,36 @@ const buildNodeTree = (message: string): Node[] => {
 	return nodes;
 };
 
+/**
+ * The TagScript interpreter.
+ */
 export class Interpreter {
 	protected parsers: IParser[];
 	public constructor(...parsers: IParser[]) {
 		this.parsers = parsers;
 	}
 
+	/**
+	 * Processes a given TagScript string.
+	 * @param message The TagScript string that to be processed.
+	 * @param seedVariables A object containing strings to transformer to provide context variables for processing.
+	 * @param charLimit The maximum characters to process.
+	 * @param tagLimit
+	 * @param dotParameter Whether the parameter should be followed after a "." or use the default of parenthesis.
+	 * @param keyValues Additional key value pairs that may be used by parsers during parsing.
+	 * @returns {@link Response} class containing the raw string, processed body, actions and variables.
+	 */
 	public async run(
 		message: string,
 		seedVariables: { [key: string]: ITransformer } = {},
-		charlimit: number | null = null,
+		charLimit: number | null = null,
 		tagLimit = 2000,
 		dotParameter = false,
 		keyValues: { [key: string]: unknown } = {},
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
-		const output = await this.solve(message, nodeOrderedList, response, charlimit, tagLimit, dotParameter);
+		const output = await this.solve(message, nodeOrderedList, response, charLimit, tagLimit, dotParameter);
 		return response.setValues(output, message);
 	}
 
@@ -66,7 +88,7 @@ export class Interpreter {
 	private async processTags(ctx: Context, node: Node) {
 		const acceptors = await this.getAcceptors(ctx);
 		for (const b of acceptors) {
-			const value = await b.process(ctx);
+			const value = await b.parse(ctx);
 			if (value !== null) {
 				node.output = value;
 				return value;

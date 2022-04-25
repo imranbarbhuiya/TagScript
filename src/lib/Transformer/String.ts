@@ -9,7 +9,7 @@ export class StringTransformer implements ITransformer {
 		this.escape = escape;
 	}
 
-	public getValue(ctx: Lexer) {
+	public transform(ctx: Lexer) {
 		return this.returnValue(this.handleContext(ctx));
 	}
 

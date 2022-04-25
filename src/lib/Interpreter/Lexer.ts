@@ -9,6 +9,10 @@ export enum Part {
 	comment = '\\',
 	pipe = '|',
 }
+
+/**
+ * Represents the passed Tag.
+ */
 export class Lexer {
 	public parameter: string | null;
 	public declaration: string | null;

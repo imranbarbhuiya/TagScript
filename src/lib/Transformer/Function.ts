@@ -8,7 +8,7 @@ export class FunctionTransformer implements ITransformer {
 		this.fn = fn;
 	}
 
-	public getValue() {
+	public transform() {
 		return this.fn();
 	}
 }

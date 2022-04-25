@@ -7,7 +7,7 @@ export class IncludesParser extends BaseParser implements IParser {
 		super(['includes', 'in', 'indexOf'], true, true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		const dec = ctx.tag.declaration!.toLowerCase();
 		if (['includes', 'in'].includes(dec)) {
 			return `${ctx.tag.payload!.includes(ctx.tag.parameter!)}`;

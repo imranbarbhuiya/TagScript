@@ -1,5 +1,8 @@
 import { Lexer } from '.';
 
+/**
+ * A low-level object representing a bracketed tag.
+ */
 export class Node {
 	public coordinates: [number, number];
 	public tag: Lexer | null;

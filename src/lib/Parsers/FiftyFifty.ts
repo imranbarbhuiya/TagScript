@@ -7,7 +7,7 @@ export class FiftyFiftyParser extends BaseParser implements IParser {
 		super(['5050', '50', '?'], false, true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		const spl = ['', ctx.tag.payload];
 
 		const index = Math.floor(Math.random() * spl.length);

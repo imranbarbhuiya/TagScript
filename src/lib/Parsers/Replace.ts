@@ -7,7 +7,7 @@ export class ReplaceParser extends BaseParser implements IParser {
 		super(['replace'], true, true);
 	}
 
-	public process(ctx: Context) {
+	public parse(ctx: Context) {
 		const [before, ...rest] = ctx.tag.parameter!.split(',');
 		const after = rest.join(',') || '';
 

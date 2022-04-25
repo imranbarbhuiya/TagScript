@@ -7,7 +7,7 @@ export class SafeObjectTransformer implements ITransformer {
 		this.obj = JSON.parse(JSON.stringify(ojb));
 	}
 
-	public getValue(ctx: Lexer) {
+	public transform(ctx: Lexer) {
 		// eslint-disable-next-line @typescript-eslint/no-base-to-string
 		if (ctx.parameter === null) return `${this.obj}`;
 		if (ctx.parameter.startsWith('_') || ctx.parameter.includes('.')) return null;

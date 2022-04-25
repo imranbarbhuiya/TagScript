@@ -6,7 +6,7 @@ export class IntegerTransformer implements ITransformer {
 		this.integer = parseInt(int, 10);
 	}
 
-	public getValue() {
+	public transform() {
 		return `${this.integer}`;
 	}
 }
