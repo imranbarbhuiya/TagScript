@@ -53,9 +53,9 @@ const parseIntoOutput = (payload: string, result: boolean | null) => {
  *     # if args is 63
  *     # You guessed it! The number I was thinking of was 63!
  *     # if args is 73
- *     # Too low, try again.
- *     # if args is 14
  *     # Too high, try again.
+ *     # if args is 14
+ *     # Too low, try again.
  * ```
  */
 export class IfStatementParser extends BaseParser implements IParser {
@@ -84,17 +84,16 @@ export class IfStatementParser extends BaseParser implements IParser {
  *     {any({args}==hi|{args}==hello|{args}==heyy):Hello {user}!|How rude.}
  *     # if {args} is hi
  *     Hello sravan#0001!
- *     # if {args} is what's up!
+ *     # if {args} is what's up
  *     How rude.
  * ```
  */
 export class UnionStatementParser extends BaseParser implements IParser {
-	protected override acceptedNames = ['union', 'any', 'or'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+	public constructor() {
+		super(['union', 'any', 'or'], true, true);
+	}
 
 	public parse(ctx: Context) {
-		// TODO: test
 		const result = any(parseListIf(ctx.tag.parameter!));
 		return parseIntoOutput(ctx.tag.payload!, result);
 	}
@@ -120,9 +119,9 @@ export class UnionStatementParser extends BaseParser implements IParser {
  * ```
  */
 export class IntersectionStatementParser extends BaseParser implements IParser {
-	protected override acceptedNames = ['intersection', 'all', 'and'];
-	protected override requiredParameter = true;
-	protected override requiredPayload = true;
+	public constructor() {
+		super(['intersection', 'all', 'and'], true, true);
+	}
 
 	public parse(ctx: Context) {
 		const result = all(parseListIf(ctx.tag.parameter!));
