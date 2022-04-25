@@ -25,7 +25,6 @@ A description of the package.
 - Full TypeScript & JavaScript support
 - Faster than ⚡
 - simple, expressive and safe template engine.
-- API similar to [TagScript in Python](https://github.com/JonSnowbd/TagScript/)
 
 ## Install
 
@@ -76,3 +75,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Special Thanks
+
+- [JonSnowbd](https://github.com/JonSnowbd/TagScript/) and [phenom4n4n](https://github.com/phenom4n4n/TagScript) for creating tagscript in python.

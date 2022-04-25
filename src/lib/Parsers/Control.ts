@@ -25,16 +25,22 @@ const parseIntoOutput = (payload: string, result: boolean | null) => {
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  *
  * @allOperators
- *
  * ```md
+ * +----------+--------------------------+---------+---------------------------------------------+
  * | Operator | Check                    | Example | Description                                 |
- * | ======== | ======================== | ======= | =========================================== |
- * | ``==``   | equality                 | a==a    | value 1 is equal to value 2                 |
- * | ``!=``   | inequality               | a!=b    | value 1 is not equal to value 2             |
- * | ``>``    | greater than             | 5>3     | value 1 is greater than value 2             |
- * | ``<``    | less than                | 4<8     | value 1 is less than value 2                |
- * | ``>=``   | greater than or equality | 10>=10  | value 1 is greater than or equal to value 2 |
- * | ``<=``   | less than or equality    | 5<=6    | value 1 is less than or equal to value 2    |
+ * +==========+==========================+=========+=============================================+
+ * |   ==     | equality                 |  a==a   | value 1 is equal to value 2                 |
+ * +----------+--------------------------+---------+---------------------------------------------+
+ * |   !=     | inequality               |  a!=b   | value 1 is not equal to value 2             |
+ * +----------+--------------------------+---------+---------------------------------------------+
+ * |   >      | greater than             |  5>3    | value 1 is greater than value 2             |
+ * +----------+--------------------------+---------+---------------------------------------------+
+ * |   <      | less than                |  4<8    | value 1 is less than value 2                |
+ * +----------+--------------------------+---------+---------------------------------------------+
+ * |   >=     | greater than or equality | 10>=10  | value 1 is greater than or equal to value 2 |
+ * +----------+--------------------------+---------+---------------------------------------------+
+ * |   <=     | less than or equality    |  5<=6   | value 1 is less than or equal to value 2    |
+ * +----------+--------------------------+---------+---------------------------------------------+
  * ```
  *
  * @usage
