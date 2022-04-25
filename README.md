@@ -16,6 +16,8 @@ A description of the package.
 
 <!-- Read Full Documentation [here](https://tagscript.js.org/). -->
 
+> 🤖 TagScript is currently in beta. Its core API is useable right now, but you might need to pull request improvements for advanced use cases, or fixes for some bugs. Some of its APIs are not "finalized" and will have breaking changes over time as we discover better solutions. There isn't currently a 1.0 release schedule, we're still getting the architecture right.
+
 ## Features
 
 - Written In Typescript
@@ -23,6 +25,7 @@ A description of the package.
 - Full TypeScript & JavaScript support
 - Faster than ⚡
 - simple, expressive and safe template engine.
+- API similar to [TagScript in Python](https://github.com/JonSnowbd/TagScript/)
 
 ## Install
 
@@ -73,7 +76,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## Special Thanks
-
-- [JonSnowbd](https://github.com/JonSnowbd/TagScript/) and [phenom4n4n](https://github.com/phenom4n4n/TagScript) for creating tagscript in python.

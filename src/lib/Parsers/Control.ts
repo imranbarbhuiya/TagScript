@@ -23,7 +23,8 @@ const parseIntoOutput = (payload: string, result: boolean | null) => {
  * An expression is represented by two values compared with an operator.
  * The payload is a required message that must be split by pipe (`|`).
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
- * **Expression Operators:**
+ * ```md
+ * # All Operators:
  * +----------+--------------------------+---------+---------------------------------------------+
  * | Operator | Check                    | Example | Description                                 |
  * +==========+==========================+=========+=============================================+
@@ -39,6 +40,7 @@ const parseIntoOutput = (payload: string, result: boolean | null) => {
  * +----------+--------------------------+---------+---------------------------------------------+
  * | ``<=``   | less than or equality    | 5<=6    | value 1 is less than or equal to value 2    |
  * +----------+--------------------------+---------+---------------------------------------------+
+ * ```
  * @usage
  * ```yaml
  * 	  {if(<expression>):<message>]}
