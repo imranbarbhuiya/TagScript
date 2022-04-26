@@ -94,20 +94,25 @@ export class Lexer {
 	}
 
 	private parseDotParameter(index: number, token: string) {
-		if (token === Part.dot) this.openParameter(index);
-		else if ((token === Part.colon || index === this.parsedLength - 1) && this.decDepth) {
+		if (token === Part.dot) {
 			this.usedParenType = ParenType.Dot;
+			this.openParameter(index);
+		} else if (
+			this.usedParenType === ParenType.Dot &&
+			(token === Part.colon || index === this.parsedLength - 1) &&
+			this.decDepth
+		)
 			return this.closeParameter(index);
-		}
 		return false;
 	}
 
 	private parseParenthesisParameter(index: number, token: string) {
-		if (token === Part.parenStart) this.openParameter(index);
-		else if (token === Part.parenEnd && this.decDepth) {
+		if (token === Part.parenStart) {
 			this.usedParenType = ParenType.Parenthesis;
+			this.openParameter(index);
+		} else if (this.usedParenType === ParenType.Parenthesis && token === Part.parenEnd && this.decDepth)
 			return this.closeParameter(index);
-		}
+
 		return false;
 	}
 

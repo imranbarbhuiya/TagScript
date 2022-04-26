@@ -2,7 +2,7 @@ import { IParser } from '../interfaces';
 import { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
-export class FormatParser extends BaseParser implements IParser {
+export class StringFormatParser extends BaseParser implements IParser {
 	public constructor() {
 		super(['lower', 'upper', 'capitalize'], false, true);
 	}
