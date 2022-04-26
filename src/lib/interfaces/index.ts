@@ -8,3 +8,10 @@ export interface IParser {
 	willAccept(ctx: Context): Awaitable<boolean>;
 	parse(ctx: Context): Awaitable<string | null>;
 }
+
+export interface KeyValues {
+	cooldown?: {
+		cooldown: number;
+		message: string | null;
+	};
+}

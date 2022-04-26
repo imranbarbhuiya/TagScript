@@ -1,6 +1,6 @@
 <div align="center">
 
-# tagscript
+# TagScript
 
 **A simple and safe template engine.**
 
@@ -78,4 +78,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Special Thanks
 
-- [JonSnowbd](https://github.com/JonSnowbd/TagScript/) and [phenom4n4n](https://github.com/phenom4n4n/TagScript) for creating tagscript in python.
+- [JonSnowbd](https://github.com/JonSnowbd/TagScript/) for creating tagscript in python.
