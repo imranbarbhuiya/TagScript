@@ -7,12 +7,12 @@ export class SafeObjectTransformer implements ITransformer {
 		this.obj = JSON.parse(JSON.stringify(ojb));
 	}
 
-	public transform(ctx: Lexer) {
+	public transform(tag: Lexer) {
 		// eslint-disable-next-line @typescript-eslint/no-base-to-string
-		if (ctx.parameter === null) return `${this.obj}`;
-		if (ctx.parameter.startsWith('_') || ctx.parameter.includes('.')) return null;
+		if (tag.parameter === null) return `${this.obj}`;
+		if (tag.parameter.startsWith('_') || tag.parameter.includes('.')) return null;
 
-		const attribute = this.obj[ctx.parameter];
+		const attribute = this.obj[tag.parameter];
 		return attribute ? `${attribute}` : null;
 	}
 }

@@ -9,27 +9,27 @@ export class StringTransformer implements ITransformer {
 		this.escape = escape;
 	}
 
-	public transform(ctx: Lexer) {
-		return this.returnValue(this.handleContext(ctx));
+	public transform(tag: Lexer) {
+		return this.returnValue(this.handleContext(tag));
 	}
 
-	private handleContext(ctx: Lexer): string {
-		if (ctx.parameter === null) return this.str;
+	private handleContext(tag: Lexer): string {
+		if (tag.parameter === null) return this.str;
 		try {
-			if (!ctx.parameter.includes('+')) {
-				const index = parseInt(ctx.parameter, 10) - 1;
-				const splitter = ctx.payload ?? ' ';
+			if (!tag.parameter.includes('+')) {
+				const index = parseInt(tag.parameter, 10) - 1;
+				const splitter = tag.payload ?? ' ';
 				return this.str.split(splitter)[index];
 			}
 
-			const index = parseInt(ctx.parameter.replace('+', ''), 10) - 1;
-			const splitter = ctx.payload ?? ' ';
-			if (ctx.parameter.startsWith('+')) {
+			const index = parseInt(tag.parameter.replace('+', ''), 10) - 1;
+			const splitter = tag.payload ?? ' ';
+			if (tag.parameter.startsWith('+')) {
 				return this.str
 					.split(splitter)
 					.slice(0, index + 1)
 					.join(splitter);
-			} else if (ctx.parameter.endsWith('+')) {
+			} else if (tag.parameter.endsWith('+')) {
 				return this.str.split(splitter).slice(index).join(splitter);
 			}
 
