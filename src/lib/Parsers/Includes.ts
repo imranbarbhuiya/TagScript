@@ -4,7 +4,7 @@ import { BaseParser } from './Base';
 
 export class IncludesParser extends BaseParser implements IParser {
 	public constructor() {
-		super(['includes', 'in', 'indexOf'], true, true);
+		super(['includes', 'in', 'index'], true, true);
 	}
 
 	public parse(ctx: Context) {

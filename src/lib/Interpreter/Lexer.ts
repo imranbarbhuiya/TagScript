@@ -10,6 +10,12 @@ export enum Part {
 	pipe = '|',
 }
 
+export enum ParenType {
+	Parenthesis,
+	Dot,
+	Both,
+}
+
 /**
  * Represents the passed Tag.
  */
@@ -17,18 +23,19 @@ export class Lexer {
 	public parameter: string | null;
 	public declaration: string | null;
 	public payload: string | null;
-	private dotParameter: boolean;
+	private parenType: ParenType;
 	private parsedInput!: string;
 	private parsedLength!: number;
 	private decDepth!: number;
 	private decStart!: number;
 	private skipNext!: boolean;
+	private usedParenType!: ParenType;
 
-	public constructor(input: string, limit = 2000, dotParameter = false) {
+	public constructor(input: string, limit = 2000, parenType = ParenType.Both) {
 		this.declaration = null;
 		this.parameter = null;
 		this.payload = null;
-		this.dotParameter = dotParameter;
+		this.parenType = parenType;
 		this.lex(input, limit);
 	}
 
@@ -36,9 +43,10 @@ export class Lexer {
 		let response: string = Part.tagStart;
 		if (this.declaration !== null) response += this.declaration;
 		if (this.parameter !== null)
-			response += this.dotParameter
-				? `${Part.dot}${this.parameter}`
-				: `${Part.parenStart}${this.parameter}${Part.parenEnd}`;
+			response +=
+				this.usedParenType === ParenType.Dot
+					? `${Part.dot}${this.parameter}`
+					: `${Part.parenStart}${this.parameter}${Part.parenEnd}`;
 		if (this.payload !== null) response += `${Part.colon}${this.payload}`;
 		response += Part.tagEnd;
 		return response;
@@ -49,7 +57,7 @@ export class Lexer {
 			declaration: this.declaration,
 			parameter: this.parameter,
 			payload: this.payload,
-			dotParameter: this.dotParameter,
+			parenTpe: this.parenType,
 		};
 	}
 
@@ -60,38 +68,51 @@ export class Lexer {
 		this.decStart = 0;
 		this.skipNext = false;
 
-		const parseParameter = this.dotParameter
-			? this.parseDotParameter.bind(this)
-			: this.parseParenthesisParameter.bind(this);
+		const parseParameter = (index: number, token: string) =>
+			this.parenType === ParenType.Dot
+				? this.parseDotParameter(index, token)
+				: this.parenType === ParenType.Parenthesis
+				? this.parseParenthesisParameter(index, token)
+				: this.parseParenthesisParameter(index, token) || this.parseDotParameter(index, token);
 
 		for (let i = 0; i < this.parsedInput.length; i++) {
-			const char = this.parsedInput[i];
+			const token = this.parsedInput[i];
 			if (this.skipNext) {
 				this.skipNext = false;
 				continue;
-			} else if (char === Part.comment) {
+			} else if (token === Part.comment) {
 				this.skipNext = true;
 				continue;
 			}
 
-			if (char === Part.colon && !this.decDepth) {
+			if (token === Part.colon && !this.decDepth) {
 				this.setPayload();
 				return;
-			} else if (parseParameter(i, char)) return;
+			} else if (parseParameter(i, token)) return;
 			this.setPayload();
 		}
 	}
 
-	private parseDotParameter(index: number, char: string) {
-		if (char === Part.dot) this.openParameter(index);
-		else if ((char === Part.colon || index === this.parsedLength - 1) && this.decDepth)
-			return this.closeParameter(index + 1);
+	private parseDotParameter(index: number, token: string) {
+		if (token === Part.dot) {
+			this.usedParenType = ParenType.Dot;
+			this.openParameter(index);
+		} else if (
+			this.usedParenType === ParenType.Dot &&
+			(token === Part.colon || index === this.parsedLength - 1) &&
+			this.decDepth
+		)
+			return this.closeParameter(index);
 		return false;
 	}
 
-	private parseParenthesisParameter(index: number, char: string) {
-		if (char === Part.parenStart) this.openParameter(index);
-		else if (char === Part.parenEnd && this.decDepth) return this.closeParameter(index);
+	private parseParenthesisParameter(index: number, token: string) {
+		if (token === Part.parenStart) {
+			this.usedParenType = ParenType.Parenthesis;
+			this.openParameter(index);
+		} else if (this.usedParenType === ParenType.Parenthesis && token === Part.parenEnd && this.decDepth)
+			return this.closeParameter(index);
+
 		return false;
 	}
 

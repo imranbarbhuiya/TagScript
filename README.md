@@ -4,7 +4,7 @@
 
 **A simple and safe template engine.**
 
-[![GitHub](https://img.shields.io/github/license/imranbarbhuiya/tagscript)](https://github.com/imranbarbhuiya/tagscript/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?token=token)](https://codecov.io/gh/imranbarbhuiya/tagscript)
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
 
@@ -12,9 +12,9 @@
 
 ## Description
 
-A description of the package.
+A simple and safe template engine.
 
-<!-- Read Full Documentation [here](https://tagscript.js.org/). -->
+Read Full Documentation [here](https://tagscript.js.org/).
 
 > 🤖 TagScript is currently in beta. Its core API is useable right now, but you might need to pull request improvements for advanced use cases, or fixes for some bugs. Some of its APIs are not "finalized" and will have breaking changes over time as we discover better solutions. There isn't currently a 1.0 release schedule, we're still getting the architecture right.
 

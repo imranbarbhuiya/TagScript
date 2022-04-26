@@ -1,7 +1,7 @@
 import { ITransformer, IParser } from '../interfaces';
 import { asyncFilter } from '../Utils/Util';
 import { Context } from './Context';
-import { Lexer } from './Lexer';
+import { Lexer, ParenType } from './Lexer';
 import { Node } from './Node';
 import { Response } from './Response';
 
@@ -58,12 +58,12 @@ export class Interpreter {
 		seedVariables: { [key: string]: ITransformer } = {},
 		charLimit: number | null = null,
 		tagLimit = 2000,
-		dotParameter = false,
+		parenType = ParenType.Both,
 		keyValues: { [key: string]: unknown } = {},
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
-		const output = await this.solve(message, nodeOrderedList, response, charLimit, tagLimit, dotParameter);
+		const output = await this.solve(message, nodeOrderedList, response, charLimit, tagLimit, parenType);
 		return response.setValues(output, message);
 	}
 
@@ -78,10 +78,10 @@ export class Interpreter {
 		response: Response,
 		originalMessage: string,
 		tagLimit: number,
-		dotParameter: boolean,
+		parenType = ParenType.Both,
 	) {
 		const [start, end] = node.coordinates;
-		node.tag = new Lexer(final.slice(start, end + 1), tagLimit, dotParameter);
+		node.tag = new Lexer(final.slice(start, end + 1), tagLimit, parenType);
 		return new Context(node.tag, response, this, originalMessage);
 	}
 
@@ -145,14 +145,14 @@ export class Interpreter {
 		response: Response,
 		charlimit: number | null,
 		tagLimit = 2000,
-		dotParameter = false,
+		parenType = ParenType.Both,
 	) {
 		let final = message;
 		let totalWork = 0;
 		for (let index = 0; index < nodeOrderedList.length; index++) {
 			const node = nodeOrderedList[index];
 			const [start, end] = node.coordinates;
-			const ctx = this.getContext(node, final, response, message, tagLimit, dotParameter);
+			const ctx = this.getContext(node, final, response, message, tagLimit, parenType);
 			let output;
 			try {
 				output = await this.processTags(ctx, node);
