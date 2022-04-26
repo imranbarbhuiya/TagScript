@@ -1,4 +1,4 @@
-import { Context } from '../Interpreter';
+import type { Context } from '../Interpreter';
 
 export abstract class BaseParser {
 	protected acceptedNames: string[];

@@ -1,4 +1,4 @@
-import { ITransformer, KeyValues } from '../interfaces';
+import type { ITransformer, KeyValues } from '../interfaces';
 
 /**
  * An object containing information on a completed TagScript process.

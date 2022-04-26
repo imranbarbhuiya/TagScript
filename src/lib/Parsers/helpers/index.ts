@@ -27,14 +27,15 @@ export const parseIf = (str: string) => {
 		const spl = str.split('<');
 		return parseFloat(spl[0].trim()) < parseFloat(spl[1].trim());
 	}
-	return null;
+	return true;
 };
 
-const implicitBool = (str: string) => {
+const implicitBool = (str: string): boolean | null => {
 	const bools = {
 		true: true,
 		false: false,
 	};
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	return bools[str.toLowerCase() as keyof typeof bools] ?? null;
 };
 

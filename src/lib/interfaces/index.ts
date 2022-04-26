@@ -1,5 +1,5 @@
-import { Context, Lexer } from '../Interpreter';
-import { Awaitable } from '../Utils/Util';
+import type { Context, Lexer } from '../Interpreter';
+import type { Awaitable } from '../Utils/Util';
 
 export interface ITransformer {
 	transform(tag: Lexer): string | null;

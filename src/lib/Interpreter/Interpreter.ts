@@ -1,4 +1,4 @@
-import { ITransformer, IParser } from '../interfaces';
+import type { ITransformer, IParser } from '../interfaces';
 import { asyncFilter } from '../Utils/Util';
 import { Context } from './Context';
 import { Lexer, ParenType } from './Lexer';

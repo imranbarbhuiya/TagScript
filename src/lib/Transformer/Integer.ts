@@ -1,4 +1,4 @@
-import { ITransformer } from '../interfaces';
+import type { ITransformer } from '../interfaces';
 
 export class IntegerTransformer implements ITransformer {
 	private integer: number;

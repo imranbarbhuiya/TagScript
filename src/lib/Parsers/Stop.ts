@@ -1,5 +1,5 @@
-import { IParser } from '../interfaces';
-import { Context } from '../Interpreter';
+import type { IParser } from '../interfaces';
+import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 import { parseIf } from './helpers';
 

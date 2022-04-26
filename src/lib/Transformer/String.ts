@@ -1,5 +1,5 @@
-import { ITransformer } from '../interfaces';
-import { Lexer } from '../Interpreter';
+import type { ITransformer } from '../interfaces';
+import type { Lexer } from '../Interpreter';
 
 export class StringTransformer implements ITransformer {
 	private str: string;

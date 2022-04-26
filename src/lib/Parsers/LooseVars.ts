@@ -1,5 +1,5 @@
-import { IParser } from '../interfaces';
-import { Context } from '../Interpreter';
+import type { IParser } from '../interfaces';
+import type { Context } from '../Interpreter';
 
 export class LooseVarsParser implements IParser {
 	public willAccept() {

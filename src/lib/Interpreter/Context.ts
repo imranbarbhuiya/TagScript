@@ -1,4 +1,4 @@
-import { Lexer, Interpreter, Response } from '.';
+import type { Lexer, Interpreter, Response } from '.';
 
 /**
  *  An object containing data of the TagScript tag processed by the interpreter.

@@ -1,11 +1,9 @@
-import { IParser } from '../interfaces';
-import { Context } from '../Interpreter';
-import { all, any } from '../Utils/Util';
+import type { IParser } from '../interfaces';
+import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 import { split, parseIf, parseListIf } from './helpers';
 
-const parseIntoOutput = (payload: string, result: boolean | null) => {
-	if (result === null) return null;
+const parseIntoOutput = (payload: string, result: boolean) => {
 	try {
 		const output = split(payload, false);
 		if (output !== null && output.length === 2) {
@@ -94,7 +92,7 @@ export class UnionStatementParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		const result = any(parseListIf(ctx.tag.parameter!));
+		const result = parseListIf(ctx.tag.parameter!).includes(true);
 		return parseIntoOutput(ctx.tag.payload!, result);
 	}
 }
@@ -124,7 +122,7 @@ export class IntersectionStatementParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		const result = all(parseListIf(ctx.tag.parameter!));
+		const result = !parseListIf(ctx.tag.parameter!).includes(false);
 		return parseIntoOutput(ctx.tag.payload!, result);
 	}
 }

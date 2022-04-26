@@ -1,6 +1,6 @@
 import { StringTransformer } from '../Transformer';
-import { IParser } from '../interfaces';
-import { Context } from '../Interpreter';
+import type { IParser } from '../interfaces';
+import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
 /**
