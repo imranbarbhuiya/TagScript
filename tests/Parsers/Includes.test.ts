@@ -11,4 +11,14 @@ describe('IncludesParser', () => {
 			new Response().setValues('true', '{includes(Parbez):Hello Parbez!}'),
 		);
 	});
+
+	test('GIVEN a string THEN give index of the substring', async () => {
+		expect(await ts.run('{index(hi):Hello Parbez!}')).toStrictEqual(
+			new Response().setValues('-1', '{index(hi):Hello Parbez!}'),
+		);
+
+		expect(await ts.run('{index(Parbez):Hello Parbez!}')).toStrictEqual(
+			new Response().setValues('6', '{index(Parbez):Hello Parbez!}'),
+		);
+	});
 });
