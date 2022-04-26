@@ -4,7 +4,7 @@
 
 **A simple and safe template engine.**
 
-[![GitHub](https://img.shields.io/github/license/imranbarbhuiya/tagscript)](https://github.com/imranbarbhuiya/tagscript/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?token=token)](https://codecov.io/gh/imranbarbhuiya/tagscript)
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
 
