@@ -26,7 +26,7 @@ jobs:
         run: yarn docs
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@55974d46d95c57ce803a56e3645ddb7517f7c62f # tag=v4.3.2
+        uses: JamesIves/github-pages-deploy-action@8817a56e5bfec6e2b08345c81f4d422db53a2cdc # tag=v4.3.3
         with:
           branch: gh-pages
           folder: docs
