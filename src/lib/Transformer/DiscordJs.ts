@@ -1,6 +1,6 @@
 import type { ITransformer } from '../interfaces';
 import type { GuildTextBasedChannel, Role, User, GuildMember, Guild } from 'discord.js';
-import { Lexer } from '../Interpreter';
+import type { Lexer } from '../Interpreter';
 
 export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild>
 	implements ITransformer
@@ -18,7 +18,6 @@ export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel |
 	public constructor(base: T) {
 		this.base = base;
 		this.safeValues.id = this.base.id;
-		// eslint-disable-next-line @typescript-eslint/no-base-to-string
 		this.safeValues.mention = base.toString();
 		this.safeValues.name = 'name' in base ? base.name : '';
 		this.updateSafeValues();
@@ -29,6 +28,7 @@ export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel |
 		const value = this.safeValues[tag.parameter];
 
 		// if (typeof value === 'function') return value() ?? '';
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (value === undefined) return null;
 		return `${value ?? ''}`;
 	}

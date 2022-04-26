@@ -1,5 +1,5 @@
-import { IParser } from '../interfaces';
-import { Context } from '../Interpreter';
+import type { IParser } from '../interfaces';
+import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
 export class RandomParser extends BaseParser implements IParser {
@@ -9,7 +9,6 @@ export class RandomParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		let spl = [];
-		// TODO: recheck
 		if (ctx.tag.payload!.includes('~')) spl = ctx.tag.payload!.split('~');
 		else spl = ctx.tag.payload!.split(',');
 

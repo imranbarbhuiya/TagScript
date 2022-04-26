@@ -1,4 +1,4 @@
-import { Lexer } from './Lexer';
+import type { Lexer } from './Lexer';
 
 /**
  * A low-level object representing a bracketed tag.
