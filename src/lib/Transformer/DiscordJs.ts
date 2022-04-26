@@ -112,3 +112,17 @@ export class GuildTransformer extends DiscordJsBaseTransformer<Guild> {
 		this.safeValues.humans = this.base.members.cache.filter((m) => !m.user.bot).size;
 	}
 }
+
+export class RoleTransformer extends DiscordJsBaseTransformer<Role> {
+	protected override updateSafeValues() {
+		this.safeValues.name = this.base.name;
+		this.safeValues.color = this.base.color.toString();
+		this.safeValues.hoist = this.base.hoist;
+		this.safeValues.mentionable = this.base.mentionable;
+		this.safeValues.position = this.base.position;
+		this.safeValues.permissions = this.base.permissions.toArray().join(', ');
+		this.safeValues.createdAt = this.base.createdAt.toISOString();
+		this.safeValues.createdTimestamp = this.base.createdTimestamp;
+		this.safeValues.memberCount = this.base.members.size;
+	}
+}

@@ -49,7 +49,7 @@ export class Interpreter {
 	 * @param seedVariables A object containing strings to transformer to provide context variables for processing.
 	 * @param charLimit The maximum characters to process.
 	 * @param tagLimit
-	 * @param dotParameter Whether the parameter should be followed after a "." or use the default of parenthesis.
+	 * @param parenType Whether the parameter should be followed after a "." or use parenthesis or both.
 	 * @param keyValues Additional key value pairs that may be used by parsers during parsing.
 	 * @returns {@link Response} class containing the raw string, processed body, actions and variables.
 	 */
