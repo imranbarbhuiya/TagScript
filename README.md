@@ -16,7 +16,7 @@ A simple and safe template engine.
 
 Read Full Documentation [here](https://tagscript.js.org/).
 
-> 🤖 TagScript is currently in beta. Its core API is useable right now, but you might need to pull request improvements for advanced use cases, or fixes for some bugs. Some of its APIs are not "finalized" and will have breaking changes over time as we discover better solutions. There isn't currently a 1.0 release schedule, we're still getting the architecture right.
+> 🤖 TagScript is currently in beta. Its API is useable right now, but you might need to pull request improvements for advanced use cases, or fixes for some bugs. Some of its APIs are not "finalized" and will have breaking changes over time as we discover better solutions. There isn't currently a 1.0 release schedule, we're still getting the architecture right.
 
 ## Features
 
