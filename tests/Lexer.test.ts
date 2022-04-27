@@ -117,5 +117,14 @@ describe('decDepth', () => {
 			payload: 'Hello world',
 			usedParenType: ParenType.Dot,
 		});
+
+		const text3 = '{embed.title.description}';
+		const result3 = new Lexer(text3);
+		expect(result3.toJSON()).toStrictEqual({
+			declaration: 'embed',
+			parameter: 'title.description',
+			payload: null,
+			usedParenType: ParenType.Dot,
+		});
 	});
 });
