@@ -39,10 +39,16 @@ yarn add tagscript
 
 ## Usage
 
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example, `import { Interpreter } from 'tagscript'` is the same as `const { Interpreter } = require('tagscript')`.
+**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
 
 ```ts
 import { Interpreter } from 'tagscript';
+```
+
+is the same as
+
+```js
+const { Interpreter } = require('tagscript');
 ```
 
 ```ts
@@ -50,7 +56,10 @@ import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementPa
 const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
 const result = await ts.run(
-	'{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, \nI pick {if({5050:.}!=):heads|tails}',
+	`
+    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
+    I pick {if({5050:.}!=):heads|tails}
+    `,
 );
 console.log(result);
 ```
