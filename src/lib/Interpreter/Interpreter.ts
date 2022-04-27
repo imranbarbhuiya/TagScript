@@ -44,6 +44,22 @@ export class Interpreter {
 	}
 
 	/**
+	 * Add more parsers
+	 * @param parsers
+	 */
+	public addParsers(...parsers: IParser[]) {
+		this.parsers = [...this.parsers, ...parsers];
+	}
+
+	/**
+	 * Set new parsers
+	 * @param parsers
+	 */
+	public setParsers(...parsers: IParser[]) {
+		this.parsers = parsers;
+	}
+
+	/**
 	 * Processes a given TagScript string.
 	 * @param message The TagScript string that to be processed.
 	 * @param seedVariables A object containing strings to transformer to provide context variables for processing.

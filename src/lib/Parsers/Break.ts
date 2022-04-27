@@ -1,7 +1,7 @@
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
-import { parseIf } from './helpers';
+import { parseIf } from '../Utils/Util';
 
 /**
  * The break block will force the tag output to only be the payload of this block, if the passed

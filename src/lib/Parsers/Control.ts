@@ -1,7 +1,7 @@
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
-import { split, parseIf, parseListIf } from './helpers';
+import { split, parseIf, parseListIf } from '../Utils/Util';
 
 const parseIntoOutput = (payload: string, result: boolean) => {
 	try {

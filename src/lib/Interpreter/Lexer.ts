@@ -6,7 +6,7 @@ export enum Part {
 	dot = '.',
 	parenStart = '(',
 	parenEnd = ')',
-	comment = '\\',
+	escape = '\\',
 	pipe = '|',
 }
 
@@ -57,7 +57,7 @@ export class Lexer {
 			declaration: this.declaration,
 			parameter: this.parameter,
 			payload: this.payload,
-			parenTpe: this.parenType,
+			usedParenType: this.usedParenType,
 		};
 	}
 
@@ -80,7 +80,7 @@ export class Lexer {
 			if (this.skipNext) {
 				this.skipNext = false;
 				continue;
-			} else if (token === Part.comment) {
+			} else if (token === Part.escape) {
 				this.skipNext = true;
 				continue;
 			}
@@ -120,13 +120,13 @@ export class Lexer {
 		const [declaration, ...payloads] = this.parsedInput.split(':');
 		const payload = payloads.join(Part.colon);
 		if (payload.length) this.payload = payload;
-		if (!this.declaration) this.declaration = declaration;
+		this.declaration ||= declaration;
 	}
 
 	private openParameter(i: number) {
 		this.decDepth += 1;
 		if (!this.decStart) this.decStart = i;
-		this.declaration = this.parsedInput.slice(0, i);
+		this.decDepth === 1 && (this.declaration = this.parsedInput.slice(0, i));
 	}
 
 	private closeParameter(i: number) {

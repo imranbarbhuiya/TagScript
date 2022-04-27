@@ -1,5 +1,6 @@
 import type { ITransformer } from '../interfaces';
 import type { Lexer } from '../Interpreter';
+import { escapeContent } from '../Utils/Util';
 
 export class StringTransformer implements ITransformer {
 	private str: string;
@@ -43,8 +44,3 @@ export class StringTransformer implements ITransformer {
 		return this.escape ? escapeContent(str) : str;
 	}
 }
-
-const escapeContent = (content: string): string => {
-	const regex = /(?<!\\)([{():|}])/g;
-	return content.replace(regex, '\\$1');
-};

@@ -1,7 +1,7 @@
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
-import { parseIf } from './helpers';
+import { parseIf } from '../Utils/Util';
 
 export class StopParser extends BaseParser implements IParser {
 	public constructor() {
