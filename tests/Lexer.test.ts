@@ -98,4 +98,24 @@ describe('decDepth', () => {
 			usedParenType: ParenType.Parenthesis,
 		});
 	});
+
+	test('GIVEN two types of open parameter THEN respect paren closing', () => {
+		const text = '{embed(title.description)):Hello world}';
+		const result = new Lexer(text);
+		expect(result.toJSON()).toStrictEqual({
+			declaration: 'embed',
+			parameter: 'title.description',
+			payload: 'Hello world',
+			usedParenType: ParenType.Parenthesis,
+		});
+
+		const text2 = '{embed.title.description:Hello world}';
+		const result2 = new Lexer(text2);
+		expect(result2.toJSON()).toStrictEqual({
+			declaration: 'embed',
+			parameter: 'title.description',
+			payload: 'Hello world',
+			usedParenType: ParenType.Dot,
+		});
+	});
 });

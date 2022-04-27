@@ -2,21 +2,21 @@ import type { ITransformer } from '../interfaces';
 import type { GuildTextBasedChannel, Role, User, GuildMember, Guild } from 'discord.js';
 import type { Lexer } from '../Interpreter';
 
+type outputResolvable = string | number | boolean | null | undefined;
+
+interface SafeValues<T> {
+	[key: string]: outputResolvable | ((base: T) => outputResolvable);
+}
+
 export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild>
 	implements ITransformer
 {
 	protected base: T;
-	protected safeValues: {
-		[key: string]:
-			| string
-			// (() => string) |
-			| number
-			| boolean
-			| null;
-	} = {};
+	protected safeValues: SafeValues<T>;
 
-	public constructor(base: T) {
+	public constructor(base: T, safeValues: SafeValues<T> = {}) {
 		this.base = base;
+		this.safeValues = safeValues;
 		this.safeValues.id = this.base.id;
 		this.safeValues.mention = base.toString();
 		this.safeValues.name = 'name' in base ? base.name : '';
@@ -25,10 +25,9 @@ export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel |
 
 	public transform(tag: Lexer) {
 		if (!tag.parameter) return this.safeValues.mention as string;
-		const value = this.safeValues[tag.parameter];
+		let value = this.safeValues[tag.parameter];
 
-		// if (typeof value === 'function') return value() ?? '';
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		if (typeof value === 'function') value = value(this.base);
 		if (value === undefined) return null;
 		return `${value ?? ''}`;
 	}

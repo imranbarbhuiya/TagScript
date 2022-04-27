@@ -37,6 +37,7 @@ export class Response {
 	public toJSON() {
 		return {
 			body: this.body,
+			raw: this.raw,
 			actions: this.actions,
 			variables: this.variables,
 			keyValues: this.keyValues,
