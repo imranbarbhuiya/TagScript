@@ -26,8 +26,10 @@ export class Lexer {
 	private parenType: ParenType;
 	private parsedInput!: string;
 	private parsedLength!: number;
-	private decDepth!: number;
-	private decStart!: number;
+	private dotDecDepth!: number;
+	private dotDecStart!: number;
+	private parenDecDepth!: number;
+	private parenDecStart!: number;
 	private skipNext!: boolean;
 	private usedParenType!: ParenType;
 
@@ -64,8 +66,10 @@ export class Lexer {
 	private lex(input: string, limit: number) {
 		this.parsedInput = input.slice(1, -1).slice(0, limit);
 		this.parsedLength = this.parsedInput.length;
-		this.decDepth = 0;
-		this.decStart = 0;
+		this.dotDecDepth = 0;
+		this.dotDecStart = 0;
+		this.parenDecDepth = 0;
+		this.parenDecStart = 0;
 		this.skipNext = false;
 
 		const parseParameter = (index: number, token: string) =>
@@ -85,7 +89,7 @@ export class Lexer {
 				continue;
 			}
 
-			if (token === Part.colon && !this.decDepth) {
+			if (token === Part.colon && !this.dotDecDepth && !this.parenDecDepth) {
 				this.setPayload();
 				return;
 			} else if (parseParameter(i, token)) return;
@@ -94,25 +98,20 @@ export class Lexer {
 	}
 
 	private parseDotParameter(index: number, token: string) {
-		if (token === Part.dot) {
+		if (token === Part.dot && !this.parenDecDepth) {
 			this.usedParenType = ParenType.Dot;
 			this.openParameter(index);
-		} else if (
-			this.usedParenType === ParenType.Dot &&
-			(token === Part.colon || index === this.parsedLength - 1) &&
-			this.decDepth
-		)
+		} else if (this.dotDecDepth && (token === Part.colon || index === this.parsedLength - 1)) {
 			return this.closeParameter(index);
+		}
 		return false;
 	}
 
 	private parseParenthesisParameter(index: number, token: string) {
-		if (token === Part.parenStart) {
+		if (token === Part.parenStart && !this.dotDecDepth) {
 			this.usedParenType = ParenType.Parenthesis;
 			this.openParameter(index);
-		} else if (this.usedParenType === ParenType.Parenthesis && token === Part.parenEnd && this.decDepth)
-			return this.closeParameter(index);
-
+		} else if (this.parenDecDepth && token === Part.parenEnd) return this.closeParameter(index);
 		return false;
 	}
 
@@ -123,16 +122,17 @@ export class Lexer {
 		this.declaration ||= declaration;
 	}
 
-	private openParameter(i: number) {
-		this.decDepth += 1;
-		if (!this.decStart) this.decStart = i;
-		this.decDepth === 1 && (this.declaration = this.parsedInput.slice(0, i));
+	private openParameter(i: number, type: ParenType = this.usedParenType) {
+		const decDepth = type === ParenType.Dot ? (this.dotDecDepth += 1) : (this.parenDecDepth += 1);
+		type === ParenType.Dot ? (this.dotDecStart ||= i) : (this.parenDecStart ||= i);
+		decDepth === 1 && (this.declaration = this.parsedInput.slice(0, i));
 	}
 
 	private closeParameter(i: number) {
-		this.decDepth -= 1;
-		if (this.decDepth === 0) {
-			this.parameter = this.parsedInput.slice(this.decStart + 1, i);
+		const decDepth = this.usedParenType === ParenType.Dot ? (this.dotDecDepth = 0) : (this.parenDecDepth -= 1);
+		const decStart = this.usedParenType === ParenType.Dot ? this.dotDecStart : this.parenDecStart;
+		if (decDepth === 0) {
+			this.parameter = this.parsedInput.slice(decStart + 1, i);
 			if (this.parsedInput[i + 1] === Part.colon) this.payload = this.parsedInput.slice(i + 2);
 			return true;
 		}
