@@ -16,28 +16,24 @@ export class StringTransformer implements ITransformer {
 
 	private handleContext(tag: Lexer): string {
 		if (tag.parameter === null) return this.str;
-		try {
-			if (!tag.parameter.includes('+')) {
-				const index = parseInt(tag.parameter, 10) - 1;
-				const splitter = tag.payload ?? ' ';
-				return this.str.split(splitter)[index];
-			}
-
-			const index = parseInt(tag.parameter.replace('+', ''), 10) - 1;
+		if (!tag.parameter.includes('+')) {
+			const index = parseInt(tag.parameter, 10) - 1;
 			const splitter = tag.payload ?? ' ';
-			if (tag.parameter.startsWith('+')) {
-				return this.str
-					.split(splitter)
-					.slice(0, index + 1)
-					.join(splitter);
-			} else if (tag.parameter.endsWith('+')) {
-				return this.str.split(splitter).slice(index).join(splitter);
-			}
-
-			return this.str.split(splitter)[index];
-		} catch {
-			return this.str;
+			return this.str.split(splitter)[index] ?? this.str;
 		}
+
+		const index = parseInt(tag.parameter.replace('+', ''), 10) - 1;
+		const splitter = tag.payload ?? ' ';
+		if (tag.parameter.startsWith('+')) {
+			return this.str
+				.split(splitter)
+				.slice(0, index + 1)
+				.join(splitter);
+		} else if (tag.parameter.endsWith('+')) {
+			return this.str.split(splitter).slice(index).join(splitter);
+		}
+
+		return this.str.split(splitter)[index] ?? this.str;
 	}
 
 	private returnValue(str: string): string {
