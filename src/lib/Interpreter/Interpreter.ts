@@ -113,15 +113,15 @@ export class Interpreter {
 		return null;
 	}
 
-	private checkWorkload(charlimit: number | null, totalWork: number, output: string) {
-		if (!charlimit) {
+	private checkWorkload(charLimit: number | null, totalWork: number, output: string) {
+		if (!charLimit) {
 			return;
 		}
 		totalWork += output.length;
-		if (totalWork > charlimit) {
+		if (totalWork > charLimit) {
 			throw new Error(
 				'The TS interpreter had its workload exceeded. The total characters ' +
-					`attempted were ${totalWork}/${charlimit}`,
+					`attempted were ${totalWork}/${charLimit}`,
 			);
 		}
 		return totalWork;
