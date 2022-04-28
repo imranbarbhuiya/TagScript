@@ -46,3 +46,16 @@ export class DateFormatParser extends BaseParser implements IParser {
 		return `<t:${payload}:${parameter}>`;
 	}
 }
+
+export class OrdinalFormatParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['ordinal', 'ord'], false, true);
+	}
+
+	public parse(ctx: Context) {
+		const { payload } = ctx.tag;
+		const lastDigit = payload!.slice(-1);
+		const suffix = lastDigit === '1' ? 'st' : lastDigit === '2' ? 'nd' : lastDigit === '3' ? 'rd' : 'th';
+		return `${payload}${suffix}`;
+	}
+}
