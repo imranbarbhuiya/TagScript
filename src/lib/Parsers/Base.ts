@@ -1,5 +1,9 @@
 import type { Context } from '../Interpreter';
 
+/**
+ * A base class for all transformers.
+ * @abstract
+ */
 export abstract class BaseParser {
 	protected acceptedNames: string[];
 	protected requiredParameter: boolean;
