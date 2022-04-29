@@ -14,7 +14,7 @@ import { BaseParser } from './Base';
  *
  * @example
  * ```yaml
- *  {5050:This tag is 50% likely to succeed.}
+ *  I pick {if({5050:.}!=):heads|tails}
  * ```
  */
 export class FiftyFiftyParser extends BaseParser implements IParser {
