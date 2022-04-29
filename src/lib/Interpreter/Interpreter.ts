@@ -1,4 +1,4 @@
-import type { ITransformer, IParser } from '../interfaces';
+import type { ITransformer, IParser, IKeyValues } from '../interfaces';
 import { asyncFilter } from '../Utils/Util';
 import { Context } from './Context';
 import { Lexer, ParenType } from './Lexer';
@@ -75,7 +75,7 @@ export class Interpreter {
 		charLimit: number | null = null,
 		tagLimit = 2000,
 		parenType = ParenType.Both,
-		keyValues: { [key: string]: unknown } = {},
+		keyValues: IKeyValues = {},
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);

@@ -1,3 +1,4 @@
+import type { Snowflake } from 'discord.js';
 import type { Context, Lexer } from '../Interpreter';
 import type { Awaitable } from '../Utils/Util';
 
@@ -9,9 +10,13 @@ export interface IParser {
 	parse(ctx: Context): Awaitable<string | null>;
 }
 
-export interface KeyValues {
+export interface IKeyValues {}
+
+export interface IActions {
 	cooldown?: {
 		cooldown: number;
 		message: string | null;
 	};
+	require?: { ids: Snowflake[]; message: string | null };
+	deny?: { ids: Snowflake[]; message: string | null };
 }

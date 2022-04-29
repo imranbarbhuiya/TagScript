@@ -4,11 +4,11 @@ import { BaseParser } from './Base';
 import { parseIf } from '../Utils/Util';
 
 /**
- * The break block will force the tag output to only be the payload of this block, if the passed
+ * The break tag will force the tag output to only be the payload of this tag, if the passed
  * expression evaluates true.
  * @usage
  * ```yaml
- *    {break(<expression>):[message]}
+ *    {break(expression):message}
  * ```
  * @example
  * ```yaml

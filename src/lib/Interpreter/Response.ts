@@ -1,4 +1,4 @@
-import type { ITransformer, KeyValues } from '../interfaces';
+import type { ITransformer, IKeyValues, IActions } from '../interfaces';
 
 /**
  * An object containing information on a completed TagScript process.
@@ -16,10 +16,10 @@ export class Response {
 	 * An object with all the variables that parsers such as the `LooseVarsParser` can access.
 	 */
 	public variables: { [key: string]: ITransformer };
-	public actions: { [key: string]: unknown };
-	public keyValues: KeyValues;
+	public actions: IActions;
+	public keyValues: IKeyValues;
 
-	public constructor(variables: { [key: string]: ITransformer } = {}, keyValues: KeyValues = {}) {
+	public constructor(variables: { [key: string]: ITransformer } = {}, keyValues: IKeyValues = {}) {
 		this.body = null;
 		this.actions = {};
 		this.variables = variables;

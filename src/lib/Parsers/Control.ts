@@ -43,7 +43,7 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  *
  * @usage
  * ```yaml
- * 	  {if(<expression>):<message>]}
+ * 	  {if(expression):message}
  * ```
  * @example
  * ```yaml
@@ -74,7 +74,7 @@ export class IfStatementParser extends BaseParser implements IParser {
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  * @usage
  * ```yaml
- * 		{any(<expression|expression|...>):<message>}
+ * 		{any(expression|expression|...):message}
  * ```
  * @alias or, union
  * @example
@@ -104,7 +104,7 @@ export class UnionStatementParser extends BaseParser implements IParser {
  *  If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  *  @usage
  * ```yaml
- * 		{all(<expression|expression|...>):<message>}
+ * 		{all(expression|expression|...):message}
  * ```
  *  @alias and, all
  *  @example

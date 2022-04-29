@@ -5,10 +5,10 @@ import { BaseParser } from './Base';
 
 /**
  *  Variables are useful for choosing a value and referencing it later in a tag.
- *  Variables can be referenced using brackets as any other block.
+ *  Variables can be referenced using brackets as any other tag.
  *  @usage
  *  ```yaml
- *     {=(<name>):<value>}
+ *     {=(name):value}
  *  ```
  *  @alias  assign, let, var
  *  @example
