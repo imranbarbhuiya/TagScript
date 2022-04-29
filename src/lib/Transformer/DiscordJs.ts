@@ -109,6 +109,9 @@ export class GuildTransformer extends DiscordJsBaseTransformer<Guild> {
 		this.safeValues.stickerCount = this.base.stickers.cache.size;
 		this.safeValues.bots = this.base.members.cache.filter((m) => m.user.bot).size;
 		this.safeValues.humans = this.base.members.cache.filter((m) => !m.user.bot).size;
+		this.safeValues.afkTimeout = this.base.afkTimeout;
+		this.safeValues.afkChannel = `${this.base.afkChannel}`;
+		this.safeValues.verificationLevel = this.base.verificationLevel;
 	}
 }
 
