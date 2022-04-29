@@ -4,16 +4,10 @@ import { BaseParser } from './Base';
 import { split, parseIf, parseListIf } from '../Utils/Util';
 
 const parseIntoOutput = (payload: string, result: boolean) => {
-	try {
-		const output = split(payload, false);
-		if (output !== null && output.length === 2) {
-			if (result) return output[0];
-			return output[1];
-		} else if (result) return payload;
-		return '';
-	} catch {
-		return null;
-	}
+	const output = split(payload, false);
+	const [first, ...rest] = output;
+	if (result) return first;
+	return rest.join('|');
 };
 
 /**
@@ -79,9 +73,9 @@ export class IfStatementParser extends BaseParser implements IParser {
  * @alias or, union
  * @example
  * ```yaml
- *     {any({args}==hi|{args}==hello|{args}==heyy):Hello {user}!|How rude.}
+ *     {any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
  *     # if {args} is hi
- *     Hello sravan#0001!
+ *     Hello Mr. Priyansh#2063!
  *     # if {args} is what's up
  *     How rude.
  * ```

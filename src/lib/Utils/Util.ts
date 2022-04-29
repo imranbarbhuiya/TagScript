@@ -52,15 +52,14 @@ const implicitBool = (str: string) => {
 	return lower in booleans ? booleans[lower as keyof typeof booleans] : null;
 };
 
-export const split = (str: string, easy: boolean): string[] | null => {
-	if (str.includes('|')) return str.split(splitRegex);
+export const split = (str: string, easy: boolean): string[] => {
 	if (easy && str.includes('~')) return str.split('~');
 	if (easy && str.includes(',')) return str.split(',');
-	return null;
+	if (str.includes('|')) return str.split(splitRegex);
+	return [str];
 };
 
 export const parseListIf = (str: string) => {
 	const splitted = split(str, false);
-	if (splitted === null) return [parseIf(str)];
 	return splitted.map((s) => parseIf(s));
 };
