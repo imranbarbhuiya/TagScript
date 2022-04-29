@@ -3,17 +3,17 @@ import { StringFormatParser, Interpreter, Response, OrdinalFormatParser } from '
 describe('FormatParser', () => {
 	test('GIVEN a string in format parser THEN return formatted string', async () => {
 		const ts = new Interpreter(new StringFormatParser());
-		expect(await ts.run('{lower:Hello Parbez!}')).toStrictEqual(
-			new Response().setValues('hello parbez!', '{lower:Hello Parbez!}'),
-		);
+		const text1 = '{lower:Hello Parbez!}';
+		expect(await ts.run(text1)).toStrictEqual(new Response().setValues('hello parbez!', text1));
 
-		expect(await ts.run('{upper:Hello Parbez!}')).toStrictEqual(
-			new Response().setValues('HELLO PARBEZ!', '{upper:Hello Parbez!}'),
-		);
+		const text2 = '{upper:Hello Parbez!}';
+		expect(await ts.run(text2)).toStrictEqual(new Response().setValues('HELLO PARBEZ!', text2));
 
-		expect(await ts.run('{capitalize:hello parbez!}')).toStrictEqual(
-			new Response().setValues('Hello parbez!', '{capitalize:hello parbez!}'),
-		);
+		const text3 = '{capitalize:hello parbez!}';
+		expect(await ts.run(text3)).toStrictEqual(new Response().setValues('Hello parbez!', text3));
+
+		const text4 = '{escape:Hello| Parbez!}';
+		expect(await ts.run(text4)).toStrictEqual(new Response().setValues('Hello\\| Parbez!', text4));
 	});
 });
 
@@ -26,5 +26,6 @@ describe('OrdinalFormatParser', () => {
 		expect(await ts.run('{ordinal:4}')).toStrictEqual(new Response().setValues('4th', '{ordinal:4}'));
 		expect(await ts.run('{ordinal:101}')).toStrictEqual(new Response().setValues('101st', '{ordinal:101}'));
 		expect(await ts.run('{ordinal:1002}')).toStrictEqual(new Response().setValues('1002nd', '{ordinal:1002}'));
+		expect(await ts.run('{ordinal:hello}')).toStrictEqual(new Response().setValues('hello', '{ordinal:hello}'));
 	});
 });
