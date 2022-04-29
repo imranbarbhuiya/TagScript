@@ -3,6 +3,21 @@ import type { Context } from '../Interpreter';
 import { escapeContent } from '../Utils/Util';
 import { BaseParser } from './Base';
 
+/**
+ * This tag formats a given string.
+ *
+ * @example
+ * ```yaml
+ *     {lower:Hello Parbez!}
+ *     # hello parbez!
+ *     {upper:Hello Parbez!}
+ *     # HELLO PARBEZ!
+ *     {capitalize:hello parbez!}
+ *     # Hello parbez!
+ *     {escape:Hello| Parbez!}
+ *     # Hello\\| Parbez!
+ * ```
+ */
 export class StringFormatParser extends BaseParser implements IParser {
 	public constructor() {
 		super(['lower', 'upper', 'capitalize', 'escape'], false, true);

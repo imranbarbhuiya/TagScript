@@ -45,6 +45,7 @@ export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 		this.safeValues.avatar = this.base.avatarURL();
 		this.safeValues.displayAvatar = this.base.displayAvatarURL();
 		this.safeValues.nickname = this.base.nickname;
+		this.safeValues.displayName = this.base.displayName;
 		this.safeValues.joinedAt = this.base.joinedAt?.toISOString() ?? '';
 		this.safeValues.joinedTimestamp = this.base.joinedTimestamp;
 		this.safeValues.color = this.base.roles.color?.hexColor ?? '';
