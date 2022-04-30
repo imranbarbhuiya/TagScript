@@ -2,25 +2,30 @@ import type { ITransformer } from '../interfaces';
 import type { GuildTextBasedChannel, Role, User, GuildMember, Guild } from 'discord.js';
 import type { Lexer } from '../Interpreter';
 
-type outputResolvable = string | number | boolean | null | undefined;
+export type outputResolvable = string | number | boolean | null | undefined;
 
-interface SafeValues<T> {
+export interface SafeValues<T> {
 	[key: string]: outputResolvable | ((base: T) => outputResolvable);
 }
 
+/**
+ * Transformer for Discord.js objects.
+ * <warn>These objects will be removed from this package and will be added in a new package.</warn>
+ * @abstract
+ */
 export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild>
 	implements ITransformer
 {
 	protected base: T;
-	protected safeValues: SafeValues<T>;
+	protected safeValues: SafeValues<T> = {};
 
 	public constructor(base: T, safeValues: SafeValues<T> = {}) {
 		this.base = base;
-		this.safeValues = safeValues;
 		this.safeValues.id = this.base.id;
 		this.safeValues.mention = base.toString();
 		this.safeValues.name = 'name' in base ? base.name : '';
 		this.updateSafeValues();
+		this.safeValues = { ...this.safeValues, ...safeValues };
 	}
 
 	public transform(tag: Lexer) {
@@ -37,6 +42,9 @@ export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel |
 	}
 }
 
+/**
+ * Transformer for Discord.js guild members.
+ */
 export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 	protected override updateSafeValues() {
 		this.safeValues.username = this.base.user.username;

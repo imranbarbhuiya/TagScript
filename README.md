@@ -16,7 +16,7 @@ A simple and safe template engine.
 
 Read Full Documentation [here](https://tagscript.js.org/).
 
-> 🤖 TagScript is currently in beta. Its API is useable right now, but you might need to pull request improvements for advanced use cases, or fixes for some bugs. Some of its APIs are not "finalized" and will have breaking changes over time as we discover better solutions. There isn't currently a 1.0 release schedule, we're still getting the architecture right.
+> 🤖 TagScript is currently in beta. Its API is useable in production right now, but you might need to pull request improvements or fixes for some bugs. There isn't currently a 1.0 release schedule, we're still getting the architecture right. For the same reason it's recommended to pin your dependency to a specific version.
 
 ## Features
 
@@ -24,7 +24,8 @@ Read Full Documentation [here](https://tagscript.js.org/).
 - Offers CJS, ESM and UMD builds
 - Full TypeScript & JavaScript support
 - Faster than ⚡
-- simple, expressive and safe template engine.
+- Simple, expressive and safe template engine.
+- Supports your own parsers and transformers
 
 ## Install
 
@@ -51,6 +52,8 @@ is the same as
 const { Interpreter } = require('tagscript');
 ```
 
+<!--  -->
+
 ```ts
 import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
 const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
@@ -63,6 +66,37 @@ const result = await ts.run(
 );
 console.log(result);
 ```
+
+## Parsers
+
+Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Parsers) or write your own parsers.
+You own parser should implement [IParser](https://tagscript.js.org/interfaces/IParser.html) interface.
+
+```ts
+import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+```
+
+## Transformers
+
+Transformers are used to transform a value based on the tag at runtime. You can use our [builtin transformers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Transformer) or write your own transformers.
+You own transformer should implement [ITransformer](https://tagscript.js.org/interfaces/ITransformer.html) interface.
+
+```ts
+import { Interpreter, MemberTransformer, StringTransformer } from 'tagscript';
+const ts = new Interpreter();
+
+await ts.run(str, { member: new MemberTransformer(GuildMember) });
+
+await ts.run(str, { args: new StringTransformer(args) });
+```
+
+## Buy me some doughnuts
+
+If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
+
+<a href="https://www.buymeacoffee.com/parbez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href='https://ko-fi.com/Y8Y1CBIJH' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Contributors ✨
 
@@ -88,3 +122,9 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Special Thanks
 
 - [JonSnowbd](https://github.com/JonSnowbd/TagScript/) for creating tagscript in python.
+
+## TODO
+
+- Make this repo a monorepo
+- Move all the discord related stuff to a separate repo
+- Make a VSCode extension
