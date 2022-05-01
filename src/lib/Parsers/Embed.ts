@@ -1,7 +1,7 @@
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
-import type { Awaitable, MessageEmbedOptions } from 'discord.js';
+import type { Awaitable, MessageEmbedImage, MessageEmbedOptions, MessageEmbedThumbnail } from 'discord.js';
 import { split } from '../Utils/Util';
 
 /**
@@ -59,6 +59,8 @@ export class EmbedParser extends BaseParser implements IParser {
 				]
 			});
 		}
+		if (['image', 'thumbnail'].includes(ctx.tag.parameter))
+			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(ctx.tag.payload!) as MessageEmbedImage | MessageEmbedThumbnail });
 		return this.returnEmbed(ctx, { [ctx.tag.parameter]: ctx.tag.payload });
 	}
 

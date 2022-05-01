@@ -64,4 +64,22 @@ describe('EmbedParser', () => {
 			]
 		});
 	});
+
+	test('GIVEN image or thumbnail in object form in embed tag parameter THEN give embed with that property', async () => {
+		const iText = '{embed(image):{"url":"https://example.com/image.png"}}';
+
+		expect((await ts.run(iText)).actions.embed).toStrictEqual({
+			image: {
+				url: 'https://example.com/image.png'
+			}
+		});
+
+		const tText = '{embed(thumbnail):{"url":"https://example.com/image.png"}}';
+
+		expect((await ts.run(tText)).actions.embed).toStrictEqual({
+			thumbnail: {
+				url: 'https://example.com/image.png'
+			}
+		});
+	});
 });
