@@ -52,7 +52,7 @@ const implicitBool = (str: string) => {
 	return lower in booleans ? booleans[lower as keyof typeof booleans] : null;
 };
 
-export const split = (str: string, easy: boolean): string[] => {
+export const split = (str: string, easy = false): string[] => {
 	if (easy && str.includes('~')) return str.split('~');
 	if (easy && str.includes(',')) return str.split(',');
 	if (str.includes('|')) return str.split(splitRegex);

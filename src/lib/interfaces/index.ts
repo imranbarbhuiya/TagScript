@@ -1,4 +1,4 @@
-import type { Snowflake } from 'discord.js';
+import type { Snowflake, MessageEmbedOptions } from 'discord.js';
 import type { Context, Lexer } from '../Interpreter';
 import type { Awaitable } from '../Utils/Util';
 
@@ -19,4 +19,5 @@ export interface IActions {
 	};
 	require?: { ids: Snowflake[]; message: string | null };
 	deny?: { ids: Snowflake[]; message: string | null };
+	embed?: MessageEmbedOptions;
 }

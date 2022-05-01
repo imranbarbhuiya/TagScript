@@ -4,6 +4,7 @@ export * from './Break';
 export * from './Control';
 export * from './Cooldown';
 export * from './Define';
+export * from './Embed';
 export * from './FiftyFifty';
 export * from './Format';
 export * from './Includes';
