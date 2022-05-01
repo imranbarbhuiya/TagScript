@@ -5,7 +5,7 @@
 **A simple and safe template engine.**
 
 [![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?token=token)](https://codecov.io/gh/imranbarbhuiya/tagscript)
+[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg)](https://codecov.io/gh/imranbarbhuiya/tagscript)
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
 
 </div>
@@ -20,12 +20,12 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 ## Features
 
-- Written In Typescript
-- Offers CJS, ESM and UMD builds
-- Full TypeScript & JavaScript support
-- Faster than ⚡
-- Simple, expressive and safe template engine.
-- Supports your own parsers and transformers
+-   Written In Typescript
+-   Offers CJS, ESM and UMD builds
+-   Full TypeScript & JavaScript support
+-   Faster than ⚡
+-   Simple, expressive and safe template engine.
+-   Supports your own parsers and transformers
 
 ## Install
 
@@ -62,7 +62,7 @@ const result = await ts.run(
 	`
     {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
     I pick {if({5050:.}!=):heads|tails}
-    `,
+    `
 );
 console.log(result);
 ```
@@ -121,10 +121,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Special Thanks
 
-- [JonSnowbd](https://github.com/JonSnowbd/TagScript/) for creating tagscript in python.
+-   [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.
 
 ## TODO
 
-- Make this repo a monorepo
-- Move all the discord related stuff to a separate repo
-- Make a VSCode extension
+-   Make this repo a monorepo
+-   Move all the discord related stuff to a separate repo
+-   Make a VSCode extension
