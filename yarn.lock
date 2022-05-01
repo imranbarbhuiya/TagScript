@@ -1029,6 +1029,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/prettier-config@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@sapphire/prettier-config@npm:1.4.3"
+  dependencies:
+    prettier: ^2.6.2
+  checksum: 95ed7d3b67f9a2373936282b47f13f81141ce3a61f26c630feca32f8a711c1b49198673579072310f290dd86c5ddbd39a3ca382ca3800b211318cd19ae226395
+  languageName: node
+  linkType: hard
+
 "@sapphire/utilities@npm:^3.1.0":
   version: 3.5.0
   resolution: "@sapphire/utilities@npm:3.5.0"
@@ -7014,6 +7023,7 @@ __metadata:
     "@commitlint/config-angular": ^16.2.3
     "@favware/rollup-type-bundler": ^1.0.7
     "@sapphire/eslint-config": ^4.3.4
+    "@sapphire/prettier-config": ^1.4.3
     "@types/jest": ^27.4.1
     "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^5.21.0

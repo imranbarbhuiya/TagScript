@@ -23,7 +23,7 @@
 		"format": "prettier --write '**/*.{ts,mjs,json,md}'",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"prepublishOnly": "rollup-type-bundler",
+		"prepack": "rollup-type-bundler",
 		"prepare": "husky install .github/husky",
 		"typecheck": "tsc -p tsconfig.typecheck.json"
 	},
@@ -44,6 +44,7 @@
 		"@commitlint/config-angular": "^16.2.3",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"@sapphire/eslint-config": "^4.3.4",
+		"@sapphire/prettier-config": "^1.4.3",
 		"@types/jest": "^27.4.1",
 		"@types/prettier": "^2",
 		"@typescript-eslint/eslint-plugin": "^5.21.0",
@@ -81,5 +82,6 @@
 			"prettier --write",
 			"eslint --fix"
 		]
-	}
+	},
+	"prettier": "@sapphire/prettier-config"
 }
