@@ -22,7 +22,7 @@ export class Node {
 		return {
 			output: this.output,
 			tag: this.tag,
-			coordinates: this.coordinates,
+			coordinates: this.coordinates
 		};
 	}
 }

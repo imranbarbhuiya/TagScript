@@ -7,8 +7,8 @@ describe('CooldownParser', () => {
 		expect((await ts.run('{cd(5):You are in cd}')).actions).toStrictEqual({
 			cooldown: {
 				cooldown: 5,
-				message: 'You are in cd',
-			},
+				message: 'You are in cd'
+			}
 		});
 	});
 });

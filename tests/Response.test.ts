@@ -9,7 +9,7 @@ describe('Response', () => {
 			raw: '{Hello World}',
 			actions: {},
 			keyValues: {},
-			variables: {},
+			variables: {}
 		});
 	});
 });

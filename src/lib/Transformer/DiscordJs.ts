@@ -13,9 +13,7 @@ export interface SafeValues<T> {
  * <warn>These objects will be removed from this package and will be added in a new package.</warn>
  * @abstract
  */
-export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild>
-	implements ITransformer
-{
+export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild> implements ITransformer {
 	protected base: T;
 	protected safeValues: SafeValues<T> = {};
 

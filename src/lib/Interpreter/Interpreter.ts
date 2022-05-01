@@ -75,7 +75,7 @@ export class Interpreter {
 		charLimit: number | null = null,
 		tagLimit = 2000,
 		parenType = ParenType.Both,
-		keyValues: IKeyValues = {},
+		keyValues: IKeyValues = {}
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
@@ -88,14 +88,7 @@ export class Interpreter {
 		return acceptors;
 	}
 
-	private getContext(
-		node: Node,
-		final: string,
-		response: Response,
-		originalMessage: string,
-		tagLimit: number,
-		parenType = ParenType.Both,
-	) {
+	private getContext(node: Node, final: string, response: Response, originalMessage: string, tagLimit: number, parenType = ParenType.Both) {
 		const [start, end] = node.coordinates;
 		node.tag = new Lexer(final.slice(start, end + 1), tagLimit, parenType);
 		return new Context(node.tag, response, this, originalMessage);
@@ -119,10 +112,7 @@ export class Interpreter {
 		}
 		totalWork += output.length;
 		if (totalWork > charLimit) {
-			throw new Error(
-				'The TS interpreter had its workload exceeded. The total characters ' +
-					`attempted were ${totalWork}/${charLimit}`,
-			);
+			throw new Error(`The TS interpreter had its workload exceeded. The total characters attempted were ${totalWork}/${charLimit}`);
 		}
 		return totalWork;
 	}
@@ -161,7 +151,7 @@ export class Interpreter {
 		response: Response,
 		charlimit: number | null,
 		tagLimit = 2000,
-		parenType = ParenType.Both,
+		parenType = ParenType.Both
 	) {
 		let final = message;
 		let totalWork = 0;

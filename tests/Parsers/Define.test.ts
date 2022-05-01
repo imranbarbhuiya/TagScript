@@ -5,8 +5,8 @@ describe('DefineParser', () => {
 		test('Given a string in define parser THEN returns the value instead of the variable', async () => {
 			expect(await ts.run('{=(user):mahir} {user}')).toStrictEqual(
 				new Response({
-					user: new StringTransformer('mahir'),
-				}).setValues('mahir', '{=(user):mahir} {user}'),
+					user: new StringTransformer('mahir')
+				}).setValues('mahir', '{=(user):mahir} {user}')
 			);
 		});
 	});
@@ -17,8 +17,8 @@ describe('DefineParser', () => {
 			const text1 = '{=(user):mahir} {user}';
 			expect(await ts.run(text1)).toStrictEqual(
 				new Response({
-					user: new StringTransformer('mahir'),
-				}).setValues('mahir', text1),
+					user: new StringTransformer('mahir')
+				}).setValues('mahir', text1)
 			);
 		});
 	});

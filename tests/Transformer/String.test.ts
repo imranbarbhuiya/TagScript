@@ -5,12 +5,12 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		expect(
 			await ts.run('{user}', {
-				user: new StringTransformer('mahir'),
-			}),
+				user: new StringTransformer('mahir')
+			})
 		).toStrictEqual(
 			new Response({
-				user: new StringTransformer('mahir'),
-			}).setValues('mahir', '{user}'),
+				user: new StringTransformer('mahir')
+			}).setValues('mahir', '{user}')
 		);
 	});
 
@@ -18,7 +18,7 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{user(2)}';
 		const variables = {
-			user: new StringTransformer('Hello World'),
+			user: new StringTransformer('Hello World')
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('World', text));
 
@@ -30,13 +30,11 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{user(+2)}';
 		const variables = {
-			user: new StringTransformer('Hello World. Hello World.'),
+			user: new StringTransformer('Hello World. Hello World.')
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('Hello World.', text));
 
 		const text2 = '{user(2+)}';
-		expect(await ts.run(text2, variables)).toStrictEqual(
-			new Response(variables).setValues('World. Hello World.', text2),
-		);
+		expect(await ts.run(text2, variables)).toStrictEqual(new Response(variables).setValues('World. Hello World.', text2));
 	});
 });

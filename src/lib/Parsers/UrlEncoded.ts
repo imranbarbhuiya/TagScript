@@ -20,9 +20,7 @@ export class UrlEncodeParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		return ctx.tag.parameter === '+'
-			? encodeURI(ctx.tag.payload!.replace(/ +/g, ctx.tag.parameter))
-			: encodeURI(ctx.tag.payload!);
+		return ctx.tag.parameter === '+' ? encodeURI(ctx.tag.payload!.replace(/ +/g, ctx.tag.parameter)) : encodeURI(ctx.tag.payload!);
 	}
 }
 
@@ -43,8 +41,6 @@ export class UrlDecodeParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		return ctx.tag.parameter === '+'
-			? decodeURI(ctx.tag.payload!.replaceAll(ctx.tag.parameter, ' '))
-			: decodeURI(ctx.tag.payload!);
+		return ctx.tag.parameter === '+' ? decodeURI(ctx.tag.payload!.replaceAll(ctx.tag.parameter, ' ')) : decodeURI(ctx.tag.payload!);
 	}
 }

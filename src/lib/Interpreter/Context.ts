@@ -31,7 +31,7 @@ export class Context {
 			tag: this.tag,
 			originalMessage: this.originalMessage,
 			interpreter: this.interpreter,
-			response: this.response,
+			response: this.response
 		};
 	}
 }

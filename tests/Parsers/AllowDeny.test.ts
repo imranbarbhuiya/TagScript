@@ -7,8 +7,8 @@ describe('RequiredParser', () => {
 		expect((await ts.run("{require(758880890159235083):You aren't allowed to use this tag.}")).actions).toStrictEqual({
 			require: {
 				ids: ['758880890159235083'],
-				message: "You aren't allowed to use this tag.",
-			},
+				message: "You aren't allowed to use this tag."
+			}
 		});
 	});
 });
@@ -20,8 +20,8 @@ describe('DenyParser', () => {
 		expect((await ts.run("{deny(758880890159235083):You aren't allowed to use this tag.}")).actions).toStrictEqual({
 			deny: {
 				ids: ['758880890159235083'],
-				message: "You aren't allowed to use this tag.",
-			},
+				message: "You aren't allowed to use this tag."
+			}
 		});
 	});
 });
