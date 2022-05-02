@@ -2,6 +2,16 @@ import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
+/**
+ * Pick a random item from a list of strings, split by either `~` or `,`.
+ *
+ * @alias rand
+ *
+ * @example
+ * ```yaml
+ * 		{random:foo, bar}
+ * ```
+ */
 export class RandomParser extends BaseParser implements IParser {
 	public constructor() {
 		super(['random', 'rand'], false, true);

@@ -21,7 +21,7 @@ export class SliceParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		if (!ctx.tag.parameter!.includes('-') || !ctx.tag.parameter!.includes(',')) return ctx.tag.payload!.slice(parseInt(ctx.tag.parameter!, 10));
+		if (!ctx.tag.parameter!.includes('-') && !ctx.tag.parameter!.includes(',')) return ctx.tag.payload!.slice(parseInt(ctx.tag.parameter!, 10));
 
 		const spl = ctx.tag.parameter!.includes('-') ? ctx.tag.parameter!.split('-') : ctx.tag.parameter!.split(',');
 		if (spl.length !== 2) throw this.throwError(ctx, 'Invalid parameter');

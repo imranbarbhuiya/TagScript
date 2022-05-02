@@ -30,7 +30,7 @@ export class RangeParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		const spl = ctx.tag.payload!.split('-');
+		const spl = ctx.tag.payload?.includes('-') ? ctx.tag.payload.split('-') : ctx.tag.payload!.split(',');
 		if (ctx.tag.declaration!.toLowerCase() === 'rangef') {
 			const lower = parseFloat(spl[0]);
 			const upper = parseFloat(spl[1]);
