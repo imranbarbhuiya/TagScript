@@ -50,6 +50,8 @@ yarn add tagscript
 
 ## Usage
 
+---
+
 **Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
 
 ```ts
@@ -62,7 +64,7 @@ is the same as
 const { Interpreter } = require('tagscript');
 ```
 
-<!--  -->
+---
 
 ```ts
 import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
