@@ -13,5 +13,6 @@ export * from './Random';
 export * from './Range';
 export * from './Replace';
 export * from './Slice';
+export * from './Stop';
 export * from './StrictVars';
 export * from './UrlEncoded';

@@ -163,7 +163,7 @@ export class Interpreter {
 			try {
 				output = await this.processTags(ctx, node);
 			} catch (error) {
-				return `${final.slice(start)} ${error}`;
+				return `${final.slice(0, start)} ${(error as Error).message}`;
 			}
 			if (output === null) {
 				continue;

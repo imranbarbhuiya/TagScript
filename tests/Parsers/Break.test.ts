@@ -8,5 +8,3 @@ describe('BreakParser', () => {
 		expect((await ts.run('Hi, {break(false):Hello World}')).body).toStrictEqual('Hi,');
 	});
 });
-
-// TODO: more test
