@@ -15,7 +15,7 @@ export class Node {
 
 	public toString() {
 		const [start, end] = this.coordinates;
-		return `${this.tag} at ${start}-${end}`;
+		return `${this.tag ?? ''} at ${start}-${end}`;
 	}
 
 	public toJSON() {

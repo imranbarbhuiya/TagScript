@@ -36,9 +36,13 @@ describe('EmbedParser', () => {
 			]
 		});
 
-		const f2Text = "{embed(field):Rule 2|Don't spam.|true}";
+		const f2Text = '{embed(field):Rule 1}';
 
-		expect((await ts.run(fText + f2Text)).actions.embed).toStrictEqual({
+		expect((await ts.run(f2Text)).actions.embed).toBeUndefined();
+
+		const f3Text = "{embed(field):Rule 2|Don't spam.|true}";
+
+		expect((await ts.run(fText + f3Text)).actions.embed).toStrictEqual({
 			fields: [
 				{
 					name: 'Rule 1',
@@ -53,7 +57,7 @@ describe('EmbedParser', () => {
 			]
 		});
 
-		expect((await ts.run(tText + f2Text)).actions.embed).toStrictEqual({
+		expect((await ts.run(tText + f3Text)).actions.embed).toStrictEqual({
 			title: 'Rules',
 			fields: [
 				{

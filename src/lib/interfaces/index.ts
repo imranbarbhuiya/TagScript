@@ -12,6 +12,20 @@ export interface IParser {
 
 export interface IKeyValues {}
 
+/**
+ * An object containing information on a completed TagScript process.
+ * If you are creating a parser where you need to store info in actions,
+ * then you need to extend this interface.
+ *
+ * ```ts
+ * import 'tagscript';
+ * declare module 'tagscript' {
+ * 	interface IActions {
+ * 		foo?: string;
+ *	}
+ * }
+ * ```
+ */
 export interface IActions {
 	cooldown?: {
 		cooldown: number;
@@ -20,4 +34,6 @@ export interface IActions {
 	require?: { ids: Snowflake[]; message: string | null };
 	deny?: { ids: Snowflake[]; message: string | null };
 	embed?: MessageEmbedOptions;
+	delete?: boolean;
+	silent?: boolean;
 }
