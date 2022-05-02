@@ -18,6 +18,16 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 > 🤖 TagScript is currently in beta. Its API is useable in production right now, but you might need to pull request improvements or fixes for some bugs. There isn't currently a 1.0 release schedule, we're still getting the architecture right. For the same reason it's recommended to pin your dependency to a specific version.
 
+---
+
+Looking for help to
+
+-   Make this repo a monorepo.
+-   Move all the discord related stuff to a separate repo.
+-   Make a VSCode extension
+
+---
+
 ## Features
 
 -   Written In Typescript
@@ -122,9 +132,3 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Special Thanks
 
 -   [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.
-
-## TODO
-
--   Make this repo a monorepo
--   Move all the discord related stuff to a separate repo
--   Make a VSCode extension
