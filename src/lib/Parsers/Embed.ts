@@ -1,7 +1,7 @@
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
-import type { Awaitable, MessageEmbedImage, MessageEmbedOptions, MessageEmbedThumbnail } from 'discord.js';
+import type { Awaitable, MessageEmbedOptions } from 'discord.js';
 import { split } from '../Utils/Util';
 
 /**
@@ -46,6 +46,9 @@ export class EmbedParser extends BaseParser implements IParser {
 
 	public async parse(ctx: Context) {
 		if (!ctx.tag.parameter) return this.returnEmbed(ctx, await this.parseEmbedJSON(ctx.tag.payload!));
+
+		if (ctx.tag.payload!.startsWith('{') && ctx.tag.payload!.endsWith('}'))
+			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(ctx.tag.payload!) as unknown });
 		if (ctx.tag.parameter === 'field') {
 			const [name, value, inline] = split(ctx.tag.payload!);
 			if (!name || !value) return '';
@@ -59,8 +62,6 @@ export class EmbedParser extends BaseParser implements IParser {
 				]
 			});
 		}
-		if (['image', 'thumbnail'].includes(ctx.tag.parameter))
-			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(ctx.tag.payload!) as MessageEmbedImage | MessageEmbedThumbnail });
 		return this.returnEmbed(ctx, { [ctx.tag.parameter]: ctx.tag.payload });
 	}
 

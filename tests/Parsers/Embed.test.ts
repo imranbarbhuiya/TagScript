@@ -81,5 +81,11 @@ describe('EmbedParser', () => {
 				url: 'https://example.com/image.png'
 			}
 		});
+
+		const aText = '{embed(author):{"name":"Mahir", "icon_url":"https://example.com/image.png"}}';
+
+		expect((await ts.run(aText)).actions.embed).toStrictEqual({
+			author: { name: 'Mahir', icon_url: 'https://example.com/image.png' }
+		});
 	});
 });
