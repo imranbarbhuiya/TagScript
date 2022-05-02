@@ -74,7 +74,7 @@ export class EmbedParser extends BaseParser implements IParser {
 		return JSON.parse(payload);
 	}
 
-	private returnEmbed(ctx: Context, data: Partial<MessageEmbedOptions>): string {
+	private returnEmbed(ctx: Context, data: MessageEmbedOptions): string {
 		ctx.response.actions.embed ??= {};
 		const { fields, ...rest } = data;
 		if (fields) {
