@@ -24,6 +24,9 @@ describe('StringTransformer', () => {
 
 		const text2 = '{user(2):W}';
 		expect(await ts.run(text2, variables)).toStrictEqual(new Response(variables).setValues('orld', text2));
+
+		const text3 = '{user(10)}';
+		expect(await ts.run(text3, variables)).toStrictEqual(new Response(variables).setValues('Hello World', text3));
 	});
 
 	test('Given a string in as a variable with parameter number+ or +number THEN returns the value of the variable by splitting with payload and returns the + part by skipping the number part', async () => {
@@ -36,5 +39,8 @@ describe('StringTransformer', () => {
 
 		const text2 = '{user(2+)}';
 		expect(await ts.run(text2, variables)).toStrictEqual(new Response(variables).setValues('World. Hello World.', text2));
+
+		const text3 = '{user(2+3)}';
+		expect(await ts.run(text3, variables)).toStrictEqual(new Response(variables).setValues('Hello World. Hello World.', text3));
 	});
 });

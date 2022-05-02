@@ -13,17 +13,17 @@ export class Context {
 	/**
 	 * The original message passed to the interpreter.
 	 */
-	private originalMessage: string;
+	public originalMessage: string;
 	/**
 	 * The interpreter parsing the TagScript.
 	 */
-	private interpreter: Interpreter;
+	public interpreter: Interpreter;
 
-	public constructor(tag: Lexer, res: Response, interpreter: Interpreter, originalMessage: string) {
+	public constructor(tag: Lexer, response: Response, interpreter: Interpreter, originalMessage: string) {
 		this.tag = tag;
 		this.originalMessage = originalMessage;
 		this.interpreter = interpreter;
-		this.response = res;
+		this.response = response;
 	}
 
 	public toJSON() {
