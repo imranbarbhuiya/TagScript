@@ -14,18 +14,18 @@ import { BaseParser } from './Base';
  * {require(user,role,channel):response}
  * ```
  *
- * @alias allowlist
+ * @alias allowlist, whitelist
  *
  * @example
  * ```yaml
  * {require(Moderator)}
- * {require(#general, #bot-cmds):This tag can only be run in #general and #bot-cmds.}
+ * {require(#general, #bot-commands):This tag can only be run in #general and #bot-cmds.}
  * {require(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
  * ```
  */
 export class RequiredParser extends BaseParser implements IParser {
 	public constructor() {
-		super(['require', 'allowlist'], true);
+		super(['require', 'allowlist', 'whitelist'], true);
 	}
 
 	public parse(ctx: Context) {
@@ -48,7 +48,7 @@ export class RequiredParser extends BaseParser implements IParser {
  * {deny(user,role,channel):response}
  * ```
  *
- * @alias denylist
+ * @alias denylist, blacklist
  *
  * @example
  * ```yaml
@@ -59,7 +59,7 @@ export class RequiredParser extends BaseParser implements IParser {
 
 export class DenyParser extends BaseParser implements IParser {
 	public constructor() {
-		super(['denylist', 'deny'], true);
+		super(['denylist', 'deny', 'blacklist'], true);
 	}
 
 	public parse(ctx: Context) {
