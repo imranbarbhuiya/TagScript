@@ -3,7 +3,7 @@ import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 
 /**
- * The fifty-fifty tag has a 50% change of returning the payload, and 50% chance of returning null.
+ * The fifty-fifty tag has a 50% change of returning the payload, and 50% chance of returning empty string.
  *
  * @usage
  * ```yaml
