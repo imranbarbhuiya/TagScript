@@ -17,23 +17,15 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  *
  * @allOperators
- * ```md
- * +----------+--------------------------+---------+---------------------------------------------+
- * | Operator | Check                    | Example | Description                                 |
- * +==========+==========================+=========+=============================================+
- * |   ==     | equality                 |  a==a   | value 1 is equal to value 2                 |
- * +----------+--------------------------+---------+---------------------------------------------+
- * |   !=     | inequality               |  a!=b   | value 1 is not equal to value 2             |
- * +----------+--------------------------+---------+---------------------------------------------+
- * |   >      | greater than             |  5>3    | value 1 is greater than value 2             |
- * +----------+--------------------------+---------+---------------------------------------------+
- * |   <      | less than                |  4<8    | value 1 is less than value 2                |
- * +----------+--------------------------+---------+---------------------------------------------+
- * |   >=     | greater than or equality | 10>=10  | value 1 is greater than or equal to value 2 |
- * +----------+--------------------------+---------+---------------------------------------------+
- * |   <=     | less than or equality    |  5<=6   | value 1 is less than or equal to value 2    |
- * +----------+--------------------------+---------+---------------------------------------------+
- * ```
+ * <table>
+ * <tr><th>Operator</th><th>Check</th><th>Example</th><th>Description</th></tr>
+ * <tr><td>==</td><td>equality</td><td>a==a</td><td>value 1 is equal to value 2</td></tr>
+ * <tr><td>!=</td><td>inequality</td><td>a!=b</td><td>value 1 is not equal to value 2</td></tr>
+ * <tr><td>&gt;</td><td>greater than</td><td>5>3</td><td>value 1 is greater than value 2</td></tr>
+ * <tr><td>&lt;</td><td>less than</td><td>4<8</td><td>value 1 is less than value 2</td></tr>
+ * <tr><td>&gt;=</td><td>greater than or equality</td><td>10>=10</td><td>value 1 is greater than or equal to value 2</td></tr>
+ * <tr><td>&lt;=</td><td>less than or equality</td><td>5<=6</td><td>value 1 is less than or equal to value 2</td></tr>
+ * </table>
  *
  * @usage
  * ```yaml
