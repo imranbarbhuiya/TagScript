@@ -54,6 +54,8 @@ export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 		this.safeValues.displayName = this.base.displayName;
 		this.safeValues.joinedAt = this.base.joinedAt?.toISOString() ?? '';
 		this.safeValues.joinedTimestamp = this.base.joinedTimestamp;
+		this.safeValues.createdAt = this.base.user.createdAt.toISOString();
+		this.safeValues.createdTimestamp = this.base.user.createdTimestamp;
 		this.safeValues.color = this.base.roles.color?.hexColor ?? '';
 		this.safeValues.position = this.base.roles.highest.position;
 		this.safeValues.roles = this.base.roles.cache.map((role) => role).join(' ') || '`None`';
