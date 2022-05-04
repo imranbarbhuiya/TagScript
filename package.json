@@ -1,6 +1,6 @@
 {
 	"name": "tagscript",
-	"version": "0.8.0",
+	"version": "0.8.1",
 	"description": "A simple and safe template engine.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
