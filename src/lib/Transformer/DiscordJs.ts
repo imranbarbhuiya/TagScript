@@ -74,6 +74,7 @@ export class UserTransformer extends DiscordJsBaseTransformer<User> {
 		this.safeValues.displayAvatar = this.base.displayAvatarURL();
 		this.safeValues.createdAt = this.base.createdAt.toISOString();
 		this.safeValues.createdTimestamp = this.base.createdTimestamp;
+		this.safeValues.bot = this.base.bot;
 	}
 }
 
