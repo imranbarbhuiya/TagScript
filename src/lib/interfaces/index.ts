@@ -2,30 +2,35 @@ import type { Snowflake, MessageEmbedOptions } from 'discord.js';
 import type { Context, Lexer } from '../Interpreter';
 import type { Awaitable } from '../Utils/Util';
 
+/**
+ * Transformers are used to transform a value based on the tag at runtime.
+ */
 export interface ITransformer {
+	/**
+	 * Transforms the given tag.
+	 * @param tag The tag that triggered the transformer.
+	 */
 	transform(tag: Lexer): string | null;
 }
+
+/**
+ * Parsers are used to parse a tag and return a value based on the tag.
+ */
 export interface IParser {
+	/**
+	 * Whether the parser can handle the given tag.
+	 * @param ctx The context of the tag.
+	 */
 	willAccept(ctx: Context): Awaitable<boolean>;
+	/**
+	 * Parses the given tag.
+	 * @param ctx The context of the tag.
+	 */
 	parse(ctx: Context): Awaitable<string | null>;
 }
 
 export interface IKeyValues {}
 
-/**
- * An object containing information on a completed TagScript process.
- * If you are creating a parser where you need to store info in actions,
- * then you need to extend this interface.
- *
- * ```ts
- * import 'tagscript';
- * declare module 'tagscript' {
- * 	interface IActions {
- * 		foo?: string;
- *	}
- * }
- * ```
- */
 export interface IActions {
 	cooldown?: {
 		cooldown: number;

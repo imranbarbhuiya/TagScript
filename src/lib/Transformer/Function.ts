@@ -1,14 +1,15 @@
 import type { ITransformer } from '../interfaces';
+import type { Lexer } from '../Interpreter';
 
-export type AdapterFunction = (...args: unknown[]) => string;
+export type TransformerFunction = (tag: Lexer) => string;
 
 export class FunctionTransformer implements ITransformer {
-	private fn: AdapterFunction;
-	public constructor(fn: AdapterFunction) {
+	private fn: TransformerFunction;
+	public constructor(fn: TransformerFunction) {
 		this.fn = fn;
 	}
 
-	public transform() {
-		return this.fn();
+	public transform(tag: Lexer) {
+		return this.fn(tag);
 	}
 }

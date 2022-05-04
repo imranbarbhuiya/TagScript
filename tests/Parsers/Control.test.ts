@@ -10,7 +10,7 @@ import {
 } from '../../src';
 describe('IntersectionStatementParser', () => {
 	const ts = new Interpreter(new IntersectionStatementParser());
-	test('Given a string in intersection parser THEN returns the string if all conditions are true else return empty string', async () => {
+	test('GIVEN a string in intersection parser THEN returns the string if all conditions are true else return empty string', async () => {
 		const text1 = '{all(10>=100|10<=1000):You picked 10.|You must provide a number between 100 and 1000.}';
 		expect(await ts.run(text1)).toStrictEqual(new Response().setValues('You must provide a number between 100 and 1000.', text1));
 
@@ -21,7 +21,7 @@ describe('IntersectionStatementParser', () => {
 
 describe('UnionStatementParser', () => {
 	const ts = new Interpreter(new UnionStatementParser());
-	test('Given a string in union parser THEN returns the string if any conditions are true else return empty string', async () => {
+	test('GIVEN a string in union parser THEN returns the string if any conditions are true else return empty string', async () => {
 		const text1 = '{any(hi==hi|hi==hello|hi==heyy):Hello!|How rude.}';
 		expect(await ts.run(text1)).toStrictEqual(new Response().setValues('Hello!', text1));
 
@@ -33,7 +33,7 @@ describe('UnionStatementParser', () => {
 describe('IfStatementParser', () => {
 	const ts = new Interpreter(new IfStatementParser(), new DefineParser(), new StrictVarsParser());
 
-	test('Given a string in union parser THEN returns the string if any conditions are true else return empty string', async () => {
+	test('GIVEN a string in union parser THEN returns the string if any conditions are true else return empty string', async () => {
 		const text1 = '{if(63==63):You guessed it! The number I was thinking of was 63!|Too {if(63<63):low|high}, try again.}';
 		expect(await ts.run(text1)).toStrictEqual(new Response().setValues('You guessed it! The number I was thinking of was 63!', text1));
 

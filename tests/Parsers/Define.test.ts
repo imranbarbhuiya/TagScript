@@ -2,7 +2,7 @@ import { Interpreter, DefineParser, LooseVarsParser, Response, StringTransformer
 describe('DefineParser', () => {
 	describe('LooseVarsParser', () => {
 		const ts = new Interpreter(new DefineParser(), new LooseVarsParser());
-		test('Given a string in define parser THEN returns the value instead of the variable', async () => {
+		test('GIVEN a string in define parser THEN returns the value instead of the variable', async () => {
 			const text = '{=(user):mahir} {user} {ok}';
 
 			expect(await ts.run(text)).toStrictEqual(
@@ -15,7 +15,7 @@ describe('DefineParser', () => {
 
 	describe('StrictVarsParser', () => {
 		const ts = new Interpreter(new DefineParser(), new StrictVarsParser());
-		test('Given a string in define parser THEN returns the value instead of the variable', async () => {
+		test('GIVEN a string in define parser THEN returns the value instead of the variable', async () => {
 			const text1 = '{=(user):mahir} {user} {ok}';
 			expect(await ts.run(text1)).toStrictEqual(
 				new Response({

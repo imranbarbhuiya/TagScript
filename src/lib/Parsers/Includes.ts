@@ -2,7 +2,7 @@ import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 import { BaseParser } from './Base';
 /**
- * The in block serves four different purposes depending on the alias that is used.
+ * This tag serves four different purposes depending on the alias that is used.
  * The `in` and `includes` alias checks if the parameter is anywhere in the payload.
  * `contain` strictly checks if the parameter is the payload, split by whitespace.
  * `index` finds the location of the parameter in the payload, split by whitespace.

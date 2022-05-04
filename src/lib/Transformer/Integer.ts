@@ -1,12 +1,27 @@
 import type { ITransformer } from '../interfaces';
+import type { Lexer } from '../Interpreter';
 
+/**
+ * Integer transformer transforms an integer based on the given parameters.
+ *
+ * If no parameters are given, the integer will be returned as is.
+ *
+ * if `++` parameter is given, the integer will be incremented.
+ * if `--` parameter is given, the integer will be decremented.
+ */
 export class IntegerTransformer implements ITransformer {
 	private integer: number;
-	public constructor(int: string) {
+	public constructor(int: `${number | bigint}`) {
 		this.integer = parseInt(int, 10);
 	}
 
-	public transform() {
+	public transform(tag: Lexer) {
+		if (tag.parameter === '++') {
+			return `${++this.integer}`;
+		}
+		if (tag.parameter === '--') {
+			return `${--this.integer}`;
+		}
 		return `${this.integer}`;
 	}
 }

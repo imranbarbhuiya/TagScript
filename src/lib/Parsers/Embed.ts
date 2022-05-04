@@ -6,7 +6,7 @@ import { split } from '../Utils/Util';
 
 /**
  *  An embed tag will send an embed in the tag response.
- *  There are two ways to use the embed block, either by using properly
+ *  There are two ways to use the embed tag, either by using properly
  *  formatted embed JSON or manually inputting
  *  the accepted embed properties.
  * 

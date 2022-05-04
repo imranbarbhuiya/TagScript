@@ -16,6 +16,20 @@ export class Response {
 	 * An object with all the variables that parsers such as the `LooseVarsParser` can access.
 	 */
 	public variables: { [key: string]: ITransformer };
+	/**
+	 * An object containing information on a completed TagScript process.
+	 * If you are creating a parser where you need to store info in actions,
+	 * then you need to extend this interface.
+	 *
+	 * ```ts
+	 * import 'tagscript';
+	 * declare module 'tagscript' {
+	 * 	interface IActions {
+	 * 		foo?: string;
+	 *	}
+	 * }
+	 * ```
+	 */
 	public actions: IActions;
 	public keyValues: IKeyValues;
 

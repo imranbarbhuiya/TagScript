@@ -5,7 +5,7 @@ import { BaseParser } from './Base';
 /**
  * The range tag picks a random number from a range of numbers separated by `-`.
  * The number range is inclusive, so it can pick the starting/ending number as well.
- * Using the rangef block will pick a number to the tenth decimal place.
+ * Using the rangef tag will pick a number to the tenth decimal place.
  *
  * @alias rangef
  *
