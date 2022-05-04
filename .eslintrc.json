@@ -1,7 +1,6 @@
 {
 	"root": true,
 	"extends": "@sapphire",
-	"plugins": ["import"],
 	"ignorePatterns": ["**/dist/*"],
 	"parser": "@typescript-eslint/parser",
 	"rules": {
