@@ -41,7 +41,33 @@ export abstract class DiscordJsBaseTransformer<T extends GuildTextBasedChannel |
 }
 
 /**
- * Transformer for Discord.js guild members.
+ * Represents a user on Discord.
+ *
+ * @properties
+ * username: Gives username of the user.
+ * discriminator: Gives discriminator of the user
+ * tag: Gives username#discriminator
+ * avatar: Gives user's custom avatar if they have one. Else it'll be an empty string.
+ * displayAvatar: Gives user's avatar URL if they have one else gives user's default avatar.
+ * createdAt: Gives user's account create date.
+ * createdTimestamp: Gives user's account created date in ms
+ * bot: Gives true if the user is a bot else false.
+ */
+export class UserTransformer extends DiscordJsBaseTransformer<User> {
+	protected override updateSafeValues() {
+		this.safeValues.username = this.base.username;
+		this.safeValues.discriminator = this.base.discriminator;
+		this.safeValues.tag = this.base.tag;
+		this.safeValues.avatar = this.base.avatarURL();
+		this.safeValues.displayAvatar = this.base.displayAvatarURL();
+		this.safeValues.createdAt = this.base.createdAt.toISOString();
+		this.safeValues.createdTimestamp = this.base.createdTimestamp;
+		this.safeValues.bot = this.base.bot;
+	}
+}
+
+/**
+ * Transformer for Discord guild members.
  */
 export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 	protected override updateSafeValues() {
@@ -55,6 +81,7 @@ export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 		this.safeValues.joinedAt = this.base.joinedAt?.toISOString() ?? '';
 		this.safeValues.joinedTimestamp = this.base.joinedTimestamp;
 		this.safeValues.createdAt = this.base.user.createdAt.toISOString();
+		this.safeValues.bot = this.base.user.bot;
 		this.safeValues.createdTimestamp = this.base.user.createdTimestamp;
 		this.safeValues.color = this.base.roles.color?.hexColor ?? '';
 		this.safeValues.position = this.base.roles.highest.position;
@@ -62,19 +89,8 @@ export class MemberTransformer extends DiscordJsBaseTransformer<GuildMember> {
 		this.safeValues.roleIds = this.base.roles.cache.map((role) => role.id).join(', ') || '`None`';
 		this.safeValues.roleNames = this.base.roles.cache.map((role) => role.name).join(', ') || '`None`';
 		this.safeValues.topRole = this.base.roles.highest.name;
-	}
-}
-
-export class UserTransformer extends DiscordJsBaseTransformer<User> {
-	protected override updateSafeValues() {
-		this.safeValues.username = this.base.username;
-		this.safeValues.discriminator = this.base.discriminator;
-		this.safeValues.tag = this.base.tag;
-		this.safeValues.avatar = this.base.avatarURL();
-		this.safeValues.displayAvatar = this.base.displayAvatarURL();
-		this.safeValues.createdAt = this.base.createdAt.toISOString();
-		this.safeValues.createdTimestamp = this.base.createdTimestamp;
-		this.safeValues.bot = this.base.bot;
+		this.safeValues.timeout = this.base.communicationDisabledUntil?.toISOString() ?? '';
+		this.safeValues.timeoutTimestamp = this.base.communicationDisabledUntilTimestamp;
 	}
 }
 
