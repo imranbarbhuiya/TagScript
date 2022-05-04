@@ -15,7 +15,7 @@ export class SafeObjectTransformer implements ITransformer {
 		if (tag.parameter.startsWith('_')) return null;
 
 		const attribute = this.obj[tag.parameter];
-		return !attribute || typeof attribute === 'function' ? null : `${attribute}`;
+		return attribute ? `${attribute}` : null;
 	}
 
 	private makeObject(obj: Record<string, unknown>) {
