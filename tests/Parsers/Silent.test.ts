@@ -5,7 +5,7 @@ describe('SilentParser', () => {
 
 	test('GIVEN a Silent tag THEN return empty string and Silent: true in actions', async () => {
 		expect((await ts.run('{silent}')).actions).toStrictEqual({
-			silent: true
+			silentResponse: true
 		});
 	});
 });

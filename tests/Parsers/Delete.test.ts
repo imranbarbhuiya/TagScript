@@ -5,7 +5,7 @@ describe('DeleteParser', () => {
 
 	test('GIVEN a Delete tag THEN return empty string and Delete: true in actions', async () => {
 		expect((await ts.run('{delete}')).actions).toStrictEqual({
-			delete: true
+			deleteMessage: true
 		});
 	});
 });
