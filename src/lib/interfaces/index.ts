@@ -39,6 +39,6 @@ export interface IActions {
 	require?: { ids: Snowflake[]; message: string | null };
 	deny?: { ids: Snowflake[]; message: string | null };
 	embed?: MessageEmbedOptions;
-	delete?: boolean;
-	silent?: boolean;
+	deleteMessage?: boolean;
+	silentResponse?: boolean;
 }
