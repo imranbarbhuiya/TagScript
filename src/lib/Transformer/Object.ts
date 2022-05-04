@@ -5,9 +5,9 @@ import type { Lexer } from '../Interpreter';
  * Object transformer safely transforms an object by removing all the methods (except toString), private properties and based on the given parameters.
  */
 export class SafeObjectTransformer implements ITransformer {
-	private obj: { [key: string]: unknown };
-	public constructor(obj: { [key: string]: unknown }) {
-		this.obj = obj;
+	private obj: Record<string, unknown>;
+	public constructor(obj: Record<string, unknown>) {
+		this.obj = this.makeObject(obj);
 	}
 
 	public transform(tag: Lexer) {
@@ -16,5 +16,13 @@ export class SafeObjectTransformer implements ITransformer {
 
 		const attribute = this.obj[tag.parameter];
 		return !attribute || typeof attribute === 'function' ? null : `${attribute}`;
+	}
+
+	private makeObject(obj: Record<string, unknown>) {
+		const safeObject = JSON.parse(JSON.stringify(obj)) as Record<string, unknown>;
+		Object.defineProperty(safeObject, 'toString', {
+			value: obj.toString.bind(obj)
+		});
+		return safeObject;
 	}
 }

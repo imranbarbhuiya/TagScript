@@ -43,7 +43,7 @@ export const parseIf = (str: string) => {
 	return true;
 };
 
-const implicitBool = (str: string) => {
+export const implicitBool = (str: string) => {
 	const booleans = {
 		true: true,
 		false: false

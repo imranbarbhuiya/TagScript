@@ -1,4 +1,4 @@
-import { Node } from '../src';
+import { Node } from '../../src';
 
 describe('Node', () => {
 	const node = new Node([0, 1], null);

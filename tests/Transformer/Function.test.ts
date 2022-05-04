@@ -1,17 +1,9 @@
-import { FunctionTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
+import { FunctionTransformer, Lexer } from '../../src';
 
-describe.skip('FunctionTransformer', () => {
-	test('GIVEN a string in as a variable THEN returns the value instead of the variable', async () => {
-		const ts = new Interpreter(new StrictVarsParser());
-
-		await expect(
-			ts.run('{value}', {
-				value: new FunctionTransformer((tag) => `${tag.declaration}: Hello World`)
-			})
-		).resolves.toStrictEqual(
-			new Response({
-				value: new FunctionTransformer((tag) => `${tag.declaration}: Hello World`)
-			}).setValues('value: Hello World', '{value}')
+describe('FunctionTransformer', () => {
+	test('GIVEN a string in as a variable THEN returns the value instead of the variable', () => {
+		expect(new FunctionTransformer((tag) => `${tag.declaration}: Hello World`).transform(new Lexer('{value}'))).toStrictEqual(
+			'value: Hello World'
 		);
 	});
 });

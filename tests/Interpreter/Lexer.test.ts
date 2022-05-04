@@ -1,4 +1,4 @@
-import { Lexer, ParenType } from '../src';
+import { Lexer, ParenType } from '../../src';
 
 describe('ParenType.Both', () => {
 	const text1 = '{embed.title:Hello world}';

@@ -1,4 +1,4 @@
-import { Response } from '../src';
+import { Response } from '../../src';
 
 describe('Response', () => {
 	const response = new Response().setValues('Hello World', '{Hello World}');

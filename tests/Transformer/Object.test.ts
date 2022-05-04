@@ -1,6 +1,6 @@
 import { SafeObjectTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
 
-describe.skip('SafeObjectTransformer', () => {
+describe('SafeObjectTransformer', () => {
 	test('GIVEN a string in as a variable THEN returns the value instead of the variable', async () => {
 		const ts = new Interpreter(new StrictVarsParser());
 

@@ -1,4 +1,4 @@
-import { Context, Interpreter, Lexer, Response } from '../src';
+import { Context, Interpreter, Lexer, Response } from '../../src';
 
 describe('Context', () => {
 	const lexer = new Lexer('{tag}');

@@ -1,4 +1,4 @@
-import { Interpreter, ReplaceParser, ParenType, Response } from '../src';
+import { Interpreter, ReplaceParser, ParenType, Response } from '../../src';
 const ts = new Interpreter(new ReplaceParser());
 describe('ParenType', () => {
 	test('GIVEN a string with dot param in param type dot THEN parse as dot param', async () => {
