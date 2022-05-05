@@ -1,56 +1,36 @@
 {
-	"name": "tagscript",
-	"version": "0.8.4",
-	"description": "A simple and safe template engine.",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"browser": "dist/index.global.js",
-	"unpkg": "dist/index.global.js",
-	"types": "dist/index.d.ts",
-	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
-		"types": "./dist/index.d.ts"
-	},
-	"sideEffects": false,
-	"license": "MIT",
-	"author": "@imranbarbhuiya",
+	"name": "root-tagscript",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
 	"scripts": {
+		"build": "turbo run build",
+		"check-update": "turbo run check-update",
+		"clean": "node scripts/clean.mjs",
+		"clean:full": "node scripts/clean-full.mjs",
 		"docs": "typedoc",
-		"build": "tsup && tsc -b src",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"format": "prettier --write '**/*.{ts,mjs,json,md}'",
-		"test": "jest",
-		"test:watch": "jest --watch",
+		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
+		"update": "yarn upgrade-interactive",
 		"prepack": "rollup-type-bundler",
 		"prepare": "husky install .github/husky",
+		"test": "turbo run test",
+		"test:coverage": "yarn jest --coverage",
 		"typecheck": "tsc -p tsconfig.typecheck.json"
-	},
-	"keywords": [
-		"tagscript",
-		"string parser",
-		"safe string",
-		"typescript",
-		"template engine",
-		"template",
-		"template string"
-	],
-	"publishConfig": {
-		"access": "public"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.4",
-		"@commitlint/config-angular": "^16.2.4",
+		"@commitlint/config-conventional": "^16.2.4",
+		"@favware/cliff-jumper": "^1.4.0",
+		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"@sapphire/eslint-config": "^4.3.4",
 		"@sapphire/prettier-config": "^1.4.3",
 		"@types/jest": "^27.4.1",
-		"@types/prettier": "^2",
 		"@typescript-eslint/eslint-plugin": "^5.21.0",
 		"@typescript-eslint/parser": "^5.21.0",
 		"conventional-changelog-cli": "^2.2.2",
-		"discord.js": "^13.6.0",
 		"eslint": "^8.14.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
@@ -60,27 +40,35 @@
 		"prettier": "^2.6.2",
 		"ts-jest": "^28.0.1",
 		"tsup": "^5.12.6",
+		"turbo": "^1.2.6",
 		"typedoc": "^0.22.15",
 		"typescript": "^4.6.4"
 	},
-	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/imranbarbhuiya/tagscript.git"
 	},
-	"bugs": {
-		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
 	},
-	"homepage": "https://tagscript.js.org/",
-	"packageManager": "yarn@3.2.0",
-	"lint-staged": {
-		"*.ts": [
-			"prettier --write",
-			"eslint --fix"
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
 		]
 	},
+	"lint-staged": {
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"resolutions": {
+		"ansi-regex": "^5.0.1",
+		"minimist": "^1.2.6"
+	},
+	"packageManager": "yarn@3.2.0",
 	"prettier": "@sapphire/prettier-config"
 }
