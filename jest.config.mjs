@@ -2,9 +2,8 @@
 const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
-	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts', '<rootDir>/packages/**/tests/**/*.test.js', '<rootDir>/packages/**/tests/**/*.test.tsx'],
+	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts'],
 	collectCoverageFrom: ['<rootDir>/packages/src/**/*.ts'],
-	setupFilesAfterEnv: ['jest-extended/all'],
 	globals: {
 		'ts-jest': {
 			tsconfig: '<rootDir>/tsconfig.base.json'
