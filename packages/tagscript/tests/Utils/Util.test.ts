@@ -105,12 +105,12 @@ describe('split', () => {
 
 	test('GIVEN string THEN return array of strings', () => {
 		const result = split('a,b,c');
-		expect(result).toStrictEqual(['abc']);
+		expect(result).toStrictEqual(['a,b,c']);
 	});
 
 	test('GIVEN string THEN return array of strings', () => {
 		const result = split('a,b,c', false);
-		expect(result).toStrictEqual(['abc']);
+		expect(result).toStrictEqual(['a,b,c']);
 	});
 
 	test('GIVEN string THEN return array of strings', () => {
