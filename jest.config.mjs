@@ -3,7 +3,7 @@ const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
 	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts'],
-	collectCoverageFrom: ['<rootDir>/packages/src/**/*.ts'],
+	collectCoverageFrom: ['<rootDir>/packages/**/src/**/*.ts'],
 	globals: {
 		'ts-jest': {
 			tsconfig: '<rootDir>/tsconfig.base.json'
