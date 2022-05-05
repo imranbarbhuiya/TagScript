@@ -1,4 +1,4 @@
-import { asyncFilter, escapeContent, implicitBool, parseIf } from '../../src';
+import { asyncFilter, escapeContent, implicitBool, parseIf, split } from '../../src';
 
 describe('asyncFilter', () => {
 	test('GIVEN async tasks in AsyncFilter THEN filter out all Promise<false>', async () => {
@@ -89,5 +89,42 @@ describe('implicitBool', () => {
 	test("GIVEN string which isn't implicit boolean THEN return null", () => {
 		const result = implicitBool('test');
 		expect(result).toStrictEqual(null);
+	});
+});
+
+describe('split', () => {
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a,b,c', true);
+		expect(result).toStrictEqual(['a', 'b', 'c']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a~b', true);
+		expect(result).toStrictEqual(['a', 'b', 'c']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a,b,c');
+		expect(result).toStrictEqual(['abc']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a,b,c', false);
+		expect(result).toStrictEqual(['abc']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a~c', false);
+		expect(result).toStrictEqual(['a~c']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a|b|c', true);
+		expect(result).toStrictEqual(['a', 'b', 'c']);
+	});
+
+	test('GIVEN string THEN return array of strings', () => {
+		const result = split('a|b\\|c');
+		expect(result).toStrictEqual(['a', 'b\\|c']);
 	});
 });
