@@ -11,7 +11,7 @@
 		"clean:full": "node scripts/clean-full.mjs",
 		"docs": "typedoc",
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
-		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
+		"lint": "eslint packages --ext mjs,js,ts --fix",
 		"update": "yarn upgrade-interactive",
 		"prepack": "rollup-type-bundler",
 		"prepare": "husky install .github/husky",
