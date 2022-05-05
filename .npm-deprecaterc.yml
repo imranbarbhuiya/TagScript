@@ -1,4 +1,4 @@
 name: '*next*'
 verbose: true
 package:
-  - '@sapphire/tagscript'
+  - 'tagscript'
