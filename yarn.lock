@@ -6827,9 +6827,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tagscript@workspace:packages/tagscrip":
+"tagscript@workspace:packages/tagscript":
   version: 0.0.0-use.local
-  resolution: "tagscript@workspace:packages/tagscrip"
+  resolution: "tagscript@workspace:packages/tagscript"
   dependencies:
     discord.js: ^13.6.0
     tsup: ^5.12.6
