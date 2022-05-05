@@ -1,7 +1,7 @@
 {
-	"name": "tagscript",
-	"version": "0.8.4",
-	"description": "A simple and safe template engine.",
+	"name": "tagscript-plugin-discord",
+	"version": "0.0.0",
+	"description": "A plugin for tagscript to work with discord.js.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"browser": "dist/index.global.js",
@@ -14,10 +14,11 @@
 	},
 	"sideEffects": false,
 	"author": "@imranbarbhuiya",
+	"license": "MIT",
 	"scripts": {
 		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
 		"build": "tsup && tsc -b src",
-		"prepack": "rollup-type-bundler",
+		"prepack": "rollup-type-bundler -e tagscript discord.js",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
 		"test": "jest"
@@ -30,14 +31,23 @@
 		"template engine",
 		"template",
 		"template string",
-		"tag"
+		"tagscript discord",
+		"discord.js",
+		"tag",
+		"bot tag"
 	],
 	"devDependencies": {
+		"discord.js": "^13.6.0",
+		"tagscript": "workspace:^",
 		"tsup": "^5.12.6",
 		"typescript": "^4.6.4"
 	},
+	"peerDependencies": {
+		"discord.js": "^13.6.0",
+		"tagscript": "workspace:^"
+	},
 	"engines": {
-		"node": ">=v14.0.0"
+		"node": ">=v16.9.0"
 	},
 	"files": [
 		"dist",
@@ -46,7 +56,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
-		"directory": "packages/tagscript"
+		"directory": "packages/tagscript-plugin-discord"
 	},
 	"bugs": {
 		"url": "https://github.com/imranbarbhuiya/tagscript/issues"

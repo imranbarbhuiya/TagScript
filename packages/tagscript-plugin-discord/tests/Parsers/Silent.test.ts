@@ -1,4 +1,5 @@
-import { SilentParser, Interpreter } from '../../src';
+import { Interpreter } from 'tagscript';
+import { SilentParser } from '../../src';
 
 describe('SilentParser', () => {
 	const ts = new Interpreter(new SilentParser());

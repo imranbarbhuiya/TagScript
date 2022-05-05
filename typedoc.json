@@ -1,7 +1,7 @@
 {
 	"cleanOutputDir": true,
 	"entryPointStrategy": "resolve",
-	"entryPoints": ["packages/tagscript/src/index.ts"],
+	"entryPoints": ["packages/tagscript/src/index.ts", "packages/tagscript-plugin-discord/src/index.ts"],
 	"excludeExternals": false,
 	"hideGenerator": true,
 	"lightHighlightTheme": "github-light",

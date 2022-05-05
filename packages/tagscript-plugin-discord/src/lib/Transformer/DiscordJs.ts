@@ -1,6 +1,5 @@
-import type { ITransformer } from '../interfaces';
+import type { Lexer, ITransformer } from 'tagscript';
 import type { GuildTextBasedChannel, Role, User, GuildMember, Guild } from 'discord.js';
-import type { Lexer } from '../Interpreter';
 
 export type outputResolvable = string | number | boolean | null | undefined;
 

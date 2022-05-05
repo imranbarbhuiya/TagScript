@@ -10,9 +10,11 @@ const paths = [
 
 	// Nested node_modules folders
 	new URL('tagscript/node_modules/', packagesDir),
+	new URL('tagscript-plugin-discord/node_modules/', packagesDir),
 
 	// Dist folders
-	new URL('tagscript/dist/', packagesDir)
+	new URL('tagscript/dist/', packagesDir),
+	new URL('tagscript-plugin-discord/dist/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

@@ -1,7 +1,4 @@
-import type { IParser } from '../interfaces';
-import type { Context } from '../Interpreter';
-import { escapeContent } from '../Utils/Util';
-import { BaseParser } from './Base';
+import { BaseParser, escapeContent, type Context, type IParser } from 'tagscript';
 
 /**
  * This tag formats a given string.
@@ -37,6 +34,28 @@ export class StringFormatParser extends BaseParser implements IParser {
 			default:
 				return payload!;
 		}
+	}
+}
+
+// This is a discord specific formatter
+export class DateFormatParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['date', 'unix', 'currentTime'], false, true);
+	}
+
+	public parse(ctx: Context) {
+		const { declaration } = ctx.tag;
+		if (['unix', 'currentTime'].includes(declaration!)) {
+			return Date.now().toString();
+		}
+		const parameter = ctx.tag.parameter ?? 'f';
+		let payload: string | number = ctx.tag.payload!;
+		if (!/^\d+$/.test(payload)) {
+			payload = new Date(payload).getTime().toString();
+		}
+		if (payload.length > 10) payload = Math.floor(Number(payload) / 1000);
+
+		return `<t:${payload}:${parameter}>`;
 	}
 }
 

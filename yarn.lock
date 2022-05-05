@@ -6949,11 +6949,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tagscript@workspace:packages/tagscript":
+"tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord":
+  version: 0.0.0-use.local
+  resolution: "tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord"
+  dependencies:
+    discord.js: ^13.6.0
+    tagscript: "workspace:^"
+    tsup: ^5.12.6
+    typescript: ^4.6.4
+  peerDependencies:
+    discord.js: ^13.6.0
+    tagscript: "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"tagscript@workspace:^, tagscript@workspace:packages/tagscript":
   version: 0.0.0-use.local
   resolution: "tagscript@workspace:packages/tagscript"
   dependencies:
-    discord.js: ^13.6.0
     tsup: ^5.12.6
     typescript: ^4.6.4
   languageName: unknown

@@ -1,4 +1,5 @@
-import { CooldownParser, Interpreter } from '../../src';
+import { Interpreter } from 'tagscript';
+import { CooldownParser } from '../../src';
 
 describe('CooldownParser', () => {
 	const ts = new Interpreter(new CooldownParser());

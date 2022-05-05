@@ -12,83 +12,32 @@
 
 ## Description
 
-TagScript is a drop in easy to use string interpreter that lets you provide users with ways of customizing their profiles or chat rooms with interactive text.
-
-Read Full Documentation [here](https://tagscript.js.org/).
-
----
+A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with discord.js related structures.
 
 ## Features
 
 -   Written In Typescript
 -   Offers CJS, ESM and UMD builds
 -   Full TypeScript & JavaScript support
--   Faster than ⚡
--   Simple, expressive and safe template engine.
--   Supports your own parsers and transformers
 
 ## Install
 
 ```bash
 # npm
-npm i tagscript
+npm i tagscript-plugin-discord
 
 # yarn
-yarn add tagscript
+yarn add tagscript-plugin-discord
 
 ```
 
 ## Usage
 
----
-
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
-
 ```ts
-import { Interpreter } from 'tagscript';
-```
-
-is the same as
-
-```js
-const { Interpreter } = require('tagscript');
-```
-
----
-
-```ts
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-
-const result = await ts.run(
-	`
-    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
-    I pick {if({5050:.}!=):heads|tails}
-    `
-);
-console.log(result);
-```
-
-## Parsers
-
-Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Parsers) or write your own parsers.
-Your own parser should implement [IParser](https://tagscript.js.org/interfaces/IParser.html) interface.
-
-```ts
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-```
-
-## Transformers
-
-Transformers are used to transform a value based on the tag at runtime. You can use our [builtin transformers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Transformer) or write your own transformers.
-Your own transformer should implement [ITransformer](https://tagscript.js.org/interfaces/ITransformer.html) interface.
-
-```ts
-import { Interpreter, StringTransformer } from 'tagscript';
+import { Interpreter, MemberTransformer } from 'tagscript';
 const ts = new Interpreter();
 
-await ts.run(str, { args: new StringTransformer(args) });
+await ts.run(str, { member: new MemberTransformer(GuildMember) });
 ```
 
 ## Buy me some doughnuts
@@ -118,7 +67,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## Special Thanks
-
--   [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.

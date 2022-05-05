@@ -1,8 +1,6 @@
-import type { IParser } from '../interfaces';
-import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
+import { BaseParser, split, type Context, type IParser } from 'tagscript';
+
 import type { Awaitable, MessageEmbedOptions } from 'discord.js';
-import { split } from '../Utils/Util';
 
 /**
  *  An embed tag will send an embed in the tag response.
