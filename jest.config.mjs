@@ -2,11 +2,11 @@
 const config = {
 	displayName: 'unit test',
 	preset: 'ts-jest',
-	testMatch: ['<rootDir>/tests/**/*.test.ts'],
-	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts'],
+	collectCoverageFrom: ['<rootDir>/packages/**/src/**/*.ts'],
 	globals: {
 		'ts-jest': {
-			tsconfig: '<rootDir>/tests/tsconfig.json'
+			tsconfig: '<rootDir>/tsconfig.base.json'
 		}
 	},
 	reporters: ['default', 'github-actions']

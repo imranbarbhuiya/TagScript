@@ -1,0 +1,59 @@
+{
+	"name": "tagscript",
+	"version": "0.8.4",
+	"description": "A simple and safe template engine.",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"browser": "dist/index.global.js",
+	"unpkg": "dist/index.global.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"author": "@imranbarbhuiya",
+	"scripts": {
+		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup && tsc -b src",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run",
+		"test": "jest"
+	},
+	"keywords": [
+		"tagscript",
+		"string parser",
+		"safe string",
+		"typescript",
+		"template engine",
+		"template",
+		"template string"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"discord.js": "^13.6.0",
+		"tsup": "^5.12.6",
+		"typescript": "^4.6.4"
+	},
+	"engines": {
+		"node": ">=v14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
+		"directory": "packages/tagscript"
+	},
+	"bugs": {
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	},
+	"homepage": "https://tagscript.js.org/"
+}

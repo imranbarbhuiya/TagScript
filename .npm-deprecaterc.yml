@@ -1,0 +1,4 @@
+name: '*next*'
+verbose: true
+package:
+  - 'tagscript'

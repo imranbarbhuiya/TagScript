@@ -1,0 +1,28 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"]
+		},
+		"bump": {
+			"dependsOn": [],
+			"outputs": ["CHANGELOG.md"]
+		},
+		"check-update": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"format": {
+			"outputs": []
+		},
+		"lint": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"test": {
+			"dependsOn": ["tagscript#build"],
+			"outputs": ["coverage/**"]
+		}
+	}
+}
