@@ -16,9 +16,8 @@ TagScript is a drop in easy to use string interpreter that lets you provide user
 
 Read Full Documentation [here](https://tagscript.js.org/).
 
-Looking for help to
+## TODO
 
--   Make this repo a monorepo.
 -   Move all the discord related stuff to a separate repo.
 -   Make a VSCode extension
 
@@ -31,7 +30,7 @@ Looking for help to
 -   Full TypeScript & JavaScript support
 -   Faster than ⚡
 -   Simple, expressive and safe template engine.
--   Supports your own parsers and transformers
+-   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/tagscript-plugin-discord).
 
 ## Buy me some doughnuts
 
