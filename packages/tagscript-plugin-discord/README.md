@@ -1,8 +1,8 @@
 <div align="center">
 
-# TagScript
+# tagscript-plugin-discord
 
-**A simple and safe template engine.**
+**A tagscript plugin.**
 
 [![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg)](https://codecov.io/gh/imranbarbhuiya/tagscript)
@@ -34,7 +34,9 @@ yarn add tagscript-plugin-discord
 ## Usage
 
 ```ts
-import { Interpreter, MemberTransformer } from 'tagscript';
+import { Interpreter } from 'tagscript';
+import { MemberTransformer } from 'tagscript-plugin-discord';
+
 const ts = new Interpreter();
 
 await ts.run(str, { member: new MemberTransformer(GuildMember) });
