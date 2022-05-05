@@ -30,7 +30,7 @@ Read Full Documentation [here](https://tagscript.js.org/).
 -   Full TypeScript & JavaScript support
 -   Faster than ⚡
 -   Simple, expressive and safe template engine.
--   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/tagscript-plugin-discord).
+-   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
 
 ## Buy me some doughnuts
 
