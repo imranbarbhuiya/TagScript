@@ -13,7 +13,6 @@
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"lint": "eslint packages --ext mjs,js,ts --fix",
 		"update": "yarn upgrade-interactive",
-		"prepack": "rollup-type-bundler",
 		"prepare": "husky install .github/husky",
 		"test": "turbo run test",
 		"test:coverage": "yarn jest --coverage"
