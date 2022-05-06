@@ -8,7 +8,7 @@ export interface SafeValues<T> {
 }
 
 /**
- * Transformer for Discord.js objects.
+ * Transformer for {@link https://discord.js.org/#/ Discord.js} objects.
  *
  * @abstract
  */
