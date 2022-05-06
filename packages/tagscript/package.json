@@ -1,6 +1,6 @@
 {
 	"name": "tagscript",
-	"version": "0.8.4",
+	"version": "0.8.5",
 	"description": "A simple and safe template engine.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -33,6 +33,7 @@
 		"tag"
 	],
 	"devDependencies": {
+		"@favware/cliff-jumper": "^1.4.0",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"tsup": "^5.12.7",
 		"typescript": "^4.6.4"
