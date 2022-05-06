@@ -77,21 +77,20 @@ const channelObject: APIChannel = {
 	type: 0
 };
 
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 // @ts-expect-error using protected constructor to test
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const user: User = new User(client, userObject);
 // @ts-expect-error using protected constructor to test
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const guild: Guild = new Guild(client, guildObject);
 
 // @ts-expect-error using protected constructor to test
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const role: Role = new Role(client, roleObject, guild);
 
 // @ts-expect-error using protected constructor to test
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const member: GuildMember = new GuildMember(client, memberObject, guild);
 
 // @ts-expect-error using protected constructor to test
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const channel: TextChannel = new TextChannel(guild, channelObject, client);
+
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */

@@ -9,7 +9,6 @@ export interface SafeValues<T> {
 
 /**
  * Transformer for Discord.js objects.
- * > These objects will be removed from this package and will be added in a new package.</warn>
  *
  * @abstract
  */

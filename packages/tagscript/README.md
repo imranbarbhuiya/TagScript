@@ -27,7 +27,7 @@ Read Full Documentation [here](https://tagscript.js.org/).
 -   Simple, expressive and safe template engine.
 -   Supports your own parsers and transformers
 
-## Install
+## Installation
 
 ```bash
 # npm

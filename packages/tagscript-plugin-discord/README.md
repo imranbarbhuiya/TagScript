@@ -2,7 +2,7 @@
 
 # tagscript-plugin-discord
 
-**A tagscript plugin.**
+**A tagscript plugin to work with discord.js**
 
 [![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg)](https://codecov.io/gh/imranbarbhuiya/tagscript)
@@ -20,14 +20,17 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 -   Offers CJS, ESM and UMD builds
 -   Full TypeScript & JavaScript support
 
-## Install
+## Installation
+
+`tagscript-plugin-discord` depends on the following packages. Be sure to install these along with this package!
+
+-   [tagscript](https://www.npmjs.com/package/tagscript)
+-   [discord.js](https://www.npmjs.com/package/discord.js)
+
+You can use the following command to install this package, or replace npm install with your package manager of choice.
 
 ```bash
-# npm
-npm i tagscript-plugin-discord
-
-# yarn
-yarn add tagscript-plugin-discord
+npm install tagscript-plugin-discord tagscript discord.js
 
 ```
 
