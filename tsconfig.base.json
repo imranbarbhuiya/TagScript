@@ -12,7 +12,7 @@
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"moduleResolution": "node",
-		"lib": ["es2021"],
+		"lib": ["esnext"],
 		"declaration": true,
 		"outDir": "dist"
 	},

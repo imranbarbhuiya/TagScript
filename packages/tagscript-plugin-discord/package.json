@@ -60,6 +60,5 @@
 	"bugs": {
 		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
 	},
-	"homepage": "https://tagscript.js.org/",
-	"packageManager": "yarn@3.2.0"
+	"homepage": "https://tagscript.js.org/"
 }
