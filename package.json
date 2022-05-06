@@ -70,5 +70,10 @@
 		"minimist": "^1.2.6"
 	},
 	"packageManager": "yarn@3.2.0",
-	"prettier": "@sapphire/prettier-config"
+	"prettier": "@sapphire/prettier-config",
+	"dependencies": {
+		"@knodes/typedoc-plugin-monorepo-readmes": "^0.22.5",
+		"typedoc-monorepo-link-types": "^0.0.2",
+		"typedoc-plugin-djs-links": "^1.0.4"
+	}
 }

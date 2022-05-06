@@ -1159,6 +1159,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@knodes/typedoc-plugin-monorepo-readmes@npm:^0.22.5":
+  version: 0.22.5
+  resolution: "@knodes/typedoc-plugin-monorepo-readmes@npm:0.22.5"
+  dependencies:
+    "@knodes/typedoc-pluginutils": ~0.22.5
+    find-up: ^4.1.0
+  peerDependencies:
+    lodash: ^4.17.0
+    typedoc: ^0.22.0
+  checksum: 0eec6e5f22c7d31d68a6ccc9f597a4753a6e68f2adf73d214cb7697e12ac0afa5337aa35aef6e676adcc0cf1dec724c138eb0a975bcd6c18f762b742482fc713
+  languageName: node
+  linkType: hard
+
+"@knodes/typedoc-pluginutils@npm:~0.22.5":
+  version: 0.22.5
+  resolution: "@knodes/typedoc-pluginutils@npm:0.22.5"
+  dependencies:
+    pkg-up: ^3.1.0
+    semver: ^7.3.5
+  peerDependencies:
+    lodash: ^4.17.0
+    typedoc: ^0.22.0
+  checksum: 1126021c133be30f6aa36b5e7a1b9c2c1551768cdb51d8a34c1faed8bfddaaf2f30e5a3cad0e56df45aa3ae105c09f89b8e28f8a39d47a7d8414770b0f1999e7
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3687,6 +3713,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"find-up@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "find-up@npm:3.0.0"
+  dependencies:
+    locate-path: ^3.0.0
+  checksum: 38eba3fe7a66e4bc7f0f5a1366dc25508b7cfc349f852640e3678d26ad9a6d7e2c43eff0a472287de4a9753ef58f066a0ea892a256fa3636ad51b3fe1e17fae9
+  languageName: node
+  linkType: hard
+
 "find-up@npm:^4.0.0, find-up@npm:^4.1.0":
   version: 4.1.0
   resolution: "find-up@npm:4.1.0"
@@ -5138,6 +5173,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"locate-path@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "locate-path@npm:3.0.0"
+  dependencies:
+    p-locate: ^3.0.0
+    path-exists: ^3.0.0
+  checksum: 53db3996672f21f8b0bf2a2c645ae2c13ffdae1eeecfcd399a583bce8516c0b88dcb4222ca6efbbbeb6949df7e46860895be2c02e8d3219abd373ace3bfb4e11
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^5.0.0":
   version: 5.0.0
   resolution: "locate-path@npm:5.0.0"
@@ -5808,7 +5853,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^2.2.0":
+"p-limit@npm:^2.0.0, p-limit@npm:^2.2.0":
   version: 2.3.0
   resolution: "p-limit@npm:2.3.0"
   dependencies:
@@ -5832,6 +5877,15 @@ __metadata:
   dependencies:
     p-limit: ^1.1.0
   checksum: e2dceb9b49b96d5513d90f715780f6f4972f46987dc32a0e18bc6c3fc74a1a5d73ec5f81b1398af5e58b99ea1ad03fd41e9181c01fa81b4af2833958696e3081
+  languageName: node
+  linkType: hard
+
+"p-locate@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "p-locate@npm:3.0.0"
+  dependencies:
+    p-limit: ^2.0.0
+  checksum: 83991734a9854a05fe9dbb29f707ea8a0599391f52daac32b86f08e21415e857ffa60f0e120bfe7ce0cc4faf9274a50239c7895fc0d0579d08411e513b83a4ae
   languageName: node
   linkType: hard
 
@@ -6008,6 +6062,15 @@ __metadata:
   dependencies:
     find-up: ^4.0.0
   checksum: 9863e3f35132bf99ae1636d31ff1e1e3501251d480336edb1c211133c8d58906bed80f154a1d723652df1fda91e01c7442c2eeaf9dc83157c7ae89087e43c8d6
+  languageName: node
+  linkType: hard
+
+"pkg-up@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "pkg-up@npm:3.1.0"
+  dependencies:
+    find-up: ^3.0.0
+  checksum: 5bac346b7c7c903613c057ae3ab722f320716199d753f4a7d053d38f2b5955460f3e6ab73b4762c62fd3e947f58e04f1343e92089e7bb6091c90877406fcd8c8
   languageName: node
   linkType: hard
 
@@ -6427,6 +6490,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.4.0
     "@favware/npm-deprecate": ^1.0.4
     "@favware/rollup-type-bundler": ^1.0.7
+    "@knodes/typedoc-plugin-monorepo-readmes": ^0.22.5
     "@sapphire/eslint-config": ^4.3.4
     "@sapphire/prettier-config": ^1.4.3
     "@types/jest": ^27.4.1
@@ -6445,6 +6509,8 @@ __metadata:
     tsup: ^5.12.6
     turbo: ^1.2.6
     typedoc: ^0.22.15
+    typedoc-monorepo-link-types: ^0.0.2
+    typedoc-plugin-djs-links: ^1.0.4
     typescript: ^4.6.4
   languageName: unknown
   linkType: soft
@@ -7478,6 +7544,22 @@ __metadata:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
+  languageName: node
+  linkType: hard
+
+"typedoc-monorepo-link-types@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "typedoc-monorepo-link-types@npm:0.0.2"
+  peerDependencies:
+    typedoc: 0.22.x
+  checksum: 0159c0da7bea93b14c72a03c9fa2db4de056ff7173f1c75db66f947e01a92a7270825e8c400c3ae3c12562ceef04940e5714143008ab8a3c04b101b46eaae072
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-djs-links@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "typedoc-plugin-djs-links@npm:1.0.4"
+  checksum: 9db409c50400f4b9f15d24dd7b7a32a5672f61bd2840a0533661f42c92fbad0a5496ad898e08acb2a25a9e36a7ebbc698d3a36e8eb77ad5f471628d13f496d8d
   languageName: node
   linkType: hard
 

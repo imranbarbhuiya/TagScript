@@ -66,7 +66,6 @@ const result = await ts.run(
     I pick {if({5050:.}!=):heads|tails}
     `
 );
-console.log(result);
 ```
 
 ## Parsers

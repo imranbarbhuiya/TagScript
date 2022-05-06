@@ -2,7 +2,7 @@
 	"cleanOutputDir": true,
 	"entryPointStrategy": "resolve",
 	"entryPoints": ["packages/tagscript/src/index.ts", "packages/tagscript-plugin-discord/src/index.ts"],
-	"excludeExternals": false,
+	"excludeExternals": true,
 	"hideGenerator": true,
 	"lightHighlightTheme": "github-light",
 	"darkHighlightTheme": "github-dark",
