@@ -2,16 +2,17 @@ import { BaseParser, type Context, type IParser } from 'tagscript';
 
 export class DateFormatParser extends BaseParser implements IParser {
 	public constructor() {
-		super(['date', 'unix', 'currentTime'], false, true);
+		super(['date', 'unix', 'currenttime']);
 	}
 
 	public parse(ctx: Context) {
 		const { declaration } = ctx.tag;
-		if (['unix', 'currentTime'].includes(declaration!)) {
+		if (['unix', 'currenttime'].includes(declaration!)) {
 			return Date.now().toString();
 		}
+		let payload: string | number = ctx.tag.payload ?? Date.now().toString();
 		const parameter = ctx.tag.parameter ?? 'f';
-		let payload: string | number = ctx.tag.payload!;
+		if (!['f', 'F', 't', 'T', 'R'].includes(parameter)) return null;
 		if (!/^\d+$/.test(payload)) {
 			payload = new Date(payload).getTime().toString();
 		}

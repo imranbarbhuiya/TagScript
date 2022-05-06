@@ -25,7 +25,7 @@ export class StringFormatParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const { declaration, payload } = ctx.tag;
-		switch (declaration) {
+		switch (declaration as 'lower' | 'upper' | 'capitalize' | 'escape') {
 			case 'lower':
 				return payload!.toLowerCase();
 			case 'upper':
@@ -34,8 +34,6 @@ export class StringFormatParser extends BaseParser implements IParser {
 				return payload!.charAt(0).toUpperCase() + payload!.slice(1);
 			case 'escape':
 				return escapeContent(payload!);
-			default:
-				return payload!;
 		}
 	}
 }
