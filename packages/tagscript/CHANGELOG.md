@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [1.0.1]
+(https://github.com/imranbarbhuiya/tagscript/tree/v1.0.1) - (2022-05-06)
+
+## Bug Fixes
+
+- [**breaking**] Remove browser build from plugin (#25) ([fa5ec4d](https://github.com/imranbarbhuiya/tagscript/commit/fa5ec4dbbc257e93cf5dc0ccba76ed9111c8d9a8))
+- Prepack scripts (#24) ([48001bb](https://github.com/imranbarbhuiya/tagscript/commit/48001bbeb43c6239d645e6180586655d0aadb560))
+
+## Features
+
+- [**breaking**] Move all discord.js related parsers into a new package (#22) ([f7e27fa](https://github.com/imranbarbhuiya/tagscript/commit/f7e27fae5a0629679415f0e8c84e3fdfde452411))
+
 # [0.8.5]
 (https://github.com/imranbarbhuiya/tagscript/tree/v0.8.5) - (2022-05-06)
 
