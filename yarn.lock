@@ -7019,6 +7019,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord"
   dependencies:
+    "@favware/rollup-type-bundler": ^1.0.7
     discord.js: ^13.6.0
     tagscript: "workspace:^"
     tsup: ^5.12.6
@@ -7033,6 +7034,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tagscript@workspace:packages/tagscript"
   dependencies:
+    "@favware/rollup-type-bundler": ^1.0.7
     tsup: ^5.12.6
     typescript: ^4.6.4
   languageName: unknown

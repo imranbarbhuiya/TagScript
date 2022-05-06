@@ -37,6 +37,7 @@
 		"bot tag"
 	],
 	"devDependencies": {
+		"@favware/rollup-type-bundler": "^1.0.7",
 		"discord.js": "^13.6.0",
 		"tagscript": "workspace:^",
 		"tsup": "^5.12.6",
