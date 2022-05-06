@@ -1,4 +1,5 @@
-import { RequiredParser, DenyParser, Interpreter } from '../../src';
+import { Interpreter } from 'tagscript';
+import { RequiredParser, DenyParser } from '../../src';
 
 describe('RequiredParser', () => {
 	const ts = new Interpreter(new RequiredParser());

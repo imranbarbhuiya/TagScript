@@ -1,7 +1,4 @@
-import type { IParser } from '../interfaces';
-import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
-
+import { BaseParser, type IParser, type Context } from 'tagscript';
 /**
  * The require tag will attempt to convert the given parameter into a channel, user
  * or role, using name or Id. If the user running the tag is not in the targeted

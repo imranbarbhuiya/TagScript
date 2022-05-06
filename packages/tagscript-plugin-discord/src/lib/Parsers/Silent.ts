@@ -1,6 +1,4 @@
-import type { IParser } from '../interfaces';
-import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
+import { BaseParser, type Context, type IParser } from 'tagscript';
 
 /**
  * Silence the used command outputs.

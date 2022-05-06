@@ -3,7 +3,7 @@
 	"projectOwner": "imranbarbhuiya",
 	"repoType": "github",
 	"repoHost": "https://github.com",
-	"files": ["packages/tagscript/README.md", "README.md"],
+	"files": ["packages/tagscript/README.md", "packages/tagscript-plugin-discord/README.md", "README.md"],
 	"imageSize": 100,
 	"commit": true,
 	"commitConvention": "angular",
