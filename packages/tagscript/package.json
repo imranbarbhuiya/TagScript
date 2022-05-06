@@ -1,6 +1,6 @@
 {
 	"name": "tagscript",
-	"version": "0.8.5",
+	"version": "1.0.0",
 	"description": "A simple and safe template engine.",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -52,5 +52,6 @@
 	"bugs": {
 		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
 	},
-	"homepage": "https://tagscript.js.org/"
+	"homepage": "https://tagscript.js.org/",
+	"packageManager": "yarn@3.2.0"
 }
