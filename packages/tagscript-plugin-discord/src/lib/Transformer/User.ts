@@ -5,7 +5,7 @@ import { BaseTransformer } from './Base';
  * Transformer for {@link User}
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives user id.
  * mention: Mentions the user.
  * username: Gives username of the user.

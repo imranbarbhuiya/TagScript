@@ -5,7 +5,7 @@ import { BaseTransformer } from './Base';
  * Transformer for Discord {@link GuildTextBasedChannel}
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives channel id.
  * mention: Mentions the channel.
  * name: Gives channel name.

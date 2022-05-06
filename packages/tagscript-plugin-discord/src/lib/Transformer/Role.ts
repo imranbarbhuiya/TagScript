@@ -5,7 +5,7 @@ import { BaseTransformer } from './Base';
  * Transformer for Discord {@link Role}
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives role id.
  * name: Gives role name.
  * mention: Mentions the role.

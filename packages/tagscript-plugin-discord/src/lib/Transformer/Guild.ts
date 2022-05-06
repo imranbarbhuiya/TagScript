@@ -5,7 +5,7 @@ import { BaseTransformer } from './Base';
  * Transformer for Discord {@link Guild}
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives guild id.
  * name: Gives guild name.
  * description: Gives guild description.

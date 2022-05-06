@@ -5,7 +5,7 @@ import { BaseTransformer } from './Base';
  * Transformer for {@link GuildMember}.
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives member id.
  * mention: Mentions the member.
  * username: Gives username of the member.
