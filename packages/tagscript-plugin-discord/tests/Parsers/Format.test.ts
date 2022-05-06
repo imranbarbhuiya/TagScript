@@ -4,8 +4,8 @@ import { DateFormatParser } from '../../src';
 const ts = new Interpreter(new DateFormatParser());
 describe('currentTime', () => {
 	test('GIVEN currentTime or unix THEN return current timestamp in ms', async () => {
-		expect(Number((await ts.run('{unix}')).body)).toBeCloseTo(Date.now());
-		expect(Number((await ts.run('{currenttime}')).body)).toBeCloseTo(Date.now());
+		expect(Number((await ts.run('{unix}')).body)).toBeCloseTo(Date.now(), -1);
+		expect(Number((await ts.run('{currenttime}')).body)).toBeCloseTo(Date.now(), -1);
 	});
 });
 
