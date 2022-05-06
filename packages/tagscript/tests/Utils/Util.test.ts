@@ -100,7 +100,7 @@ describe('split', () => {
 
 	test('GIVEN string THEN return array of strings', () => {
 		const result = split('a~b', true);
-		expect(result).toStrictEqual(['a', 'b', 'c']);
+		expect(result).toStrictEqual(['a', 'b']);
 	});
 
 	test('GIVEN string THEN return array of strings', () => {
