@@ -6,6 +6,7 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
+		"bump": "turbo run bump --concurrency=1",
 		"check-update": "turbo run check-update",
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",

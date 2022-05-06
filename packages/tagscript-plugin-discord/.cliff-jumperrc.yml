@@ -1,2 +1,3 @@
 name: tagscript-plugin-discord
+monoRepo: true
 packagePath: packages/tagscript-plugin-discord
