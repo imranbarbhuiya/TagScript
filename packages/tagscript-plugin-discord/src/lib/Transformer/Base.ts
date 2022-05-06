@@ -29,7 +29,6 @@ export abstract class BaseTransformer<T extends GuildTextBasedChannel | Role | U
 	public transform(tag: Lexer) {
 		if (!tag.parameter) return this.safeValues.mention as string;
 		let value = this.safeValues[tag.parameter];
-
 		if (typeof value === 'function') value = value(this.base);
 		if (value === undefined) return null;
 		return `${value ?? ''}`;
