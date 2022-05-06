@@ -10,9 +10,9 @@ export class DateFormatParser extends BaseParser implements IParser {
 		if (['unix', 'currenttime'].includes(declaration!)) {
 			return Date.now().toString();
 		}
-		let payload: string | number = ctx.tag.payload ?? Date.now().toString();
 		const parameter = ctx.tag.parameter ?? 'f';
 		if (!['f', 'F', 't', 'T', 'R'].includes(parameter)) return null;
+		let payload: string | number = ctx.tag.payload ?? Date.now().toString();
 		if (!/^\d+$/.test(payload)) {
 			payload = new Date(payload).getTime().toString();
 		}
