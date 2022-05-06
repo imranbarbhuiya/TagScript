@@ -2,7 +2,7 @@ import type { GuildTextBasedChannel } from 'discord.js';
 import { BaseTransformer } from './Base';
 
 /**
- * Transformer for Discord {@link GuildTextBasedChannel}
+ * Transformer for Discord {@link https://discord.js.org/#/docs/discord.js/stable/class/BaseGuildTextChannel GuildTextBasedChannel}
  *
  * @properties
  * ```yaml
