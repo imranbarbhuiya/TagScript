@@ -57,7 +57,7 @@ commit_parsers = [
     { body = ".*security", group = "🛡️ Security"},
 ]
 filter_commits = true
-tag_pattern = "tagscript@[0-9]*"
+tag_pattern = "tagscript-plugin-discord@[0-9]*"
 ignore_tags = ""
 topo_order = false
 sort_commits = "newest"
