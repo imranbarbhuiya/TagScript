@@ -9,8 +9,6 @@ export interface SafeValues<T> {
 
 /**
  * Transformer for {@link https://discord.js.org/#/ Discord.js} objects.
- *
- * @abstract
  */
 export abstract class BaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild> implements ITransformer {
 	protected base: T;

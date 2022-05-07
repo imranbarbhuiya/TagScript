@@ -6670,7 +6670,7 @@ __metadata:
   dependencies:
     "@favware/rollup-type-bundler": ^1.0.7
     discord.js: ^13.6.0
-    tagscript: "*"
+    tagscript: "workspace:^"
     tsup: ^5.12.7
     typescript: ^4.6.4
   peerDependencies:
@@ -6679,7 +6679,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"tagscript@*, tagscript@workspace:packages/tagscript":
+"tagscript@workspace:^, tagscript@workspace:packages/tagscript":
   version: 0.0.0-use.local
   resolution: "tagscript@workspace:packages/tagscript"
   dependencies:
