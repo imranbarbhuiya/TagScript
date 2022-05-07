@@ -2,10 +2,10 @@ import type { User } from 'discord.js';
 import { BaseTransformer } from './Base';
 
 /**
- * Transformer for {@link User}
+ * Transformer for {@link https://discord.js.org/#/docs/discord.js/stable/class/User User}
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives user id.
  * mention: Mentions the user.
  * username: Gives username of the user.

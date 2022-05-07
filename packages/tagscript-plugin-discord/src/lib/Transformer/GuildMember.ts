@@ -2,10 +2,10 @@ import type { GuildMember } from 'discord.js';
 import { BaseTransformer } from './Base';
 
 /**
- * Transformer for {@link GuildMember}.
+ * Transformer for {@link https://discord.js.org/#/docs/discord.js/stable/class/GuildMember GuildMember}.
  *
  * @properties
- * ```
+ * ```yaml
  * id: Gives member id.
  * mention: Mentions the member.
  * username: Gives username of the member.

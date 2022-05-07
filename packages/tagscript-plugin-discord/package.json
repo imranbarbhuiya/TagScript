@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"discord.js": "^13.6.0",
-		"tagscript": "*",
+		"tagscript": "workspace:^",
 		"tsup": "^5.12.7",
 		"typescript": "^4.6.4"
 	},
@@ -60,6 +60,5 @@
 	"bugs": {
 		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
 	},
-	"homepage": "https://tagscript.js.org/",
-	"packageManager": "yarn@3.2.0"
+	"homepage": "https://tagscript.js.org/"
 }
