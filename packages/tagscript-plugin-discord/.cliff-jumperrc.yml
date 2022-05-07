@@ -1,3 +1,4 @@
 name: tagscript-plugin-discord
 monoRepo: true
 packagePath: packages/tagscript-plugin-discord
+tagTemplate: "{{full-name}}@{{new-version}}"
