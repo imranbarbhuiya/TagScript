@@ -41,8 +41,9 @@
 		"node": ">=v14.0.0"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"repository": {
 		"type": "git",

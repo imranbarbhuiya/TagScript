@@ -49,8 +49,9 @@
 		"node": ">=v16.9.0"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
 	],
 	"repository": {
 		"type": "git",
