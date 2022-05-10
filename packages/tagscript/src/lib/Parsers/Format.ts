@@ -31,7 +31,7 @@ export class StringFormatParser extends BaseParser implements IParser {
 			case 'upper':
 				return payload!.toUpperCase();
 			case 'capitalize':
-				return payload!.charAt(0).toUpperCase() + payload!.slice(1);
+				return payload!.charAt(0).toUpperCase() + payload!.slice(1).toLowerCase();
 			case 'escape':
 				return escapeContent(payload!);
 		}
