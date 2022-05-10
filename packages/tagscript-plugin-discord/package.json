@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"discord.js": "^13.6.0",
-		"tagscript": "workspace:^",
+		"tagscript": "^1.0.1",
 		"tsup": "^5.12.7",
 		"typescript": "^4.6.4"
 	},
