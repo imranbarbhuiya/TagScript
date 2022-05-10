@@ -17,7 +17,7 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 ## Features
 
 -   Written In Typescript
--   Offers CJS, ESM and UMD builds
+-   Offers CJS, and ESM builds
 -   Full TypeScript & JavaScript support
 
 ## Installation
