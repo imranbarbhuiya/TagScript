@@ -9,10 +9,10 @@ import type { Context } from '../Interpreter';
  *
  * @example
  * ```yaml
- *      # Note:- this example assumes you are using define parser
- * 		{=(var):This is my variable.}
- *      {var}
- *      # This is my variable.
+ * # Note:- this example assumes you are using define parser
+ * {=(var):This is my variable.}
+ * {var}
+ * # This is my variable.
  * ```
  */
 export class StrictVarsParser implements IParser {

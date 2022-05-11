@@ -11,7 +11,7 @@ import { BaseParser } from './Base';
  *
  * @usage
  * ```yaml
- * 		{urlencode:Hello World}
+ * {urlencode:Hello World}
  * ```
  */
 export class UrlEncodeParser extends BaseParser implements IParser {
@@ -31,7 +31,7 @@ export class UrlEncodeParser extends BaseParser implements IParser {
  *
  * @usage
  * ```yaml
- * 		{urldecode:Hello%20World}
+ * {urldecode:Hello%20World}
  * ```
  *
  */

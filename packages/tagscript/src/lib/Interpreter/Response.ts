@@ -25,7 +25,7 @@ export class Response {
 	 * import 'tagscript';
 	 * declare module 'tagscript' {
 	 * 	interface IActions {
-	 * 		foo?: string;
+	 * foo?: string;
 	 *	}
 	 * }
 	 * ```

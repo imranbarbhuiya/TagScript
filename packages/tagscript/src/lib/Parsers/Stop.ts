@@ -11,7 +11,7 @@ import { parseIf } from '../Utils/Util';
  *
  * @usage
  * ```yaml
- * 		{stop({args}!=10):You didn't provided valid input.}
+ * {stop({args}!=10):You didn't provided valid input.}
  * ```
  */
 export class StopParser extends BaseParser implements IParser {

@@ -33,13 +33,13 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  * ```
  * @example
  * ```yaml
- *     {if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}
- *     # if args is 63
- *     # You guessed it! The number I was thinking of was 63!
- *     # if args is 73
- *     # Too high, try again.
- *     # if args is 14
- *     # Too low, try again.
+ * {if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}
+ * # if args is 63
+ * # You guessed it! The number I was thinking of was 63!
+ * # if args is 73
+ * # Too high, try again.
+ * # if args is 14
+ * # Too low, try again.
  * ```
  */
 export class IfStatementParser extends BaseParser implements IParser {
@@ -60,16 +60,16 @@ export class IfStatementParser extends BaseParser implements IParser {
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  * @usage
  * ```yaml
- * 		{any(expression|expression|...):message}
+ * {any(expression|expression|...):message}
  * ```
  * @alias or, union
  * @example
  * ```yaml
- *     {any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
- *     # if {args} is hi
- *     Hello Mr. Priyansh#2063!
- *     # if {args} is what's up
- *     How rude.
+ * {any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
+ * # if {args} is hi
+ * Hello Mr. Priyansh#2063!
+ * # if {args} is what's up
+ * How rude.
  * ```
  */
 export class UnionStatementParser extends BaseParser implements IParser {
@@ -90,16 +90,16 @@ export class UnionStatementParser extends BaseParser implements IParser {
  *  If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  *  @usage
  * ```yaml
- * 		{all(expression|expression|...):message}
+ * {all(expression|expression|...):message}
  * ```
  *  @alias and, all
  *  @example
  * ```yaml
- *      {all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
- *      # if {args} is 52
- *      You must provide a number between 100 and 1000.
- *      # if {args} is 282
- *      You picked 282.
+ * {all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
+ * # if {args} is 52
+ * You must provide a number between 100 and 1000.
+ * # if {args} is 282
+ * You picked 282.
  * ```
  */
 export class IntersectionStatementParser extends BaseParser implements IParser {

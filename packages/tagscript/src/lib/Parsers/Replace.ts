@@ -9,13 +9,13 @@ import { BaseParser } from './Base';
  * 
  * @example
  * ```yaml
- *      {replace(o,i):welcome to the server}
- *      # welcime ti the server
- *      {replace(1,6):{args}}
- *      # if {args} is 1637812
- *      # 6637862
- *      {replace(, ):Test}
- *      # T e s t
+* {replace(o,i):welcome to the server}
+* # welcime ti the server
+* {replace(1,6):{args}}
+* # if {args} is 1637812
+* # 6637862
+* {replace(, ):Test}
+* # T e s t
 	```
  */
 export class ReplaceParser extends BaseParser implements IParser {

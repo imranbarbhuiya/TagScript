@@ -11,17 +11,17 @@ import { BaseParser } from './Base';
  *
  * @usage
  * ```yaml
- * 		{range(1-3)}
+ * {range(1-3)}
  * ```
  *
  * @example
  * ```yaml
- * 		Your lucky number is {range:10-30}!
- * 		# Your lucky number is 14!
- * 		# Your lucky number is 25!
- * 		{=(height):{rangef:5-7}}
- * 		I am guessing your height is {height}ft.
- * 		# I am guessing your height is 5.3ft.
+ * Your lucky number is {range:10-30}!
+ * # Your lucky number is 14!
+ * # Your lucky number is 25!
+ * {=(height):{rangef:5-7}}
+ * I am guessing your height is {height}ft.
+ * # I am guessing your height is 5.3ft.
  * ```
  */
 export class RangeParser extends BaseParser implements IParser {
