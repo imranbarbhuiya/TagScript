@@ -12,16 +12,16 @@ import { BaseParser } from './Base';
  *
  * @usage
  * ```yaml
- *      {in(there):Hi there!}
- *      # true
+ * {in(there):Hi there!}
+ * # true
  * 	    {contain(there):Hi there!}
- * 		# false
- * 		{contain(there!):Hi there!}
- * 		# true
- *      {index(there):Hi there!}
+ * # false
+ * {contain(there!):Hi there!}
+ * # true
+ * {index(there):Hi there!}
  * 	    # 1
- * 		{lindex(t):Hi there!}
- * 		# 4
+ * {lindex(t):Hi there!}
+ * # 4
  * ```
  *
  */

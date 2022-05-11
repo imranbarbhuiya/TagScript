@@ -10,9 +10,9 @@ import { BaseParser } from './Base';
  *
  * @usage
  * ```yaml
- * 		{slice(3): Hello World}
- * 		{slice(3, 7): Hello World}
- * 		{slice(3-7): Hello World}
+ * {slice(3): Hello World}
+ * {slice(3, 7): Hello World}
+ * {slice(3-7): Hello World}
  * ```
  */
 export class SliceParser extends BaseParser implements IParser {

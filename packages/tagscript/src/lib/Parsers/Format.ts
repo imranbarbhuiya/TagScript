@@ -8,14 +8,14 @@ import { BaseParser } from './Base';
  *
  * @example
  * ```yaml
- *     {lower:Hello Parbez!}
- *     # hello parbez!
- *     {upper:Hello Parbez!}
- *     # HELLO PARBEZ!
- *     {capitalize:hello parbez!}
- *     # Hello parbez!
- *     {escape:Hello| Parbez!}
- *     # Hello\\| Parbez!
+ * {lower:Hello Parbez!}
+ * # hello parbez!
+ * {upper:Hello Parbez!}
+ * # HELLO PARBEZ!
+ * {capitalize:hello parbez!}
+ * # Hello parbez!
+ * {escape:Hello| Parbez!}
+ * # Hello\\| Parbez!
  * ```
  */
 export class StringFormatParser extends BaseParser implements IParser {

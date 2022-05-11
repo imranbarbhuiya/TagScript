@@ -10,7 +10,7 @@ import { BaseParser } from './Base';
  *
  * @example
  * ```yaml
- * 		{random:foo, bar}
+ * {random:foo, bar}
  * ```
  */
 export class RandomParser extends BaseParser implements IParser {

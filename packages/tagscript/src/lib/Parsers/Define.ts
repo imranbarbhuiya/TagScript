@@ -8,13 +8,13 @@ import { BaseParser } from './Base';
  *  Variables can be referenced using brackets as any other tag.
  *  @usage
  *  ```yaml
- *     {=(name):value}
+ * {=(name):value}
  *  ```
  *  @alias  assign, let, var
  *  @example
  *  ```yaml
- *     {=(prefix):!}
- *     The prefix here is `{prefix}`.
+ * {=(prefix):!}
+ * The prefix here is `{prefix}`.
  * 	```
  */
 export class DefineParser extends BaseParser implements IParser {
