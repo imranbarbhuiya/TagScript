@@ -24,7 +24,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Build ESLint, Prettier and Utilities
+      - name: Build TagScript
         run: yarn turbo run build --filter=tagscript --no-deps
       - name: Run ESLint
         run: yarn lint --fix=false
