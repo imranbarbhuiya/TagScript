@@ -1,12 +1,18 @@
 <div align="center">
 
+<img alt="Sapphire Logo" src=".github/logo_short.png" height="200"/>
+
 # TagScript
 
 **A simple and safe template engine.**
 
 [![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg)](https://codecov.io/gh/imranbarbhuiya/tagscript)
+
+**Packages**
+
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
+[![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square&label=tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
 
 </div>
 
