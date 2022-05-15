@@ -19,15 +19,15 @@
 		"test:coverage": "yarn jest --coverage"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.4",
+		"@commitlint/cli": "^16.3.0",
 		"@commitlint/config-conventional": "^16.2.4",
-		"@favware/cliff-jumper": "^1.7.0",
+		"@favware/cliff-jumper": "^1.8.0",
 		"@favware/npm-deprecate": "^1.0.4",
 		"@favware/rollup-type-bundler": "^1.0.7",
 		"@knodes/typedoc-plugin-monorepo-readmes": "^0.22.5",
 		"@sapphire/eslint-config": "^4.3.4",
 		"@sapphire/prettier-config": "^1.4.3",
-		"@types/jest": "^27.5.0",
+		"@types/jest": "^27.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.23.0",
 		"@typescript-eslint/parser": "^5.23.0",
 		"conventional-changelog-cli": "^2.2.2",
@@ -41,7 +41,7 @@
 		"pretty-quick": "^3.1.3",
 		"ts-jest": "^28.0.2",
 		"tsup": "^5.12.7",
-		"turbo": "^1.2.8",
+		"turbo": "^1.2.9",
 		"typedoc": "^0.22.15",
 		"typedoc-monorepo-link-types": "^0.0.2",
 		"typedoc-plugin-djs-links": "^1.0.4",
@@ -73,6 +73,6 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.6"
 	},
-	"packageManager": "yarn@3.2.0",
+	"packageManager": "yarn@3.2.1",
 	"prettier": "@sapphire/prettier-config"
 }
