@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="Sapphire Logo" src=".github/logo_short.png" height="200"/>
+<img alt="Sapphire Logo" src="https://github.com/imranbarbhuiya/TagScript/tree/main/.github/logo_short.png" height="200"/>
 
 # TagScript
 
