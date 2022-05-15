@@ -31,7 +31,7 @@ export class ChannelTransformer extends BaseTransformer<GuildTextBasedChannel> {
 		this.safeValues.parentName = this.base.parent?.name ?? '';
 		this.safeValues.parentType = this.base.parent?.type ?? '';
 		this.safeValues.parentPosition = this.base.parent?.position ?? 0;
-		this.safeValues.createdAt = this.base.createdAt.toISOString();
+		this.safeValues.createdAt = this.base.createdAt?.toISOString() ?? '';
 		this.safeValues.createdTimestamp = this.base.createdTimestamp;
 		this.safeValues.slowmode = 'rateLimitPerUser' in this.base ? this.base.rateLimitPerUser : 0;
 	}
