@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="TagScript Logo" src="https://github.com/imranbarbhuiya/TagScript/tree/main/.github/logo_short.png" height="200"/>
+<img alt="TagScript Logo" src="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" height="200"/>
 
 # TagScript
 
