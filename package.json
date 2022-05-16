@@ -14,7 +14,7 @@
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"lint": "eslint packages --ext mjs,js,ts --fix",
 		"update": "yarn upgrade-interactive",
-		"prepare": "husky install .github/husky",
+		"postinstall": "husky install .github/husky",
 		"test": "turbo run test",
 		"test:coverage": "yarn jest --coverage"
 	},
