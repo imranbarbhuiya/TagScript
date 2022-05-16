@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [1.1.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.0.2...v1.1.0) - (2022-05-16)
+
+## 🚀 Features
+
+- New json parser (#42) ([ea0cfe1](https://github.com/imranbarbhuiya/tagscript/commit/ea0cfe1e73973c3503c6c7660029c1a8c0f10408))
+
 # [1.0.2]
 (https://github.com/imranbarbhuiya/tagscript/tree/v1.0.2) - (2022-05-10)
 
