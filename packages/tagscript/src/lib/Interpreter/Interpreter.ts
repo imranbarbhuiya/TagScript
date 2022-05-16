@@ -84,8 +84,7 @@ export class Interpreter {
 	}
 
 	protected getAcceptors(ctx: Context) {
-		const acceptors = asyncFilter(this.parsers, (p) => p.willAccept(ctx));
-		return acceptors;
+		return asyncFilter(this.parsers, (p) => p.willAccept(ctx));
 	}
 
 	private getContext(node: Node, final: string, response: Response, originalMessage: string, tagLimit: number, parenType = ParenType.Both) {

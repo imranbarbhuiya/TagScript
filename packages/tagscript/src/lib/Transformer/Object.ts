@@ -6,7 +6,8 @@ import type { Lexer } from '../Interpreter';
  */
 export class SafeObjectTransformer implements ITransformer {
 	private obj: Record<string, unknown>;
-	public constructor(obj: Record<string, unknown>) {
+
+	public constructor(obj: Record<string, unknown> | string) {
 		this.obj = this.makeObject(obj);
 	}
 
@@ -18,8 +19,8 @@ export class SafeObjectTransformer implements ITransformer {
 		return attribute ? `${attribute}` : null;
 	}
 
-	private makeObject(obj: Record<string, unknown>) {
-		const safeObject = JSON.parse(JSON.stringify(obj)) as Record<string, unknown>;
+	private makeObject(obj: Record<string, unknown> | string) {
+		const safeObject = JSON.parse(typeof obj === 'string' ? obj : JSON.stringify(obj)) as Record<string, unknown>;
 		Object.defineProperty(safeObject, 'toString', {
 			value: obj.toString.bind(obj)
 		});
