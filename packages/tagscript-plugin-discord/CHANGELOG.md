@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [1.1.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.0.3...v1.1.0) - (2022-05-16)
+
+## 🚀 Features
+
+- Allow sending files (#43) ([f616c5c](https://github.com/imranbarbhuiya/tagscript/commit/f616c5cd66ff61cc47b889820fa818465ae56e3e))
+
 # [1.0.2]
 (https://github.com/imranbarbhuiya/tagscript/tree/v1.0.2) - (2022-05-10)
 
