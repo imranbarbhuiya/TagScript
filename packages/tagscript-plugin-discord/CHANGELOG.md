@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [1.1.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.1.0...v1.1.1) - (2022-05-16)
+
+## 🐛 Bug Fixes
+
+- **types:** Export override (#44) ([f748bc5](https://github.com/imranbarbhuiya/tagscript/commit/f748bc55aec015ed4930cd2979e902610c91c773))
+
 # [1.1.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.0.3...v1.1.0) - (2022-05-16)
 
 ## 🚀 Features
