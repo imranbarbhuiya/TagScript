@@ -5,6 +5,7 @@ export * from './Define';
 export * from './FiftyFifty';
 export * from './Format';
 export * from './Includes';
+export * from './JSONVar';
 export * from './LooseVars';
 export * from './Random';
 export * from './Range';
