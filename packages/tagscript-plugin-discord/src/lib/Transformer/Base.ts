@@ -1,5 +1,5 @@
 import type { Lexer, ITransformer } from 'tagscript';
-import type { GuildTextBasedChannel, Role, User, GuildMember, Guild } from 'discord.js';
+import type { GuildTextBasedChannel, Role, User, GuildMember, Guild, CommandInteraction } from 'discord.js';
 
 export type outputResolvable = string | number | boolean | null | undefined;
 
@@ -10,7 +10,9 @@ export interface SafeValues<T> {
 /**
  * Transformer for {@link https://discord.js.org/#/ Discord.js} objects.
  */
-export abstract class BaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild> implements ITransformer {
+export abstract class BaseTransformer<T extends GuildTextBasedChannel | Role | User | GuildMember | Guild | CommandInteraction>
+	implements ITransformer
+{
 	protected base: T;
 	protected safeValues: SafeValues<T> = {};
 
