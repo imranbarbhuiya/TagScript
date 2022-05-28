@@ -1,4 +1,4 @@
-import { Channel, CommandInteractionOption, CommandInteractionOptionResolver, GuildMember, Role } from 'discord.js';
+import { Channel, CommandInteractionOption, CommandInteractionOptionResolver, GuildMember, Role, User } from 'discord.js';
 import { IntegerTransformer, ITransformer, StringTransformer } from 'tagscript';
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
@@ -31,7 +31,9 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						? new MemberTransformer(data.member)
 						: data.role instanceof Role
 						? new RoleTransformer(data.role)
-						: new UserTransformer(data.user!);
+						: data.user instanceof User
+						? new UserTransformer(data.user)
+						: new StringTransformer(data.value as string);
 				break;
 			case 'USER':
 				transformers[prefix + data.name] =
