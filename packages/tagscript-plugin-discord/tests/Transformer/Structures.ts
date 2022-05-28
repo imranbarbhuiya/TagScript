@@ -1,5 +1,15 @@
 import { Client, CommandInteraction, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
-import { APIUser, APIRole, APIGuild, APIGuildMember, APIChannel } from 'discord-api-types/v9';
+import {
+	APIUser,
+	APIRole,
+	APIGuild,
+	APIGuildMember,
+	APIChannel,
+	APIApplicationCommandInteraction,
+	InteractionType,
+	ApplicationCommandType,
+	ApplicationCommandOptionType
+} from 'discord-api-types/v9';
 
 export const client = new Client({ intents: [] });
 
@@ -72,19 +82,40 @@ const memberObject: APIGuildMember = {
 	user: userObject
 };
 
-const interactionObject = {
+const interactionObject: APIApplicationCommandInteraction = {
+	id: '933368398996447292',
+	application_id: '938716130720235601',
+	type: InteractionType.ApplicationCommand,
 	data: {
-		id: '758880890159235083',
-		name: 'halo'
+		id: '938716130720235601',
+		name: 'ping',
+		type: ApplicationCommandType.ChatInput,
+		resolved: {
+			users: { '758880890159235083': userObject },
+			members: { '758880890159235083': { ...memberObject, permissions: '8' } }
+		},
+		options: [
+			{
+				name: 'ping',
+				type: ApplicationCommandOptionType.Subcommand,
+				options: [
+					{
+						name: 'member',
+						type: ApplicationCommandOptionType.User,
+						value: '758880890159235083'
+					}
+				]
+			}
+		]
 	},
-	applicationId: '938716130720235601',
-	channelId: '933368398996447292',
-	guildId: '933368398996447292',
-	commandId: '933368398996447292',
-	locale: 'en-US',
-	guildLocale: 'en-US',
+	guild_id: '933368398996447292',
+	channel_id: '933368398996447292',
+	member: { ...memberObject, permissions: '8', user: userObject },
 	user: userObject,
-	member: memberObject
+	token: '',
+	version: 1,
+	locale: 'en-US',
+	guild_locale: 'en-US'
 };
 
 const channelObject: APIChannel = {
