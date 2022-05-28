@@ -1,4 +1,4 @@
-import { Client, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
+import { Client, CommandInteraction, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
 import { APIUser, APIRole, APIGuild, APIGuildMember, APIChannel } from 'discord-api-types/v9';
 
 export const client = new Client({ intents: [] });
@@ -72,6 +72,21 @@ const memberObject: APIGuildMember = {
 	user: userObject
 };
 
+const interactionObject = {
+	data: {
+		id: '758880890159235083',
+		name: 'halo'
+	},
+	applicationId: '938716130720235601',
+	channelId: '933368398996447292',
+	guildId: '933368398996447292',
+	commandId: '933368398996447292',
+	locale: 'en-US',
+	guildLocale: 'en-US',
+	user: userObject,
+	member: memberObject
+};
+
 const channelObject: APIChannel = {
 	id: '933395546138357800',
 	type: 0
@@ -92,5 +107,8 @@ export const member: GuildMember = new GuildMember(client, memberObject, guild);
 
 // @ts-expect-error using protected constructor to test
 export const channel: TextChannel = new TextChannel(guild, channelObject, client);
+
+// @ts-expect-error using protected constructor to test
+export const interaction: CommandInteraction = new CommandInteraction(client, interactionObject);
 
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */

@@ -5,3 +5,4 @@ export * from './GuildMember';
 export * from './GuildTextBasedChannel';
 export * from './Role';
 export * from './User';
+export * from './Interaction';
