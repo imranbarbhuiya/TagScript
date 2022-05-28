@@ -4700,8 +4700,6 @@ __metadata:
     tsup: ^6.1.3
     turbo: ^1.3.1
     typedoc: ^0.23.8
-    typedoc-monorepo-link-types: ^0.0.4
-    typedoc-plugin-djs-links: ^1.2.0
     typedoc-plugin-mdn-links: ^2.0.0
     typescript: ^4.7.4
     vitest: ^0.18.1
@@ -5615,22 +5613,6 @@ __metadata:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
-  languageName: node
-  linkType: hard
-
-"typedoc-monorepo-link-types@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "typedoc-monorepo-link-types@npm:0.0.4"
-  peerDependencies:
-    typedoc: 0.23.x
-  checksum: 27191c023e8330b78fb7dba7633e51fc8bce6bb567d9995ae2f3e6fe95d98a15d1a014cb3f1c8b1d1471a3f11b596bc65ee285de4785ea3b01a5c0376625ef3f
-  languageName: node
-  linkType: hard
-
-"typedoc-plugin-djs-links@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "typedoc-plugin-djs-links@npm:1.2.0"
-  checksum: 0f54136a4efebbdc689273d933ac70fc4d36df7c7b67179a86077678a152e3add6be3bc7c0633f66bea1b32a69bd18ac49b8812ab7aeca57a66fd042ce6b5a91
   languageName: node
   linkType: hard
 

@@ -11,7 +11,7 @@
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
 		"docs": "typedoc",
-		"format": "prettier --cache --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
+		"format": "prettier --cache --write .",
 		"lint": "eslint packages --ext mjs,js,ts --fix --cache",
 		"update": "yarn upgrade-interactive",
 		"postinstall": "husky install .github/husky",
@@ -42,8 +42,6 @@
 		"tsup": "^6.1.3",
 		"turbo": "^1.3.1",
 		"typedoc": "^0.23.8",
-		"typedoc-monorepo-link-types": "^0.0.4",
-		"typedoc-plugin-djs-links": "^1.2.0",
 		"typedoc-plugin-mdn-links": "^2.0.0",
 		"typescript": "^4.7.4",
 		"vitest": "^0.18.1"
