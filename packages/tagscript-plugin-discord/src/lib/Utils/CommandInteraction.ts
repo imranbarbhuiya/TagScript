@@ -50,7 +50,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 
 /**
  *
- * Resolves {@link CommandInteractionOptionResolver} options into {Record<string, ITransformer>}s.
+ * Resolves {@link  https://discord.js.org/#/docs/discord.js/stable/class/CommandInteractionOptionResolver CommandInteractionOptionResolver} options into {@link Record<string, ITransformer>}.
  *
  * @usage
  * ```typescript
