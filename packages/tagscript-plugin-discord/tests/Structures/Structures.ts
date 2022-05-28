@@ -8,7 +8,8 @@ import {
 	APIApplicationCommandInteraction,
 	InteractionType,
 	ApplicationCommandType,
-	ApplicationCommandOptionType
+	ApplicationCommandOptionType,
+	APIAttachment
 } from 'discord-api-types/v9';
 
 export const client = new Client({ intents: [] });
@@ -88,6 +89,14 @@ const channelObject: APIChannel = {
 	type: 0
 };
 
+const attachment: APIAttachment = {
+	id: '933368398996447291',
+	filename: 'test.png',
+	proxy_url: 'https://media.discordapp.net/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
+	size: 4096,
+	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp'
+};
+
 // TODO(@imranbarbhuiya): Make this a valid interaction object.
 const interactionObject: APIApplicationCommandInteraction = {
 	id: '933368398996447292',
@@ -98,10 +107,13 @@ const interactionObject: APIApplicationCommandInteraction = {
 		name: 'ping',
 		type: ApplicationCommandType.ChatInput,
 		resolved: {
-			users: { '758880890159235083': userObject },
+			users: { '758880890159235081': userObject, '758880890159235083': userObject },
 			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
 			channels: { '933368398996447292': { ...channelObject, permissions: '8', name: 'test' } },
-			roles: { '933378013154906142': roleObject }
+			roles: { '933378013154906142': roleObject },
+			attachments: {
+				'933368398996447291': attachment
+			}
 		},
 		options: [
 			{
@@ -124,9 +136,9 @@ const interactionObject: APIApplicationCommandInteraction = {
 						type: ApplicationCommandOptionType.Subcommand,
 						options: [
 							{
-								name: 'member',
+								name: 'channel',
 								type: ApplicationCommandOptionType.User,
-								value: '758880890159235083'
+								value: '933368398996447292'
 							}
 						]
 					}
@@ -171,6 +183,21 @@ const interactionObject: APIApplicationCommandInteraction = {
 				name: 'integer',
 				type: ApplicationCommandOptionType.Integer,
 				value: 1
+			},
+			{
+				name: 'attachment',
+				type: ApplicationCommandOptionType.Attachment,
+				value: '933368398996447291'
+			},
+			{
+				name: 'user',
+				type: ApplicationCommandOptionType.User,
+				value: '758880890159235081'
+			},
+			{
+				name: 'role',
+				type: ApplicationCommandOptionType.Role,
+				value: '933378013154906142'
 			}
 		]
 	},

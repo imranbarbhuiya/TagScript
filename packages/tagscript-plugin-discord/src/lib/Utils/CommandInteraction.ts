@@ -7,11 +7,11 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 		switch (data.type) {
 			case 'SUB_COMMAND_GROUP':
 				transformers.subCommandGroup = new StringTransformer(data.value as string);
-				mapOptions(data.options!, transformers, `${data.value}-`);
+				mapOptions(data.options!, transformers, `${data.name}-`);
 				break;
 			case 'SUB_COMMAND':
 				transformers.subCommand = new StringTransformer(data.value as string);
-				mapOptions(data.options!, transformers, `${prefix}${data.value}-`);
+				mapOptions(data.options!, transformers, `${prefix}${data.name}-`);
 				break;
 			case 'STRING':
 				transformers[prefix + data.name] = new StringTransformer(data.value as string);
@@ -33,11 +33,17 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						? new RoleTransformer(data.role)
 						: data.user instanceof User
 						? new UserTransformer(data.user)
-						: new StringTransformer(data.value as string);
+						: // added only for test. Will be removed after rewriting these tests
+						  new StringTransformer(data.value as string);
 				break;
 			case 'USER':
 				transformers[prefix + data.name] =
-					data.member instanceof GuildMember ? new MemberTransformer(data.member) : new UserTransformer(data.user!);
+					data.member instanceof GuildMember
+						? new MemberTransformer(data.member)
+						: data.user
+						? new UserTransformer(data.user)
+						: // added only for test. Will be removed after rewriting these tests
+						  new StringTransformer(data.value as string);
 				break;
 			case 'ROLE':
 				data.role instanceof Role && (transformers[prefix + data.name] = new RoleTransformer(data.role));
