@@ -1,4 +1,4 @@
-import { MessageEmbedOptions } from 'discord.js';
+import { AnyChannel, Guild, MessageEmbedOptions } from 'discord.js';
 import 'tagscript';
 
 declare module 'tagscript' {
@@ -13,3 +13,5 @@ declare module 'tagscript' {
 		files?: string[];
 	}
 }
+
+export type GuildChannel = Extract<AnyChannel, { guild: Guild }>;
