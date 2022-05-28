@@ -11,7 +11,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 				break;
 			case 'SUB_COMMAND':
 				transformers.subCommand = new StringTransformer(data.value as string);
-				mapOptions(data.options!, transformers, `${data.value}-`);
+				mapOptions(data.options!, transformers, `${prefix}${data.value}-`);
 				break;
 			case 'STRING':
 				transformers[prefix + data.name] = new StringTransformer(data.value as string);
