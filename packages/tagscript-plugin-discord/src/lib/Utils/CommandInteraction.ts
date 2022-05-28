@@ -2,31 +2,31 @@ import { Channel, CommandInteractionOption, CommandInteractionOptionResolver, Gu
 import { IntegerTransformer, ITransformer, StringTransformer } from 'tagscript';
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
-export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>) => {
+export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
 	options.forEach((data) => {
 		switch (data.type) {
 			case 'SUB_COMMAND_GROUP':
 				transformers.subCommandGroup = new StringTransformer(data.value as string);
-				mapOptions(data.options!, transformers);
+				mapOptions(data.options!, transformers, `${data.value}-`);
 				break;
 			case 'SUB_COMMAND':
 				transformers.subCommand = new StringTransformer(data.value as string);
-				mapOptions(data.options!, transformers);
+				mapOptions(data.options!, transformers, `${data.value}-`);
 				break;
 			case 'STRING':
-				transformers[data.name] = new StringTransformer(data.value as string);
+				transformers[prefix + data.name] = new StringTransformer(data.value as string);
 				break;
 			case 'BOOLEAN':
-				transformers[data.name] = new StringTransformer(data.value as string);
+				transformers[prefix + data.name] = new StringTransformer(data.value as string);
 				break;
 			case 'INTEGER':
-				transformers[data.name] = new IntegerTransformer(data.value as `${number}`);
+				transformers[prefix + data.name] = new IntegerTransformer(data.value as `${number}`);
 				break;
 			case 'NUMBER':
-				transformers[data.name] = new IntegerTransformer(data.value as `${number}`);
+				transformers[prefix + data.name] = new IntegerTransformer(data.value as `${number}`);
 				break;
 			case 'MENTIONABLE':
-				transformers[data.name] =
+				transformers[prefix + data.name] =
 					data.member instanceof GuildMember
 						? new MemberTransformer(data.member)
 						: data.role instanceof Role
@@ -34,16 +34,17 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						: new UserTransformer(data.user!);
 				break;
 			case 'USER':
-				transformers[data.name] = data.member instanceof GuildMember ? new MemberTransformer(data.member) : new UserTransformer(data.user!);
+				transformers[prefix + data.name] =
+					data.member instanceof GuildMember ? new MemberTransformer(data.member) : new UserTransformer(data.user!);
 				break;
 			case 'ROLE':
-				data.role instanceof Role && (transformers[data.name] = new RoleTransformer(data.role));
+				data.role instanceof Role && (transformers[prefix + data.name] = new RoleTransformer(data.role));
 				break;
 			case 'CHANNEL':
-				data.channel instanceof Channel && (transformers[data.name] = new ChannelTransformer(data.channel));
+				data.channel instanceof Channel && (transformers[prefix + data.name] = new ChannelTransformer(data.channel));
 				break;
 			case 'ATTACHMENT':
-				transformers[data.name] = new StringTransformer(data.attachment!.url);
+				transformers[prefix + data.name] = new StringTransformer(data.attachment!.url);
 		}
 	});
 };
@@ -64,7 +65,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 });
  * ```
  */
-export const resolveCommandOptions = (options: CommandInteractionOptionResolver) => {
+export const resolveCommandOptions = (options: Omit<CommandInteractionOptionResolver, 'getMessage' | 'getFocused'>) => {
 	const optionData = options.data;
 
 	const transformers: Record<string, ITransformer> = {};

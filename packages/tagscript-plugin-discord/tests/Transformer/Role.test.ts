@@ -1,6 +1,6 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
 import { RoleTransformer } from '../../src';
-import { role } from './Structures';
+import { role } from '../Structures/Structures';
 
 const ts = new Interpreter(new StrictVarsParser());
 

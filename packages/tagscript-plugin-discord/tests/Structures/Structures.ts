@@ -82,6 +82,13 @@ const memberObject: APIGuildMember = {
 	user: userObject
 };
 
+const channelObject: APIChannel = {
+	id: '933395546138357800',
+	name: 'test',
+	type: 0
+};
+
+// TODO(@imranbarbhuiya): Make this a valid interaction object.
 const interactionObject: APIApplicationCommandInteraction = {
 	id: '933368398996447292',
 	application_id: '938716130720235601',
@@ -92,11 +99,13 @@ const interactionObject: APIApplicationCommandInteraction = {
 		type: ApplicationCommandType.ChatInput,
 		resolved: {
 			users: { '758880890159235083': userObject },
-			members: { '758880890159235083': { ...memberObject, permissions: '8' } }
+			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
+			channels: { '933368398996447292': { ...channelObject, permissions: '8', name: 'test' } },
+			roles: { '933378013154906142': roleObject }
 		},
 		options: [
 			{
-				name: 'ping',
+				name: 'sub-command',
 				type: ApplicationCommandOptionType.Subcommand,
 				options: [
 					{
@@ -105,6 +114,63 @@ const interactionObject: APIApplicationCommandInteraction = {
 						value: '758880890159235083'
 					}
 				]
+			},
+			{
+				name: 'sub-command-group',
+				type: ApplicationCommandOptionType.SubcommandGroup,
+				options: [
+					{
+						name: 'sub-command',
+						type: ApplicationCommandOptionType.Subcommand,
+						options: [
+							{
+								name: 'member',
+								type: ApplicationCommandOptionType.User,
+								value: '758880890159235083'
+							}
+						]
+					}
+				]
+			},
+			{
+				name: 'string',
+				type: ApplicationCommandOptionType.String,
+				value: 'Hello'
+			},
+			{
+				name: 'channel',
+				type: ApplicationCommandOptionType.Channel,
+				value: '933368398996447292'
+			},
+			{
+				name: 'role',
+				type: ApplicationCommandOptionType.Role,
+				value: '933378013154906142'
+			},
+			{
+				name: 'mentionable',
+				type: ApplicationCommandOptionType.Mentionable,
+				value: '933378013154906142'
+			},
+			{
+				name: 'mentionable-2',
+				type: ApplicationCommandOptionType.Mentionable,
+				value: '758880890159235083'
+			},
+			{
+				name: 'boolean',
+				type: ApplicationCommandOptionType.Boolean,
+				value: true
+			},
+			{
+				name: 'number',
+				type: ApplicationCommandOptionType.Number,
+				value: 1.1
+			},
+			{
+				name: 'integer',
+				type: ApplicationCommandOptionType.Integer,
+				value: 1
 			}
 		]
 	},
@@ -116,11 +182,6 @@ const interactionObject: APIApplicationCommandInteraction = {
 	version: 1,
 	locale: 'en-US',
 	guild_locale: 'en-US'
-};
-
-const channelObject: APIChannel = {
-	id: '933395546138357800',
-	type: 0
 };
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
