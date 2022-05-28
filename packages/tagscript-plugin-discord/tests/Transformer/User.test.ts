@@ -1,6 +1,6 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
 import { UserTransformer } from '../../src';
-import { user } from './Structures';
+import { user } from '../Structures/Structures';
 
 const ts = new Interpreter(new StrictVarsParser());
 

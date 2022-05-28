@@ -1,6 +1,6 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
 import { MemberTransformer } from '../../src';
-import { member } from './Structures';
+import { member } from '../Structures/Structures';
 
 const ts = new Interpreter(new StrictVarsParser());
 

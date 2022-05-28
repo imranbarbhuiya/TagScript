@@ -1,8 +1,8 @@
-import type { GuildTextBasedChannel } from 'discord.js';
+import { GuildChannel } from '../interfaces';
 import { BaseTransformer } from './Base';
 
 /**
- * Transformer for Discord {@link https://discord.js.org/#/docs/discord.js/stable/class/BaseGuildTextChannel GuildTextBasedChannel}
+ * Transformer for Discord {@link GuildChannel}
  *
  * @properties
  * ```yaml
@@ -21,12 +21,12 @@ import { BaseTransformer } from './Base';
  * createdTimestamp: Gives channel create date in ms.
  * slowmode: Gives channel slowmode.
  */
-export class ChannelTransformer extends BaseTransformer<GuildTextBasedChannel> {
+export class ChannelTransformer extends BaseTransformer<GuildChannel> {
 	protected override updateSafeValues() {
 		this.safeValues.topic = 'topic' in this.base ? this.base.topic : '';
 		this.safeValues.type = this.base.type;
 		this.safeValues.position = 'position' in this.base ? this.base.position : 0;
-		this.safeValues.nsfw = 'nsfw' in this.base ? this.base.nsfw : this.base.parent?.nsfw ?? false;
+		this.safeValues.nsfw = 'nsfw' in this.base ? this.base.nsfw : this.base.parent && 'nsfw' in this.base.parent ? this.base.parent.nsfw : false;
 		this.safeValues.parentId = this.base.parentId;
 		this.safeValues.parentName = this.base.parent?.name ?? '';
 		this.safeValues.parentType = this.base.parent?.type ?? '';

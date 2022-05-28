@@ -1,6 +1,6 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
 import { ChannelTransformer } from '../../src';
-import { channel } from './Structures';
+import { channel } from '../Structures/Structures';
 
 const ts = new Interpreter(new StrictVarsParser());
 
