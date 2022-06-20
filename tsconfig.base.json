@@ -15,7 +15,8 @@
 		"moduleResolution": "node",
 		"lib": ["esnext"],
 		"declaration": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"types": ["vitest/globals"]
 	},
 	"includes": ["src/**/*.ts"]
 }
