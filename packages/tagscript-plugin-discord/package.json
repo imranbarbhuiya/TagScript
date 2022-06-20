@@ -19,7 +19,7 @@
 		"prepack": "rollup-type-bundler -e tagscript discord.js",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "jest"
+		"test": "vitest run"
 	},
 	"keywords": [
 		"tagscript",

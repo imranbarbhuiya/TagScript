@@ -20,7 +20,7 @@
 		"prepack": "rollup-type-bundler",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "jest"
+		"test": "vitest run"
 	},
 	"keywords": [
 		"tagscript",
