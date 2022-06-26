@@ -5,6 +5,5 @@
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"cSpell.words": ["cooldown", "tagscript"]
 }
