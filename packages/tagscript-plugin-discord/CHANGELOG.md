@@ -1,4 +1,22 @@
 # Changelog
+
+All notable changes to this project will be documented in this file.
+
+# [tagscript-plugin-discord@1.2.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.1.1...tagscript-plugin-discord@1.2.0) - (2022-07-03)
+
+## 📝 Documentation
+
+- Add UndiedGamer as a contributor for code (#52) ([6376f48](https://github.com/imranbarbhuiya/tagscript/commit/6376f4826b9e778246a1536d8cd0b327c8000484))
+
+## 🚀 Features
+
+- Add interactions suport (#51) ([daea9db](https://github.com/imranbarbhuiya/tagscript/commit/daea9dbb20290300a0b5217d20de5128dc3236f0))
+
+## 🧪 Testing
+
+- Migrate to vitest (#69) ([ed23618](https://github.com/imranbarbhuiya/tagscript/commit/ed23618afed995332b0b0792a6fc7e97cd1867cb))
+
+# Changelog
 All notable changes to this project will be documented in this file.
 
 # [1.1.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.1.0...v1.1.1) - (2022-05-16)
