@@ -70,7 +70,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Typecheck And Compile Projects
-        run: yarn typecheck && yarn build
+        run: yarn build && yarn typecheck
 
   Upload_Coverage_Report:
     name: Upload coverage report to codecov
