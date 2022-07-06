@@ -1,31 +1,39 @@
-import { Channel, CommandInteractionOption, CommandInteractionOptionResolver, GuildMember, Role, User } from 'discord.js';
+import {
+	ApplicationCommandOptionType,
+	BaseChannel,
+	CommandInteractionOption,
+	CommandInteractionOptionResolver,
+	GuildMember,
+	Role,
+	User
+} from 'discord.js';
 import { IntegerTransformer, ITransformer, StringTransformer } from 'tagscript';
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
 export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
 	options.forEach((data) => {
 		switch (data.type) {
-			case 'SUB_COMMAND_GROUP':
+			case ApplicationCommandOptionType.SubcommandGroup:
 				transformers.subCommandGroup = new StringTransformer(data.value as string);
 				mapOptions(data.options!, transformers, `${data.name}-`);
 				break;
-			case 'SUB_COMMAND':
+			case ApplicationCommandOptionType.Subcommand:
 				transformers.subCommand = new StringTransformer(data.value as string);
 				mapOptions(data.options!, transformers, `${prefix}${data.name}-`);
 				break;
-			case 'STRING':
+			case ApplicationCommandOptionType.String:
 				transformers[prefix + data.name] = new StringTransformer(data.value as string);
 				break;
-			case 'BOOLEAN':
+			case ApplicationCommandOptionType.Boolean:
 				transformers[prefix + data.name] = new StringTransformer(data.value as string);
 				break;
-			case 'INTEGER':
+			case ApplicationCommandOptionType.Integer:
 				transformers[prefix + data.name] = new IntegerTransformer(data.value as `${number}`);
 				break;
-			case 'NUMBER':
+			case ApplicationCommandOptionType.Number:
 				transformers[prefix + data.name] = new IntegerTransformer(data.value as `${number}`);
 				break;
-			case 'MENTIONABLE':
+			case ApplicationCommandOptionType.Mentionable:
 				transformers[prefix + data.name] =
 					data.member instanceof GuildMember
 						? new MemberTransformer(data.member)
@@ -36,7 +44,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						: // added only for test. Will be removed after rewriting these tests
 						  new StringTransformer(data.value as string);
 				break;
-			case 'USER':
+			case ApplicationCommandOptionType.User:
 				transformers[prefix + data.name] =
 					data.member instanceof GuildMember
 						? new MemberTransformer(data.member)
@@ -45,13 +53,13 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						: // added only for test. Will be removed after rewriting these tests
 						  new StringTransformer(data.value as string);
 				break;
-			case 'ROLE':
+			case ApplicationCommandOptionType.Role:
 				data.role instanceof Role && (transformers[prefix + data.name] = new RoleTransformer(data.role));
 				break;
-			case 'CHANNEL':
-				data.channel instanceof Channel && (transformers[prefix + data.name] = new ChannelTransformer(data.channel));
+			case ApplicationCommandOptionType.Channel:
+				data.channel instanceof BaseChannel && (transformers[prefix + data.name] = new ChannelTransformer(data.channel));
 				break;
-			case 'ATTACHMENT':
+			case ApplicationCommandOptionType.Attachment:
 				transformers[prefix + data.name] = new StringTransformer(data.attachment!.url);
 		}
 	});

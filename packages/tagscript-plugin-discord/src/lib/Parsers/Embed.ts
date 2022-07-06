@@ -1,6 +1,6 @@
 import { BaseParser, split, type Context, type IParser } from 'tagscript';
 
-import type { Awaitable, MessageEmbedOptions } from 'discord.js';
+import type { Awaitable, EmbedData, APIEmbed } from 'discord.js';
 
 /**
  *  An embed tag will send an embed in the tag response.
@@ -68,12 +68,12 @@ export class EmbedParser extends BaseParser implements IParser {
 	 * @param payload
 	 * @returns
 	 */
-	protected parseEmbedJSON(payload: string): Awaitable<MessageEmbedOptions> {
+	protected parseEmbedJSON(payload: string): Awaitable<EmbedData | APIEmbed> {
 		return JSON.parse(payload);
 	}
 
-	private returnEmbed(ctx: Context, data: MessageEmbedOptions): string {
-		ctx.response.actions.embed ??= {};
+	private returnEmbed(ctx: Context, data: EmbedData | APIEmbed): string {
+		ctx.response.actions.embed ??= {} as EmbedData;
 		const { fields, ...rest } = data;
 		if (fields) {
 			ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
