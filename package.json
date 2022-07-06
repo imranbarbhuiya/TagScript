@@ -16,7 +16,8 @@
 		"update": "yarn upgrade-interactive",
 		"postinstall": "husky install .github/husky",
 		"test": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"typecheck": "tsc -p tsconfig.typecheck.json --noEmit"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.3",
@@ -27,9 +28,9 @@
 		"@knodes/typedoc-plugin-monorepo-readmes": "^0.22.7",
 		"@sapphire/eslint-config": "^4.3.7",
 		"@sapphire/prettier-config": "^1.4.3",
-		"@types/node": "^18.0.0",
-		"@typescript-eslint/eslint-plugin": "^5.30.3",
-		"@typescript-eslint/parser": "^5.30.3",
+		"@types/node": "^18.0.3",
+		"@typescript-eslint/eslint-plugin": "^5.30.5",
+		"@typescript-eslint/parser": "^5.30.5",
 		"c8": "^7.11.3",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.19.0",
@@ -46,7 +47,7 @@
 		"typedoc-plugin-djs-links": "^1.2.0",
 		"typedoc-plugin-mdn-links": "^2.0.0",
 		"typescript": "^4.7.4",
-		"vitest": "^0.16.0"
+		"vitest": "^0.17.0"
 	},
 	"repository": {
 		"type": "git",

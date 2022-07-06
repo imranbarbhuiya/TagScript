@@ -69,8 +69,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
         run: yarn --immutable
-      - name: Compile Projects
-        run: yarn build
+      - name: Typecheck And Compile Projects
+        run: yarn typecheck && yarn build
 
   Upload_Coverage_Report:
     name: Upload coverage report to codecov
