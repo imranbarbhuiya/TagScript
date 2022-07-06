@@ -48,9 +48,9 @@ jobs:
           TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
           yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
           yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
-          yarn turbo run bump --concurrency=1 -- --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
           for d in packages/*; do
             pushd $d
+            yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
             yarn npm publish --tag ${TAG}
             popd
           done
