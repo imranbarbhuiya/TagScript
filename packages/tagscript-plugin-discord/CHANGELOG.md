@@ -1,4 +1,7 @@
 # Changelog
+All notable changes to this project will be documented in this file.
+
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -15,9 +18,6 @@ All notable changes to this project will be documented in this file.
 ## 🧪 Testing
 
 - Migrate to vitest (#69) ([ed23618](https://github.com/imranbarbhuiya/tagscript/commit/ed23618afed995332b0b0792a6fc7e97cd1867cb))
-
-# Changelog
-All notable changes to this project will be documented in this file.
 
 # [1.1.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.1.0...v1.1.1) - (2022-05-16)
 
