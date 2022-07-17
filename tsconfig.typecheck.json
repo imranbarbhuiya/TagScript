@@ -1,9 +1,0 @@
-{
-	"extends": "./tsconfig.base.json",
-	"compilerOptions": {
-		"lib": ["dom", "esnext"],
-		"types": ["vitest/globals"]
-	},
-	"include": ["**/*.ts", "**/*.tsx", "**/*.test.ts", "**/*.test.js", "**/*.test.mjs", "**/*.spec.ts", "**/*.spec.js", "**/*.spec.mjs"],
-	"exclude": ["packages/**/dist/**"]
-}
