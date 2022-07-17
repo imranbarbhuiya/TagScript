@@ -14,9 +14,9 @@
 	"author": "@imranbarbhuiya",
 	"license": "MIT",
 	"scripts": {
-		"lint": "eslint src --ext ts --fix -c ../../.eslintrc",
-		"build": "tsup && tsc -b src",
-		"prepack": "rollup-type-bundler -e tagscript discord.js",
+		"lint": "eslint src --fix --cache -c ../../.eslintrc",
+		"build": "tsup",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
 		"test": "vitest run"
@@ -36,7 +36,6 @@
 	],
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.5",
-		"@favware/rollup-type-bundler": "^1.0.9",
 		"discord.js": "^13.8.1",
 		"tagscript": "workspace:^",
 		"tsup": "^6.1.3",

@@ -45,7 +45,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Typecheck And Compile Projects
-        run: yarn typecheck && yarn build
+        run: yarn build && yarn typecheck
       - name: Upload tagscript dist folders to artifacts
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
@@ -74,7 +74,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Run tests
-        run: yarn test --coverage
+        run: yarn test
       - name: Store code coverage report
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:

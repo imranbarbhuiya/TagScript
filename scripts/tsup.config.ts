@@ -5,18 +5,11 @@ export const createTsupConfig = ({
 	globalName = undefined,
 	format = ['esm', 'cjs', 'iife'],
 	target = 'es2021',
-	sourcemap = true,
-	esbuildOptions = (options, context) => {
-		if (context.format === 'cjs') {
-			options.banner = {
-				js: '"use strict";'
-			};
-		}
-	}
+	sourcemap = true
 }: ConfigOptions = {}) =>
 	defineConfig({
 		clean: true,
-		dts: false,
+		dts: true,
 		entry: ['src/index.ts'],
 		format,
 		minify: false,
@@ -25,8 +18,7 @@ export const createTsupConfig = ({
 		target,
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
-		globalName,
-		esbuildOptions
+		globalName
 	});
 
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
+type ConfigOptions = Pick<Options, 'sourcemap' | 'target' | 'format' | 'globalName'>;
