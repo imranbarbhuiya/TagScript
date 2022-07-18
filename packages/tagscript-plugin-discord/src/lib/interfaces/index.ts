@@ -1,4 +1,4 @@
-import { AnyChannel, Guild, MessageEmbedOptions } from 'discord.js';
+import { EmbedData, APIEmbed, Channel, Guild } from 'discord.js';
 import 'tagscript';
 
 declare module 'tagscript' {
@@ -7,11 +7,11 @@ declare module 'tagscript' {
 			cooldown: number;
 			message: string | null;
 		};
-		embed?: MessageEmbedOptions;
+		embed?: EmbedData | APIEmbed;
 		deleteMessage?: boolean;
 		silentResponse?: boolean;
 		files?: string[];
 	}
 }
 
-export type GuildChannel = Extract<AnyChannel, { guild: Guild }>;
+export type GuildChannel = Extract<Channel, { guild: Guild }>;

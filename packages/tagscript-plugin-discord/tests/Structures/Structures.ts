@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
+import { ChatInputCommandInteraction, Client, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
 import {
 	APIUser,
 	APIRole,
@@ -228,6 +228,6 @@ export const member: GuildMember = new GuildMember(client, memberObject, guild);
 export const channel: TextChannel = new TextChannel(guild, channelObject, client);
 
 // @ts-expect-error using protected constructor to test
-export const interaction: CommandInteraction = new CommandInteraction(client, interactionObject);
+export const interaction: ChatInputCommandInteraction = new ChatInputCommandInteraction(client, interactionObject);
 
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
