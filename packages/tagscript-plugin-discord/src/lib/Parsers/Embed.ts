@@ -36,6 +36,7 @@ import type { Awaitable, EmbedData, APIEmbed } from 'discord.js';
  * {embed(description):Follow these rules to ensure a good experience in our server!}
  * {embed(field):Rule 1|Respect everyone you speak to.|false}
  * ```
+ * @note The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
  */
 export class EmbedParser extends BaseParser implements IParser {
 	public constructor() {
@@ -78,6 +79,7 @@ export class EmbedParser extends BaseParser implements IParser {
 		if (fields) {
 			ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
 		}
+		// @ts-expect-error - The return type should be unknown
 		ctx.response.actions.embed = { ...ctx.response.actions.embed, ...rest };
 		return '';
 	}
