@@ -1,8 +1,8 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
 	"cleanOutputDir": true,
-	"entryPointStrategy": "packages",
-	"entryPoints": ["packages/tagscript/", "packages/tagscript-plugin-discord/"],
+	"entryPointStrategy": "resolve",
+	"entryPoints": ["packages/tagscript/src/index.ts", "packages/tagscript-plugin-discord/src/index.ts"],
 	"excludeExternals": true,
 	"hideGenerator": true,
 	"markedOptions": {
