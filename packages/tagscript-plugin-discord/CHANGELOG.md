@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [tagscript-plugin-discord@2.0.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.2.3...tagscript-plugin-discord@2.0.0) - (2022-07-18)
+
+## 🚀 Features
+
+- Add support for djs v14 (#58) ([4f4ee26](https://github.com/imranbarbhuiya/tagscript/commit/4f4ee26f5cf18849ce80a84b37e9077c68d8e9f4))
+  - 💥 **BREAKING CHANGE:** djs v14 is required.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
