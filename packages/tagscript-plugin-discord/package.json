@@ -61,5 +61,9 @@
 	"bugs": {
 		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
 	},
-	"homepage": "https://tagscript.js.org/"
+	"homepage": "https://tagscript.js.org/",
+	"typedoc": {
+		"entryPoint": "./src/index.ts",
+		"readmeFile": "./README.md"
+	}
 }

@@ -24,7 +24,6 @@
 		"@commitlint/config-conventional": "^17.0.3",
 		"@favware/cliff-jumper": "^1.8.5",
 		"@favware/npm-deprecate": "^1.0.4",
-		"@knodes/typedoc-plugin-monorepo-readmes": "^0.22.7",
 		"@sapphire/eslint-config": "^4.3.7",
 		"@sapphire/prettier-config": "^1.4.3",
 		"@types/node": "^18.0.6",

@@ -23,22 +23,22 @@ export type GuildChannel = Extract<Channel, { guild: Guild }>;
 
 /**
  * @external Guild
- * @see {@link https://discord.js.org/#/docs/discord.js/stable/class/Guild}
+ * @see {@link https://discord.js.org/#/docs/discord.js/main/class/Guild}
  */
 
 /**
  * @external GuildMember
- * @see {@link https://discord.js.org/#/docs/discord.js/stable/class/GuildMember}
+ * @see {@link https://discord.js.org/#/docs/discord.js/main/class/GuildMember}
  */
 
 /**
  * @external Role
- * @see {@link https://discord.js.org/#/docs/discord.js/stable/class/Role}
+ * @see {@link https://discord.js.org/#/docs/discord.js/main/class/Role}
  */
 
 /**
  * @external User
- * @see {@link https://discord.js.org/#/docs/discord.js/stable/class/User}
+ * @see {@link https://discord.js.org/#/docs/discord.js/main/class/User}
  */
 
 /**
@@ -59,4 +59,9 @@ export type GuildChannel = Extract<Channel, { guild: Guild }>;
 /**
  * @external Context
  * @see {@link https://tagscript.js.org/classes/tagscript.Context.html}
+ */
+
+/**
+ * @external Response
+ * @see {@link https://tagscript.js.org/classes/tagscript.Response.html}
  */

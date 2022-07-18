@@ -4,7 +4,6 @@
 	"entryPointStrategy": "packages",
 	"entryPoints": ["packages/tagscript/", "packages/tagscript-plugin-discord/"],
 	"excludeExternals": false,
-	"hideGenerator": true,
 	"markedOptions": {
 		"gfm": true,
 		"mangle": false,
@@ -12,6 +11,5 @@
 	},
 	"name": "TagScript",
 	"out": "./docs/",
-	"readme": "./README.md",
 	"tsconfig": "./tsconfig.base.json"
 }
