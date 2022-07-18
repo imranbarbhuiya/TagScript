@@ -2,7 +2,7 @@ import { EmbedData, APIEmbed, Channel, Guild } from 'discord.js';
 import 'tagscript';
 
 declare module 'tagscript' {
-	interface IActions {
+	export interface IActions {
 		cooldown?: {
 			cooldown: number;
 			message: string | null;
