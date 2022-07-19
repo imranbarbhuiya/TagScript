@@ -63,4 +63,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Projects using TagScript
 
--   [R.O.T.I](https://discord.com/api/oauth2/authorize?client_id=903690362114158632&scope=applications.commands+bot&permissions=1543892063) by @imranbarbhuiya using TagScript for their tag module.
+-   [R.O.T.I](https://discord.com/api/oauth2/authorize?client_id=903690362114158632&scope=applications.commands+bot&permissions=1543892063) by [@imranbarbhuiya](https://github.com/imranbarbhuiya) using TagScript for their tag module.

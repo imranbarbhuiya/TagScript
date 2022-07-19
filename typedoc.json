@@ -3,12 +3,7 @@
 	"cleanOutputDir": true,
 	"entryPointStrategy": "packages",
 	"entryPoints": ["packages/tagscript/", "packages/tagscript-plugin-discord/"],
-	"excludeExternals": false,
-	"markedOptions": {
-		"gfm": true,
-		"mangle": false,
-		"smartypants": true
-	},
+	"excludeExternals": true,
 	"name": "TagScript",
 	"out": "./docs/",
 	"tsconfig": "./tsconfig.base.json"
