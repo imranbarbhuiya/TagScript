@@ -1,0 +1,5 @@
+.yarn/
+coverage/
+docs/
+.yarnrc.yml
+**/CHANGELOG.md
