@@ -49,9 +49,10 @@ export class RequiredParser extends BaseParser implements IParser {
  *
  * @example
  * ```yaml
- *    {deny(Moderator)}
- *    {deny(#general, #chat):This tag can't be run in #general and #chat.}
- *    {deny(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
+ * {deny(Moderator)}
+ * {deny(#general, #chat):This tag can't be run in #general and #chat.}
+ * {deny(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
+ * ```
  */
 
 export class DenyParser extends BaseParser implements IParser {

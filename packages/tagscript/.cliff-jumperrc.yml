@@ -1,4 +1,4 @@
 name: tagscript
 monoRepo: true
 packagePath: packages/tagscript
-tagTemplate: "{{full-name}}@{{new-version}}"
+tagTemplate: '{{full-name}}@{{new-version}}'

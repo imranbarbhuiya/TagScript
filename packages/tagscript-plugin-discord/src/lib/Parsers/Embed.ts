@@ -36,7 +36,7 @@ import type { Awaitable, EmbedData, APIEmbed } from 'discord.js';
  * {embed(description):Follow these rules to ensure a good experience in our server!}
  * {embed(field):Rule 1|Respect everyone you speak to.|false}
  * ```
- * @note The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
+ * @see The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
  */
 export class EmbedParser extends BaseParser implements IParser {
 	public constructor() {
