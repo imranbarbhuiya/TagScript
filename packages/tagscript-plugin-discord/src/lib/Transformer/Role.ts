@@ -2,7 +2,7 @@ import type { Role } from 'discord.js';
 import { BaseTransformer } from './Base';
 
 /**
- * Transformer for Discord {@link https://discord.js.org/#/docs/discord.js/stable/class/Role Role}
+ * Transformer for Discord [Role](https://discord.js.org/#/docs/discord.js/stable/class/Role).
  *
  * @properties
  * ```yaml

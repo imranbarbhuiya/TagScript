@@ -8,6 +8,7 @@ import {
 	User
 } from 'discord.js';
 import { IntegerTransformer, ITransformer, StringTransformer } from 'tagscript';
+
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
 export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
@@ -67,7 +68,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 
 /**
  *
- * Resolves {@link  https://discord.js.org/#/docs/discord.js/stable/class/CommandInteractionOptionResolver CommandInteractionOptionResolver} options to transformers.
+ * Resolves [CommandInteractionOptionResolver](https://discord.js.org/#/docs/discord.js/stable/class/CommandInteractionOptionResolver) options to transformers.
  *
  * @usage
  * ```typescript
