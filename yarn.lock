@@ -598,10 +598,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.0.6":
-  version: 18.6.3
-  resolution: "@types/node@npm:18.6.3"
-  checksum: 38495b8fd27200d2b7ab9ccd8c1e2475d2411fba15330f2cba869a85ef79dd42382a2658c8dd298ace8c21ed3bfafcdea408faecd74928b144377d07d00e7c8c
+"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.6.1":
+  version: 18.6.1
+  resolution: "@types/node@npm:18.6.1"
+  checksum: 06331f68bc73d93b73977ae19ca87818e004bc7b8e70b0d4f73b0ea5e341a4a1ba6f0e79db8fb75a841af2b8d74552d6b9a8f846b267954689f57effedcf5d77
   languageName: node
   linkType: hard
 
@@ -4524,7 +4524,7 @@ __metadata:
     "@favware/npm-deprecate": ^1.0.5
     "@sapphire/eslint-config": ^4.3.7
     "@sapphire/prettier-config": ^1.4.3
-    "@types/node": ^18.0.6
+    "@types/node": ^18.6.1
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0
     c8: ^7.12.0
@@ -4540,7 +4540,7 @@ __metadata:
     turbo: ^1.4.0
     typedoc: ^0.23.9
     typedoc-plugin-mdn-links: ^2.0.0
-    typedoc-plugin-resolve-crossmodule-references: ^0.2.0
+    typedoc-plugin-resolve-crossmodule-references: ^0.2.1
     typescript: ^4.7.4
     vitest: ^0.20.1
   languageName: unknown
@@ -5445,12 +5445,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-resolve-crossmodule-references@npm:^0.2.0":
-  version: 0.2.2
-  resolution: "typedoc-plugin-resolve-crossmodule-references@npm:0.2.2"
+"typedoc-plugin-resolve-crossmodule-references@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "typedoc-plugin-resolve-crossmodule-references@npm:0.2.1"
   peerDependencies:
     typedoc: ">=0.22 <=0.23"
-  checksum: ed4de73c21a7f6f4a1f07c9934918be7537752c48288332c29a39447c480324d4b236a1ad3cb3e2fd7796ddf0078012ef7ad5fdae45f8d27848722d96c501c8a
+  checksum: 0041d6ac6392ef2f2f4bc72463e1fe8f6c96a16e94bd06e0cb45375fb5eee18a558c47573f89c345cbf83474a36a3a11687abc24c5decbb4db8c51e5ee0963dd
   languageName: node
   linkType: hard
 
