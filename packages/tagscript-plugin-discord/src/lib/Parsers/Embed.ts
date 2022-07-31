@@ -1,6 +1,6 @@
-import { BaseParser, split, type Context, type IParser } from 'tagscript';
+import { BaseParser, split, type Context, type IParser, type Awaitable } from 'tagscript';
 
-import type { Awaitable, EmbedData, APIEmbed } from 'discord.js';
+import type { EmbedData, APIEmbed } from 'discord.js';
 
 /**
  *  An embed tag will send an embed in the tag response.
