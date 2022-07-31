@@ -598,10 +598,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.6.1":
-  version: 18.6.1
-  resolution: "@types/node@npm:18.6.1"
-  checksum: 06331f68bc73d93b73977ae19ca87818e004bc7b8e70b0d4f73b0ea5e341a4a1ba6f0e79db8fb75a841af2b8d74552d6b9a8f846b267954689f57effedcf5d77
+"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^18.6.3":
+  version: 18.6.3
+  resolution: "@types/node@npm:18.6.3"
+  checksum: 38495b8fd27200d2b7ab9ccd8c1e2475d2411fba15330f2cba869a85ef79dd42382a2658c8dd298ace8c21ed3bfafcdea408faecd74928b144377d07d00e7c8c
   languageName: node
   linkType: hard
 
@@ -4524,7 +4524,7 @@ __metadata:
     "@favware/npm-deprecate": ^1.0.5
     "@sapphire/eslint-config": ^4.3.7
     "@sapphire/prettier-config": ^1.4.3
-    "@types/node": ^18.6.1
+    "@types/node": ^18.6.3
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0
     c8: ^7.12.0
@@ -4541,9 +4541,9 @@ __metadata:
     typedoc: ^0.23.9
     typedoc-plugin-external-link: ^1.0.1
     typedoc-plugin-mdn-links: ^2.0.0
-    typedoc-plugin-resolve-crossmodule-references: ^0.2.1
+    typedoc-plugin-resolve-crossmodule-references: ^0.3.0
     typescript: ^4.7.4
-    vitest: ^0.20.1
+    vitest: ^0.20.2
   languageName: unknown
   linkType: soft
 
@@ -5453,12 +5453,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-resolve-crossmodule-references@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "typedoc-plugin-resolve-crossmodule-references@npm:0.2.1"
+"typedoc-plugin-resolve-crossmodule-references@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "typedoc-plugin-resolve-crossmodule-references@npm:0.3.0"
   peerDependencies:
     typedoc: ">=0.22 <=0.23"
-  checksum: 0041d6ac6392ef2f2f4bc72463e1fe8f6c96a16e94bd06e0cb45375fb5eee18a558c47573f89c345cbf83474a36a3a11687abc24c5decbb4db8c51e5ee0963dd
+  checksum: 3f15ee2d9103d8846779004b18d011713989e9b21be9913b549f0a1b9000318a864c42bd5d33c27f279d3b4ab9846ef88e471194401f7422d57f493458976915
   languageName: node
   linkType: hard
 
@@ -5622,7 +5622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^0.20.1":
+"vitest@npm:^0.20.2":
   version: 0.20.2
   resolution: "vitest@npm:0.20.2"
   dependencies:
