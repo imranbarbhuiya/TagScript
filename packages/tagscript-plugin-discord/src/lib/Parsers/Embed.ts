@@ -11,30 +11,30 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  *  Using JSON
  *  @usage
  *  ```yaml
- * {embed:json}
+ * { embed: json }
  *  ```
  *  @example
  *  ```yaml
- * {embed:{"title":"Hello!", "description":"This is a test embed."}}
- * {embed:{
- *     "title":"Here's a random duck!",
- *     "image":{"url":"https://random-d.uk/api/randomimg"},
- *     "color":15194415
- * }}
+ * { embed: { "title": "Hello!", "description": "This is a test embed." } }
+ * { embed: {
+ *     "title": "Here's a random duck!",
+ *     "image": { "url": "https://random-d.uk/api/randomimg" },
+ *     "color": 15194415
+ * } }
  * ```
  *
  *  Using properties
  *  @usage
  * ```yaml
- * {embed(property):value}
+ * { embed(property): value }
  * ```
  *
  * @example
  * ```yaml
- * {embed(color):0x37b2cb}
- * {embed(title):Rules}
- * {embed(description):Follow these rules to ensure a good experience in our server!}
- * {embed(field):Rule 1|Respect everyone you speak to.|false}
+ * { embed(color): 0x37b2cb }
+ * { embed(title): Rules }
+ * { embed(description): Follow these rules to ensure a good experience in our server! }
+ * { embed(field): Rule 1|Respect everyone you speak to.|false }
  * ```
  *
  * @see The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.

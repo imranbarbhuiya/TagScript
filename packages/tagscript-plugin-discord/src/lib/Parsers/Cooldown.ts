@@ -9,15 +9,15 @@ import { BaseParser, type Context, type IParser } from 'tagscript';
  *
  * @usage
  * ```yaml
- * {cooldown(seconds):response}
+ * { cooldown(seconds): response }
  * ```
  *
  * @alias cd
  *
  * @example
  * ```yaml
- * {cooldown(5):This tag is on cooldown.}
- * {cooldown(5):The tag {name} is on cooldown. Please try again in {retryAfter}.}
+ * { cooldown(5): This tag is on cooldown. }
+ * { cooldown(5): The tag {name} is on cooldown. Please try again in {retryAfter}. }
  * ```
  *
  */

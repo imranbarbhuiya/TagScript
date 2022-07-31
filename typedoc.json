@@ -7,5 +7,6 @@
 	"name": "TagScript",
 	"out": "./docs/",
 	"tsconfig": "./tsconfig.base.json",
-	"externalLinkPath": "scripts/externalConfig.js"
+	"externalLinkPath": "scripts/externalConfig.js",
+	"hideGenerator": true
 }
