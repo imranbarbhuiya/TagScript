@@ -6,5 +6,6 @@
 	"excludeExternals": true,
 	"name": "TagScript",
 	"out": "./docs/",
-	"tsconfig": "./tsconfig.base.json"
+	"tsconfig": "./tsconfig.base.json",
+	"externalLinkPath": "scripts/externalConfig.js"
 }

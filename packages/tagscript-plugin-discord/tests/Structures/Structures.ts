@@ -1,5 +1,11 @@
-import { ChatInputCommandInteraction, Client, Guild, GuildMember, Role, TextChannel, User } from 'discord.js';
 import {
+	ChatInputCommandInteraction,
+	Client,
+	Guild,
+	GuildMember,
+	Role,
+	TextChannel,
+	User,
 	APIUser,
 	APIRole,
 	APIGuild,
@@ -10,7 +16,7 @@ import {
 	ApplicationCommandType,
 	ApplicationCommandOptionType,
 	APIAttachment
-} from 'discord-api-types/v9';
+} from 'discord.js';
 
 export const client = new Client({ intents: [] });
 

@@ -4539,6 +4539,7 @@ __metadata:
     tsup: ^6.2.1
     turbo: ^1.4.0
     typedoc: ^0.23.9
+    typedoc-plugin-external-link: ^1.0.1
     typedoc-plugin-mdn-links: ^2.0.0
     typedoc-plugin-resolve-crossmodule-references: ^0.2.1
     typescript: ^4.7.4
@@ -5433,6 +5434,13 @@ __metadata:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-external-link@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "typedoc-plugin-external-link@npm:1.0.1"
+  checksum: f27ece94a9b5372cd4b05b05fedbb254f496603e1ab5ff4b494335d11896a4a3a8aa431ce81b1fb3efad7cc5dc6090970ac63f746db96ad1aef1466313b38f43
   languageName: node
   linkType: hard
 
