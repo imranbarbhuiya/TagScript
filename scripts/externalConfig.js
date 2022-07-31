@@ -1,4 +1,4 @@
-const packageNames = ['discord.js'];
+const packageNames = ['discord.js', 'discord-api-types'];
 
 /**
  *

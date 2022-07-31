@@ -4539,7 +4539,7 @@ __metadata:
     tsup: ^6.2.1
     turbo: ^1.4.0
     typedoc: ^0.23.9
-    typedoc-plugin-external-link: ^1.0.1
+    typedoc-plugin-external-link: ^1.0.2
     typedoc-plugin-mdn-links: ^2.0.0
     typedoc-plugin-resolve-crossmodule-references: ^0.3.0
     typescript: ^4.7.4
@@ -5437,10 +5437,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-external-link@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "typedoc-plugin-external-link@npm:1.0.1"
-  checksum: f27ece94a9b5372cd4b05b05fedbb254f496603e1ab5ff4b494335d11896a4a3a8aa431ce81b1fb3efad7cc5dc6090970ac63f746db96ad1aef1466313b38f43
+"typedoc-plugin-external-link@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "typedoc-plugin-external-link@npm:1.0.2"
+  checksum: 80e70cc1d567152f8b9b61fa6af76de83b110e65eb8bd6e92fbfb3957914b5d2fa6cb22e0545d873112178a474a3f25279d1c4a7fc928918627ef53ad86ea1db
   languageName: node
   linkType: hard
 
