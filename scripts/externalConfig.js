@@ -7,7 +7,6 @@ const packageNames = ['discord.js'];
 function getURL(_, type) {
 	switch (type) {
 		case 'BaseChannel':
-		case 'Channel':
 			return 'https://discord.js.org/#/docs/discord.js/main/class/BaseChannel';
 		case 'ChatInputCommandInteraction':
 			return 'https://discord.js.org/#/docs/discord.js/main/class/ChatInputCommandInteraction';
@@ -30,6 +29,13 @@ function getURL(_, type) {
 
 		case 'CommandInteractionOption':
 			return 'https://discord.js.org/#/docs/discord.js/main/typedef/CommandInteractionOption';
+
+		case 'CacheType':
+			return 'https://github.com/discordjs/discord.js/blob/4d8361c711df423f154a7460939c60f6d9429105/packages/discord.js/typings/index.d.ts#L1474';
+		case 'Channel':
+			return 'https://github.com/discordjs/discord.js/blob/4d8361c711df423f154a7460939c60f6d9429105/packages/discord.js/typings/index.d.ts#L5433';
+		case 'EmbedData':
+			return 'https://github.com/discordjs/discord.js/blob/4d8361c711df423f154a7460939c60f6d9429105/packages/discord.js/typings/index.d.ts#L663';
 
 		case 'ApplicationCommandOptionType':
 			return 'https://discord-api-types.dev/api/discord-api-types-v10/enum/ApplicationCommandOptionType';
