@@ -20,6 +20,7 @@ import { BaseTransformer } from './Base';
  * createdAt: Gives channel create date.
  * createdTimestamp: Gives channel create date in ms.
  * slowmode: Gives channel slowmode.
+ * ```
  */
 export class ChannelTransformer extends BaseTransformer<GuildChannel> {
 	protected override updateSafeValues() {

@@ -1,17 +1,11 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
 	"cleanOutputDir": true,
-	"entryPointStrategy": "resolve",
-	"entryPoints": ["packages/tagscript/src/index.ts", "packages/tagscript-plugin-discord/src/index.ts"],
+	"entryPointStrategy": "packages",
+	"entryPoints": ["packages/tagscript/", "packages/tagscript-plugin-discord/"],
 	"excludeExternals": true,
-	"hideGenerator": true,
-	"markedOptions": {
-		"gfm": true,
-		"mangle": false,
-		"smartypants": true
-	},
 	"name": "TagScript",
 	"out": "./docs/",
-	"readme": "./README.md",
-	"tsconfig": "./tsconfig.base.json"
+	"tsconfig": "./tsconfig.base.json",
+	"externalLinkPath": "scripts/externalConfig.js"
 }

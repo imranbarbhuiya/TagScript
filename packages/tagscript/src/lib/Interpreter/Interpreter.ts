@@ -67,7 +67,7 @@ export class Interpreter {
 	 * @param tagLimit
 	 * @param parenType Whether the parameter should be followed after a "." or use parenthesis or both.
 	 * @param keyValues Additional key value pairs that may be used by parsers during parsing.
-	 * @returns {@link Response} class containing the raw string, processed body, actions and variables.
+	 * @returns {Promise<Response>} {@link Response} class containing the raw string, processed body, actions and variables.
 	 */
 	public async run(
 		message: string,

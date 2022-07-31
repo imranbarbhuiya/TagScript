@@ -3,7 +3,7 @@ import { BaseParser, type Context, type IParser } from 'tagscript';
 /**
  * Delete the triggered message.
  *
- * @note Devs need to check for this property in {@link Response.actions} and if true, delete the message.
+ * @see Devs need to check for this property in [Response.actions](https://tagscript.js.org/classes/tagscript.Response.html#actions) and if true, delete the message.
  */
 export class DeleteParser extends BaseParser implements IParser {
 	public constructor() {
