@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [tagscript-plugin-discord@2.0.2](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.1...tagscript-plugin-discord@2.0.2) - (2022-08-21)
+
+## 🐛 Bug Fixes
+
+- Import awaitable from tagscript ([19423d0](https://github.com/imranbarbhuiya/tagscript/commit/19423d06064f3eb8198c549894f2c0991256e069))
+
+## 📝 Documentation
+
+- Improve codeblocks ([1f536a0](https://github.com/imranbarbhuiya/tagscript/commit/1f536a04b15f0d35634e74734caf20d0dd626080))
+- Add dapi too ([bd1fa9a](https://github.com/imranbarbhuiya/tagscript/commit/bd1fa9a403165e0a0a8895acf9466917ea08b004))
+- Improve documentation (#53) ([69c5d6f](https://github.com/imranbarbhuiya/tagscript/commit/69c5d6ff802d9d788959762abb64ae310d4b848a))
+
 # [tagscript-plugin-discord@2.0.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@1.2.3...tagscript-plugin-discord@2.0.0) - (2022-07-18)
 
 ## 🚀 Features
