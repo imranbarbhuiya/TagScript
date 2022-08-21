@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [tagscript@1.2.9](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.8...tagscript@1.2.9) - (2022-08-21)
+
+## 📝 Documentation
+
+- Improve documentation (#53) ([69c5d6f](https://github.com/imranbarbhuiya/tagscript/commit/69c5d6ff802d9d788959762abb64ae310d4b848a))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
