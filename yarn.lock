@@ -4802,7 +4802,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.33.1
     "@typescript-eslint/parser": ^5.33.1
     "@vitest/coverage-c8": ^0.22.1
-    c8: ^7.12.0
     cz-conventional-changelog: ^3.3.0
     eslint: ^8.22.0
     eslint-config-prettier: ^8.5.0
