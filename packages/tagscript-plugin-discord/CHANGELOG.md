@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 # [tagscript-plugin-discord@2.0.2](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.1...tagscript-plugin-discord@2.0.2) - (2022-08-21)
