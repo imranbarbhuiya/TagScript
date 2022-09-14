@@ -14,8 +14,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"moduleResolution": "node",
 		"declaration": true,
-		"outDir": "dist",
-		"types": ["vitest/globals"]
+		"outDir": "dist"
 	},
 	"includes": ["packages/**/*.ts"],
 	"exclude": ["packages/**/dist/**"]

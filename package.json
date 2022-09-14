@@ -15,8 +15,8 @@
 		"lint": "eslint packages --ext mjs,js,ts --fix --cache",
 		"update": "yarn upgrade-interactive",
 		"postinstall": "husky install .github/husky",
-		"test": "vitest run",
-		"test:watch": "vitest",
+		"test": "turbo run test",
+		"test:watch": "turbo run test:watch",
 		"typecheck": "tsc -p tsconfig.eslint.json"
 	},
 	"devDependencies": {

@@ -23,6 +23,10 @@
 		"test": {
 			"dependsOn": ["tagscript#build"],
 			"outputs": ["coverage/**"]
+		},
+		"test:watch": {
+			"dependsOn": ["tagscript#build"],
+			"outputs": ["coverage/**"]
 		}
 	}
 }
