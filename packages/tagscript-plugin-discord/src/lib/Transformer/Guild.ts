@@ -49,9 +49,9 @@ export class GuildTransformer extends BaseTransformer<Guild> {
 		this.safeValues.large = this.base.large;
 		this.safeValues.memberCount = this.base.memberCount;
 		this.safeValues.random = this.base.members.cache.random()?.toString() ?? '';
-		this.safeValues.roles = this.base.roles.cache.map((role) => role).join(' ') || '`None`';
-		this.safeValues.roleIds = this.base.roles.cache.map((role) => role.id).join(', ') || '`None`';
-		this.safeValues.roleNames = this.base.roles.cache.map((role) => role.name).join(', ') || '`None`';
+		this.safeValues.roles = this.base.roles.cache.map((role) => role).join(' ');
+		this.safeValues.roleIds = this.base.roles.cache.map((role) => role.id).join(', ');
+		this.safeValues.roleNames = this.base.roles.cache.map((role) => role.name).join(', ');
 		this.safeValues.roleCount = this.base.roles.cache.size;
 		this.safeValues.channels = this.base.channels.cache.map((channel) => channel).join(' ') || '`None`';
 		this.safeValues.channelIds = this.base.channels.cache.map((channel) => channel.id).join(', ') || '`None`';
