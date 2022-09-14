@@ -46,9 +46,9 @@ export class MemberTransformer extends BaseTransformer<GuildMember> {
 		this.safeValues.bot = this.base.user.bot;
 		this.safeValues.color = this.base.roles.color?.hexColor ?? '';
 		this.safeValues.position = this.base.roles.highest.position;
-		this.safeValues.roles = this.base.roles.cache.map((role) => role).join(' ') || '`None`';
-		this.safeValues.roleIds = this.base.roles.cache.map((role) => role.id).join(', ') || '`None`';
-		this.safeValues.roleNames = this.base.roles.cache.map((role) => role.name).join(', ') || '`None`';
+		this.safeValues.roles = this.base.roles.cache.map((role) => role).join(' ');
+		this.safeValues.roleIds = this.base.roles.cache.map((role) => role.id).join(', ');
+		this.safeValues.roleNames = this.base.roles.cache.map((role) => role.name).join(', ');
 		this.safeValues.topRole = this.base.roles.highest.name;
 		this.safeValues.timeoutUntil = this.base.communicationDisabledUntil?.toISOString() ?? '';
 		this.safeValues.timeoutUntilTimestamp = this.base.communicationDisabledUntilTimestamp;
