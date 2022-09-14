@@ -6,13 +6,15 @@
 
 **A simple and safe template engine.**
 
-[![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
+[![Continuous Integration](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2)](https://codecov.io/gh/imranbarbhuiya/tagscript)
 
 **Packages**
 
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
+[![npm-tagscript](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square&label=tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
+[![npm-tagscript-plugin-discord](https://img.shields.io/npm/dw/tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
 
 </div>
 
