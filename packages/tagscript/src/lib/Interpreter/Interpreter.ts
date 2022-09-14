@@ -148,7 +148,7 @@ export class Interpreter {
 		message: string,
 		nodeOrderedList: Node[],
 		response: Response,
-		charlimit: number | null,
+		charLimit: number | null,
 		tagLimit = 2000,
 		parenType = ParenType.Both
 	) {
@@ -167,7 +167,7 @@ export class Interpreter {
 			if (output === null) {
 				continue;
 			}
-			totalWork = this.checkWorkload(charlimit, totalWork, output)!;
+			totalWork = this.checkWorkload(charLimit, totalWork, output)!;
 			const [fMessage, differential] = this.textDeform(start, end, final, output);
 			final = fMessage;
 			this.translateNodes(nodeOrderedList, index, start, differential);
