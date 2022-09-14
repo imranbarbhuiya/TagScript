@@ -92,7 +92,17 @@ const memberObject: APIGuildMember = {
 const channelObject: APIChannel = {
 	id: '933395546138357800',
 	name: 'test',
-	type: 0
+	type: 0,
+	topic: 'A test channel'
+};
+
+const channel2Object: APIChannel = {
+	id: '870354581115256852',
+	name: 'test-1',
+	type: 0,
+	position: 2,
+	nsfw: false,
+	rate_limit_per_user: 0
 };
 
 const attachment: APIAttachment = {
@@ -115,7 +125,9 @@ const interactionObject: APIApplicationCommandInteraction = {
 		resolved: {
 			users: { '758880890159235081': userObject, '758880890159235083': userObject },
 			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
-			channels: { '933368398996447292': { ...channelObject, permissions: '8', name: 'test' } },
+			channels: {
+				'933395546138357800': { ...channelObject, permissions: '8', name: 'test' }
+			},
 			roles: { '933378013154906142': roleObject },
 			attachments: {
 				'933368398996447291': attachment
@@ -219,21 +231,25 @@ const interactionObject: APIApplicationCommandInteraction = {
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-// @ts-expect-error using protected constructor to test
+// @ts-expect-error(2674) using protected constructor to test
 export const user: User = new User(client, userObject);
-// @ts-expect-error using protected constructor to test
+
+// @ts-expect-error(2674) using protected constructor to test
 export const guild: Guild = new Guild(client, guildObject);
 
-// @ts-expect-error using protected constructor to test
+// @ts-expect-error(2674) using protected constructor to test
 export const role: Role = new Role(client, roleObject, guild);
 
-// @ts-expect-error using protected constructor to test
+// @ts-expect-error(2674) using protected constructor to test
 export const member: GuildMember = new GuildMember(client, memberObject, guild);
 
-// @ts-expect-error using protected constructor to test
+// @ts-expect-error(2674) using protected constructor to test
 export const channel: TextChannel = new TextChannel(guild, channelObject, client);
 
-// @ts-expect-error using protected constructor to test
+// @ts-expect-error(2674) using protected constructor to test
+export const channel2: TextChannel = new TextChannel(guild, channel2Object, client);
+
+// @ts-expect-error(2674) using protected constructor to test
 export const interaction: ChatInputCommandInteraction = new ChatInputCommandInteraction(client, interactionObject);
 
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */

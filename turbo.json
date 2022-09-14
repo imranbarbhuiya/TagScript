@@ -21,8 +21,12 @@
 			"outputs": []
 		},
 		"test": {
-			"dependsOn": ["tagscript#build"],
-			"outputs": ["coverage/**"]
+			"dependsOn": [],
+			"outputs": ["**/coverage/**"]
+		},
+		"test:watch": {
+			"dependsOn": [],
+			"outputs": ["**/coverage/**"]
 		}
 	}
 }

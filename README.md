@@ -7,7 +7,7 @@
 **A simple and safe template engine.**
 
 [![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg)](https://codecov.io/gh/imranbarbhuiya/tagscript)
+[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2")](https://codecov.io/gh/imranbarbhuiya/tagscript)
 
 **Packages**
 

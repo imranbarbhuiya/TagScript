@@ -3,7 +3,15 @@ import { DateFormatParser } from '../../src';
 
 const ts = new Interpreter(new DateFormatParser());
 describe('currentTime', () => {
+	beforeEach(() => {
+		vi.useFakeTimers();
+	});
+	afterEach(() => {
+		vi.useRealTimers();
+	});
 	test('GIVEN currentTime or unix THEN return current timestamp in ms', async () => {
+		const mockedDate = new Date(2022, 1, 1, 13);
+		vi.setSystemTime(mockedDate);
 		expect(Number((await ts.run('{unix}')).body)).toBeCloseTo(Date.now(), -1);
 		expect(Number((await ts.run('{currenttime}')).body)).toBeCloseTo(Date.now(), -1);
 	});
