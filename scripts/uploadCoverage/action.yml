@@ -4,13 +4,13 @@ runs:
   using: 'composite'
   steps:
     - name: Upload Tagscript Coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378 # tag=v3
       with:
         files: ./packages/tagscript/coverage/cobertura-coverage.xml
         flags: tagscript
 
     - name: Upload Tagscript Plugin Discord Coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378 # tag=v3
       with:
         files: ./packages/tagscript-plugin-discord/coverage/cobertura-coverage.xml
         flags: tagscript-plugin-discord
