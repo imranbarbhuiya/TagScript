@@ -29,7 +29,7 @@ Read Full Documentation [here](https://tagscript.js.org/).
 -   Written In Typescript
 -   Offers CJS, ESM and UMD builds
 -   Full TypeScript & JavaScript support
--   Faster than ⚡
+-   Blazingly Fast ⚡
 -   Simple, expressive and safe template engine.
 -   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
 
