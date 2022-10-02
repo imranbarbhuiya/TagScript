@@ -48,12 +48,18 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://github.com/imranbarbhuiya"><img src="https://avatars.githubusercontent.com/u/74945038?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Parbez</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=imranbarbhuiya" title="Code">💻</a> <a href="#maintenance-imranbarbhuiya" title="Maintenance">🚧</a> <a href="#ideas-imranbarbhuiya" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://renovate.whitesourcesoftware.com"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="#maintenance-renovate-bot" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://favware.tech"><img src="https://avatars.githubusercontent.com/u/4019718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jeroen Claassens</b></sub></a><br /><a href="#maintenance-favna" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://github.com/UndiedGamer"><img src="https://avatars.githubusercontent.com/u/84702365?v=4?s=100" width="100px;" alt=""/><br /><sub><b>UndiedGamer</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=UndiedGamer" title="Code">💻</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/imranbarbhuiya"><img src="https://avatars.githubusercontent.com/u/74945038?v=4?s=100" width="100px;" alt="Parbez"/><br /><sub><b>Parbez</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=imranbarbhuiya" title="Code">💻</a> <a href="#maintenance-imranbarbhuiya" title="Maintenance">🚧</a> <a href="#ideas-imranbarbhuiya" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://renovate.whitesourcesoftware.com"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt="WhiteSource Renovate"/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="#maintenance-renovate-bot" title="Maintenance">🚧</a></td>
+      <td align="center"><a href="https://favware.tech"><img src="https://avatars.githubusercontent.com/u/4019718?v=4?s=100" width="100px;" alt="Jeroen Claassens"/><br /><sub><b>Jeroen Claassens</b></sub></a><br /><a href="#maintenance-favna" title="Maintenance">🚧</a></td>
+      <td align="center"><a href="https://github.com/UndiedGamer"><img src="https://avatars.githubusercontent.com/u/84702365?v=4?s=100" width="100px;" alt="UndiedGamer"/><br /><sub><b>UndiedGamer</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=UndiedGamer" title="Code">💻</a></td>
+      <td align="center"><a href="http://discord.gg/sofi"><img src="https://avatars.githubusercontent.com/u/20400149?v=4?s=100" width="100px;" alt="Sourav"/><br /><sub><b>Sourav</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=ShoXcy" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    
+  </tfoot>
 </table>
 
 <!-- markdownlint-restore -->
