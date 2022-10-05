@@ -6,13 +6,11 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * it will send the response if one is given. Multiple role, user or channel
  * requirements can be given, and should be split by a `,`.
  *
- * @usage
+ * @example
  * ```yaml
  * {require(user,role,channel):response}
  * ```
- *
- * @alias allowlist, whitelist
- *
+ * Aliases: allowlist, whitelist
  * @example
  * ```yaml
  * {require(Moderator)}
@@ -27,7 +25,7 @@ export class RequiredParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		if (ctx.response.actions.require) return null;
-		const ids = ctx.tag.parameter!.split(',').map((s) => s.trim());
+		const ids = ctx.tag.parameter!.split(',').map((param) => param.trim());
 		ctx.response.actions.require = { ids, message: ctx.tag.payload };
 		return '';
 	}
@@ -40,13 +38,11 @@ export class RequiredParser extends BaseParser implements IParser {
  * it will send the response if one is given. Multiple user, role or channel
  * requirements can be given, and should be split by a `,`.
  *
- * @usage
+ * @example
  * ```yaml
  * {deny(user,role,channel):response}
  * ```
- *
- * @alias denylist, blacklist
- *
+ * Aliases: denylist, blacklist
  * @example
  * ```yaml
  * {deny(Moderator)}
@@ -62,7 +58,7 @@ export class DenyParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		if (ctx.response.actions.deny) return null;
-		const ids = ctx.tag.parameter!.split(',').map((s) => s.trim());
+		const ids = ctx.tag.parameter!.split(',').map((param) => param.trim());
 		ctx.response.actions.deny = { ids, message: ctx.tag.payload };
 		return '';
 	}

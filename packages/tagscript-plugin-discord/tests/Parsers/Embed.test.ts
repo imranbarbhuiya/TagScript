@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { EmbedParser } from '../../src';
 
 const ts = new Interpreter(new EmbedParser());

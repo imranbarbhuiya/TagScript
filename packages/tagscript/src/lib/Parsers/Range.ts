@@ -1,19 +1,19 @@
+import { BaseParser } from './Base';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
 
 /**
  * The range tag picks a random number from a range of numbers separated by `-`.
  * The number range is inclusive, so it can pick the starting/ending number as well.
  * Using the rangef tag will pick a number to the tenth decimal place.
  *
- * @alias rangef
+ * Aliases: rangef
  *
- * @usage
+ * @example
  * ```yaml
  * {range(1-3)}
  * ```
- *
  * @example
  * ```yaml
  * Your lucky number is {range:10-30}!
@@ -32,13 +32,14 @@ export class RangeParser extends BaseParser implements IParser {
 	public parse(ctx: Context) {
 		const spl = ctx.tag.payload?.includes('-') ? ctx.tag.payload.split('-') : ctx.tag.payload!.split(',');
 		if (ctx.tag.declaration!.toLowerCase() === 'rangef') {
-			const lower = parseFloat(spl[0]);
-			const upper = parseFloat(spl[1]);
+			const lower = Number.parseFloat(spl[0]);
+			const upper = Number.parseFloat(spl[1]);
 			const base = Math.floor(Math.random() * (upper * 10 - lower * 10) + lower * 10) / 10;
 			return `${base}`;
 		}
-		const lower = parseInt(spl[0], 10);
-		const upper = parseInt(spl[1], 10);
+
+		const lower = Number.parseInt(spl[0], 10);
+		const upper = Number.parseInt(spl[1], 10);
 		const base = Math.floor(Math.random() * (upper - lower) + lower);
 		return `${base}`;
 	}

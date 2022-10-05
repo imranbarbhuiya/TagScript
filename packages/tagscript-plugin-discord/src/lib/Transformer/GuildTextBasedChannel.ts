@@ -1,10 +1,11 @@
-import { GuildChannel } from '../interfaces';
 import { BaseTransformer } from './Base';
+
+import type { GuildChannel } from '../interfaces';
 
 /**
  * Transformer for Discord {@link GuildChannel}
  *
- * @properties
+ * Properties:
  * ```yaml
  * id: Gives channel id.
  * mention: Mentions the channel.

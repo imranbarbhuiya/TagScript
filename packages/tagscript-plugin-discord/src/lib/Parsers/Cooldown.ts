@@ -7,19 +7,16 @@ import { BaseParser, type Context, type IParser } from 'tagscript';
  *  Payload can have `{retryAfter}`, `{name}` which will be replaced with the time remaining
  *  and the name of the tag respectively.
  *
- * @usage
+ * @example
  * ```yaml
  * { cooldown(seconds): response }
  * ```
- *
- * @alias cd
- *
+ * Aliases: cd
  * @example
  * ```yaml
  * { cooldown(5): This tag is on cooldown. }
  * { cooldown(5): The tag {name} is on cooldown. Please try again in {retryAfter}. }
  * ```
- *
  */
 export class CooldownParser extends BaseParser implements IParser {
 	public constructor() {
@@ -28,7 +25,7 @@ export class CooldownParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const { parameter, payload } = ctx.tag;
-		const cooldown = parseInt(parameter!, 10);
+		const cooldown = Number.parseInt(parameter!, 10);
 
 		ctx.response.actions.cooldown = {
 			cooldown,

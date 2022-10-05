@@ -1,7 +1,9 @@
+import { BaseParser } from './Base';
+
+import { escapeContent } from '../Utils/Util';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { escapeContent } from '../Utils/Util';
-import { BaseParser } from './Base';
 
 /**
  * This tag formats a given string.
@@ -25,7 +27,7 @@ export class StringFormatParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const { declaration, payload } = ctx.tag;
-		switch (declaration as 'lower' | 'upper' | 'capitalize' | 'escape') {
+		switch (declaration as 'capitalize' | 'escape' | 'lower' | 'upper') {
 			case 'lower':
 				return payload!.toLowerCase();
 			case 'upper':
@@ -45,7 +47,7 @@ export class OrdinalFormatParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const { payload } = ctx.tag;
-		if (isNaN(Number(payload))) return payload;
+		if (Number.isNaN(Number(payload))) return payload;
 		const lastDigit = payload!.slice(-1);
 		const suffix = lastDigit === '1' ? 'st' : lastDigit === '2' ? 'nd' : lastDigit === '3' ? 'rd' : 'th';
 		return `${payload}${suffix}`;

@@ -1,4 +1,4 @@
-import { EmbedData, APIEmbed, Channel, Guild } from 'discord.js';
+import type { EmbedData, APIEmbed, Channel, Guild } from 'discord.js';
 import 'tagscript';
 
 declare module 'tagscript' {
@@ -7,10 +7,10 @@ declare module 'tagscript' {
 			cooldown: number;
 			message: string | null;
 		};
-		embed?: EmbedData | APIEmbed;
 		deleteMessage?: boolean;
-		silentResponse?: boolean;
+		embed?: APIEmbed | EmbedData;
 		files?: string[];
+		silentResponse?: boolean;
 	}
 }
 

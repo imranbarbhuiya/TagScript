@@ -1,4 +1,5 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
+
 import { ChannelTransformer } from '../../src';
 import { channel, channel2 } from '../Structures/Structures';
 

@@ -1,4 +1,5 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
+
 import { InteractionTransformer } from '../../src';
 import { interaction } from '../Structures/Structures';
 

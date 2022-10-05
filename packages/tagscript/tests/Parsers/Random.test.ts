@@ -1,4 +1,5 @@
 import { Interpreter, RandomParser } from '../../src';
+
 const ts = new Interpreter(new RandomParser());
 describe('RandomParser', () => {
 	test('GIVEN some choices separated with comma in random parser THEN returns a random string from the payload', async () => {

@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { DeleteParser } from '../../src';
 
 describe('DeleteParser', () => {

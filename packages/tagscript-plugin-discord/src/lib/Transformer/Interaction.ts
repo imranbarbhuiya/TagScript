@@ -1,5 +1,6 @@
-import { CommandInteraction } from 'discord.js';
 import { BaseTransformer } from './Base';
+
+import type { CommandInteraction } from 'discord.js';
 
 export class InteractionTransformer extends BaseTransformer<CommandInteraction> {
 	protected override updateSafeValues() {

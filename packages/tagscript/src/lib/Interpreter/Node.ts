@@ -5,8 +5,11 @@ import type { Lexer } from './Lexer';
  */
 export class Node {
 	public coordinates: [number, number];
+
 	public tag: Lexer | null;
+
 	public output: string | null;
+
 	public constructor(coordinates: [number, number], tag: Lexer | null) {
 		this.output = null;
 		this.tag = tag;

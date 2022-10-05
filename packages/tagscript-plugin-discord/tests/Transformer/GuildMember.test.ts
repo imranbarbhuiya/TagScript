@@ -1,4 +1,5 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
+
 import { MemberTransformer } from '../../src';
 import { member } from '../Structures/Structures';
 

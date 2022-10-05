@@ -1,4 +1,5 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
+
 import { GuildTransformer } from '../../src';
 import { guild } from '../Structures/Structures';
 

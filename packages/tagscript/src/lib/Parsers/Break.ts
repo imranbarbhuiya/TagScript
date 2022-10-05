@@ -1,7 +1,9 @@
+import { BaseParser } from './Base';
+
+import { parseIf } from '../Utils/Util';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
-import { parseIf } from '../Utils/Util';
 
 /**
  * The break tag will force the tag output to only be the payload of this tag, if the passed
@@ -12,7 +14,7 @@ import { parseIf } from '../Utils/Util';
  * the break tag, they will still execute.
  *
  *
- * @usage
+ * @example
  * ```yaml
  *    {break(expression):message}
  * ```
@@ -30,6 +32,7 @@ export class BreakParser extends BaseParser implements IParser {
 		if (parseIf(ctx.tag.parameter!)) {
 			ctx.response.body = ctx.tag.payload ?? '';
 		}
+
 		return '';
 	}
 }

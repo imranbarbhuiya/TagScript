@@ -1,4 +1,5 @@
 import { Interpreter, StrictVarsParser } from 'tagscript';
+
 import { RoleTransformer } from '../../src';
 import { role } from '../Structures/Structures';
 

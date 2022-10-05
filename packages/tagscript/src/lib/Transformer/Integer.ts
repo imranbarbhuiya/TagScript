@@ -11,17 +11,20 @@ import type { Lexer } from '../Interpreter';
  */
 export class IntegerTransformer implements ITransformer {
 	private integer: number;
-	public constructor(int: `${number | bigint}`) {
-		this.integer = parseInt(int, 10);
+
+	public constructor(int: `${bigint | number}`) {
+		this.integer = Number.parseInt(int, 10);
 	}
 
 	public transform(tag: Lexer) {
 		if (tag.parameter === '++') {
 			return `${++this.integer}`;
 		}
+
 		if (tag.parameter === '--') {
 			return `${--this.integer}`;
 		}
+
 		return `${this.integer}`;
 	}
 }

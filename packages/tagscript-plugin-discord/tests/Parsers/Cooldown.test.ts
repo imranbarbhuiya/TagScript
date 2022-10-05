@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { CooldownParser } from '../../src';
 
 describe('CooldownParser', () => {

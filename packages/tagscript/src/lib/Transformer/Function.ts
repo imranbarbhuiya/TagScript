@@ -4,7 +4,8 @@ import type { Lexer } from '../Interpreter';
 export type TransformerFunction = (tag: Lexer) => string;
 
 export class FunctionTransformer implements ITransformer {
-	private fn: TransformerFunction;
+	private readonly fn: TransformerFunction;
+
 	public constructor(fn: TransformerFunction) {
 		this.fn = fn;
 	}

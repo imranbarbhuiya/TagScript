@@ -2,18 +2,21 @@ import type { Lexer, Interpreter, Response } from '.';
 
 /**
  *  An object containing data of the TagScript tag processed by the interpreter.
-    This class is passed to transformers and parsers during parsing.
+ * This class is passed to transformers and parsers during parsing.
  */
 export class Context {
 	/**
 	 * The tag object representing a TagScript tag.
 	 */
 	public tag: Lexer;
+
 	public response: Response;
+
 	/**
 	 * The original message passed to the interpreter.
 	 */
 	public originalMessage: string;
+
 	/**
 	 * The interpreter parsing the TagScript.
 	 */

@@ -36,7 +36,7 @@ describe('ParenType.Both', () => {
 describe('ParenType.Dot', () => {
 	test('GIVEN a string in dot form THEN parse only dot form and not paren', () => {
 		const text = '{embed.title:Hello world}';
-		const result = new Lexer(text, 2000, ParenType.Dot);
+		const result = new Lexer(text, 2_000, ParenType.Dot);
 		expect(result.toJSON()).toStrictEqual({
 			declaration: 'embed',
 			parameter: 'title',
@@ -45,7 +45,7 @@ describe('ParenType.Dot', () => {
 		});
 
 		const textP = '{embed(title):Hello world}';
-		const resultP = new Lexer(textP, 2000, ParenType.Dot);
+		const resultP = new Lexer(textP, 2_000, ParenType.Dot);
 		expect(resultP.parameter).not.toStrictEqual('title');
 
 		expect(result.toString()).toStrictEqual(text);
@@ -55,7 +55,7 @@ describe('ParenType.Dot', () => {
 describe('ParenType.Parenthesis', () => {
 	test('GIVEN a string in paren form THEN parse only paren form and not dot', () => {
 		const text = '{embed(title):Hello world}';
-		const result = new Lexer(text, 2000, ParenType.Parenthesis);
+		const result = new Lexer(text, 2_000, ParenType.Parenthesis);
 		expect(result.toJSON()).toStrictEqual({
 			declaration: 'embed',
 			parameter: 'title',
@@ -64,7 +64,7 @@ describe('ParenType.Parenthesis', () => {
 		});
 
 		const textD = '{embed.title:Hello world}';
-		const resultD = new Lexer(textD, 2000, ParenType.Parenthesis);
+		const resultD = new Lexer(textD, 2_000, ParenType.Parenthesis);
 
 		expect(resultD.parameter).not.toStrictEqual('title');
 

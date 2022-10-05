@@ -4,7 +4,8 @@
 		"noEmit": true,
 		"incremental": false,
 		"types": ["vitest/globals"],
-		"lib": ["dom", "esnext"]
+		"lib": ["dom", "esnext"],
+		"esModuleInterop": true
 	},
 	"include": ["packages", "scripts", "vitest.config.ts", "tsup.config.ts"]
 }

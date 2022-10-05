@@ -7,7 +7,8 @@ import type { Awaitable } from '../Utils/Util';
 export interface ITransformer {
 	/**
 	 * Transforms the given tag.
-	 * @param tag The tag that triggered the transformer.
+	 *
+	 * @param tag - The tag that triggered the transformer.
 	 */
 	transform(tag: Lexer): string | null;
 }
@@ -17,20 +18,23 @@ export interface ITransformer {
  */
 export interface IParser {
 	/**
-	 * Whether the parser can handle the given tag.
-	 * @param ctx The context of the tag.
-	 */
-	willAccept(ctx: Context): Awaitable<boolean>;
-	/**
 	 * Parses the given tag.
-	 * @param ctx The context of the tag.
+	 *
+	 * @param ctx - The context of the tag.
 	 */
 	parse(ctx: Context): Awaitable<string | null>;
+	/**
+	 * Whether the parser can handle the given tag.
+	 *
+	 * @param ctx - The context of the tag.
+	 */
+	willAccept(ctx: Context): Awaitable<boolean>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IKeyValues {}
 
 export interface IActions {
-	require?: { ids: string[]; message: string | null };
 	deny?: { ids: string[]; message: string | null };
+	require?: { ids: string[]; message: string | null };
 }

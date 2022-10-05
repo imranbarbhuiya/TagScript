@@ -1,10 +1,11 @@
-import type { Role } from 'discord.js';
 import { BaseTransformer } from './Base';
+
+import type { Role } from 'discord.js';
 
 /**
  * Transformer for Discord [Role](https://discord.js.org/#/docs/discord.js/stable/class/Role).
  *
- * @properties
+ * Properties:
  * ```yaml
  * id: Gives role id.
  * name: Gives role name.

@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { FilesParser } from '../../src';
 
 describe('Files', () => {
