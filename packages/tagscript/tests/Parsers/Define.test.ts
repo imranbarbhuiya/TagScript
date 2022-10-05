@@ -1,4 +1,5 @@
 import { Interpreter, DefineParser, LooseVarsParser, Response, StringTransformer, StrictVarsParser } from '../../src';
+
 describe('DefineParser', () => {
 	describe('LooseVarsParser', () => {
 		const ts = new Interpreter(new DefineParser(), new LooseVarsParser());

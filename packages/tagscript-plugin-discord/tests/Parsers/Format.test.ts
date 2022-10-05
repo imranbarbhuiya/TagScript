@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { DateFormatParser } from '../../src';
 
 const ts = new Interpreter(new DateFormatParser());
@@ -10,7 +11,7 @@ describe('currentTime', () => {
 		vi.useRealTimers();
 	});
 	test('GIVEN currentTime or unix THEN return current timestamp in ms', async () => {
-		const mockedDate = new Date(2022, 1, 1, 13);
+		const mockedDate = new Date(2_022, 1, 1, 13);
 		vi.setSystemTime(mockedDate);
 		expect(Number((await ts.run('{unix}')).body)).toBeCloseTo(Date.now(), -1);
 		expect(Number((await ts.run('{currenttime}')).body)).toBeCloseTo(Date.now(), -1);
@@ -19,7 +20,7 @@ describe('currentTime', () => {
 
 describe('DateFormat', () => {
 	test('GIVEN date THEN return formatted date', async () => {
-		expect((await ts.run('{date}')).body).toBe(`<t:${Math.floor(Date.now() / 1000)}:f>`);
+		expect((await ts.run('{date}')).body).toBe(`<t:${Math.floor(Date.now() / 1_000)}:f>`);
 		expect((await ts.run('{date:2020-01-01}')).body).toBe('<t:1577836800:f>');
 		expect((await ts.run('{date(k):2020-01-01}')).body).toBe('{date(k):2020-01-01}');
 		expect((await ts.run('{date(F):2020-01-01}')).body).toBe('<t:1577836800:F>');

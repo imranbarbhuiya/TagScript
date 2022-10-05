@@ -8,6 +8,7 @@ import {
 	StringTransformer,
 	UnionStatementParser
 } from '../../src';
+
 describe('IntersectionStatementParser', () => {
 	const ts = new Interpreter(new IntersectionStatementParser());
 	test('GIVEN a string in intersection parser THEN returns the string if all conditions are true else return empty string', async () => {

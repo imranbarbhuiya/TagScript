@@ -1,12 +1,14 @@
+import { BaseParser } from './Base';
+
+import { split } from '../Utils/Util';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { split } from '../Utils/Util';
-import { BaseParser } from './Base';
 
 /**
  * Pick a random item from a list of strings, split by either `~` or `,`.
  *
- * @alias rand
+ * Aliases: rand
  *
  * @example
  * ```yaml

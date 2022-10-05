@@ -1,6 +1,7 @@
+import { BaseParser } from './Base';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
 /**
  * This tag serves four different purposes depending on the alias that is used.
  * The `in` and `includes` alias checks if the parameter is anywhere in the payload.
@@ -8,9 +9,9 @@ import { BaseParser } from './Base';
  * `index` finds the location of the parameter in the payload, split by whitespace.
  * `lindex` finds the location of the parameter in the payload.
  *
- * @alias includes, in, index, lindex, contain,
+ * Aliases: includes, in, index, lindex, contain,
  *
- * @usage
+ * @example
  * ```yaml
  * {in(there):Hi there!}
  * # true
@@ -23,7 +24,6 @@ import { BaseParser } from './Base';
  * {lindex(t):Hi there!}
  * # 4
  * ```
- *
  */
 export class IncludesParser extends BaseParser implements IParser {
 	public constructor() {
@@ -35,14 +35,17 @@ export class IncludesParser extends BaseParser implements IParser {
 		if (['includes', 'in'].includes(dec)) {
 			return `${ctx.tag.payload!.includes(ctx.tag.parameter!)}`;
 		}
+
 		if (dec === 'contain') {
 			const index = ctx.tag.payload!.split(/\s+/).includes(ctx.tag.parameter!);
 			return `${index}`;
 		}
+
 		if (dec === 'index') {
 			const index = ctx.tag.payload!.split(/\s+/).indexOf(ctx.tag.parameter!);
 			return `${index}`;
 		}
+
 		return `${ctx.tag.payload!.indexOf(ctx.tag.parameter!)}`;
 	}
 }

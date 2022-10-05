@@ -1,16 +1,9 @@
 {
 	"root": true,
-	"extends": "@sapphire",
-	"ignorePatterns": ["**/dist/*"],
-	"parser": "@typescript-eslint/parser",
+	"extends": ["mahir/common", "mahir/node", "mahir/typescript", "mahir/tsdoc", "mahir/prettier"],
+	"ignorePatterns": ["**/dist/*", "**/coverage/*"],
 	"rules": {
-		"@typescript-eslint/no-base-to-string": "off",
-		"@typescript-eslint/await-thenable": "error",
-		"@typescript-eslint/no-unsafe-member-access": "error",
-		"@typescript-eslint/no-unsafe-argument": "error",
-		"@typescript-eslint/no-unsafe-assignment": "error",
-		"@typescript-eslint/no-unnecessary-condition": "error",
-		"@typescript-eslint/no-unnecessary-type-assertion": "error",
-		"no-console": "error"
+		"no-console": "error",
+		"import/extensions": "off"
 	}
 }

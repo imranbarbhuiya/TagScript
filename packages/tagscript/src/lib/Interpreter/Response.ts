@@ -8,14 +8,17 @@ export class Response {
 	 * The raw string that was used to generate this response.
 	 */
 	public raw!: string;
+
 	/**
 	 * The cleaned message with all tags interpreted.
 	 */
 	public body: string | null;
+
 	/**
 	 * An object with all the variables that parsers such as the `LooseVarsParser` can access.
 	 */
 	public variables: { [key: string]: ITransformer };
+
 	/**
 	 * An object containing information on a completed TagScript process.
 	 * If you are creating a parser where you need to store info in actions,
@@ -31,6 +34,7 @@ export class Response {
 	 * ```
 	 */
 	public actions: IActions;
+
 	public keyValues: IKeyValues;
 
 	public constructor(variables: { [key: string]: ITransformer } = {}, keyValues: IKeyValues = {}) {

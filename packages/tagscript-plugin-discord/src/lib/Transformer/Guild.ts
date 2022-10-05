@@ -1,10 +1,11 @@
-import type { Guild } from 'discord.js';
 import { BaseTransformer } from './Base';
+
+import type { Guild } from 'discord.js';
 
 /**
  * Transformer for Discord [Guild](https://discord.js.org/#/docs/discord.js/stable/class/Guild)
  *
- * @properties
+ * Properties:
  * ```yaml
  * id: Gives guild id.
  * name: Gives guild name.
@@ -27,14 +28,17 @@ import { BaseTransformer } from './Base';
  * channelIds: Gives guild channels ids.
  * channelNames: Gives guild channels names.
  * channelCount: Gives guild channels count.
- * emojiCount: Gives guild emojis count. (These values depends on cache so it might be inaccurate)
- * stickerCount: Gives guild stickers count. (These values depends on cache so it might be inaccurate)
- * bots: Gives guild bots count. (These values depends on cache so it might be inaccurate)
- * humans: Gives guild humans count. (These values depends on cache so it might be inaccurate)
+ * emojiCount: Gives guild emojis count.
+ * stickerCount: Gives guild stickers count.
+ * bots: Gives guild bots count.
+ * humans: Gives guild humans count.
  * afkTimeout: Gives guild afk timeout.
  * afkChannel: Gives guild afk channel.
  * verificationLevel: Gives guild verification level.
  * ```
+ *
+ * @remarks
+ * Some properties like `emojiCount`, `stickerCount`, `bots`, `humans` depends on cache so it might be inaccurate.
  */
 export class GuildTransformer extends BaseTransformer<Guild> {
 	protected override updateSafeValues() {
@@ -59,8 +63,8 @@ export class GuildTransformer extends BaseTransformer<Guild> {
 		this.safeValues.channelCount = this.base.channels.cache.size;
 		this.safeValues.emojiCount = this.base.emojis.cache.size;
 		this.safeValues.stickerCount = this.base.stickers.cache.size;
-		this.safeValues.bots = this.base.members.cache.filter((m) => m.user.bot).size;
-		this.safeValues.humans = this.base.members.cache.filter((m) => !m.user.bot).size;
+		this.safeValues.bots = this.base.members.cache.filter((member) => member.user.bot).size;
+		this.safeValues.humans = this.base.members.cache.filter((member) => !member.user.bot).size;
 		this.safeValues.afkTimeout = this.base.afkTimeout;
 		this.safeValues.afkChannel = `${this.base.afkChannel}`;
 		this.safeValues.verificationLevel = this.base.verificationLevel;

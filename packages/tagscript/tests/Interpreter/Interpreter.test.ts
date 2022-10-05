@@ -1,4 +1,5 @@
 import { Interpreter, Response, IfStatementParser, StringTransformer, DefineParser, StrictVarsParser } from '../../src';
+
 const ts = new Interpreter(new IfStatementParser(), new DefineParser(), new StrictVarsParser());
 describe('Interpreter', () => {
 	test.each(['Parbez', '{test}', '{hi(hello)}', '{a.b}'])('GIVEN a string THEN returns the string', async (input) => {

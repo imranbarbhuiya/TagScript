@@ -1,15 +1,17 @@
+import { BaseParser } from './Base';
+
+import { parseIf } from '../Utils/Util';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
-import { BaseParser } from './Base';
-import { parseIf } from '../Utils/Util';
 
 /**
  * The stop tag stops tag processing if the given parameter is true.
  * If a message is passed to the payload it will return that message.
  *
- * @alias halt, stop
+ * Aliases: halt, stop
  *
- * @usage
+ * @example
  * ```yaml
  * {stop({args}!=10):You didn't provided valid input.}
  * ```

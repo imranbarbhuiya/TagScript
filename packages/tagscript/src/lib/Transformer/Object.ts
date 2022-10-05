@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-base-to-string */
 import type { ITransformer } from '../interfaces';
 import type { Lexer } from '../Interpreter';
 
@@ -5,7 +6,7 @@ import type { Lexer } from '../Interpreter';
  * Object transformer safely transforms an object by removing all the methods (except toString), private properties and based on the given parameters.
  */
 export class SafeObjectTransformer implements ITransformer {
-	private obj: Record<string, unknown>;
+	private readonly obj: Record<string, unknown>;
 
 	public constructor(obj: Record<string, unknown> | string) {
 		this.obj = this.makeObject(obj);

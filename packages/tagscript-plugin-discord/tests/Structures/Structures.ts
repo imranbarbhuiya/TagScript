@@ -6,17 +6,12 @@ import {
 	Role,
 	TextChannel,
 	User,
-	APIUser,
-	APIRole,
-	APIGuild,
-	APIGuildMember,
-	APIChannel,
-	APIApplicationCommandInteraction,
 	InteractionType,
 	ApplicationCommandType,
-	ApplicationCommandOptionType,
-	APIAttachment
+	ApplicationCommandOptionType
 } from 'discord.js';
+
+import type { APIUser, APIRole, APIGuild, APIGuildMember, APIChannel, APIApplicationCommandInteraction, APIAttachment } from 'discord.js';
 
 export const client = new Client({ intents: [] });
 
@@ -109,7 +104,7 @@ const attachment: APIAttachment = {
 	id: '933368398996447291',
 	filename: 'test.png',
 	proxy_url: 'https://media.discordapp.net/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
-	size: 4096,
+	size: 4_096,
 	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp'
 };
 

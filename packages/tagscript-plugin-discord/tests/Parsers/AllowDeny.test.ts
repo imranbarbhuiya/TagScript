@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { RequiredParser, DenyParser } from '../../src';
 
 describe('RequiredParser', () => {

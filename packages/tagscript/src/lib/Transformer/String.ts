@@ -1,6 +1,7 @@
+import { escapeContent } from '../Utils/Util';
+
 import type { ITransformer } from '../interfaces';
 import type { Lexer } from '../Interpreter';
-import { escapeContent } from '../Utils/Util';
 
 /**
  * String transformer transforms a string based on the given parameters.
@@ -14,13 +15,14 @@ import { escapeContent } from '../Utils/Util';
  * Use a `+` after the index to reference the index value and every element after it.
  */
 export class StringTransformer implements ITransformer {
-	private str: string;
-	private escape: boolean;
+	private readonly str: string;
+
+	private readonly escape: boolean;
 
 	/**
 	 *
-	 * @param str The string to transform.
-	 * @param escape If true, the string will be escaped.
+	 * @param str - The string to transform.
+	 * @param escape - If true, the string will be escaped.
 	 */
 	public constructor(str: string, escape = false) {
 		this.str = str;
@@ -34,12 +36,12 @@ export class StringTransformer implements ITransformer {
 	private handleContext(tag: Lexer): string {
 		if (tag.parameter === null) return this.str;
 		if (!tag.parameter.includes('+')) {
-			const index = parseInt(tag.parameter, 10) - 1;
+			const index = Number.parseInt(tag.parameter, 10) - 1;
 			const splitter = tag.payload ?? / +/;
 			return this.str.split(splitter)[index] ?? this.str;
 		}
 
-		const index = parseInt(tag.parameter.replace('+', ''), 10) - 1;
+		const index = Number.parseInt(tag.parameter.replace('+', ''), 10) - 1;
 		const splitter = tag.payload ?? / +/;
 		if (tag.parameter.startsWith('+')) {
 			return this.str

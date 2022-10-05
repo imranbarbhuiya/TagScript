@@ -8,13 +8,15 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  *  formatted embed JSON or manually inputting
  *  the accepted embed properties.
  *
+ * @remarks
+ * Embed can be used either by using a json string or by using the embed properties.
+ * @example
  *  Using JSON
- *  @usage
- *  ```yaml
+ * ```yaml
  * { embed: json }
- *  ```
- *  @example
- *  ```yaml
+ * ```
+ * @example
+ * ```yaml
  * { embed: { "title": "Hello!", "description": "This is a test embed." } }
  * { embed: {
  *     "title": "Here's a random duck!",
@@ -22,13 +24,11 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  *     "color": 15194415
  * } }
  * ```
- *
+ *  @example
  *  Using properties
- *  @usage
  * ```yaml
  * { embed(property): value }
  * ```
- *
  * @example
  * ```yaml
  * { embed(color): 0x37b2cb }
@@ -36,8 +36,8 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  * { embed(description): Follow these rules to ensure a good experience in our server! }
  * { embed(field): Rule 1|Respect everyone you speak to.|false }
  * ```
- *
- * @see The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
+ * @remarks
+ * The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
  */
 export class EmbedParser extends BaseParser implements IParser {
 	public constructor() {
@@ -62,24 +62,27 @@ export class EmbedParser extends BaseParser implements IParser {
 				]
 			});
 		}
+
 		return this.returnEmbed(ctx, { [ctx.tag.parameter]: ctx.tag.payload });
 	}
 
 	/**
 	 * This method is protected so that anyone can extend the embed json parser to allow urls
-	 * @param payload
+	 *
+	 * @param payload - The payload to parse
 	 * @returns
 	 */
-	protected parseEmbedJSON(payload: string): Awaitable<EmbedData | APIEmbed> {
+	protected parseEmbedJSON(payload: string): Awaitable<APIEmbed | EmbedData> {
 		return JSON.parse(payload);
 	}
 
-	private returnEmbed(ctx: Context, data: EmbedData | APIEmbed): string {
+	private returnEmbed(ctx: Context, data: APIEmbed | EmbedData): string {
 		ctx.response.actions.embed ??= {} as EmbedData;
 		const { fields, ...rest } = data;
 		if (fields) {
 			ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
 		}
+
 		// @ts-expect-error - The return type should be unknown
 		ctx.response.actions.embed = { ...ctx.response.actions.embed, ...rest };
 		return '';

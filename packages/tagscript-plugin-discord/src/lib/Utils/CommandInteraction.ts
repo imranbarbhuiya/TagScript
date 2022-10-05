@@ -1,18 +1,13 @@
-import {
-	ApplicationCommandOptionType,
-	BaseChannel,
-	CommandInteractionOption,
-	CommandInteractionOptionResolver,
-	GuildMember,
-	Role,
-	User
-} from 'discord.js';
-import { IntegerTransformer, ITransformer, StringTransformer } from 'tagscript';
+import { ApplicationCommandOptionType, BaseChannel, GuildMember, Role, User } from 'discord.js';
+import { IntegerTransformer, StringTransformer } from 'tagscript';
 
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
+import type { CommandInteractionOption, CommandInteractionOptionResolver } from 'discord.js';
+import type { ITransformer } from 'tagscript';
+
 export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
-	options.forEach((data) => {
+	for (const data of options) {
 		switch (data.type) {
 			case ApplicationCommandOptionType.SubcommandGroup:
 				transformers.subCommandGroup = new StringTransformer(data.value as string);
@@ -55,22 +50,22 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						  new StringTransformer(data.value as string);
 				break;
 			case ApplicationCommandOptionType.Role:
-				data.role instanceof Role && (transformers[prefix + data.name] = new RoleTransformer(data.role));
+				if (data.role instanceof Role) transformers[prefix + data.name] = new RoleTransformer(data.role);
 				break;
 			case ApplicationCommandOptionType.Channel:
-				data.channel instanceof BaseChannel && (transformers[prefix + data.name] = new ChannelTransformer(data.channel));
+				if (data.channel instanceof BaseChannel) transformers[prefix + data.name] = new ChannelTransformer(data.channel);
 				break;
 			case ApplicationCommandOptionType.Attachment:
 				transformers[prefix + data.name] = new StringTransformer(data.attachment!.url);
 		}
-	});
+	}
 };
 
 /**
  *
  * Resolves [CommandInteractionOptionResolver](https://discord.js.org/#/docs/discord.js/stable/class/CommandInteractionOptionResolver) options to transformers.
  *
- * @usage
+ * @example
  * ```typescript
  * client.on('interactionCreate', async interaction => {
  *  if (!interaction.isCommand()) return;
@@ -79,10 +74,10 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
  *   const result = await ts.run(str, resolveCommandOptions(interaction.options));
  *   await interaction.reply(result.body);
  *  }
-});
+ * });
  * ```
  */
-export const resolveCommandOptions = (options: Omit<CommandInteractionOptionResolver, 'getMessage' | 'getFocused'>) => {
+export const resolveCommandOptions = (options: Omit<CommandInteractionOptionResolver, 'getFocused' | 'getMessage'>) => {
 	const optionData = options.data;
 
 	const transformers: Record<string, ITransformer> = {};

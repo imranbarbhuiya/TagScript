@@ -1,4 +1,5 @@
 import { Interpreter } from 'tagscript';
+
 import { SilentParser } from '../../src';
 
 describe('SilentParser', () => {

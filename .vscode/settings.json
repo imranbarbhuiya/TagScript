@@ -5,5 +5,8 @@
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"cSpell.words": ["cooldown", "tagscript"]
+	"cSpell.words": ["cooldown", "tagscript"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	}
 }
