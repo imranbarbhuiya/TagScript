@@ -8,10 +8,15 @@ import {
 	User,
 	InteractionType,
 	ApplicationCommandType,
-	ApplicationCommandOptionType
+	ApplicationCommandOptionType,
+	type APIUser,
+	type APIRole,
+	type APIGuild,
+	type APIGuildMember,
+	type APIChannel,
+	type APIApplicationCommandInteraction,
+	type APIAttachment
 } from 'discord.js';
-
-import type { APIUser, APIRole, APIGuild, APIGuildMember, APIChannel, APIApplicationCommandInteraction, APIAttachment } from 'discord.js';
 
 export const client = new Client({ intents: [] });
 

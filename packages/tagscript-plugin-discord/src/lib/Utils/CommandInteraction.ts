@@ -1,10 +1,15 @@
-import { ApplicationCommandOptionType, BaseChannel, GuildMember, Role, User } from 'discord.js';
-import { IntegerTransformer, StringTransformer } from 'tagscript';
+import {
+	ApplicationCommandOptionType,
+	BaseChannel,
+	GuildMember,
+	Role,
+	User,
+	type CommandInteractionOption,
+	type CommandInteractionOptionResolver
+} from 'discord.js';
+import { IntegerTransformer, StringTransformer, type ITransformer } from 'tagscript';
 
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
-
-import type { CommandInteractionOption, CommandInteractionOptionResolver } from 'discord.js';
-import type { ITransformer } from 'tagscript';
 
 export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
 	for (const data of options) {
