@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript@1.2.11](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.10...tagscript@1.2.11) - (2022-10-05)
+
+## 📝 Documentation
+
+- Add ShoXcy as a contributor for doc (#111) ([c88b338](https://github.com/imranbarbhuiya/tagscript/commit/c88b33898faef5816d5e8192c140b8d8efef814b))
+- Fix changelog ([96dd604](https://github.com/imranbarbhuiya/tagscript/commit/96dd604f2c9e2f1fd2409e26f71848f8a9b829cb))
+
+## 🪞 Styling
+
+- Setup lint again (#114) ([ea7a209](https://github.com/imranbarbhuiya/tagscript/commit/ea7a20956408b006096d585447ec2630cc4285cb))
+
 # [tagscript@1.2.9](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.8...tagscript@1.2.9) - (2022-08-21)
 
 ## 📝 Documentation
