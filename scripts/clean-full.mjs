@@ -1,4 +1,5 @@
-import { rm } from 'fs/promises';
+import { rm } from 'node:fs/promises';
+import { URL } from 'node:url';
 
 const rootDir = new URL('../', import.meta.url);
 const packagesDir = new URL('packages/', rootDir);

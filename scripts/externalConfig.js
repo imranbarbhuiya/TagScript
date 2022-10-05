@@ -1,3 +1,4 @@
+/* eslint-disable tsdoc/syntax */
 const packageNames = ['discord.js', 'discord-api-types'];
 
 /**

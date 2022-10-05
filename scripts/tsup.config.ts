@@ -1,4 +1,6 @@
 import { relative, resolve as resolveDir } from 'node:path';
+import process from 'node:process';
+
 import { defineConfig, type Options } from 'tsup';
 
 export const createTsupConfig = (options: Options = {}) =>

@@ -12,7 +12,7 @@
 		"clean:full": "node scripts/clean-full.mjs",
 		"docs": "typedoc",
 		"format": "prettier --cache --write .",
-		"lint": "eslint packages --ext mjs,js,ts --fix --cache",
+		"lint": "eslint . --ext mjs,js,ts --fix --cache",
 		"update": "yarn upgrade-interactive",
 		"postinstall": "husky install .github/husky",
 		"test": "turbo run test",
