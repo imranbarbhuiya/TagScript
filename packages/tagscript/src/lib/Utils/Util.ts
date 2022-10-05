@@ -10,7 +10,7 @@ export const escapeRegex = /(?<!\\)(?<block>[():{|}])/g;
 
 /**
  *
- * Similar to {@link Array#filter} but works with async filter functions.
+ * Identical to {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter | Array.filter()} but works with async filter functions.
  *
  * @param values - The array of values
  * @param fn - The filter function

@@ -8,8 +8,8 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  *  formatted embed JSON or manually inputting
  *  the accepted embed properties.
  *
- * @remarks
  * Embed can be used either by using a json string or by using the embed properties.
+ *
  * @example
  *  Using JSON
  * ```yaml
