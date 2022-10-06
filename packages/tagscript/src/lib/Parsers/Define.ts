@@ -6,15 +6,16 @@ import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 
 /**
- *  Variables are useful for choosing a value and referencing it later in a tag.
- *  Variables can be referenced using brackets as any other tag.
+ * Variables are useful for choosing a value and referencing it later in a tag.
+ * It can be referenced using brackets as any other tag.
  *
- *  @example
+ * Aliases:  assign, let, var
+ *
+ * @example
  * ```yaml
  * {=(name):value}
  * ```
- * Aliases:  assign, let, var
- *  @example
+ * @example
  * ```yaml
  * {=(prefix):!}
  * The prefix here is `{prefix}`.
