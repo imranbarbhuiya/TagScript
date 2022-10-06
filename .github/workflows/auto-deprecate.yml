@@ -1,27 +1,27 @@
 name: NPM Auto Deprecate
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+    schedule:
+        - cron: '0 0 * * *'
 
 jobs:
-  auto-deprecate:
-    name: NPM Auto Deprecate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
-      - name: Use Node.js v16
-        uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
-        with:
-          node-version: 16
-          cache: yarn
-          registry-url: https://registry.npmjs.org/
-      - name: Install Dependencies
-        run: yarn --immutable
-      - name: Build Dependencies
-        run: yarn turbo run build --filter=tagscript --no-deps
-      - name: Deprecate versions
-        run: yarn npm-deprecate
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    auto-deprecate:
+        name: NPM Auto Deprecate
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Project
+              uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+            - name: Use Node.js v18
+              uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
+              with:
+                  node-version: 18
+                  cache: yarn
+                  registry-url: https://registry.npmjs.org/
+            - name: Install Dependencies
+              run: yarn --immutable
+            - name: Build Dependencies
+              run: yarn turbo run build --filter=tagscript --no-deps
+            - name: Deprecate versions
+              run: yarn npm-deprecate
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
