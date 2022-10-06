@@ -1,65 +1,74 @@
 {
-  "projectName": "TagScript",
-  "projectOwner": "imranbarbhuiya",
-  "repoType": "github",
-  "repoHost": "https://github.com",
-  "files": [
-    "packages/tagscript/README.md",
-    "packages/tagscript-plugin-discord/README.md",
-    "README.md"
-  ],
-  "imageSize": 100,
-  "commit": true,
-  "commitConvention": "angular",
-  "contributors": [
-    {
-      "login": "imranbarbhuiya",
-      "name": "Parbez",
-      "avatar_url": "https://avatars.githubusercontent.com/u/74945038?v=4",
-      "profile": "https://github.com/imranbarbhuiya",
-      "contributions": [
-        "code",
-        "maintenance",
-        "ideas"
-      ]
-    },
-    {
-      "login": "renovate-bot",
-      "name": "WhiteSource Renovate",
-      "avatar_url": "https://avatars.githubusercontent.com/u/25180681?v=4",
-      "profile": "https://renovate.whitesourcesoftware.com",
-      "contributions": [
-        "maintenance"
-      ]
-    },
-    {
-      "login": "favna",
-      "name": "Jeroen Claassens",
-      "avatar_url": "https://avatars.githubusercontent.com/u/4019718?v=4",
-      "profile": "https://favware.tech",
-      "contributions": [
-        "maintenance"
-      ]
-    },
-    {
-      "login": "UndiedGamer",
-      "name": "UndiedGamer",
-      "avatar_url": "https://avatars.githubusercontent.com/u/84702365?v=4",
-      "profile": "https://github.com/UndiedGamer",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "ShoXcy",
-      "name": "Sourav",
-      "avatar_url": "https://avatars.githubusercontent.com/u/20400149?v=4",
-      "profile": "http://discord.gg/sofi",
-      "contributions": [
-        "doc"
-      ]
-    }
-  ],
-  "contributorsPerLine": 7,
-  "skipCi": true
+	"projectName": "TagScript",
+	"projectOwner": "imranbarbhuiya",
+	"repoType": "github",
+	"repoHost": "https://github.com",
+	"files": [
+		"packages/tagscript/README.md",
+		"packages/tagscript-plugin-discord/README.md",
+		"README.md"
+	],
+	"imageSize": 100,
+	"commit": true,
+	"commitConvention": "angular",
+	"contributors": [
+		{
+			"login": "imranbarbhuiya",
+			"name": "Parbez",
+			"avatar_url": "https://avatars.githubusercontent.com/u/74945038?v=4",
+			"profile": "https://github.com/imranbarbhuiya",
+			"contributions": [
+				"code",
+				"maintenance",
+				"ideas"
+			]
+		},
+		{
+			"login": "renovate-bot",
+			"name": "WhiteSource Renovate",
+			"avatar_url": "https://avatars.githubusercontent.com/u/25180681?v=4",
+			"profile": "https://renovate.whitesourcesoftware.com",
+			"contributions": [
+				"maintenance"
+			]
+		},
+		{
+			"login": "favna",
+			"name": "Jeroen Claassens",
+			"avatar_url": "https://avatars.githubusercontent.com/u/4019718?v=4",
+			"profile": "https://favware.tech",
+			"contributions": [
+				"maintenance"
+			]
+		},
+		{
+			"login": "UndiedGamer",
+			"name": "UndiedGamer",
+			"avatar_url": "https://avatars.githubusercontent.com/u/84702365?v=4",
+			"profile": "https://github.com/UndiedGamer",
+			"contributions": [
+				"code"
+			]
+		},
+		{
+			"login": "ShoXcy",
+			"name": "Sourav",
+			"avatar_url": "https://avatars.githubusercontent.com/u/20400149?v=4",
+			"profile": "http://discord.gg/sofi",
+			"contributions": [
+				"doc"
+			]
+		},
+		{
+			"login": "allcontributors[bot]",
+			"name": "allcontributors[bot]",
+			"avatar_url": "https://avatars.githubusercontent.com/in/23186?v=4",
+			"profile": "https://github.com/apps/allcontributors",
+			"contributions": [
+				"doc"
+			]
+		}
+	],
+	"contributorsPerLine": 7,
+	"skipCi": true
 }

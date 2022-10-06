@@ -67,6 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center"><a href="https://favware.tech"><img src="https://avatars.githubusercontent.com/u/4019718?v=4?s=100" width="100px;" alt="Jeroen Claassens"/><br /><sub><b>Jeroen Claassens</b></sub></a><br /><a href="#maintenance-favna" title="Maintenance">🚧</a></td>
       <td align="center"><a href="https://github.com/UndiedGamer"><img src="https://avatars.githubusercontent.com/u/84702365?v=4?s=100" width="100px;" alt="UndiedGamer"/><br /><sub><b>UndiedGamer</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=UndiedGamer" title="Code">💻</a></td>
       <td align="center"><a href="http://discord.gg/sofi"><img src="https://avatars.githubusercontent.com/u/20400149?v=4?s=100" width="100px;" alt="Sourav"/><br /><sub><b>Sourav</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=ShoXcy" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/apps/allcontributors"><img src="https://avatars.githubusercontent.com/in/23186?v=4?s=100" width="100px;" alt="allcontributors[bot]"/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="https://github.com/imranbarbhuiya/TagScript/commits?author=allcontributors[bot]" title="Documentation">📖</a></td>
     </tr>
   </tbody>
   <tfoot>
