@@ -13,6 +13,29 @@ import type { Lexer } from '../Interpreter';
  * Use a `+` before the index to reference every element up to and including the index value.
  *
  * Use a `+` after the index to reference the index value and every element after it.
+ *
+ *
+ * @example
+ * ```ts
+ * import { Interpreter, StringTransformer } from 'tagscript';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('{args}', { args: new StringTransformer('Hi, How are you?') });
+ * // Hi, How are you?
+ *
+ * await ts.run('{args(0)}', { args: new StringTransformer('Hi, How are you?') });
+ * // Hi,
+ *
+ * await ts.run('{args(1)}', { args: new StringTransformer('Hi, How are you?') });
+ * // How
+ *
+ * await ts.run('{args(2+)}', { args: new StringTransformer('Hi, How are you?') });
+ * // How are you?
+ *
+ * await ts.run('{args(+2)}', { args: new StringTransformer('Hi Vox, How are you?') });
+ * // Hi Vox,
+ * ```
  */
 export class StringTransformer implements ITransformer {
 	private readonly str: string;

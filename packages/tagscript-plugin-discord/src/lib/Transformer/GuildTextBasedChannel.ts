@@ -22,6 +22,17 @@ import type { GuildChannel } from '../interfaces';
  * createdTimestamp: Gives channel create date in ms.
  * slowmode: Gives channel slowmode.
  * ```
+ *
+ * @example
+ * ```ts
+ * import { Interpreter } from 'tagscript';
+ * import { ChannelTransformer } from 'tagscript-plugin-discord';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('channel: {channel}', { channel: new ChannelTransformer(message.channel) });
+ * // channel: <#870354581115256852>
+ * ```
  */
 export class ChannelTransformer extends BaseTransformer<GuildChannel> {
 	protected override updateSafeValues() {

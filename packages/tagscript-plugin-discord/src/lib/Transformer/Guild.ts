@@ -37,6 +37,16 @@ import type { Guild } from 'discord.js';
  * verificationLevel: Gives guild verification level.
  * ```
  *
+ * @example
+ * ```ts
+ * import { Interpreter } from 'tagscript';
+ * import { GuildTransformer } from 'tagscript-plugin-discord';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('server name: {guild.name}', { guild: new GuildTransformer(interaction.guild) });
+ * // server name: My Server
+ * ```
  * @remarks
  * Some properties like `emojiCount`, `stickerCount`, `bots`, `humans` depends on cache so it might be inaccurate.
  */

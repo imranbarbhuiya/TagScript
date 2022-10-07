@@ -19,6 +19,17 @@ import type { Role } from 'discord.js';
  * createdTimestamp: Gives role create date in ms.
  * memberCount: Gives role member count.
  * ```
+ *
+ * @example
+ * ```ts
+ * import { Interpreter } from 'tagscript';
+ * import { RoleTransformer } from 'tagscript-plugin-discord';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('Ping {role}', { role: new RoleTransformer(Role) });
+ * // Ping <@&868430685231271966>
+ * ```
  */
 export class RoleTransformer extends BaseTransformer<Role> {
 	protected override updateSafeValues() {

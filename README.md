@@ -33,6 +33,38 @@ Read Full Documentation [here](https://tagscript.js.org/).
 -   Simple, expressive and safe template engine.
 -   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
 
+## Usage
+
+---
+
+**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
+
+```ts
+import { Interpreter } from 'tagscript';
+```
+
+is the same as
+
+```js
+const { Interpreter } = require('tagscript');
+```
+
+---
+
+```ts
+import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+
+const result = await ts.run(
+	`
+    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
+    I pick {if({5050:.}!=):heads|tails}
+    `
+); // Parbez attempts to pick the lock!, I pick heads
+```
+
+For more usage, check out the full [documentation](https://tagscript.js.org/modules/tagscript.html).
+
 ## Buy me some doughnuts
 
 If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!

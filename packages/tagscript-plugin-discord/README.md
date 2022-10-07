@@ -42,7 +42,8 @@ import { MemberTransformer } from 'tagscript-plugin-discord';
 
 const ts = new Interpreter();
 
-await ts.run(str, { member: new MemberTransformer(GuildMember) });
+await ts.run('Hi {member.username}', { member: new MemberTransformer(GuildMember) });
+// Hi P<z,x>
 ```
 
 ## Buy me some doughnuts

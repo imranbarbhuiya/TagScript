@@ -18,6 +18,17 @@ import type { User } from 'discord.js';
  * createdTimestamp: Gives user's account created date in ms
  * bot: Gives true if the user is a bot else false.
  * ```
+ *
+ * @example
+ * ```ts
+ * import { Interpreter } from 'tagscript';
+ * import { UserTransformer } from 'tagscript-plugin-discord';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('Hi {user}', { user: new UserTransformer(message.author) });
+ * // Hi <@758880890159235083>
+ * ```
  */
 export class UserTransformer extends BaseTransformer<User> {
 	protected override updateSafeValues() {

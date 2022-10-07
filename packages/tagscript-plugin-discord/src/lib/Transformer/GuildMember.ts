@@ -30,6 +30,17 @@ import type { GuildMember } from 'discord.js';
  * timeoutUntil: Gives member's timeout until date.
  * timeoutUntilTimestamp: Gives member's timeout until date in ms.
  * ```
+ *
+ * @example
+ * ```ts
+ * import { Interpreter } from 'tagscript';
+ * import { MemberTransformer } from 'tagscript-plugin-discord';
+ *
+ * const ts = new Interpreter();
+ *
+ * await ts.run('Hi {member}', { member: new MemberTransformer(GuildMember) });
+ * // Hi <@758880890159235083>
+ * ```
  */
 export class MemberTransformer extends BaseTransformer<GuildMember> {
 	protected override updateSafeValues() {

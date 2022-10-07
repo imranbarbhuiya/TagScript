@@ -87,7 +87,8 @@ Your own transformer should implement [ITransformer](https://tagscript.js.org/in
 import { Interpreter, StringTransformer } from 'tagscript';
 const ts = new Interpreter();
 
-await ts.run(str, { args: new StringTransformer(args) });
+await ts.run('Hi {user}', { user: new StringTransformer(args) });
+// Hi Parbez
 ```
 
 ## Buy me some doughnuts
