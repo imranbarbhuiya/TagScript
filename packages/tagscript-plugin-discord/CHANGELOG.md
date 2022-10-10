@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript-plugin-discord@2.0.5](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.4...tagscript-plugin-discord@2.0.5) - (2022-10-10)
+
+## 📝 Documentation
+
+- Add some examples ([453668b](https://github.com/imranbarbhuiya/tagscript/commit/453668b0c5cb86875ed2906085bdbbe898f59cdc))
+- Fix examples ([89b6c49](https://github.com/imranbarbhuiya/tagscript/commit/89b6c49d6aac810d3856fa42c81394093ec6d429))
+- Add some examples ([14a2cd2](https://github.com/imranbarbhuiya/tagscript/commit/14a2cd2ba51b9807d7a7f5a1fca2fa12e654f9c5))
+- Add @allcontributors[bot] as a contributor ([23bb4ef](https://github.com/imranbarbhuiya/tagscript/commit/23bb4ef97a9f0feaf43b764e871c43c2a281242f))
+- Fix docs ([9ea716d](https://github.com/imranbarbhuiya/tagscript/commit/9ea716d2b663ccec661c20010ad19dff0cc8329a))
+
 # [tagscript-plugin-discord@2.0.4](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.3...tagscript-plugin-discord@2.0.4) - (2022-10-05)
 
 ## 📝 Documentation
