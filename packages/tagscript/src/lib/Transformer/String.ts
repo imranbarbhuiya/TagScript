@@ -14,12 +14,13 @@ import type { Lexer } from '../Interpreter';
  *
  * Use a `+` after the index to reference the index value and every element after it.
  *
- *
+ * @remarks
+ * You need to use `StrictVarsParser` to use this transformer.
  * @example
  * ```ts
- * import { Interpreter, StringTransformer } from 'tagscript';
+ * import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('{args}', { args: new StringTransformer('Hi, How are you?') });
  * // Hi, How are you?

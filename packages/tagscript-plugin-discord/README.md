@@ -37,10 +37,10 @@ npm install tagscript-plugin-discord tagscript discord.js
 ## Usage
 
 ```ts
-import { Interpreter } from 'tagscript';
+import { Interpreter, StrictVarsParser } from 'tagscript';
 import { MemberTransformer } from 'tagscript-plugin-discord';
 
-const ts = new Interpreter();
+const ts = new Interpreter(new StrictVarsParser());
 
 await ts.run('Hi {member.username}', { member: new MemberTransformer(GuildMember) });
 // Hi P<z,x>

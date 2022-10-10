@@ -84,8 +84,8 @@ Transformers are used to transform a value based on the tag at runtime. You can 
 Your own transformer should implement [ITransformer](https://tagscript.js.org/interfaces/ITransformer.html) interface.
 
 ```ts
-import { Interpreter, StringTransformer } from 'tagscript';
-const ts = new Interpreter();
+import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
+const ts = new Interpreter(new StrictVarsParser());
 
 await ts.run('Hi {user}', { user: new StringTransformer(args) });
 // Hi Parbez
