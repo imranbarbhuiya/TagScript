@@ -23,12 +23,14 @@ import type { GuildChannel } from '../interfaces';
  * slowmode: Gives channel slowmode.
  * ```
  *
+ * @remarks
+ * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
  * ```ts
- * import { Interpreter } from 'tagscript';
+ * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { ChannelTransformer } from 'tagscript-plugin-discord';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('channel: {channel}', { channel: new ChannelTransformer(message.channel) });
  * // channel: <#870354581115256852>

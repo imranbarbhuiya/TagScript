@@ -3,7 +3,7 @@ import { BaseTransformer } from './Base';
 import type { User } from 'discord.js';
 
 /**
- * Transformer for [User](https://discord.js.org/#/docs/discord.js/stable/class/User).
+ * Transformer for  Discord {@link User}.
  *
  * Properties:
  * ```yaml
@@ -19,12 +19,14 @@ import type { User } from 'discord.js';
  * bot: Gives true if the user is a bot else false.
  * ```
  *
+ * @remarks
+ * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
  * ```ts
- * import { Interpreter } from 'tagscript';
+ * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { UserTransformer } from 'tagscript-plugin-discord';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('Hi {user}', { user: new UserTransformer(message.author) });
  * // Hi <@758880890159235083>

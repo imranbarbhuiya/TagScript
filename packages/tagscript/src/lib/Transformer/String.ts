@@ -15,7 +15,7 @@ import type { Lexer } from '../Interpreter';
  * Use a `+` after the index to reference the index value and every element after it.
  *
  * @remarks
- * You need to use `StrictVarsParser` to use this transformer.
+ * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
  * ```ts
  * import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';

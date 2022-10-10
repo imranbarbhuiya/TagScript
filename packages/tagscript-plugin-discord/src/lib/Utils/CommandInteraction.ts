@@ -42,7 +42,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						? new RoleTransformer(data.role)
 						: data.user instanceof User
 						? new UserTransformer(data.user)
-						: // added only for test. Will be removed after rewriting these tests
+						: // FIXME: added only for test. Will be removed after rewriting these tests
 						  new StringTransformer(data.value as string);
 				break;
 			case ApplicationCommandOptionType.User:
@@ -51,7 +51,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 						? new MemberTransformer(data.member)
 						: data.user
 						? new UserTransformer(data.user)
-						: // added only for test. Will be removed after rewriting these tests
+						: // FIXME: added only for test. Will be removed after rewriting these tests
 						  new StringTransformer(data.value as string);
 				break;
 			case ApplicationCommandOptionType.Role:
@@ -68,7 +68,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 
 /**
  *
- * Resolves [CommandInteractionOptionResolver](https://discord.js.org/#/docs/discord.js/stable/class/CommandInteractionOptionResolver) options to transformers.
+ * Resolves {@link CommandInteractionOptionResolver} options to transformers.
  *
  * @example
  * ```typescript

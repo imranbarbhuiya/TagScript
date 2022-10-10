@@ -31,12 +31,14 @@ import type { GuildMember } from 'discord.js';
  * timeoutUntilTimestamp: Gives member's timeout until date in ms.
  * ```
  *
+ * @remarks
+ * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
  * ```ts
- * import { Interpreter } from 'tagscript';
+ * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { MemberTransformer } from 'tagscript-plugin-discord';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('Hi {member}', { member: new MemberTransformer(GuildMember) });
  * // Hi <@758880890159235083>

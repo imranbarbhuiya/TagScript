@@ -39,16 +39,17 @@ import type { Guild } from 'discord.js';
  *
  * @example
  * ```ts
- * import { Interpreter } from 'tagscript';
+ * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { GuildTransformer } from 'tagscript-plugin-discord';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('server name: {guild.name}', { guild: new GuildTransformer(interaction.guild) });
  * // server name: My Server
  * ```
  * @remarks
  * Some properties like `emojiCount`, `stickerCount`, `bots`, `humans` depends on cache so it might be inaccurate.
+ * You need to use `StrictVarsParser` parser to use this transformer.
  */
 export class GuildTransformer extends BaseTransformer<Guild> {
 	protected override updateSafeValues() {

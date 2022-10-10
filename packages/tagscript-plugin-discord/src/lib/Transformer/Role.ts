@@ -3,7 +3,7 @@ import { BaseTransformer } from './Base';
 import type { Role } from 'discord.js';
 
 /**
- * Transformer for Discord [Role](https://discord.js.org/#/docs/discord.js/stable/class/Role).
+ * Transformer for Discord {@link Role}.
  *
  * Properties:
  * ```yaml
@@ -20,12 +20,14 @@ import type { Role } from 'discord.js';
  * memberCount: Gives role member count.
  * ```
  *
+ * @remarks
+ * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
  * ```ts
- * import { Interpreter } from 'tagscript';
+ * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { RoleTransformer } from 'tagscript-plugin-discord';
  *
- * const ts = new Interpreter();
+ * const ts = new Interpreter(new StrictVarsParser());
  *
  * await ts.run('Ping {role}', { role: new RoleTransformer(Role) });
  * // Ping <@&868430685231271966>
