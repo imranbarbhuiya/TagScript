@@ -24,39 +24,6 @@ All notable changes to this project will be documented in this file.
 
 - Setup lint again (#114) ([ea7a209](https://github.com/imranbarbhuiya/tagscript/commit/ea7a20956408b006096d585447ec2630cc4285cb))
 
-# [tagscript@1.2.12](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.11...tagscript@1.2.12) - (2022-10-10)
-
-## 📝 Documentation
-
-- Add some examples ([453668b](https://github.com/imranbarbhuiya/tagscript/commit/453668b0c5cb86875ed2906085bdbbe898f59cdc))
-- Fix examples ([89b6c49](https://github.com/imranbarbhuiya/tagscript/commit/89b6c49d6aac810d3856fa42c81394093ec6d429))
-- Add some examples ([14a2cd2](https://github.com/imranbarbhuiya/tagscript/commit/14a2cd2ba51b9807d7a7f5a1fca2fa12e654f9c5))
-- Add @allcontributors[bot] as a contributor ([23bb4ef](https://github.com/imranbarbhuiya/tagscript/commit/23bb4ef97a9f0feaf43b764e871c43c2a281242f))
-- Escape fix ([16f16f1](https://github.com/imranbarbhuiya/tagscript/commit/16f16f18dcddbf9bf02075e7719936703765a290))
-- Fix docs ([9ea716d](https://github.com/imranbarbhuiya/tagscript/commit/9ea716d2b663ccec661c20010ad19dff0cc8329a))
-
-# [tagscript@1.2.11](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.10...tagscript@1.2.11) - (2022-10-05)
-
-## 📝 Documentation
-
-- Add ShoXcy as a contributor for doc (#111) ([c88b338](https://github.com/imranbarbhuiya/tagscript/commit/c88b33898faef5816d5e8192c140b8d8efef814b))
-- Fix changelog ([96dd604](https://github.com/imranbarbhuiya/tagscript/commit/96dd604f2c9e2f1fd2409e26f71848f8a9b829cb))
-
-## 🪞 Styling
-
-- Setup lint again (#114) ([ea7a209](https://github.com/imranbarbhuiya/tagscript/commit/ea7a20956408b006096d585447ec2630cc4285cb))
-
-# [tagscript@1.2.11](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.10...tagscript@1.2.11) - (2022-10-05)
-
-## 📝 Documentation
-
-- Add ShoXcy as a contributor for doc (#111) ([c88b338](https://github.com/imranbarbhuiya/tagscript/commit/c88b33898faef5816d5e8192c140b8d8efef814b))
-- Fix changelog ([96dd604](https://github.com/imranbarbhuiya/tagscript/commit/96dd604f2c9e2f1fd2409e26f71848f8a9b829cb))
-
-## 🪞 Styling
-
-- Setup lint again (#114) ([ea7a209](https://github.com/imranbarbhuiya/tagscript/commit/ea7a20956408b006096d585447ec2630cc4285cb))
-
 # [tagscript@1.2.9](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.8...tagscript@1.2.9) - (2022-08-21)
 
 ## 📝 Documentation
@@ -86,7 +53,8 @@ All notable changes to this project will be documented in this file.
 - New json parser (#42) ([ea0cfe1](https://github.com/imranbarbhuiya/tagscript/commit/ea0cfe1e73973c3503c6c7660029c1a8c0f10408))
 
 # [1.0.2]
-(https://github.com/imranbarbhuiya/tagscript/tree/v1.0.2) - (2022-05-10)
+
+(<https://github.com/imranbarbhuiya/tagscript/tree/v1.0.2>) - (2022-05-10)
 
 ## 🐛 Bug Fixes
 
@@ -94,7 +62,7 @@ All notable changes to this project will be documented in this file.
 - **docs:** Add mdn links (#27) ([82073c3](https://github.com/imranbarbhuiya/tagscript/commit/82073c306d2bdb3e10bbd1328c96ff1a5cdde535))
 - Remove browser build from plugin (#25) ([fa5ec4d](https://github.com/imranbarbhuiya/tagscript/commit/fa5ec4dbbc257e93cf5dc0ccba76ed9111c8d9a8))}
 
-   ### 💥 Breaking Changes:
+### 💥 Breaking Changes
 
 - Prepack scripts (#24) ([48001bb](https://github.com/imranbarbhuiya/tagscript/commit/48001bbeb43c6239d645e6180586655d0aadb560))
 
@@ -106,6 +74,4 @@ All notable changes to this project will be documented in this file.
 
 - Move all discord.js related parsers into a new package (#22) ([f7e27fa](https://github.com/imranbarbhuiya/tagscript/commit/f7e27fae5a0629679415f0e8c84e3fdfde452411))}
 
-   ### 💥 Breaking Changes:
-
-
+### 💥 Breaking Changes
