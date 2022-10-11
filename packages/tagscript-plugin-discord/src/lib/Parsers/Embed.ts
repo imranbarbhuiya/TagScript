@@ -1,5 +1,7 @@
 import { BaseParser, split, type Context, type IParser, type Awaitable } from 'tagscript';
 
+import { resolveColor } from '../Utils';
+
 import type { EmbedData, APIEmbed } from 'discord.js';
 
 /**
@@ -13,12 +15,12 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  * @example
  *  Using JSON
  * ```yaml
- * { embed: json }
+ * {embed: json}
  * ```
  * @example
  * ```yaml
- * { embed: { "title": "Hello!", "description": "This is a test embed." } }
- * { embed: {
+ * {embed: { "title": "Hello!", "description": "This is a test embed." } }
+ * {embed: {
  *     "title": "Here's a random duck!",
  *     "image": { "url": "https://random-d.uk/api/randomimg" },
  *     "color": 15194415
@@ -27,14 +29,26 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  *  @example
  *  Using properties
  * ```yaml
- * { embed(property): value }
+ * {embed(property):value}
  * ```
  * @example
  * ```yaml
- * { embed(color): 0x37b2cb }
- * { embed(title): Rules }
- * { embed(description): Follow these rules to ensure a good experience in our server! }
- * { embed(field): Rule 1|Respect everyone you speak to.|false }
+ * {embed(color): 0x37b2cb}
+ * {embed(title): Rules}
+ * {embed(description): Follow these rules to ensure a good experience in our server!}
+ * {embed(field): Rule 1|Respect everyone you speak to.|false}
+ * ```
+ * Developers need to construct the embed builder themselves with the output of the tag.
+ * @example
+ * ```ts
+ * const { Interpreter } = require("tagscript")
+ * const { EmbedParser } = require("tagscript-plugin-discord")
+ *
+ * const ts = new Interpreter(new EmbedParser())
+ * const result = await ts.run('{embed: { "title": "Hello!", "description": "This is a test embed." }}')
+ *
+ * // You might need to change the embed object before passing to `EmbedBuilder`. Changes such as change thumbnail and image value from string to object.
+ * const embed = new EmbedBuilder(response.actions.embed);
  * ```
  * @remarks
  * The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
@@ -63,6 +77,13 @@ export class EmbedParser extends BaseParser implements IParser {
 			});
 		}
 
+		if (ctx.tag.parameter === 'color') {
+			return this.returnEmbed(ctx, {
+				// This can return number but it should be handled by the dev
+				color: resolveColor(ctx.tag.payload!) as number
+			});
+		}
+
 		return this.returnEmbed(ctx, { [ctx.tag.parameter]: ctx.tag.payload });
 	}
 
@@ -73,7 +94,9 @@ export class EmbedParser extends BaseParser implements IParser {
 	 * @returns
 	 */
 	protected parseEmbedJSON(payload: string): Awaitable<APIEmbed | EmbedData> {
-		return JSON.parse(payload);
+		const parsedResult = JSON.parse(payload);
+		if (parsedResult.color) parsedResult.color = resolveColor(parsedResult.color);
+		return parsedResult;
 	}
 
 	private returnEmbed(ctx: Context, data: APIEmbed | EmbedData): string {

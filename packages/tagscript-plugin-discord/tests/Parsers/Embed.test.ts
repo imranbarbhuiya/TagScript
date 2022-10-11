@@ -94,4 +94,18 @@ describe('EmbedParser', () => {
 			author: { name: 'Mahir', icon_url: 'https://example.com/image.png' }
 		});
 	});
+
+	test('GIVEN color in JSON THEN resolve it to hex color', async () => {
+		const text = '{embed:{"color":"0x00ff00"}}';
+
+		expect((await ts.run(text)).actions.embed).toStrictEqual({
+			color: 65_280
+		});
+	});
+
+	test.each(['Red', '#ed4245', 0xed4245])('GIVEN color %j in property THEN resolve it to hex color', async (color) => {
+		expect((await ts.run(`{embed(color):${color}}`)).actions.embed).toStrictEqual({
+			color: 0xed4245
+		});
+	});
 });
