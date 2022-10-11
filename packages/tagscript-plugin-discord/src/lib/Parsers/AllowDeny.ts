@@ -23,7 +23,7 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * @example
  * ```ts
  * const { Interpreter } = require("tagscript")
- * const { RequireParser } = require("tagscript-plugin-discord")
+ * const { RequiredParser } = require("tagscript-plugin-discord")
  *
  * const ts = new Interpreter(new RequiredParser())
  *
@@ -33,7 +33,6 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * // add channel, role check here or check using name instead of id
  * return interaction.reply(result.actions.require.message)
  * }
- *
  *
  * ```
  */
@@ -67,6 +66,22 @@ export class RequiredParser extends BaseParser implements IParser {
  * {deny(Moderator)}
  * {deny(#general, #chat):This tag can't be run in #general and #chat.}
  * {deny(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
+ * ```
+ *
+ * Developers need to add the check themselves.
+ * @example
+ * ```ts
+ * const { Interpreter } = require("tagscript")
+ * const { DenyParser } = require("tagscript-plugin-discord")
+ *
+ * const ts = new Interpreter(new DenyParser())
+ *
+ * const result = await ts.run("{require(id1, id2):You aren't allowed to use this tag.}")
+ *
+ * if (result.actions.deny.ids.includes(interaction.user.id)) {
+ * // add channel, role check here or check using name instead of id
+ * return interaction.reply(result.actions.deny.message)
+ * }
  * ```
  */
 
