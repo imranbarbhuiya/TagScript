@@ -6,16 +6,34 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * it will send the response if one is given. Multiple role, user or channel
  * requirements can be given, and should be split by a `,`.
  *
+ * Aliases: allowlist, whitelist
+ *
  * @example
  * ```yaml
  * {require(user,role,channel):response}
  * ```
- * Aliases: allowlist, whitelist
  * @example
  * ```yaml
  * {require(Moderator)}
  * {require(#general, #bot-commands):This tag can only be run in #general and #bot-cmds.}
  * {require(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
+ * ```
+ *
+ * Developers need to add the check themselves.
+ * @example
+ * ```ts
+ * const { Interpreter } = require("tagscript")
+ * const { RequiredParser } = require("tagscript-plugin-discord")
+ *
+ * const ts = new Interpreter(new RequiredParser())
+ *
+ * const result = await ts.run("{require(id1, id2):You aren't allowed to use this tag.}")
+ *
+ * if (!result.actions.require.ids.includes(interaction.user.id)) {
+ * // add channel, role check here or check using name instead of id
+ * return interaction.reply(result.actions.require.message)
+ * }
+ *
  * ```
  */
 export class RequiredParser extends BaseParser implements IParser {
@@ -48,6 +66,22 @@ export class RequiredParser extends BaseParser implements IParser {
  * {deny(Moderator)}
  * {deny(#general, #chat):This tag can't be run in #general and #chat.}
  * {deny(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
+ * ```
+ *
+ * Developers need to add the check themselves.
+ * @example
+ * ```ts
+ * const { Interpreter } = require("tagscript")
+ * const { DenyParser } = require("tagscript-plugin-discord")
+ *
+ * const ts = new Interpreter(new DenyParser())
+ *
+ * const result = await ts.run("{require(id1, id2):You aren't allowed to use this tag.}")
+ *
+ * if (result.actions.deny.ids.includes(interaction.user.id)) {
+ * // add channel, role check here or check using name instead of id
+ * return interaction.reply(result.actions.deny.message)
+ * }
  * ```
  */
 

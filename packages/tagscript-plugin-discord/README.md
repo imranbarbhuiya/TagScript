@@ -4,9 +4,9 @@
 
 **A tagscript plugin to work with discord.js**
 
-[![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
+[![npm](https://img.shields.io/npm/dw/tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=tagscript-plugin-discord)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-[![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
+[![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript-plugin-discord)
 
 </div>
 
