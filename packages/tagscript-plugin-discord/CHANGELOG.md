@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript-plugin-discord@2.0.6](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.5...tagscript-plugin-discord@2.0.6) - (2022-10-11)
+
+## 🐛 Bug Fixes
+
+- Return number from embed parser (#120) ([2f23da2](https://github.com/imranbarbhuiya/tagscript/commit/2f23da2d04a4a79a9ad61117e5e502f3f075dd64))
+
 # [tagscript-plugin-discord@2.0.5](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.4...tagscript-plugin-discord@2.0.5) - (2022-10-10)
 
 ## 📝 Documentation
