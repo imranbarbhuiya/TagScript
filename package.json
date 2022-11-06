@@ -27,7 +27,7 @@
 		"@types/node": "^18.11.9",
 		"@vitest/coverage-c8": "^0.24.5",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^8.26.0",
+		"eslint": "^8.27.0",
 		"eslint-config-mahir": "^0.0.13",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
