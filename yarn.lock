@@ -476,7 +476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:^13.0.2":
+"@next/eslint-plugin-next@npm:^13.0.3":
   version: 13.0.3
   resolution: "@next/eslint-plugin-next@npm:13.0.3"
   dependencies:
@@ -723,7 +723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.42.0":
+"@typescript-eslint/eslint-plugin@npm:^5.42.1":
   version: 5.42.1
   resolution: "@typescript-eslint/eslint-plugin@npm:5.42.1"
   dependencies:
@@ -757,7 +757,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.42.0":
+"@typescript-eslint/parser@npm:^5.42.1":
   version: 5.42.1
   resolution: "@typescript-eslint/parser@npm:5.42.1"
   dependencies:
@@ -2440,19 +2440,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-mahir@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "eslint-config-mahir@npm:0.0.14"
+"eslint-config-mahir@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "eslint-config-mahir@npm:0.0.15"
   dependencies:
-    "@next/eslint-plugin-next": ^13.0.2
+    "@next/eslint-plugin-next": ^13.0.3
     "@rushstack/eslint-patch": ^1.2.0
-    "@typescript-eslint/eslint-plugin": ^5.42.0
-    "@typescript-eslint/parser": ^5.42.0
+    "@typescript-eslint/eslint-plugin": ^5.42.1
+    "@typescript-eslint/parser": ^5.42.1
     eslint: ^8.27.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-import: "npm:eslint-plugin-i@latest"
     eslint-plugin-jsdoc: ^39.6.2
-    eslint-plugin-n: ^15.5.0
+    eslint-plugin-n: ^15.5.1
     eslint-plugin-promise: ^6.1.1
     eslint-plugin-react: ^7.31.10
     eslint-plugin-react-hooks: ^4.6.0
@@ -2462,7 +2462,7 @@ __metadata:
     eslint-plugin-unicorn: ^44.0.2
     prettier: ^2.7.1
     typescript: ^4.8.4
-  checksum: 29d0676c6b9a192d785720b637799887a9ea8f7d6e7831764dd730def7955e0429e58147d20bdd2cd52086a2a1adef4c3c1d1df37d9aa0478d3c4c8b82b119c9
+  checksum: 307b4072b51a65480b819d7c906a92ddbd4a768d305bc0eb9be5b07e4ff43bf52067114f99c248ad15b9e4559c10ea115efd58d98e0a7e7397f2e7a4a7ee1d5a
   languageName: node
   linkType: hard
 
@@ -2553,7 +2553,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-n@npm:^15.5.0":
+"eslint-plugin-n@npm:^15.5.1":
   version: 15.5.1
   resolution: "eslint-plugin-n@npm:15.5.1"
   dependencies:
@@ -5590,7 +5590,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.25.1
     cz-conventional-changelog: ^3.3.0
     eslint: ^8.27.0
-    eslint-config-mahir: ^0.0.14
+    eslint-config-mahir: ^0.0.15
     husky: ^8.0.2
     lint-staged: ^13.0.3
     prettier: ^2.7.1
