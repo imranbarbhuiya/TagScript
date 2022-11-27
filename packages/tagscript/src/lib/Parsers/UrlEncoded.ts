@@ -21,7 +21,7 @@ export class UrlEncodeParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		return ctx.tag.parameter === '+' ? encodeURI(ctx.tag.payload!.replace(/ +/g, ctx.tag.parameter)) : encodeURI(ctx.tag.payload!);
+		return ctx.tag.parameter === '+' ? encodeURI(ctx.tag.payload!.replaceAll(/ +/g, ctx.tag.parameter)) : encodeURI(ctx.tag.payload!);
 	}
 }
 
