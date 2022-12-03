@@ -1,3 +1,8 @@
 {
-	"extends": ["../../.eslintrc.json", "mahir/react", "mahir/next"]
+	"extends": ["../../.eslintrc.json", "mahir/react", "mahir/next"],
+	"rules": {
+		"tsdoc/syntax": "off",
+		"jsdoc/valid-types": "off",
+		"react/prop-types": "off"
+	}
 }

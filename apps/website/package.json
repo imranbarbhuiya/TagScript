@@ -3,11 +3,15 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start"
+		"generate:css": "unocss 'src/**/*.tsx' 'theme.config.jsx' --out-file ./src/styles/unocss.css --config ./unocss.config.ts",
+		"dev": "concurrently 'yarn generate:css --watch' 'next dev'",
+		"build": "yarn generate:css && next build",
+		"start": "next start",
+		"lint": "TIMING=1 next lint --fix",
+		"format": "prettier --cache --write ."
 	},
 	"dependencies": {
+		"@unocss/reset": "^0.47.5",
 		"next": "^13.0.6",
 		"nextra": "^2.0.0",
 		"nextra-theme-docs": "^2.0.0",
@@ -16,6 +20,9 @@
 	},
 	"devDependencies": {
 		"@types/react": "^18.0.26",
-		"@types/react-dom": "^18.0.9"
+		"@types/react-dom": "^18.0.9",
+		"@unocss/cli": "^0.47.5",
+		"concurrently": "^7.6.0",
+		"unocss": "^0.47.5"
 	}
 }

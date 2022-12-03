@@ -1,5 +1,5 @@
 {
-	"index": "Welcome",
-	"tagscript": "Tagscript",
-	"plugins": "Plugins"
+	"index": { "title": "Welcome", "type": "page" },
+	"tagscript": { "title": "Tagscript", "type": "page" },
+	"plugins": { "title": "Plugins", "type": "page" }
 }
