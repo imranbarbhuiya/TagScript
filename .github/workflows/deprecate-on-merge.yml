@@ -19,7 +19,7 @@ jobs:
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
-              run: yarn --immutable
+              uses: ./scripts/yarnCache
             - name: Build Dependencies
               run: yarn turbo run build --filter=tagscript --no-deps
             - name: Deprecate versions
