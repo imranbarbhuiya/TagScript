@@ -9,6 +9,6 @@ const withNextra = nextra({ theme: 'nextra-theme-docs', themeConfig: './theme.co
 export default withNextra({
 	reactStrictMode: true,
 	experimental: {
-		appDir: true
+		mdxRs: true
 	}
 });
