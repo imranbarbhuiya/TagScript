@@ -102,3 +102,4 @@ dist
 
 # nextjs vscode config
 apps/website/.vscode/settings.json
+apps/website/src/styles/unocss.css
