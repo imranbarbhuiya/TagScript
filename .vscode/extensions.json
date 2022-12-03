@@ -5,6 +5,7 @@
 		"github.vscode-pull-request-github",
 		"eamodio.gitlens",
 		"christian-kohler.npm-intellisense",
-		"christian-kohler.path-intellisense"
+		"christian-kohler.path-intellisense",
+		"unifiedjs.vscode-mdx"
 	]
 }
