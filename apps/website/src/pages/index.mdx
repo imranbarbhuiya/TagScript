@@ -1,20 +1,13 @@
+import Image from 'next/image';
+import Logo from '../../../../.github/logo_short.png';
+
 <div align="center">
 
-<img alt="TagScript Logo" src="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" height="200" />
+<Image src={Logo} alt="TagScript Logo" width={250} height={250} placeholder="blur" />
 
 # TagScript
 
 **A simple and safe template engine.**
-
-[![Continuous Integration](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-
-**Packages**
-
-[![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
-[![npm-tagscript](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
-[![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square&label=tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
-[![npm-tagscript-plugin-discord](https://img.shields.io/npm/dw/tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
 
 </div>
 
@@ -69,18 +62,20 @@ For more usage, check out the full [documentation](https://tagscript.js.org/modu
 
 If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
 
-<a href="https://www.buymeacoffee.com/parbez" target="_blank">
-	<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
-</a>
-<a href="https://ko-fi.com/Y8Y1CBIJH" target="_blank">
-	<img
-		height="36"
-		style={{ border: '0px', height: '36px' }}
-		src="https://cdn.ko-fi.com/cdn/kofi4.png?v=3"
-		border="0"
-		alt="Buy Me a Coffee at ko-fi.com"
-	/>
-</a>
+<div className="flex justify-center items-center gap-10">
+	<a href="https://www.buymeacoffee.com/parbez" target="_blank">
+		<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
+	</a>
+	<a href="https://ko-fi.com/Y8Y1CBIJH" target="_blank">
+		<img
+			height="36"
+			style={{ border: '0px', height: '36px' }}
+			src="https://cdn.ko-fi.com/cdn/kofi4.png?v=3"
+			border="0"
+			alt="Buy Me a Coffee at ko-fi.com"
+		/>
+	</a>
+</div>
 
 ## Contributors ✨
 
@@ -90,7 +85,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 {/* prettier-ignore-start */}
 {/* markdownlint-disable */}
 
-{<table>
+{
+
+<table>
 
 <tbody>
 	<tr>
@@ -182,7 +179,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 </tbody>
 <tfoot></tfoot>
 
-</table>}
+</table>
+}
 
 {/* markdownlint-restore */}
 {/* prettier-ignore-end */}
@@ -190,7 +188,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 {/* ALL-CONTRIBUTORS-LIST:END */}
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## Projects using TagScript
-
--   [R.O.T.I](https://discord.com/api/oauth2/authorize?client_id=903690362114158632&scope=applications.commands+bot&permissions=1543892063) by [@imranbarbhuiya](https://github.com/imranbarbhuiya) using TagScript for their tag module.

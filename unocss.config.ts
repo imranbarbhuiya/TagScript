@@ -1,5 +1,6 @@
 import { defineConfig, presetUno, presetTypography } from 'unocss';
 
 export default defineConfig({
-	presets: [presetUno(), presetTypography()]
+	presets: [presetUno(), presetTypography()],
+	include: [/.[jt]sx$/, /.mdx?$/]
 });

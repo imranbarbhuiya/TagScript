@@ -8235,6 +8235,7 @@ __metadata:
     typedoc-plugin-mdn-links: ^2.0.0
     typedoc-plugin-resolve-crossmodule-references: ^0.3.2
     typescript: ^4.9.3
+    unocss: ^0.47.5
     vitest: ^0.25.3
   languageName: unknown
   linkType: soft
