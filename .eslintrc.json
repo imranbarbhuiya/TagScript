@@ -5,5 +5,10 @@
 	"rules": {
 		"no-console": "error",
 		"import/extensions": "off"
+	},
+	"settings": {
+		"next": {
+			"rootDir": ["apps/*/"]
+		}
 	}
 }

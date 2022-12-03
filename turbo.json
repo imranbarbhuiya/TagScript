@@ -17,15 +17,15 @@
 			"outputs": []
 		},
 		"lint": {
-			"dependsOn": [],
+			"dependsOn": ["^build"],
 			"outputs": []
 		},
 		"test": {
-			"dependsOn": [],
+			"dependsOn": ["^build"],
 			"outputs": ["**/coverage/**"]
 		},
 		"test:watch": {
-			"dependsOn": [],
+			"dependsOn": ["^build"],
 			"outputs": ["**/coverage/**"]
 		}
 	}

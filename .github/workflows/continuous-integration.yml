@@ -26,7 +26,7 @@ jobs:
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
-              run: yarn --immutable
+              uses: ./scripts/yarnCache
             - name: Build TagScript
               run: yarn turbo run build --filter=tagscript --no-deps
             - name: Run ESLint
@@ -47,7 +47,7 @@ jobs:
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
-              run: yarn --immutable
+              uses: ./scripts/yarnCache
             - name: Typecheck And Compile Projects
               run: yarn build && yarn typecheck
             - name: Upload tagscript dist folders to artifacts
@@ -76,7 +76,7 @@ jobs:
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
-              run: yarn --immutable
+              uses: ./scripts/yarnCache
 
             - name: Run tests
               run: yarn test

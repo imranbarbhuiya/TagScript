@@ -7,5 +7,5 @@
 		"lib": ["dom", "esnext"],
 		"esModuleInterop": true
 	},
-	"include": ["packages", "scripts", "vitest.config.ts", "tsup.config.ts"]
+	"include": ["apps", "packages", "scripts", "vitest.config.ts", "tsup.config.ts"]
 }
