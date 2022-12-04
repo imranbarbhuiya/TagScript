@@ -396,9 +396,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/npm-deprecate@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@favware/npm-deprecate@npm:1.0.6"
+"@favware/npm-deprecate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@favware/npm-deprecate@npm:1.0.7"
   dependencies:
     "@sapphire/fetch": ^2.4.1
     "@sapphire/utilities": ^3.11.0
@@ -411,7 +411,7 @@ __metadata:
   bin:
     nd: ./dist/cli.js
     npm-deprecate: ./dist/cli.js
-  checksum: f64f85ceeabf084de03c968e1c481a276d1d0f949a489a13edba21f543dd1b65521082426f9f2747ad65781d71140067a520c2ac919ae65f268d0c9be6d78d95
+  checksum: 83b1c9259dfcab376dd8702b85c5875811c60a4c57fb562c4431b3d7523f7f2e80435da31c63e55246659d4da8d0fc3da20f7f5f40e0dd103e7d681ba6a55d32
   languageName: node
   linkType: hard
 
@@ -1005,8 +1005,8 @@ __metadata:
     "@unocss/reset": ^0.47.5
     concurrently: ^7.6.0
     next: ^13.0.6
-    nextra: ^2.0.0
-    nextra-theme-docs: ^2.0.0
+    nextra: ^2.0.1
+    nextra-theme-docs: ^2.0.1
     react: ^18.2.0
     react-dom: ^18.2.0
     unocss: ^0.47.5
@@ -5554,9 +5554,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^13.0.4":
-  version: 13.0.4
-  resolution: "lint-staged@npm:13.0.4"
+"lint-staged@npm:^13.1.0":
+  version: 13.1.0
+  resolution: "lint-staged@npm:13.1.0"
   dependencies:
     cli-truncate: ^3.1.0
     colorette: ^2.0.19
@@ -5573,7 +5573,7 @@ __metadata:
     yaml: ^2.1.3
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 4676172df5dc734a7f409ad786a72d39bd2239de8b2e5eb1d99eaa751479f60f7b4ef85c8508698855b51b125a512f395ac6a3c7d2d57de8e8221e0aaaab6f4f
+  checksum: adf20c4ca9285c4a93b06598b970d71b04cfe58a1a4c9006f753b83e02c1c622d1866c32a4f1e7e29a98091c501eac3345f7678af247b4f97d5be88b3d8727c1
   languageName: node
   linkType: hard
 
@@ -6996,9 +6996,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nextra-theme-docs@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "nextra-theme-docs@npm:2.0.0"
+"nextra-theme-docs@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "nextra-theme-docs@npm:2.0.1"
   dependencies:
     "@headlessui/react": ^1.6.6
     "@mdx-js/react": ^2.1.5
@@ -7018,13 +7018,13 @@ __metadata:
     next: ">=9.5.3"
     react: ">=16.13.1"
     react-dom: ">=16.13.1"
-  checksum: 211efaf1439e95f1b9bdca90bbd122c4c8a955672a751bacc6ebd7337a82db452886fa718c69ad0118f2039a8e038ba07050c905c48c28dc3b56f6ef40ff8c1b
+  checksum: 8dc485ade682fe1099886b831edcd8d74d3996197a7d1b7d97cd2f5a9c17e9c78062500ecfccdfda7723b712e87b18cf3a5a01fb5afaed19aa256f51c3769554
   languageName: node
   linkType: hard
 
-"nextra@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "nextra@npm:2.0.0"
+"nextra@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "nextra@npm:2.0.1"
   dependencies:
     "@mdx-js/mdx": ^2.1.3
     "@napi-rs/simple-git": ^0.1.8
@@ -7043,7 +7043,7 @@ __metadata:
     next: ">=9.5.3"
     react: ">=16.13.1"
     react-dom: ">=16.13.1"
-  checksum: 20e68c7cecb362ae204b535437856e08948370df8f8011c81eaddfd8e42fa2b5f8086afc61c6055347fedc242b3e64896e4680b0744afe3b5b60140c15653f46
+  checksum: 7b464b842cd9ed47fb8092f27121641b9ebe62c00e58935c643895bd302e5060d79fb678a05175d947be6311838f29e9860f015750ffca05147a2369addd2788
   languageName: node
   linkType: hard
 
@@ -8216,7 +8216,7 @@ __metadata:
     "@commitlint/config-conventional": ^17.3.0
     "@favware/cliff-jumper": ^1.9.0
     "@favware/colorette-spinner": ^1.0.1
-    "@favware/npm-deprecate": ^1.0.6
+    "@favware/npm-deprecate": ^1.0.7
     "@types/node": ^18.11.10
     "@types/prompts": ^2.4.1
     "@vitest/coverage-c8": ^0.25.3
@@ -8224,7 +8224,7 @@ __metadata:
     eslint: ^8.29.0
     eslint-config-mahir: ^0.0.18
     husky: ^8.0.2
-    lint-staged: ^13.0.4
+    lint-staged: ^13.1.0
     prettier: ^2.8.0
     pretty-quick: ^3.1.3
     prompts: ^2.4.2
