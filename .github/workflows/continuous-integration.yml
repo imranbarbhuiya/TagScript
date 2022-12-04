@@ -28,7 +28,7 @@ jobs:
             - name: Install Dependencies
               uses: ./scripts/yarnCache
             - name: Run ESLint
-              run: yarn lint --fix=false
+              run: yarn lint -- --fix=false
 
     Building:
         name: Compile source code
