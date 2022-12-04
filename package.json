@@ -13,12 +13,11 @@
 		"clean:full": "node scripts/clean-full.mjs",
 		"docs": "typedoc",
 		"format": "prettier --cache --write .",
-		"lint": "eslint . --ext mjs,js,ts --fix --cache",
+		"lint": "turbo run lint",
 		"update": "yarn upgrade-interactive",
 		"postinstall": "husky install .github/husky",
 		"test": "turbo run test",
-		"test:watch": "turbo run test:watch",
-		"typecheck": "tsc -p tsconfig.eslint.json"
+		"test:watch": "turbo run test:watch"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.3.0",

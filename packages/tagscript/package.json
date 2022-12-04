@@ -15,7 +15,7 @@
 	"sideEffects": false,
 	"author": "@imranbarbhuiya",
 	"scripts": {
-		"lint": "eslint src --fix --cache -c ../../.eslintrc",
+		"lint": "TIMING=1 eslint src --fix --cache -c ../../.eslintrc.json",
 		"build": "tsup",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
