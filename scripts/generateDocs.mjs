@@ -32,12 +32,14 @@ try {
 execSync('typedoc');
 console.log('Generated new docs');
 
-// Copy all the `_meta.json` files from typedoc-api to docs folder
-await cp('apps/website/src/pages/typedoc-api/', 'docs', {
-	recursive: true,
-	filter: (path) => !path.endsWith('.md') || path.includes('_meta.json')
-});
-console.log('Copied _meta.json files');
+try {
+	// Copy all the `_meta.json` files from typedoc-api to docs folder
+	await cp('apps/website/src/pages/typedoc-api/', 'docs', {
+		recursive: true,
+		filter: (path) => !path.endsWith('.md') || path.includes('_meta.json')
+	});
+	console.log('Copied _meta.json files');
+} catch {}
 
 // Delete previous docs files inside the website folder
 try {
