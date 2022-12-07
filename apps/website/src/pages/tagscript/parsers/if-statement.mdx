@@ -40,11 +40,11 @@ If the expression evaluates true, then the message before the pipe (`|`) is retu
 ```yaml
 	{if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}
  	# if args is 63
- 	# You guessed it! The number I was thinking of was 63!
+ 	You guessed it! The number I was thinking of was 63!
  	# if args is 73
- 	# Too high, try again.
+ 	Too high, try again.
  	# if args is 14
- 	# Too low, try again.
+ 	Too low, try again.
 ```
 
 ### Operators
