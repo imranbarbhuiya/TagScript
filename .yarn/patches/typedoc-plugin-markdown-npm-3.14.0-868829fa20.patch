@@ -16,7 +16,7 @@ index c8529a5bd97140e30d532321b0ca26749bd47d68..4dadab73dffc841840031dd9f99c7ce6
          md.push(`${this.flags.isRest ? '... ' : ''} **${(0, utils_1.escapeChars)(this.name)}**`);
          if (this instanceof typedoc_1.DeclarationReflection && this.typeParameters) {
 -            md.push(`<${this.typeParameters
-+            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parse him as JSX tags
++            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parses it as JSX tags
                  .map((typeParameter) => `\`${typeParameter.name}\``)
 -                .join(', ')}\\>`);
 +                .join(', ')}>`);
@@ -32,7 +32,7 @@ index 24bbd50a94f7e389406a07d0537601fe90fc93f7..8121b269274226f8d194dc3f491daacf
                      .map((typeParameter) => typeParameter.name)
                      .join(', ');
 -                title.push(`<${typeParameters}${shouldEscape ? '\\>' : '>'}`);
-+                    title.push(`\\<${typeParameters}>`); // Escape `<` because MDX2 parse him as JSX tag
++                    title.push(`\\<${typeParameters}>`); // Escape `<` because MDX2 parses it as JSX tag
              }
          }
          return title.join('');
@@ -52,8 +52,8 @@ index 3557d736433ee5019303b2936d07658cde166305..54c711e162bee977b456cc37a0cb91c0
 +        const pathname = path.basename(url);
 +        const dirname = path.dirname(url);
 +
-+        const formattedURL = pathname.replace(/(?:tagscript_)?([\w_]+)\.(.+)$/, (match, p1, p2) => {
-+            return p1.replace('_', '-') + '/'+ dirname+ '/' + p2.replace(/\.mdx?$/, '');
++        const formattedURL = pathname.replace(/(?:tagscript_)?([\w_]+)\.(.+).mdx?$/, (match, p1, p2) => {
++            return '/typedoc-api/' + p1.replace('_', '-') + '/'+ dirname+ '/' + p2;
 +        });
 +
          return url
@@ -72,7 +72,7 @@ index 38ade0bf586ad0c1bea30140b263c7e359cb5d1d..4265129d9ca3d0649c84d533e73ac817
          }
          if (this.typeParameters) {
 -            md.push(`<${this.typeParameters
-+            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parse him as JSX tag
++            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parses it as JSX tag
                  .map((typeParameter) => `\`${typeParameter.name}\``)
 -                .join(', ')}\\>`);
 +                .join(', ')}>`);
@@ -88,7 +88,7 @@ index 8569286f2dabb1dff0ea8f7698111a73dfac27ae..58a5058b9b249b7d29e2b23ba67ca967
                      : ''}`;
              });
 -        return `{ ${indexSignature ? indexSignature : ''}${types ? types.join('; ') : ''} }${model.defaultValue && model.defaultValue !== '...'
-+        // Escape `{` because MDX2 parse him as JS expression
++        // Escape `{` because MDX2 parses it as JS expression
 +         return `\\{ ${indexSignature ? indexSignature : ''}${types ? types.join('; ') : ''}}${model.defaultValue && model.defaultValue !== '...'
              ? `= ${(0, utils_1.escapeChars)(model.defaultValue)}`
              : ''}`;
@@ -98,7 +98,7 @@ index 8569286f2dabb1dff0ea8f7698111a73dfac27ae..58a5058b9b249b7d29e2b23ba67ca967
      const functions = modelSignatures.map((fn) => {
          const typeParams = fn.typeParameters
 -            ? `<${fn.typeParameters
-+            ? `\\<${fn.typeParameters // Escape `<` because MDX2 parse him as JSX tag
++            ? `\\<${fn.typeParameters // Escape `<` because MDX2 parses it as JSX tag
                  .map((typeParameter) => typeParameter.name)
 -                .join(', ')}\\>`
 +                .join(', ')}>`
@@ -110,7 +110,7 @@ index 8569286f2dabb1dff0ea8f7698111a73dfac27ae..58a5058b9b249b7d29e2b23ba67ca967
          }
          if (model.typeArguments && model.typeArguments.length > 0) {
 -            reflection.push(`<${model.typeArguments
-+            reflection.push(`\\<${model.typeArguments // Escape `<` because MDX2 parse him as JSX tag
++            reflection.push(`\\<${model.typeArguments // Escape `<` because MDX2 parses it as JSX tag
                  .map((typeArgument) => Handlebars.helpers.type.call(typeArgument))
 -                .join(', ')}\\>`);
 +                .join(', ')}>`);
@@ -126,8 +126,8 @@ index f254aed083142dee6caa3531a3d86a09322b3a08..7da02969dbe3659e0578102ce2c6b35a
  function escapeChars(str) {
      return str
 -        .replace(/>/g, '\\>')
-+        .replace(/</g, '\\<') // Escape `<` because MDX2 parse him as JSX tag
-+        .replace(/{/g, '\\{') // Escape `{` because MDX2 parse him as JS expression
++        .replace(/</g, '\\<') // Escape `<` because MDX2 parses it as JSX tag
++        .replace(/{/g, '\\{') // Escape `{` because MDX2 parses it as JS expression
          .replace(/_/g, '\\_')
          .replace(/`/g, '\\`')
          .replace(/\|/g, '\\|');

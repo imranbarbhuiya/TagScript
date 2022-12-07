@@ -70,9 +70,11 @@ for await (const file of findFilesRecursively('docs')) {
 
 	if (file.endsWith('.md')) {
 		if (filename.startsWith('tagscript.')) {
-			await cp(file, `apps/website/src/pages/typedoc-api/tagscript/${dir}/${filename.replace(/^tagscript\./, '')}`);
+			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^tagscript\./, '');
+			await cp(file, `apps/website/src/pages/typedoc-api/tagscript/${dir}/${formattedFilename}`);
 		} else if (filename.startsWith('tagscript_plugin_discord.')) {
-			await cp(file, `apps/website/src/pages/typedoc-api/plugins/plugin-discord/${dir}/${filename.replace(/^tagscript_plugin_discord\./, '')}`);
+			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^tagscript_plugin_discord\./, '');
+			await cp(file, `apps/website/src/pages/typedoc-api/plugins/plugin-discord/${dir}/${formattedFilename}`);
 		} else {
 			await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
 		}

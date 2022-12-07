@@ -9450,12 +9450,12 @@ __metadata:
 
 "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::locator=root-tagscript%40workspace%3A.":
   version: 3.14.0
-  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=ac760b&locator=root-tagscript%40workspace%3A."
+  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=697740&locator=root-tagscript%40workspace%3A."
   dependencies:
     handlebars: ^4.7.7
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: a9ec7143c8646350e7e6137910af07b6bb25d0cee64fd6eaaee18b17201b9ee0b43ce8e46b8c47b26cfb11410e211e139848c00e1d5ca2f27481a18da3e7bad8
+  checksum: 08c718f47fd1d22b82c0b8be68b3b343ed01f111566be42f6d5e928da70bbc407f4e756c517205df40e724923b85c838a2261caa9b6a20ae93632c51ec39204c
   languageName: node
   linkType: hard
 

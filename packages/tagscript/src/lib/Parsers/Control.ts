@@ -19,6 +19,7 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  * If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
  *
  * Operators:
+ * \{
  * <table>
  * <tbody>
  * <tr><th>Operator</th><th>Check</th><th>Example</th><th>Description</th></tr>
@@ -33,6 +34,7 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  *
  * </tfoot>
  * </table>
+ * \}
  *
  * @example
  * ```yaml
