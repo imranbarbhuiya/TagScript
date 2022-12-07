@@ -1,0 +1,106 @@
+diff --git a/.vscode/settings.json b/.vscode/settings.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..a2a797b21364d1ded66fce699dc22c23907b2be7
+--- /dev/null
++++ b/.vscode/settings.json
+@@ -0,0 +1,3 @@
++{
++  "editor.formatOnSave": false
++}
+diff --git a/dist/resources/helpers/declaration-title.js b/dist/resources/helpers/declaration-title.js
+index c8529a5bd97140e30d532321b0ca26749bd47d68..4dadab73dffc841840031dd9f99c7ce6cd9fb36d 100644
+--- a/dist/resources/helpers/declaration-title.js
++++ b/dist/resources/helpers/declaration-title.js
+@@ -20,9 +20,9 @@ function default_1(theme) {
+         }
+         md.push(`${this.flags.isRest ? '... ' : ''} **${(0, utils_1.escapeChars)(this.name)}**`);
+         if (this instanceof typedoc_1.DeclarationReflection && this.typeParameters) {
+-            md.push(`<${this.typeParameters
++            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parse him as JSX tags
+                 .map((typeParameter) => `\`${typeParameter.name}\``)
+-                .join(', ')}\\>`);
++                .join(', ')}>`);
+         }
+         md.push(getType(this));
+         if (!(this.type instanceof typedoc_1.LiteralType) &&
+diff --git a/dist/resources/helpers/reflection-title.js b/dist/resources/helpers/reflection-title.js
+index 24bbd50a94f7e389406a07d0537601fe90fc93f7..8121b269274226f8d194dc3f491daacf033d9dbe 100644
+--- a/dist/resources/helpers/reflection-title.js
++++ b/dist/resources/helpers/reflection-title.js
+@@ -19,7 +19,7 @@ function default_1(theme) {
+                 const typeParameters = this.model.typeParameters
+                     .map((typeParameter) => typeParameter.name)
+                     .join(', ');
+-                title.push(`<${typeParameters}${shouldEscape ? '\\>' : '>'}`);
++                    title.push(`\\<${typeParameters}>`); // Escape `<` because MDX2 parse him as JSX tag
+             }
+         }
+         return title.join('');
+diff --git a/dist/resources/helpers/signature-title.js b/dist/resources/helpers/signature-title.js
+index 38ade0bf586ad0c1bea30140b263c7e359cb5d1d..4265129d9ca3d0649c84d533e73ac8170dfcd620 100644
+--- a/dist/resources/helpers/signature-title.js
++++ b/dist/resources/helpers/signature-title.js
+@@ -20,9 +20,9 @@ function default_1(theme) {
+             md.push(`**${this.name}**`);
+         }
+         if (this.typeParameters) {
+-            md.push(`<${this.typeParameters
++            md.push(`\\<${this.typeParameters // Escape `<` because MDX2 parse him as JSX tag
+                 .map((typeParameter) => `\`${typeParameter.name}\``)
+-                .join(', ')}\\>`);
++                .join(', ')}>`);
+         }
+         md.push(`(${getParameters(this.parameters)})`);
+         if (this.type && !((_b = this.parent) === null || _b === void 0 ? void 0 : _b.kindOf(typedoc_1.ReflectionKind.Constructor))) {
+diff --git a/dist/resources/helpers/type.js b/dist/resources/helpers/type.js
+index 8569286f2dabb1dff0ea8f7698111a73dfac27ae..58a5058b9b249b7d29e2b23ba67ca967215bc8bc 100644
+--- a/dist/resources/helpers/type.js
++++ b/dist/resources/helpers/type.js
+@@ -90,7 +90,8 @@ function getDeclarationType(model) {
+                     ? `= ${(0, utils_1.escapeChars)(obj.defaultValue)}`
+                     : ''}`;
+             });
+-        return `{ ${indexSignature ? indexSignature : ''}${types ? types.join('; ') : ''} }${model.defaultValue && model.defaultValue !== '...'
++        // Escape `{` because MDX2 parse him as JS expression
++         return `\\{ ${indexSignature ? indexSignature : ''}${types ? types.join('; ') : ''}}${model.defaultValue && model.defaultValue !== '...'
+             ? `= ${(0, utils_1.escapeChars)(model.defaultValue)}`
+             : ''}`;
+     }
+@@ -99,9 +100,9 @@ function getDeclarationType(model) {
+ function getFunctionType(modelSignatures) {
+     const functions = modelSignatures.map((fn) => {
+         const typeParams = fn.typeParameters
+-            ? `<${fn.typeParameters
++            ? `\\<${fn.typeParameters // Escape `<` because MDX2 parse him as JSX tag
+                 .map((typeParameter) => typeParameter.name)
+-                .join(', ')}\\>`
++                .join(', ')}>`
+             : [];
+         const params = fn.parameters
+             ? fn.parameters.map((param) => {
+@@ -127,9 +128,9 @@ function getReferenceType(model, emphasis) {
+                 : `\`${model.name}\``);
+         }
+         if (model.typeArguments && model.typeArguments.length > 0) {
+-            reflection.push(`<${model.typeArguments
++            reflection.push(`\\<${model.typeArguments // Escape `<` because MDX2 parse him as JSX tag
+                 .map((typeArgument) => Handlebars.helpers.type.call(typeArgument))
+-                .join(', ')}\\>`);
++                .join(', ')}>`);
+         }
+         return reflection.join('');
+     }
+diff --git a/dist/utils.js b/dist/utils.js
+index f254aed083142dee6caa3531a3d86a09322b3a08..7da02969dbe3659e0578102ce2c6b35aa71d4b4c 100644
+--- a/dist/utils.js
++++ b/dist/utils.js
+@@ -11,7 +11,8 @@ function formatContents(contents) {
+ exports.formatContents = formatContents;
+ function escapeChars(str) {
+     return str
+-        .replace(/>/g, '\\>')
++        .replace(/</g, '\\<') // Escape `<` because MDX2 parse him as JSX tag
++        .replace(/{/g, '\\{') // Escape `{` because MDX2 parse him as JS expression
+         .replace(/_/g, '\\_')
+         .replace(/`/g, '\\`')
+         .replace(/\|/g, '\\|');

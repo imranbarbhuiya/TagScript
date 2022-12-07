@@ -1009,6 +1009,8 @@ __metadata:
     nextra-theme-docs: ^2.0.1
     react: ^18.2.0
     react-dom: ^18.2.0
+    tagscript: "workspace:^"
+    tagscript-plugin-discord: "workspace:^"
     unocss: ^0.47.5
   languageName: unknown
   linkType: soft
@@ -4616,6 +4618,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"handlebars@npm:^4.7.7":
+  version: 4.7.7
+  resolution: "handlebars@npm:4.7.7"
+  dependencies:
+    minimist: ^1.2.5
+    neo-async: ^2.6.0
+    source-map: ^0.6.1
+    uglify-js: ^3.1.4
+    wordwrap: ^1.0.0
+  dependenciesMeta:
+    uglify-js:
+      optional: true
+  bin:
+    handlebars: bin/handlebars
+  checksum: 1e79a43f5e18d15742977cb987923eab3e2a8f44f2d9d340982bcb69e1735ed049226e534d7c1074eaddaf37e4fb4f471a8adb71cddd5bc8cf3f894241df5cee
+  languageName: node
+  linkType: hard
+
 "hard-rejection@npm:^2.1.0":
   version: 2.1.0
   resolution: "hard-rejection@npm:2.1.0"
@@ -6906,6 +6926,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"neo-async@npm:^2.6.0":
+  version: 2.6.2
+  resolution: "neo-async@npm:2.6.2"
+  checksum: deac9f8d00eda7b2e5cd1b2549e26e10a0faa70adaa6fdadca701cc55f49ee9018e427f424bac0c790b7c7e2d3068db97f3093f1093975f2acb8f8818b936ed9
+  languageName: node
+  linkType: hard
+
 "next-seo@npm:^5.5.0":
   version: 5.14.1
   resolution: "next-seo@npm:5.14.1"
@@ -8232,6 +8259,7 @@ __metadata:
     turbo: ^1.6.3
     typedoc: ^0.23.21
     typedoc-plugin-external-link: ^1.0.3
+    typedoc-plugin-markdown: ^3.14.0
     typedoc-plugin-mdn-links: ^2.0.0
     typedoc-plugin-resolve-crossmodule-references: ^0.3.2
     typescript: ^4.9.3
@@ -8932,7 +8960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord":
+"tagscript-plugin-discord@workspace:^, tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord":
   version: 0.0.0-use.local
   resolution: "tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord"
   dependencies:
@@ -9409,6 +9437,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typedoc-plugin-markdown@npm:3.14.0":
+  version: 3.14.0
+  resolution: "typedoc-plugin-markdown@npm:3.14.0"
+  dependencies:
+    handlebars: ^4.7.7
+  peerDependencies:
+    typedoc: ">=0.23.0"
+  checksum: 6205600052185b4b193ab8a253d9df5ccbc95002c948a07f9024bcd26f0f23fbcc089fda4d6b4c8f4172f4eaca2bf9c32129989f6baaace7261cf4a0e41c976b
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::locator=root-tagscript%40workspace%3A.":
+  version: 3.14.0
+  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=d328db&locator=root-tagscript%40workspace%3A."
+  dependencies:
+    handlebars: ^4.7.7
+  peerDependencies:
+    typedoc: ">=0.23.0"
+  checksum: c7c2a2e0501237b299d8cc9a93b40286c2e9569817c63c25e21e990311d20bd4af9e0e92354cb870de5416d743abbc86c520809f4066c0e5be1963393456fa0c
+  languageName: node
+  linkType: hard
+
 "typedoc-plugin-mdn-links@npm:^2.0.0":
   version: 2.0.0
   resolution: "typedoc-plugin-mdn-links@npm:2.0.0"
@@ -9467,6 +9517,15 @@ __metadata:
   version: 0.8.6
   resolution: "ufo@npm:0.8.6"
   checksum: 5d483576230c7bfa2c9c9e5d864995e18d6c08ee3955c2237cc1a0d4b35a52991a0f5d26fe8cbf11952109a925a88dc14d973e0d14159b5b96b0fe7393a52899
+  languageName: node
+  linkType: hard
+
+"uglify-js@npm:^3.1.4":
+  version: 3.17.4
+  resolution: "uglify-js@npm:3.17.4"
+  bin:
+    uglifyjs: bin/uglifyjs
+  checksum: 7b3897df38b6fc7d7d9f4dcd658599d81aa2b1fb0d074829dd4e5290f7318dbca1f4af2f45acb833b95b1fe0ed4698662ab61b87e94328eb4c0a0d3435baf924
   languageName: node
   linkType: hard
 
@@ -10011,6 +10070,13 @@ __metadata:
   version: 1.2.3
   resolution: "word-wrap@npm:1.2.3"
   checksum: 30b48f91fcf12106ed3186ae4fa86a6a1842416df425be7b60485de14bec665a54a68e4b5156647dec3a70f25e84d270ca8bc8cd23182ed095f5c7206a938c1f
+  languageName: node
+  linkType: hard
+
+"wordwrap@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "wordwrap@npm:1.0.0"
+  checksum: 2a44b2788165d0a3de71fd517d4880a8e20ea3a82c080ce46e294f0b68b69a2e49cff5f99c600e275c698a90d12c5ea32aff06c311f0db2eb3f1201f3e7b2a04
   languageName: node
   linkType: hard
 

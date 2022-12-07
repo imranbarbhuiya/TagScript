@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useConfig } from 'nextra-theme-docs';
 import React from 'react';
 
 import LogoImage from './images/logo_short.png';
@@ -26,19 +28,36 @@ export default {
 		link: 'https://github.com/imranbarbhuiya/tagscript'
 	},
 	docsRepositoryBase: 'https://github.com/imranbarbhuiya/tagscript/blob/main/apps/website/',
-	head: (
-		<>
-			<meta content="width=device-width, initial-scale=1" name="viewport" />
-			<meta content="Tagscript" name="og:title" />
-			<meta content="summary_large_image" name="twitter:card" />
-			<meta content="Tagscript" name="twitter:title" />
-			<meta content="Tagscript is a simple, lightweight, and easy to use templating language." name="twitter:description" />
-			<meta content="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" name="twitter:image" />
-			<meta content="Tagscript is a simple, lightweight, and easy to use templating language." name="description" />
-			<meta content="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" property="og:image" />
-			<link href="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" rel="icon" />
-		</>
-	),
+	head: () => {
+		/* eslint-disable react-hooks/rules-of-hooks */
+		const { asPath } = useRouter();
+		const { frontMatter } = useConfig();
+		/* eslint-enable react-hooks/rules-of-hooks */
+		return (
+			<>
+				<meta content="width=device-width, initial-scale=1" name="viewport" />
+				<meta
+					content={frontMatter.description || 'Tagscript is a simple, lightweight, and easy to use templating language.'}
+					name="description"
+				/>
+				<meta content={frontMatter.title || 'TagScript'} property="og:title" />
+				<meta
+					content={frontMatter.description || 'Tagscript is a simple, lightweight, and easy to use templating language.'}
+					property="og:description"
+				/>
+				<meta content="summary_large_image" name="twitter:card" />
+				<meta content={frontMatter.title || 'TagScript'} name="twitter:title" />
+				<meta
+					content={frontMatter.description || 'Tagscript is a simple, lightweight, and easy to use templating language.'}
+					name="twitter:description"
+				/>
+				<meta content="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" name="twitter:image" />
+				<meta content="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" property="og:image" />
+				<link href="https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png" rel="icon" />
+				<meta content={`https://tag-script.vercel.com${asPath}`} property="og:url" />
+			</>
+		);
+	},
 	feedback: { labels: 'apps:website' },
 	editLink: { text: 'Edit this page on GitHub' },
 	footer: {
@@ -61,5 +80,16 @@ export default {
 			titleTemplate: '%s – Tagscript'
 			// useAppDir: true
 		};
+	},
+	chat: {
+		link: 'https://discord.com/users/758880890159235083'
+	},
+	banner: {
+		key: 'alpha-docs',
+		content: (
+			<a href="https://tagscript.js.org" rel="noreferrer" target="_blank">
+				🚧 This site is still in alpha state. Please read current typedoc generated docs here →
+			</a>
+		)
 	}
 };

@@ -5,7 +5,7 @@
 	"scripts": {
 		"generate:css": "unocss 'src/**/*.tsx' 'src/**/*.mdx' 'theme.config.jsx' --out-file ./src/styles/unocss.css --config ../../unocss.config.ts",
 		"dev": "concurrently 'yarn generate:css --watch' 'next dev'",
-		"build": "yarn generate:css && next build",
+		"build": "yarn run --top-level docs && yarn generate:css && next build",
 		"start": "next start",
 		"lint": "TIMING=1 next lint --fix",
 		"format": "prettier --cache --write ."
@@ -23,6 +23,8 @@
 		"@types/react-dom": "^18.0.9",
 		"@unocss/cli": "^0.47.5",
 		"concurrently": "^7.6.0",
+		"tagscript": "workspace:^",
+		"tagscript-plugin-discord": "workspace:^",
 		"unocss": "^0.47.5"
 	}
 }

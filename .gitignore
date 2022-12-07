@@ -103,3 +103,7 @@ dist
 # nextjs vscode config
 apps/website/.vscode/settings.json
 apps/website/src/styles/unocss.css
+
+# Typedoc output
+apps/website/src/pages/typedoc-api/*
+!apps/website/src/pages/typedoc-api/_meta.json

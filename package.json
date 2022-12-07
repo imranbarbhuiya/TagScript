@@ -11,7 +11,7 @@
 		"check-update": "turbo run check-update",
 		"clean": "node scripts/clean.mjs",
 		"clean:full": "node scripts/clean-full.mjs",
-		"docs": "typedoc",
+		"docs": "node scripts/generateDocs.mjs",
 		"format": "prettier --cache --write .",
 		"lint": "turbo run lint",
 		"update": "yarn upgrade-interactive",
@@ -69,7 +69,11 @@
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "^1.2.7"
+		"minimist": "^1.2.7",
+		"typedoc-plugin-markdown@^3.14.0": "patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch"
 	},
-	"packageManager": "yarn@3.3.0"
+	"packageManager": "yarn@3.3.0",
+	"dependencies": {
+		"typedoc-plugin-markdown": "^3.14.0"
+	}
 }

@@ -1,5 +1,18 @@
 {
-	"index": { "title": "Welcome", "type": "page" },
-	"tagscript": { "title": "Tagscript", "type": "page" },
-	"plugins": { "title": "Plugins", "type": "page" }
+	"*": {
+		"type": "page"
+	},
+	"index": { "title": "Welcome", "display": "hidden" },
+	"tagscript": "Tagscript",
+	"plugins": {
+		"title": "Plugins",
+		"type": "menu",
+		"items": {
+			"plugin-discord": {
+				"title": "Plugin Discord",
+				"href": "/plugins/plugin-discord"
+			}
+		}
+	},
+	"typedoc-api": { "title": "TypeDoc API" }
 }
