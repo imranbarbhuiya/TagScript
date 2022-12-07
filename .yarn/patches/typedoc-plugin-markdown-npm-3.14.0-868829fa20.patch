@@ -36,6 +36,33 @@ index 24bbd50a94f7e389406a07d0537601fe90fc93f7..8121b269274226f8d194dc3f491daacf
              }
          }
          return title.join('');
+diff --git a/dist/resources/helpers/relative-url.js b/dist/resources/helpers/relative-url.js
+index 3557d736433ee5019303b2936d07658cde166305..54c711e162bee977b456cc37a0cb91c0eb992428 100644
+--- a/dist/resources/helpers/relative-url.js
++++ b/dist/resources/helpers/relative-url.js
+@@ -1,11 +1,21 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ const Handlebars = require("handlebars");
++const path = require("path");
++
+ function default_1(theme) {
+     Handlebars.registerHelper('relativeURL', function (url) {
++
++        const pathname = path.basename(url);
++        const dirname = path.dirname(url);
++
++        const formattedURL = pathname.replace(/(?:tagscript_)?([\w_]+)\.(.+)$/, (match, p1, p2) => {
++            return p1.replace('_', '-') + '/'+ dirname+ '/' + p2.replace(/\.mdx?$/, '');
++        });
++
+         return url
+             ? theme.publicPath
+-                ? theme.publicPath + url
++                ? formattedURL
+                 : theme.getRelativeUrl(url)
+             : url;
+     });
 diff --git a/dist/resources/helpers/signature-title.js b/dist/resources/helpers/signature-title.js
 index 38ade0bf586ad0c1bea30140b263c7e359cb5d1d..4265129d9ca3d0649c84d533e73ac8170dfcd620 100644
 --- a/dist/resources/helpers/signature-title.js

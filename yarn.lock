@@ -8259,7 +8259,7 @@ __metadata:
     turbo: ^1.6.3
     typedoc: ^0.23.21
     typedoc-plugin-external-link: ^1.0.3
-    typedoc-plugin-markdown: ^3.14.0
+    typedoc-plugin-markdown: 3.14.0
     typedoc-plugin-mdn-links: ^2.0.0
     typedoc-plugin-resolve-crossmodule-references: ^0.3.2
     typescript: ^4.9.3
@@ -9450,12 +9450,12 @@ __metadata:
 
 "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::locator=root-tagscript%40workspace%3A.":
   version: 3.14.0
-  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=d328db&locator=root-tagscript%40workspace%3A."
+  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=ac760b&locator=root-tagscript%40workspace%3A."
   dependencies:
     handlebars: ^4.7.7
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: c7c2a2e0501237b299d8cc9a93b40286c2e9569817c63c25e21e990311d20bd4af9e0e92354cb870de5416d743abbc86c520809f4066c0e5be1963393456fa0c
+  checksum: a9ec7143c8646350e7e6137910af07b6bb25d0cee64fd6eaaee18b17201b9ee0b43ce8e46b8c47b26cfb11410e211e139848c00e1d5ca2f27481a18da3e7bad8
   languageName: node
   linkType: hard
 

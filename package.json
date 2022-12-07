@@ -40,7 +40,7 @@
 		"turbo": "^1.6.3",
 		"typedoc": "^0.23.21",
 		"typedoc-plugin-external-link": "^1.0.3",
-		"typedoc-plugin-markdown": "^3.14.0",
+		"typedoc-plugin-markdown": "3.14.0",
 		"typedoc-plugin-mdn-links": "^2.0.0",
 		"typedoc-plugin-resolve-crossmodule-references": "^0.3.2",
 		"typescript": "^4.9.3",
@@ -71,7 +71,7 @@
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.7",
-		"typedoc-plugin-markdown@^3.14.0": "patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch"
+		"typedoc-plugin-markdown@3.14.0": "patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch"
 	},
 	"packageManager": "yarn@3.3.0"
 }
