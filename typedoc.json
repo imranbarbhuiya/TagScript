@@ -8,5 +8,8 @@
 	"out": "./docs/",
 	"tsconfig": "./tsconfig.base.json",
 	"externalLinkPath": "scripts/externalConfig.js",
-	"hideGenerator": true
+	"hideGenerator": true,
+	"hideBreadcrumbs": true,
+	"hideInPageTOC": true,
+	"publicPath": "./tagscript/"
 }
