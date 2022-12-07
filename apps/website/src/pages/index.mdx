@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Tab, Tabs } from 'nextra-theme-docs';
 import Logo from '../../../../.github/logo_short.png';
 
 <div align="center">
@@ -15,7 +16,7 @@ import Logo from '../../../../.github/logo_short.png';
 
 TagScript is a drop in easy to use string interpreter that lets you provide users with ways of customizing their profiles or chat rooms with interactive text.
 
-Read Full Documentation [here](https://tagscript.js.org/).
+Read TypeDoc Documentation [here](https://imranbarbhuiya.github.io/TagScript).
 
 ## Features
 
@@ -24,39 +25,34 @@ Read Full Documentation [here](https://tagscript.js.org/).
 -   Full TypeScript & JavaScript support
 -   Blazingly Fast ⚡
 -   Simple, expressive and safe template engine.
--   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
+-   Supports many [plugins](/plugins).
 
 ## Usage
 
----
+<Tabs items={['ESM', 'CommonJs']}>
+	<Tab>
+		```ts copy showLineNumbers
+			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
 
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-```ts
-import { Interpreter } from 'tagscript';
-```
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+    </Tab>
+    <Tab>
+    	```js copy showLineNumbers
+    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
 
-is the same as
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-```js
-const { Interpreter } = require('tagscript');
-```
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
 
----
+</Tab>
 
-```ts
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-
-const result = await ts.run(
-	`
-    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
-    I pick {if({5050:.}!=):heads|tails}
-    `
-); // Parbez attempts to pick the lock!, I pick heads
-```
-
-For more usage, check out the full [documentation](https://tagscript.js.org/modules/tagscript.html).
+</Tabs>
 
 ## Buy me some doughnuts
 
@@ -80,10 +76,6 @@ If you want to support me by donating, you can do so by using any of the followi
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-{/* ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section */}
-{/* prettier-ignore-start */}
-{/* markdownlint-disable */}
 
 {
 
@@ -181,10 +173,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 </table>
 }
-
-{/* markdownlint-restore */}
-{/* prettier-ignore-end */}
-
-{/* ALL-CONTRIBUTORS-LIST:END */}
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

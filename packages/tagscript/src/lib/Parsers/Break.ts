@@ -6,7 +6,7 @@ import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 
 /**
- * The break tag will force the tag output to only be the payload of this tag, if the passed
+ * The break parser will force the tag output to only be the payload of this tag, if the passed
  * expression evaluates true.
  * If no message is provided to the payload, the tag output will be empty.
  * This differs from the `StopParser` as the stop tag stops all TagScript parsing and returns

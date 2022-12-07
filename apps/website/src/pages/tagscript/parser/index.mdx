@@ -1,0 +1,29 @@
+# Parsers
+
+import { Tab, Tabs } from 'nextra-theme-docs';
+
+Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](#builtin-parsers) or write your own parsers.
+Your own parser should implement [IParser](https://imranbarbhuiya.github.io/TagScript/interfaces/tagscript.IParser.html) interface.
+
+<Tabs items={['ESM', 'CommonJs']}>
+	<Tab>
+		```ts copy showLineNumbers
+			import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+			const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    	```
+    </Tab>
+    <Tab>
+    	```js copy showLineNumbers
+    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
+			const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    	```
+
+</Tab>
+
+</Tabs>
+
+## Builtin Parsers
+
+TagScript provides some builtin parsers which you can use to parse tags.
+
+-   [BreakParser](/tagscript/parser/break)

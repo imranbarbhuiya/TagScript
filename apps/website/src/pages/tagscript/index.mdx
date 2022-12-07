@@ -6,10 +6,6 @@ import { Tab, Tabs } from 'nextra-theme-docs';
 
 **A simple and safe template engine.**
 
-[![npm](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=tagscript)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-[![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
-
 </div>
 
 ## Description
@@ -54,43 +50,30 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 ## Usage
 
----
+<Tabs items={['ESM', 'CommonJs']}>
+	<Tab>
+		```ts copy showLineNumbers
+			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
 
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-```ts
-import { Interpreter } from 'tagscript';
-```
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+    </Tab>
+    <Tab>
+    	```js copy showLineNumbers
+    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
 
-is the same as
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-```js
-const { Interpreter } = require('tagscript');
-```
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
 
----
+</Tab>
 
-```ts
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-
-const result = await ts.run(
-	`
-    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
-    I pick {if({5050:.}!=):heads|tails}
-    `
-);
-```
-
-## Parsers
-
-Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Parsers) or write your own parsers.
-Your own parser should implement [IParser](https://tagscript.js.org/interfaces/IParser.html) interface.
-
-```ts
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-```
+</Tabs>
 
 ## Transformers
 
