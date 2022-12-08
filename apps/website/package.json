@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"generate:css": "unocss 'src/**/*.tsx' 'src/**/*.mdx' 'theme.config.jsx' --out-file ./src/styles/unocss.css --config ../../unocss.config.ts",
+		"generate:css": "unocss 'src/**/*.tsx' 'src/**/*.mdx' 'theme.config.tsx' --out-file ./src/styles/unocss.css --config ../../unocss.config.ts",
 		"dev": "concurrently 'yarn generate:css --watch' 'next dev'",
 		"build": "yarn run --top-level docs && yarn generate:css && next build",
 		"start": "next start",

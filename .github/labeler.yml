@@ -1,0 +1,11 @@
+apps:website:
+    - apps/website/*
+    - apps/website/**/*
+
+package:tagscript:
+    - packages/tagscript/*
+    - packages/tagscript/**/*
+
+package:plugin-discord:
+    - packages/tagscript-plugin-discord/*
+    - packages/tagscript-plugin-discord/**/*

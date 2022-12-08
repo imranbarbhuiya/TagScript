@@ -2,7 +2,10 @@
 	"*": {
 		"type": "page"
 	},
-	"index": { "title": "Welcome", "display": "hidden" },
+	"index": {
+		"title": "Welcome",
+		"display": "hidden"
+	},
 	"tagscript": "Tagscript",
 	"plugins": {
 		"title": "Plugins",
@@ -14,5 +17,18 @@
 			}
 		}
 	},
-	"typedoc-api": { "title": "TypeDoc API" }
+	"typedoc-api": {
+		"title": "TypeDoc API",
+		"type": "menu",
+		"items": {
+			"tagscript": {
+				"title": "Tagscript",
+				"href": "/typedoc-api/tagscript"
+			},
+			"plugins": {
+				"title": "Discord Plugin",
+				"href": "/typedoc-api/plugins/plugin-discord"
+			}
+		}
+	}
 }

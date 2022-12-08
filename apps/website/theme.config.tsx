@@ -1,10 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useConfig } from 'nextra-theme-docs';
+import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs';
 import React from 'react';
-
-import LogoImage from './images/logo_short.png';
 
 const Vercel = ({ height = 20 }) => (
 	<svg fill="none" height={height} viewBox="0 0 283 64">
@@ -15,10 +12,7 @@ const Vercel = ({ height = 20 }) => (
 	</svg>
 );
 
-/**
- * @type {import('nextra-theme-docs').DocsThemeConfig}
- */
-export default {
+const config: DocsThemeConfig = {
 	logo: (
 		<Link className="flex justify-center items-center" href="https://tagscript.js.org">
 			Tagscript Documentation
@@ -85,11 +79,13 @@ export default {
 		link: 'https://discord.com/users/758880890159235083'
 	},
 	banner: {
-		key: 'alpha-docs',
-		content: (
+		key: 'beta-docs',
+		text: (
 			<a href="https://tagscript.js.org" rel="noreferrer" target="_blank">
-				🚧 This site is still in alpha state. Please read current typedoc generated docs here →
+				🚧 This site is still in beta state. Please read current typedoc generated docs here →
 			</a>
 		)
 	}
 };
+
+export default config;

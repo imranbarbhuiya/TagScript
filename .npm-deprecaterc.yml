@@ -1,5 +1,5 @@
 name: '*next*'
 verbose: true
 package:
-  - 'tagscript'
-  - 'tagscript-plugin-discord'
+    - 'tagscript'
+    - 'tagscript-plugin-discord'
