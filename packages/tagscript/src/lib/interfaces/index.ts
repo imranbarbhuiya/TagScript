@@ -31,9 +31,18 @@ export interface IParser {
 	willAccept(ctx: Context): Awaitable<boolean>;
 }
 
+/**
+ * This is used to store key-value pairs and can be passed to `Interpreter` for parsers to use.
+ * It is empty by default and so has type `{}`.
+ * If you want to use it, you need to use [Augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) to add your own properties.
+ */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IKeyValues {}
 
+/**
+ * This is used to store actions data by to parsers for later use by developers.
+ * If you want to add more actions to it, you need to use [Augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+ */
 export interface IActions {
 	deny?: { ids: string[]; message: string | null };
 	require?: { ids: string[]; message: string | null };

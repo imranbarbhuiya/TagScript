@@ -51,7 +51,7 @@ const { Interpreter } = require('tagscript');
 
 ---
 
-```ts
+```ts copy showLineNumbers
 import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
 const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 

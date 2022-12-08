@@ -109,7 +109,7 @@ const options = {
 
 try {
 	const results = await replaceInFile.replaceInFile(options);
-	console.log('Replacement in ', results.filter((result) => result.hasChanged).length, ' files');
+	console.log('Replaced urls in ', results.filter((result) => result.hasChanged).length, ' files');
 } catch (error) {
 	console.error('Error occurred:', error);
 }

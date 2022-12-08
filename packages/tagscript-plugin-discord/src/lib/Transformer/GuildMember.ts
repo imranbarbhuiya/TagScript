@@ -34,7 +34,7 @@ import type { GuildMember } from 'discord.js';
  * @remarks
  * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
- * ```ts
+ * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { MemberTransformer } from 'tagscript-plugin-discord';
  *

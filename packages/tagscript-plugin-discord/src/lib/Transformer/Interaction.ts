@@ -8,7 +8,7 @@ import type { CommandInteraction } from 'discord.js';
  * @remarks
  * You need to use `StrictVarsParser` parser to use this transformer.
  *  @example
- * ```ts
+ * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { InteractionTransformer } from 'tagscript-plugin-discord';
  *

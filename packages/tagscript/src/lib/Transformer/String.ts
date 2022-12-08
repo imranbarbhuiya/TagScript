@@ -17,7 +17,7 @@ import type { Lexer } from '../Interpreter';
  * @remarks
  * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
- * ```ts
+ * ```ts copy showLineNumbers
  * import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
  *
  * const ts = new Interpreter(new StrictVarsParser());

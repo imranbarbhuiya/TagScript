@@ -36,7 +36,7 @@ npm install tagscript-plugin-discord tagscript discord.js
 
 ## Usage
 
-```ts
+```ts copy showLineNumbers
 import { Interpreter, StrictVarsParser } from 'tagscript';
 import { MemberTransformer } from 'tagscript-plugin-discord';
 
