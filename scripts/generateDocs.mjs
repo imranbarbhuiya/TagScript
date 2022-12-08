@@ -3,6 +3,8 @@ import { execSync } from 'node:child_process';
 import { cp, rm, mkdir, opendir } from 'node:fs/promises';
 import { join, basename, dirname } from 'node:path';
 
+import replaceInFile from 'replace-in-file';
+
 /**
  *
  * @param {string} path - The path to the directory to search
@@ -86,4 +88,30 @@ for await (const file of findFilesRecursively('docs')) {
 console.log('Organized and copied docs to new typedoc-api folder');
 
 await rm('docs', { recursive: true });
+console.log('Deleted docs folder');
+
+/**
+ * @type {import('replace-in-file').ReplaceInFileConfig & {processor: (input: string) => string}}
+ */
+// @ts-expect-error - Invalid types
+const options = {
+	files: 'apps/website/src/pages/typedoc-api/**/*.md',
+	processor: (input) =>
+		input
+			.replace(/\n\[tagscript(?:-plugin-discord)?]\(\.\/tagscript\/modules\/tagscript(?:_plugin_discord)?\.md\)\.\w+\n/, '')
+			.replaceAll(/\.\/tagscript\/modules\/tagscript(?<plugin>_plugin_discord)?.md/g, (_match, plugin) => {
+				return plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript';
+			})
+			.replaceAll(/\.\/tagscript\/(?<dir>\w+)\/tagscript(?<plugin>_plugin_discord)?\.(?<path>\w+)\.md/g, (_match, dir, plugin, path) => {
+				return `${plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript'}/${dir}/${path}`;
+			})
+};
+
+try {
+	const results = await replaceInFile.replaceInFile(options);
+	console.log('Replacement in ', results.filter((result) => result.hasChanged).length, ' files');
+} catch (error) {
+	console.error('Error occurred:', error);
+}
+
 console.log('Docs generated successfully!');
