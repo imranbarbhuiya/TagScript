@@ -25,9 +25,9 @@
 		"@favware/cliff-jumper": "^1.9.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
-		"@types/node": "^18.11.12",
+		"@types/node": "^18.11.13",
 		"@types/prompts": "^2.4.2",
-		"@vitest/coverage-c8": "^0.25.6",
+		"@vitest/coverage-c8": "^0.25.7",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.29.0",
 		"eslint-config-mahir": "^0.0.18",
@@ -43,10 +43,10 @@
 		"typedoc-plugin-external-link": "^1.0.3",
 		"typedoc-plugin-markdown": "3.14.0",
 		"typedoc-plugin-mdn-links": "^2.0.0",
-		"typedoc-plugin-resolve-crossmodule-references": "^0.3.2",
+		"typedoc-plugin-resolve-crossmodule-references": "^0.3.3",
 		"typescript": "^4.9.4",
 		"unocss": "^0.47.5",
-		"vitest": "^0.25.6"
+		"vitest": "^0.25.7"
 	},
 	"repository": {
 		"type": "git",
