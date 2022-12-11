@@ -26,19 +26,24 @@ If any other tags exist after the break tag, they will still execute.
 
 </Tabs>
 
+## API
+
+Check [BreakParser](../../typedoc-api/tagscript/classes/BreakParser) for the API documentation.
+
 ## For End Users
 
 <Callout type="info" emoji={null}>
 ### Syntax
-
+{/* prettier-ignore-start */}
 ```yaml
-{ break(expression):message }
+{break(expression):message}
 ```
+{/* prettier-ignore-end */}
 
 ### Examples
 
 ```yaml
-	{break({args}==):You did not provide any input.}
+{break({args}==):You did not provide any input.}
 ```
 
 </Callout>

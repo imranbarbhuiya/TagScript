@@ -26,23 +26,28 @@ If the expression evaluates true, then the message before the pipe (`|`) is retu
 
 </Tabs>
 
+## API
+
+Check [IntersectionStatementParser](../../typedoc-api/tagscript/classes/IntersectionStatementParser) for the API documentation.
+
 ## For End Users
 
 <Callout type="info" emoji={null}>
 ### Syntax
-
+{/* prettier-ignore-start */}
 ```yaml
-{ all(expression|expression|...):message }
+{all(expression|expression|...):message}
 ```
+{/* prettier-ignore-end */}
 
 ### Examples
 
 ```yaml
-	{all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
-	# if {args} is 52
-	You must provide a number between 100 and 1000.
-	# if {args} is 282
-	You picked 282.
+{all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
+# if {args} is 52
+You must provide a number between 100 and 1000.
+# if {args} is 282
+You picked 282.
 ```
 
 ### Aliases

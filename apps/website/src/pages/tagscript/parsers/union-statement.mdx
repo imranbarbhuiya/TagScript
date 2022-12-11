@@ -26,23 +26,28 @@ If the expression evaluates true, then the message before the pipe (`|`) is retu
 
 </Tabs>
 
+## API
+
+Check [UnionStatementParser](../../typedoc-api/tagscript/classes/UnionStatementParser) for the API documentation.
+
 ## For End Users
 
 <Callout type="info" emoji={null}>
 ### Syntax
-
+{/* prettier-ignore-start */}
 ```yaml
-{ any(expression|expression|...):message }
+{any(expression|expression|...):message}
 ```
+{/* prettier-ignore-end */}
 
 ### Examples
 
 ```yaml
-	{any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
-	# if {args} is hi
-	Hello Mr. Priyansh#2063!
-	# if {args} is what's up
-	How rude.
+{any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
+# if {args} is hi
+Hello Mr. Priyansh#2063!
+# if {args} is what's up
+How rude.
 ```
 
 ### Aliases

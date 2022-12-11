@@ -75,19 +75,6 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 </Tabs>
 
-## Transformers
-
-Transformers are used to transform a value based on the tag at runtime. You can use our [builtin transformers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Transformer) or write your own transformers.
-Your own transformer should implement [ITransformer](https://tagscript.js.org/interfaces/ITransformer.html) interface.
-
-```ts
-import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
-const ts = new Interpreter(new StrictVarsParser());
-
-await ts.run('Hi {user}', { user: new StringTransformer(args) });
-// Hi Parbez
-```
-
 ## Buy me some doughnuts
 
 If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
