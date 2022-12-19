@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript-plugin-discord@2.1.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.7...tagscript-plugin-discord@2.1.0) - (2022-12-09)
+
+## 🐛 Bug Fixes
+
+- Rename files and bump deps ([f73eaa3](https://github.com/imranbarbhuiya/tagscript/commit/f73eaa381a9c14047121160d7acf57834c2890cc))
+- Code block copy button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
+
+## 🚀 Features
+
+- Add website (#142) ([d1e477a](https://github.com/imranbarbhuiya/tagscript/commit/d1e477af9803cd2c44a311f5edbcf4815cf4fd97))
+
 # [tagscript-plugin-discord@2.0.6](https://github.com/imranbarbhuiya/tagscript/compare/tagscript-plugin-discord@2.0.5...tagscript-plugin-discord@2.0.6) - (2022-10-11)
 
 ## 🐛 Bug Fixes
