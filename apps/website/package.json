@@ -7,7 +7,7 @@
 		"dev": "concurrently 'yarn generate:css --watch' 'next dev'",
 		"build": "yarn run --top-level docs && yarn generate:css && next build",
 		"start": "next start",
-		"lint": "TIMING=1 next lint --fix",
+		"lint": "TIMING=1 eslint . --fix --ext js,jsx,mdx,ts,tsx",
 		"format": "prettier --cache --write ."
 	},
 	"dependencies": {

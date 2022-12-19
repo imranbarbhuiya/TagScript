@@ -1,8 +1,32 @@
 {
-	"extends": ["../../.eslintrc.json", "mahir/react", "mahir/next"],
-	"rules": {
-		"tsdoc/syntax": "off",
-		"jsdoc/valid-types": "off",
-		"react/prop-types": "off"
-	}
+	"root": true,
+	"ignorePatterns": "next-env.d.ts",
+	"overrides": [
+		{
+			"files": ["**/*.mdx"],
+			"parser": "eslint-mdx",
+			"parserOptions": {
+				"extraFileExtensions": [".mdx"]
+			},
+			"extends": ["mahir/common", "mahir/node", "mahir/react", "mahir/next", "plugin:mdx/recommended", "mahir/prettier"],
+			// "settings": {
+			// 	"mdx/code-blocks": true,
+			// 	"mdx/language-mapper": false
+			// },
+			"rules": {
+				"react/jsx-sort-props": "off",
+				"@next/next/no-img-element": "off",
+				"react/self-closing-comp": "off"
+			}
+		},
+		{
+			"files": ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"],
+			"extends": ["../../.eslintrc.json", "mahir/react", "mahir/next"],
+			"rules": {
+				"tsdoc/syntax": "off",
+				"jsdoc/valid-types": "off",
+				"react/prop-types": "off"
+			}
+		}
+	]
 }
