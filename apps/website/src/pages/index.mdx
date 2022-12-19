@@ -43,13 +43,35 @@ with a colon `:` and continues up to the end. It's optional for some tags.
 {declaration.parameters:payload}
 ```
 
-<Callout type="info" emoji={null} />
+<Callout type="info" emoji={null}>
+	If you want to escape a curly brace, colon, or parentheses then you can use backslash `\` before the character.
+
+    ```yaml
+    {embed\.title.description:Hello world}
+    ```
+
+</Callout>
 
 ### For Developers
 
 <Tabs items={['ESM', 'CommonJs']}>
-	<Tab />
-    <Tab />
+	<Tab>
+		```ts copy showLineNumbers
+			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+    </Tab>
+    <Tab>
+    	```js copy showLineNumbers
+    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+
+    </Tab>
 
 </Tabs>
 
