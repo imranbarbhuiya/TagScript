@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Tab, Tabs, Callout } from 'nextra-theme-docs';
+
 import Logo from '../../../../.github/logo_short.png';
 
-<div align="center">
+<div className="flex justify-center items-center flex-col">
 
 <Image src={Logo} alt="TagScript Logo" width={250} height={250} placeholder="blur" />
 
@@ -57,9 +58,7 @@ with a colon `:` and continues up to the end. It's optional for some tags.
 	<Tab>
 		```ts copy showLineNumbers
 			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-
     		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-
     		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
     		// Parbez attempts to pick the lock!, I pick heads
     	```
@@ -67,14 +66,12 @@ with a colon `:` and continues up to the end. It's optional for some tags.
     <Tab>
     	```js copy showLineNumbers
     		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
-
     		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
-
     		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
     		// Parbez attempts to pick the lock!, I pick heads
     	```
 
-</Tab>
+    </Tab>
 
 </Tabs>
 
@@ -83,10 +80,10 @@ with a colon `:` and continues up to the end. It's optional for some tags.
 If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
 
 <div className="flex justify-center items-center gap-10">
-	<a href="https://www.buymeacoffee.com/parbez" target="_blank">
+	<a href="https://www.buymeacoffee.com/parbez" rel="noreferrer" target="_blank">
 		<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
 	</a>
-	<a href="https://ko-fi.com/Y8Y1CBIJH" target="_blank">
+	<a href="https://ko-fi.com/Y8Y1CBIJH" rel="noreferrer" target="_blank">
 		<img
 			height="36"
 			style={{ border: '0px', height: '36px' }}
@@ -193,7 +190,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 		</td>
 	</tr>
 </tbody>
-<tfoot></tfoot>
+<tfoot />
 
 </table>
 }
