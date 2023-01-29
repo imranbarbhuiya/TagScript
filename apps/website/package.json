@@ -13,9 +13,9 @@
 	"dependencies": {
 		"@unocss/reset": "^0.48.4",
 		"eslint-plugin-mdx": "^2.0.5",
-		"next": "^13.1.4",
-		"nextra": "^2.2.10",
-		"nextra-theme-docs": "^2.2.10",
+		"next": "^13.1.6",
+		"nextra": "^2.2.14",
+		"nextra-theme-docs": "^2.2.14",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sharp": "^0.31.3"
