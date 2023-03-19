@@ -25,9 +25,9 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
-		"@types/node": "^18.15.0",
+		"@types/node": "^18.15.3",
 		"@types/prompts": "^2.4.3",
-		"@vitest/coverage-c8": "^0.29.2",
+		"@vitest/coverage-c8": "^0.29.3",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.36.0",
 		"eslint-config-mahir": "^0.0.23",
@@ -39,14 +39,14 @@
 		"replace-in-file": "^6.3.5",
 		"tsup": "^6.6.3",
 		"turbo": "^1.8.3",
-		"typedoc": "^0.23.26",
+		"typedoc": "^0.23.27",
 		"typedoc-plugin-external-link": "^1.0.3",
 		"typedoc-plugin-markdown": "3.14.0",
 		"typedoc-plugin-mdn-links": "^3.0.3",
 		"typedoc-plugin-resolve-crossmodule-references": "^0.3.3",
 		"typescript": "^4.9.5",
 		"unocss": "^0.50.4",
-		"vitest": "^0.29.2"
+		"vitest": "^0.29.3"
 	},
 	"repository": {
 		"type": "git",
@@ -74,5 +74,5 @@
 		"minimist": "^1.2.8",
 		"typedoc-plugin-markdown@3.14.0": "patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch"
 	},
-	"packageManager": "yarn@3.4.1"
+	"packageManager": "yarn@3.5.0"
 }

@@ -23,7 +23,7 @@
 	"devDependencies": {
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",
-		"@types/sharp": "^0",
+		"@types/sharp": "^0.31.1",
 		"@unocss/cli": "^0.50.4",
 		"concurrently": "^7.6.0",
 		"tagscript": "workspace:^",
