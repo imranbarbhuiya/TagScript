@@ -9628,7 +9628,7 @@ __metadata:
     typedoc-plugin-markdown: 3.14.0
     typedoc-plugin-mdn-links: ^3.0.3
     typedoc-plugin-resolve-crossmodule-references: ^0.3.3
-    typescript: ^4.9.5
+    typescript: ^5.0.2
     unocss: ^0.50.6
     vitest: ^0.29.7
   languageName: unknown
@@ -10406,7 +10406,7 @@ __metadata:
     discord.js: ^14.7.1
     tagscript: "workspace:^"
     tsup: ^6.7.0
-    typescript: ^4.9.5
+    typescript: ^5.0.2
   peerDependencies:
     discord.js: ^14.0.0
     tagscript: "*"
@@ -10419,7 +10419,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     tsup: ^6.7.0
-    typescript: ^4.9.5
+    typescript: ^5.0.2
   languageName: unknown
   linkType: soft
 
@@ -10985,7 +10985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.4 || ^5.0.0":
+"typescript@npm:^4.6.4 || ^5.0.0, typescript@npm:^5.0.2":
   version: 5.0.2
   resolution: "typescript@npm:5.0.2"
   bin:
@@ -11005,7 +11005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>, typescript@patch:typescript@^5.0.2#~builtin<compat/typescript>":
   version: 5.0.2
   resolution: "typescript@patch:typescript@npm%3A5.0.2#~builtin<compat/typescript>::version=5.0.2&hash=85af82"
   bin:
