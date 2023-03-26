@@ -14,14 +14,14 @@
 		"@unocss/reset": "^0.50.6",
 		"eslint-plugin-mdx": "^2.0.5",
 		"next": "^13.2.4",
-		"nextra": "^2.2.19",
-		"nextra-theme-docs": "^2.2.19",
+		"nextra": "^2.2.20",
+		"nextra-theme-docs": "^2.2.20",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sharp": "^0.31.3"
+		"sharp": "^0.32.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.28",
+		"@types/react": "^18.0.29",
 		"@types/react-dom": "^18.0.11",
 		"@types/sharp": "^0.31.1",
 		"@unocss/cli": "^0.50.6",
