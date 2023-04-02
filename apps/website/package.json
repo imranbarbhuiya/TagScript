@@ -21,7 +21,7 @@
 		"sharp": "^0.32.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.31",
+		"@types/react": "^18.0.32",
 		"@types/react-dom": "^18.0.11",
 		"@types/sharp": "^0.31.1",
 		"@unocss/cli": "^0.50.6",
