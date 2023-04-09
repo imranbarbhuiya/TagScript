@@ -40,7 +40,7 @@
 		"tsup": "^6.7.0",
 		"turbo": "^1.8.8",
 		"typedoc": "^0.23.28",
-		"typedoc-plugin-external-link": "^1.0.3",
+		"typedoc-plugin-external-link": "^2.0.0",
 		"typedoc-plugin-markdown": "3.14.0",
 		"typedoc-plugin-mdn-links": "^3.0.3",
 		"typedoc-plugin-resolve-crossmodule-references": "^0.3.3",
