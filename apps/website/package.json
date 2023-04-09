@@ -11,7 +11,7 @@
 		"format": "prettier --cache --write ."
 	},
 	"dependencies": {
-		"@unocss/reset": "^0.50.6",
+		"@unocss/reset": "^0.50.8",
 		"eslint-plugin-mdx": "^2.0.5",
 		"next": "^13.2.4",
 		"nextra": "^2.3.0",
@@ -24,10 +24,10 @@
 		"@types/react": "^18.0.32",
 		"@types/react-dom": "^18.0.11",
 		"@types/sharp": "^0.31.1",
-		"@unocss/cli": "^0.50.6",
+		"@unocss/cli": "^0.50.8",
 		"concurrently": "^8.0.1",
 		"tagscript": "workspace:^",
 		"tagscript-plugin-discord": "workspace:^",
-		"unocss": "^0.50.6"
+		"unocss": "^0.50.8"
 	}
 }
