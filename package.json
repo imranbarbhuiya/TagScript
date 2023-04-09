@@ -39,7 +39,7 @@
 		"replace-in-file": "^6.3.5",
 		"tsup": "^6.7.0",
 		"turbo": "^1.8.8",
-		"typedoc": "^0.23.28",
+		"typedoc": "^0.24.1",
 		"typedoc-plugin-external-link": "^1.0.3",
 		"typedoc-plugin-markdown": "3.14.0",
 		"typedoc-plugin-mdn-links": "^3.0.3",
