@@ -9326,7 +9326,7 @@ __metadata:
     tsup: ^6.7.0
     turbo: ^1.8.8
     typedoc: ^0.24.1
-    typedoc-plugin-external-link: ^1.0.3
+    typedoc-plugin-external-link: ^2.0.0
     typedoc-plugin-markdown: 3.14.0
     typedoc-plugin-mdn-links: ^3.0.3
     typedoc-plugin-resolve-crossmodule-references: ^0.3.3
@@ -10605,10 +10605,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-external-link@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "typedoc-plugin-external-link@npm:1.0.3"
-  checksum: 02fa53ad2ed3799ea193effff932467d3cca9a8292974e360e659f999989563843e419639e7a89afbed831db1fbd3620453be2176d078c9cb6dbc1e28bf03c85
+"typedoc-plugin-external-link@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "typedoc-plugin-external-link@npm:2.0.0"
+  peerDependencies:
+    typedoc: ">=0.24.0"
+  checksum: 7c22eb2568a5ffd47b029948cc1ad555ed42f4962eb478245c22f666804f4f8e9c95ab88fb631b7ffdc84b47d2454f7f96516403e3bb38bce4f287be05644061
   languageName: node
   linkType: hard
 
