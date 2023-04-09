@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@unocss/reset": "^0.50.8",
 		"eslint-plugin-mdx": "^2.0.5",
-		"next": "^13.2.4",
+		"next": "^13.3.0",
 		"nextra": "^2.3.0",
 		"nextra-theme-docs": "^2.3.0",
 		"react": "^18.2.0",
@@ -21,7 +21,7 @@
 		"sharp": "^0.32.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.32",
+		"@types/react": "^18.0.33",
 		"@types/react-dom": "^18.0.11",
 		"@types/sharp": "^0.31.1",
 		"@unocss/cli": "^0.50.8",
