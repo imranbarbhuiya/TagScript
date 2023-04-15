@@ -31,8 +31,12 @@ try {
 } catch {}
 
 // Generate the docs
-execSync('typedoc');
-console.log('Generated new docs');
+try {
+	execSync('typedoc');
+	console.log('Generated new docs');
+} catch (error) {
+	throw new Error(`Error occurred while generating docs: ${error}`);
+}
 
 try {
 	// Copy all the `_meta.json` files from typedoc-api to docs folder

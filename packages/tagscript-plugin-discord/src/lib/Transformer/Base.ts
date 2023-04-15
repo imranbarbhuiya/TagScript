@@ -14,7 +14,7 @@ export interface SafeValues<T> {
 }
 
 /**
- * Transformer for [Discord.js](https://discord.js.org/) objects.
+ * Transformer for {@link discord.js} objects.
  *
  * @typeParam T - The base type.
  */

@@ -13,5 +13,5 @@
 	"hideBreadcrumbs": true,
 	"hideInPageTOC": true,
 	"publicPath": "./tagscript/",
-	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-resolve-crossmodule-references", "typedoc-plugin-external-link"]
+	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-external-link"]
 }
