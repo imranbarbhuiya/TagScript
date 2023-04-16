@@ -81,8 +81,8 @@ const config: DocsThemeConfig = {
 	banner: {
 		key: 'beta-docs',
 		text: (
-			<a href="https://tagscript.js.org" rel="noreferrer" target="_blank">
-				🚧 This site is still in beta state. Please read current typedoc generated docs here →
+			<a href="https://tagscript.js.org/typedoc-api/tagscript" rel="noreferrer" target="_blank">
+				🚧 The guide is still incomplete. Please read the typedoc generated api docs instead →
 			</a>
 		)
 	}
