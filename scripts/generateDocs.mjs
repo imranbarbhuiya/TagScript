@@ -1,7 +1,8 @@
 /* eslint-disable no-console, tsdoc/syntax */
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import { cp, rm, mkdir, opendir } from 'node:fs/promises';
 import { join, basename, dirname } from 'node:path';
+import process from 'node:process';
 
 import replaceInFile from 'replace-in-file';
 
@@ -32,10 +33,22 @@ try {
 
 // Generate the docs
 try {
-	execSync('typedoc');
+	await new Promise((resolve, reject) => {
+		const child = exec('typedoc');
+		child.stdout?.pipe(process.stdout);
+		child.stderr?.pipe(process.stderr);
+		child.on('exit', (code) => {
+			if (code === 0) {
+				resolve(true);
+			} else {
+				reject(new Error(`Typedoc exited with code ${code}`));
+			}
+		});
+	});
+
 	console.log('Generated new docs');
-} catch (error) {
-	throw new Error(`Error occurred while generating docs: ${error}`);
+} catch {
+	process.exit(1);
 }
 
 try {
@@ -108,6 +121,12 @@ const options = {
 			})
 			.replaceAll(/\.\/tagscript\/(?<dir>\w+)\/tagscript(?<plugin>_plugin_discord)?\.(?<path>\w+)\.md/g, (_match, dir, plugin, path) => {
 				return `${plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript'}/${dir}/${path}`;
+			})
+			.replaceAll(/#{3} Defined in\n{2}(?<path>.+)/g, (_match, path) => {
+				if (path.startsWith('https:')) return `### Defined in\n\n${path}`;
+				return `### Defined in\n\nhttps://github.com/imranbarbhuiya/TagScript/packages/${
+					path.includes('tagscript-plugin-discord') ? '' : 'tagscript/'
+				}${path}`;
 			})
 };
 

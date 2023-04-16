@@ -12,6 +12,6 @@
 	"hideGenerator": true,
 	"hideBreadcrumbs": true,
 	"hideInPageTOC": true,
-	"publicPath": "https://github.com/imranbarbhuiya/tagscript/",
+	"publicPath": "./tagscript/",
 	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-external-link"]
 }
