@@ -20,14 +20,14 @@
 		"test:watch": "turbo run test:watch"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^17.5.1",
-		"@commitlint/config-conventional": "^17.4.4",
+		"@commitlint/cli": "^17.6.1",
+		"@commitlint/config-conventional": "^17.6.1",
 		"@favware/cliff-jumper": "^2.0.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@types/node": "^18.15.11",
 		"@types/prompts": "^2.4.4",
-		"@vitest/coverage-c8": "^0.29.8",
+		"@vitest/coverage-c8": "^0.30.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.38.0",
 		"eslint-config-mahir": "^0.0.24",
@@ -38,14 +38,14 @@
 		"prompts": "^2.4.2",
 		"replace-in-file": "^6.3.5",
 		"tsup": "^6.7.0",
-		"turbo": "^1.8.8",
+		"turbo": "^1.9.1",
 		"typedoc": "^0.24.2",
 		"typedoc-plugin-external-link": "^2.0.0",
-		"typedoc-plugin-markdown": "3.15.0",
+		"typedoc-plugin-markdown": "3.15.1",
 		"typedoc-plugin-mdn-links": "^3.0.3",
 		"typescript": "^5.0.4",
-		"unocss": "^0.50.8",
-		"vitest": "^0.29.8"
+		"unocss": "^0.51.4",
+		"vitest": "^0.30.1"
 	},
 	"repository": {
 		"type": "git",
