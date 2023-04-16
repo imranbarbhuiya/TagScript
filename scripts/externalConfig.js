@@ -5,31 +5,33 @@ const packageNames = ['discord.js', 'discord-api-types'];
  *
  * @type {import('typedoc-plugin-external-link').getURL}
  */
-function getURL(_, type) {
+function getURL(packageName, type) {
+	if (!type && packageName === 'discord.js') return 'https://discordjs.dev/';
+	if (!type) return `https://www.npmjs.com/package/${packageName}`;
 	switch (type) {
 		case 'BaseChannel':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/BaseChannel';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/BaseChannel';
 		case 'ChatInputCommandInteraction':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/ChatInputCommandInteraction';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/ChatInputCommandInteraction';
 		case 'Client':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/Client';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/Client';
 		case 'CommandInteraction':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/CommandInteraction';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/CommandInteraction';
 		case 'CommandInteractionOptionResolver':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/CommandInteractionOptionResolver';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/CommandInteractionOptionResolver';
 		case 'Guild':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/Guild';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/Guild';
 		case 'GuildMember':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/GuildMember';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/GuildMember';
 		case 'Role':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/Role';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/Role';
 		case 'TextChannel':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/TextChannel';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/TextChannel';
 		case 'User':
-			return 'https://discord.js.org/#/docs/discord.js/main/class/User';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/class/User';
 
 		case 'CommandInteractionOption':
-			return 'https://discord.js.org/#/docs/discord.js/main/typedef/CommandInteractionOption';
+			return 'https://old.discordjs.dev/#/docs/discord.js/main/typedef/CommandInteractionOption';
 
 		case 'CacheType':
 			return 'https://github.com/discordjs/discord.js/blob/4d8361c711df423f154a7460939c60f6d9429105/packages/discord.js/typings/index.d.ts#L1474';

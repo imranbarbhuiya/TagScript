@@ -1,7 +1,8 @@
 /* eslint-disable no-console, tsdoc/syntax */
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import { cp, rm, mkdir, opendir } from 'node:fs/promises';
 import { join, basename, dirname } from 'node:path';
+import process from 'node:process';
 
 import replaceInFile from 'replace-in-file';
 
@@ -31,8 +32,24 @@ try {
 } catch {}
 
 // Generate the docs
-execSync('typedoc');
-console.log('Generated new docs');
+try {
+	await new Promise((resolve, reject) => {
+		const child = exec('typedoc');
+		child.stdout?.pipe(process.stdout);
+		child.stderr?.pipe(process.stderr);
+		child.on('exit', (code) => {
+			if (code === 0) {
+				resolve(true);
+			} else {
+				reject(new Error(`Typedoc exited with code ${code}`));
+			}
+		});
+	});
+
+	console.log('Generated new docs');
+} catch {
+	process.exit(1);
+}
 
 try {
 	// Copy all the `_meta.json` files from typedoc-api to docs folder

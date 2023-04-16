@@ -3,7 +3,7 @@ import { BaseTransformer } from './Base';
 import type { Guild } from 'discord.js';
 
 /**
- * Transformer for Discord [Guild](https://discord.js.org/#/docs/discord.js/stable/class/Guild)
+ * Transformer for Discord {@link Guild}.
  *
  * Properties:
  * ```yaml

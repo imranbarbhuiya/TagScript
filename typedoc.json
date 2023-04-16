@@ -8,9 +8,10 @@
 	"out": "./docs/",
 	"tsconfig": "./tsconfig.base.json",
 	"disableSources": true,
-	"externalLinkPath": "scripts/externalConfig.js",
+	"externalLinkPath": "./scripts/externalConfig.js",
 	"hideGenerator": true,
 	"hideBreadcrumbs": true,
 	"hideInPageTOC": true,
-	"publicPath": "./tagscript/"
+	"publicPath": "./tagscript/",
+	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-external-link"]
 }

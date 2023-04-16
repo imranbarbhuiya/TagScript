@@ -16,7 +16,8 @@
 			"rules": {
 				"react/jsx-sort-props": "off",
 				"@next/next/no-img-element": "off",
-				"react/self-closing-comp": "off"
+				"react/self-closing-comp": "off",
+				"react/prop-types": "off"
 			}
 		},
 		{
