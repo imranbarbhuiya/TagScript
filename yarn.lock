@@ -9327,7 +9327,7 @@ __metadata:
     turbo: ^1.8.8
     typedoc: ^0.24.2
     typedoc-plugin-external-link: ^2.0.0
-    typedoc-plugin-markdown: 3.14.0
+    typedoc-plugin-markdown: 3.15.0
     typedoc-plugin-mdn-links: ^3.0.3
     typescript: ^5.0.4
     unocss: ^0.50.8
@@ -10613,25 +10613,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:3.14.0":
-  version: 3.14.0
-  resolution: "typedoc-plugin-markdown@npm:3.14.0"
+"typedoc-plugin-markdown@npm:3.15.0":
+  version: 3.15.0
+  resolution: "typedoc-plugin-markdown@npm:3.15.0"
   dependencies:
     handlebars: ^4.7.7
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: 6205600052185b4b193ab8a253d9df5ccbc95002c948a07f9024bcd26f0f23fbcc089fda4d6b4c8f4172f4eaca2bf9c32129989f6baaace7261cf4a0e41c976b
+  checksum: 447458e75a44910751aef1f4cae37f8cac529013cbf3318af6d1e616004c971fe9777feb337989da5272cf4b07b1d5fd26a65c7b5933c6241a7fc8fb9ab97386
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::locator=root-tagscript%40workspace%3A.":
-  version: 3.14.0
-  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.14.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.14.0-868829fa20.patch::version=3.14.0&hash=535625&locator=root-tagscript%40workspace%3A."
+"typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.15.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.15.0-981f121e2f.patch::locator=root-tagscript%40workspace%3A.":
+  version: 3.15.0
+  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A3.15.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.15.0-981f121e2f.patch::version=3.15.0&hash=12a0de&locator=root-tagscript%40workspace%3A."
   dependencies:
     handlebars: ^4.7.7
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: 50c4b9a86bf0112609b9f0c4038ffc1c34c494cc5907f0dad18154ef9e094c60fbb2b445f325fcd49c05512bd217f7908bfd97257d26899d8f0877c5a1e0ff01
+  checksum: 2e5a905bca28832e1515fe445779513f77a6b1a4aba29607840d658b86e432081c02a5b443a5f909900a2ce904fa138e407738924b078cf7e62f1680c904622e
   languageName: node
   linkType: hard
 
