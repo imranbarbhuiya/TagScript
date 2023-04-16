@@ -63,7 +63,7 @@ const result = await ts.run(
 ); // Parbez attempts to pick the lock!, I pick heads
 ```
 
-For more usage, check out the full [documentation](https://tagscript.js.org/modules/tagscript.html).
+For more usage, check out the documentation [here](https://tagscript.js.org/).
 
 ## Buy me some doughnuts
 

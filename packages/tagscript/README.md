@@ -70,8 +70,8 @@ const result = await ts.run(
 
 ## Parsers
 
-Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Parsers) or write your own parsers.
-Your own parser should implement [IParser](https://tagscript.js.org/interfaces/IParser.html) interface.
+Parsers are used to parse a tag and return a value based on the tag. You can use our [builtin parsers](https://tagscript.js.org/typedoc-api/tagscript/interfaces/IParser#implemented-by) or write your own parsers.
+Your own parser should implement [IParser](https://tagscript.js.org/typedoc-api/tagscript/interfaces/IParser) interface.
 
 ```ts copy showLineNumbers
 import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
@@ -80,8 +80,8 @@ const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new Random
 
 ## Transformers
 
-Transformers are used to transform a value based on the tag at runtime. You can use our [builtin transformers](https://github.com/imranbarbhuiya/TagScript/tree/main/src/lib/Transformer) or write your own transformers.
-Your own transformer should implement [ITransformer](https://tagscript.js.org/interfaces/ITransformer.html) interface.
+Transformers are used to transform a value based on the tag at runtime. You can use our [builtin transformers](https://tagscript.js.org/typedoc-api/tagscript/interfaces/ITransformer#implimented-by) or write your own transformers.
+Your own transformer should implement [ITransformer](https://tagscript.js.org/typedoc-api/tagscript/interfaces/ITransformer) interface.
 
 ```ts copy showLineNumbers
 import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';

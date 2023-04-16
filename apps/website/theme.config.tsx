@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs';
 import React from 'react';
@@ -13,11 +12,7 @@ const Vercel = ({ height = 20 }) => (
 );
 
 const config: DocsThemeConfig = {
-	logo: (
-		<Link className="flex justify-center items-center" href="https://tagscript.js.org">
-			Tagscript Documentation
-		</Link>
-	),
+	logo: 'Tagscript Documentation',
 	project: {
 		link: 'https://github.com/imranbarbhuiya/tagscript'
 	},
