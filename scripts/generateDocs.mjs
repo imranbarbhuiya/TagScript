@@ -122,12 +122,6 @@ const options = {
 			.replaceAll(/\.\/tagscript\/(?<dir>\w+)\/tagscript(?<plugin>_plugin_discord)?\.(?<path>\w+)\.md/g, (_match, dir, plugin, path) => {
 				return `${plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript'}/${dir}/${path}`;
 			})
-			.replaceAll(/#{3} Defined in\n{2}(?<path>.+)/g, (_match, path) => {
-				if (path.startsWith('https:')) return `### Defined in\n\n${path}`;
-				return `### Defined in\n\nhttps://github.com/imranbarbhuiya/TagScript/packages/${
-					path.includes('tagscript-plugin-discord') ? '' : 'tagscript/'
-				}${path}`;
-			})
 };
 
 try {
