@@ -13,7 +13,6 @@ import type { Context } from '../Interpreter';
  * its message while the break tag continues to parse tags. If any other tags exist after
  * the break tag, they will still execute.
  *
- *
  * @example
  * ```yaml
  *    {break(expression):message}

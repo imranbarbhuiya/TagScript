@@ -11,23 +11,24 @@
 		"format": "prettier --cache --write ."
 	},
 	"dependencies": {
-		"@unocss/reset": "^0.51.6",
+		"@unocss/reset": "^0.51.8",
 		"eslint-plugin-mdx": "^2.0.5",
-		"next": "^13.3.0",
-		"nextra": "^2.4.0",
-		"nextra-theme-docs": "^2.4.0",
+		"framer-motion": "^10.12.4",
+		"next": "^13.3.1",
+		"nextra": "^2.4.2",
+		"nextra-theme-docs": "^2.4.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sharp": "^0.32.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.35",
-		"@types/react-dom": "^18.0.11",
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
 		"@types/sharp": "^0.31.1",
-		"@unocss/cli": "^0.51.6",
+		"@unocss/cli": "^0.51.8",
 		"concurrently": "^8.0.1",
 		"tagscript": "workspace:^",
 		"tagscript-plugin-discord": "workspace:^",
-		"unocss": "^0.51.6"
+		"unocss": "^0.51.8"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"ignorePatterns": "next-env.d.ts",
+	"ignorePatterns": ["next-env.d.ts", "**/*.md"],
 	"overrides": [
 		{
 			"files": ["**/*.mdx"],
