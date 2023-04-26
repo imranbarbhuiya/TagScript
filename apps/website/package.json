@@ -23,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.0",
-		"@types/react-dom": "^18.2.0",
+		"@types/react-dom": "^18.2.1",
 		"@types/sharp": "^0.31.1",
 		"@unocss/cli": "^0.51.8",
 		"concurrently": "^8.0.1",
