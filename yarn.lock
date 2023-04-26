@@ -1332,7 +1332,7 @@ __metadata:
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
     "@types/react": ^18.2.0
-    "@types/react-dom": ^18.2.0
+    "@types/react-dom": ^18.2.1
     "@types/sharp": ^0.31.1
     "@unocss/cli": ^0.51.8
     "@unocss/reset": ^0.51.8
@@ -1517,10 +1517,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.16.0":
+"@types/node@npm:*":
   version: 18.16.0
   resolution: "@types/node@npm:18.16.0"
   checksum: 63e0042136663b9e85ce503a4c65406cc6621fdba63ea66c74b4b1364a9aa9bdb57cadcb76696abab177f38a819b0fa6ace9e7f1647dcb990aedb1b4bd01012f
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.16.1":
+  version: 18.16.1
+  resolution: "@types/node@npm:18.16.1"
+  checksum: 799026b949a48993cba7c9b81b2eabfdfb34c880744cb44c1c990fbedc9e315f3634d126eb2cf9a6e0795577c01016e2326d98565bef695ada9d363fadeb6946
   languageName: node
   linkType: hard
 
@@ -1562,12 +1569,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "@types/react-dom@npm:18.2.0"
+"@types/react-dom@npm:^18.2.1":
+  version: 18.2.1
+  resolution: "@types/react-dom@npm:18.2.1"
   dependencies:
     "@types/react": "*"
-  checksum: 9212b3793707a763f10e2c608f6ccb5f729029da6cb84204f333634d3d7baafbc1b20b7faf7cf788a8fd385050a1fb579902031f9462473ef10607116f33f33c
+  checksum: 4e607a9d08f707ae2bd6b377f1da32989dcbe4e38ac39110423a1f6bc95dd53a5484f7f952b34e9d12b5f29a265d52a8c74c1a7d1d1e25be0fa69ccf9d64209f
   languageName: node
   linkType: hard
 
@@ -9434,7 +9441,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@favware/colorette-spinner": ^1.0.1
     "@favware/npm-deprecate": ^1.0.7
-    "@types/node": ^18.16.0
+    "@types/node": ^18.16.1
     "@types/prompts": ^2.4.4
     "@vitest/coverage-c8": ^0.30.1
     cz-conventional-changelog: ^3.3.0
