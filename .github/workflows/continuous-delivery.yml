@@ -21,6 +21,8 @@ on:
 jobs:
     Publish:
         name: Publish Next to npm
+        permissions:
+            id-token: write
         runs-on: ubuntu-latest
         if: github.repository_owner == 'imranbarbhuiya'
         steps:
@@ -56,3 +58,4 @@ jobs:
                   done
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_CONFIG_PROVENANCE: true
