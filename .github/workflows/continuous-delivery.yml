@@ -58,4 +58,4 @@ jobs:
                   done
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  YARN_NPM_CONFIG_PROVENANCE: true
+                  # YARN_NPM_CONFIG_PROVENANCE: true
