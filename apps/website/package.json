@@ -30,5 +30,6 @@
 		"tagscript": "workspace:^",
 		"tagscript-plugin-discord": "workspace:^",
 		"unocss": "^0.51.12"
-	}
+	},
+	"nextBundleAnalysis": {}
 }

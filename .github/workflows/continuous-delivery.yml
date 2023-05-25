@@ -46,16 +46,13 @@ jobs:
               run: yarn build
             - name: Bump Versions & Publish
               run: |
-                  # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
                   TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
-                  yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
-                  yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
+                  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
                   for d in packages/*; do
                     pushd $d
                     yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
-                    yarn npm publish --tag ${TAG}
+                    npm publish --provenance --tag ${TAG}
                     popd
                   done
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  NPM_CONFIG_PROVENANCE: true
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
