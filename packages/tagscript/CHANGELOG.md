@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript@1.3.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.3.0...tagscript@1.3.1) - (2023-05-27)
+
+## 🐛 Bug Fixes
+
+- Use types first ([8818025](https://github.com/imranbarbhuiya/tagscript/commit/881802549a95f8d3a561246e03e49693cef97305))
+
+## 📝 Documentation
+
+- Update to new links ([7f0f5ed](https://github.com/imranbarbhuiya/tagscript/commit/7f0f5edbd97bc2687db41813666bf39d33613ce4))
+
 # [tagscript@1.3.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.2.14...tagscript@1.3.0) - (2022-12-09)
 
 ## 🐛 Bug Fixes
