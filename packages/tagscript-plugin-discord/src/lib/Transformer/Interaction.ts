@@ -10,7 +10,7 @@ import type { CommandInteraction } from 'discord.js';
  *  @example
  * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
- * import { InteractionTransformer } from 'tagscript-plugin-discord';
+ * import { InteractionTransformer } from '@tagscript/plugin-discord';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *

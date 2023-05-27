@@ -36,7 +36,7 @@ import type { GuildMember } from 'discord.js';
  * @example
  * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
- * import { MemberTransformer } from 'tagscript-plugin-discord';
+ * import { MemberTransformer } from '@tagscript/plugin-discord';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *

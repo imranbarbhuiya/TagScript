@@ -23,7 +23,7 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * @example
  * ```ts copy showLineNumbers
  * const { Interpreter } = require("tagscript")
- * const { RequiredParser } = require("tagscript-plugin-discord")
+ * const { RequiredParser } = require("@tagscript/plugin-discord")
  *
  * const ts = new Interpreter(new RequiredParser())
  *
@@ -72,7 +72,7 @@ export class RequiredParser extends BaseParser implements IParser {
  * @example
  * ```ts copy showLineNumbers
  * const { Interpreter } = require("tagscript")
- * const { DenyParser } = require("tagscript-plugin-discord")
+ * const { DenyParser } = require("@tagscript/plugin-discord")
  *
  * const ts = new Interpreter(new DenyParser())
  *

@@ -13,8 +13,8 @@
 
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
 [![npm-tagscript](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
-[![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square&label=tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
-[![npm-tagscript-plugin-discord](https://img.shields.io/npm/dw/tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
+[![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?color=crimson&logo=npm&style=flat-square&label=@tagscript/plugin-discord)](https://www.npmjs.com/package/@tagscript/plugin-discord)
+[![npm-tagscript-plugin-discord](https://img.shields.io/npm/dw/@tagscript/plugin-discord)](https://www.npmjs.com/package/@tagscript/plugin-discord)
 
 </div>
 

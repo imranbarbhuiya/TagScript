@@ -25,7 +25,7 @@ import type { Role } from 'discord.js';
  * @example
  * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
- * import { RoleTransformer } from 'tagscript-plugin-discord';
+ * import { RoleTransformer } from '@tagscript/plugin-discord';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *

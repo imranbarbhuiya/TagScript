@@ -1,12 +1,12 @@
 <div align="center">
 
-# tagscript-plugin-discord
+# @tagscript/plugin-discord
 
 **A tagscript plugin to work with discord.js**
 
-[![npm](https://img.shields.io/npm/dw/tagscript-plugin-discord)](https://www.npmjs.com/package/tagscript-plugin-discord)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=tagscript-plugin-discord)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-[![npm](https://img.shields.io/npm/v/tagscript-plugin-discord?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript-plugin-discord)
+[![npm](https://img.shields.io/npm/dw/@tagscript/plugin-discord)](https://www.npmjs.com/package/@tagscript/plugin-discord)
+[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=plugin-discord)](https://codecov.io/gh/imranbarbhuiya/tagscript)
+[![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@tagscript/plugin-discord)
 
 </div>
 
@@ -22,7 +22,7 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 
 ## Installation
 
-`tagscript-plugin-discord` depends on the following packages. Be sure to install these along with this package!
+`@tagscript/plugin-discord` depends on the following packages. Be sure to install these along with this package!
 
 -   [tagscript](https://www.npmjs.com/package/tagscript)
 -   [discord.js](https://www.npmjs.com/package/discord.js)
@@ -30,7 +30,7 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 You can use the following command to install this package, or replace npm install with your package manager of choice.
 
 ```bash
-npm install tagscript-plugin-discord tagscript discord.js
+npm install @tagscript/plugin-discord tagscript discord.js
 
 ```
 
@@ -38,7 +38,7 @@ npm install tagscript-plugin-discord tagscript discord.js
 
 ```ts copy showLineNumbers
 import { Interpreter, StrictVarsParser } from 'tagscript';
-import { MemberTransformer } from 'tagscript-plugin-discord';
+import { MemberTransformer } from '@tagscript/plugin-discord';
 
 const ts = new Interpreter(new StrictVarsParser());
 

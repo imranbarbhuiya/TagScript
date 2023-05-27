@@ -6,6 +6,6 @@ package:tagscript:
     - packages/tagscript/*
     - packages/tagscript/**/*
 
-package:plugin-discord:
+plugin:discord:
     - packages/tagscript-plugin-discord/*
     - packages/tagscript-plugin-discord/**/*

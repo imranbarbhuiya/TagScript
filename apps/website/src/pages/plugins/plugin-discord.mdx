@@ -2,7 +2,7 @@ import { Tab, Tabs } from 'nextra-theme-docs';
 
 <div className="flex justify-center items-center flex-col">
 
-# tagscript-plugin-discord
+# @tagscript/plugin-discord
 
 **A tagscript plugin to work with discord.js**
 
@@ -20,7 +20,7 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 
 ## Installation
 
-`tagscript-plugin-discord` depends on the following packages. Be sure to install these along with this package!
+`@tagscript/plugin-discord` depends on the following packages. Be sure to install these along with this package!
 
 -   [tagscript](https://www.npmjs.com/package/tagscript)
 -   [discord.js](https://www.npmjs.com/package/discord.js)
@@ -31,19 +31,19 @@ You can use the following command to install this package, or replace npm instal
 	{/* prettier-ignore */}
 	<Tab>
 		```bash
-		pnpm i tagscript-plugin-discord tagscript discord.js
+		pnpm i @tagscript/plugin-discord tagscript discord.js
 		```
 	</Tab>
 	{/* prettier-ignore */}
 	<Tab>
 		```bash
-		npm i tagscript-plugin-discord tagscript discord.js
+		npm i @tagscript/plugin-discord tagscript discord.js
 		```
 	</Tab>
 	{/* prettier-ignore */}
 	<Tab>
 		```bash
-		yarn add tagscript-plugin-discord tagscript discord.js
+		yarn add @tagscript/plugin-discord tagscript discord.js
 		```
 	</Tab>
 </Tabs>
@@ -52,7 +52,7 @@ You can use the following command to install this package, or replace npm instal
 
 ```ts copy showLineNumbers
 import { Interpreter, StrictVarsParser } from 'tagscript';
-import { MemberTransformer } from 'tagscript-plugin-discord';
+import { MemberTransformer } from '@tagscript/plugin-discord';
 
 const ts = new Interpreter(new StrictVarsParser());
 

@@ -22,13 +22,13 @@
 		"sharp": "^0.32.1"
 	},
 	"devDependencies": {
+		"@tagscript/plugin-discord": "workspace:^",
 		"@types/react": "^18.2.7",
 		"@types/react-dom": "^18.2.4",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.52.4",
 		"concurrently": "^8.0.1",
 		"tagscript": "workspace:^",
-		"tagscript-plugin-discord": "workspace:^",
 		"unocss": "^0.52.4"
 	},
 	"nextBundleAnalysis": {}

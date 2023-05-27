@@ -28,7 +28,7 @@ import type { GuildChannel } from '../interfaces';
  * @example
  * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
- * import { ChannelTransformer } from 'tagscript-plugin-discord';
+ * import { ChannelTransformer } from '@tagscript/plugin-discord';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *

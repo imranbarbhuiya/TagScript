@@ -1396,10 +1396,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tagscript/plugin-discord@workspace:^, @tagscript/plugin-discord@workspace:packages/tagscript-plugin-discord":
+  version: 0.0.0-use.local
+  resolution: "@tagscript/plugin-discord@workspace:packages/tagscript-plugin-discord"
+  dependencies:
+    "@favware/cliff-jumper": ^2.0.1
+    discord.js: ^14.11.0
+    tagscript: "workspace:^"
+    tsup: ^6.7.0
+    typescript: ^5.0.4
+  peerDependencies:
+    discord.js: ^14.0.0
+    tagscript: "*"
+  languageName: unknown
+  linkType: soft
+
 "@tagscript/website@workspace:apps/website":
   version: 0.0.0-use.local
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
+    "@tagscript/plugin-discord": "workspace:^"
     "@types/react": ^18.2.7
     "@types/react-dom": ^18.2.4
     "@types/sharp": ^0.32.0
@@ -1415,7 +1431,6 @@ __metadata:
     react-dom: ^18.2.0
     sharp: ^0.32.1
     tagscript: "workspace:^"
-    tagscript-plugin-discord: "workspace:^"
     unocss: ^0.52.4
   languageName: unknown
   linkType: soft
@@ -10609,21 +10624,6 @@ __metadata:
   checksum: 8a9560e5d8f3d94dc3cf5f7b9c83490ffa30d320093560a37b88f59483040771fd1750e76b9939abfbb1b5a23fd6dfbae77f6b338abffe7cae7329cd9b9bb86b
   languageName: node
   linkType: hard
-
-"tagscript-plugin-discord@workspace:^, tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord":
-  version: 0.0.0-use.local
-  resolution: "tagscript-plugin-discord@workspace:packages/tagscript-plugin-discord"
-  dependencies:
-    "@favware/cliff-jumper": ^2.0.1
-    discord.js: ^14.11.0
-    tagscript: "workspace:^"
-    tsup: ^6.7.0
-    typescript: ^5.0.4
-  peerDependencies:
-    discord.js: ^14.0.0
-    tagscript: "*"
-  languageName: unknown
-  linkType: soft
 
 "tagscript@workspace:^, tagscript@workspace:packages/tagscript":
   version: 0.0.0-use.local

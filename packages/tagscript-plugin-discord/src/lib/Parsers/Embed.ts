@@ -42,7 +42,7 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  * @example
  * ```ts copy showLineNumbers
  * const { Interpreter } = require("tagscript")
- * const { EmbedParser } = require("tagscript-plugin-discord")
+ * const { EmbedParser } = require("@tagscript/plugin-discord")
  *
  * const ts = new Interpreter(new EmbedParser())
  * const result = await ts.run('{embed: { "title": "Hello!", "description": "This is a test embed." }}')

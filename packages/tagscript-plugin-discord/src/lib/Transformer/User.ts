@@ -24,7 +24,7 @@ import type { User } from 'discord.js';
  * @example
  * ```ts copy showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
- * import { UserTransformer } from 'tagscript-plugin-discord';
+ * import { UserTransformer } from '@tagscript/plugin-discord';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *
