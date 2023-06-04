@@ -62,5 +62,5 @@
   color: '7f00ff'
 - name: 'package:tagscript'
   color: '7f00ff'
-- name: 'package:plugin-discord'
+- name: 'plugin-discord'
   color: '7f00ff'
