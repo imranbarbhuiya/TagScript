@@ -22,12 +22,12 @@
 	"devDependencies": {
 		"@commitlint/cli": "^17.6.5",
 		"@commitlint/config-conventional": "^17.6.5",
-		"@favware/cliff-jumper": "^2.0.1",
+		"@favware/cliff-jumper": "^2.1.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
-		"@types/node": "^18.16.16",
+		"@types/node": "^18.16.17",
 		"@types/prompts": "^2.4.4",
-		"@vitest/coverage-c8": "^0.31.4",
+		"@vitest/coverage-c8": "^0.32.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.42.0",
 		"eslint-config-mahir": "^0.0.26",
@@ -38,14 +38,14 @@
 		"prompts": "^2.4.2",
 		"replace-in-file": "^7.0.1",
 		"tsup": "^6.7.0",
-		"turbo": "^1.10.1",
-		"typedoc": "^0.24.7",
+		"turbo": "^1.10.3",
+		"typedoc": "^0.24.8",
 		"typedoc-plugin-external-link": "^2.0.0",
 		"typedoc-plugin-markdown": "3.15.3",
 		"typedoc-plugin-mdn-links": "^3.0.3",
 		"typescript": "^5.1.3",
 		"unocss": "^0.52.7",
-		"vitest": "^0.31.4"
+		"vitest": "^0.32.0"
 	},
 	"repository": {
 		"type": "git",
