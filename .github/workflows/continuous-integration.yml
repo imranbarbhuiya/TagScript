@@ -77,7 +77,7 @@ jobs:
               uses: ./scripts/yarnCache
 
             - name: Run tests
-              run: yarn test
+              run: yarn test -- --coverage
 
             - name: Upload Coverage
               if: github.repository_owner == 'imranbarbhuiya'

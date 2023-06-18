@@ -5,9 +5,7 @@ export const createVitestConfig = () =>
 		test: {
 			globals: true,
 			coverage: {
-				enabled: true,
-				reporter: ['text', 'lcov', 'cobertura'],
-				provider: 'c8'
+				reporter: ['text', 'lcov', 'cobertura']
 			}
 		},
 		esbuild: {
