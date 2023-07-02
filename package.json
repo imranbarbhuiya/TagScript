@@ -44,7 +44,7 @@
 		"typedoc-plugin-markdown": "3.15.3",
 		"typedoc-plugin-mdn-links": "^3.0.3",
 		"typescript": "^5.1.6",
-		"unocss": "^0.53.3",
+		"unocss": "^0.53.4",
 		"vitest": "^0.32.2"
 	},
 	"repository": {
