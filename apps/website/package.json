@@ -13,13 +13,13 @@
 	"dependencies": {
 		"@unocss/reset": "^0.55.2",
 		"eslint-plugin-mdx": "^2.2.0",
-		"framer-motion": "^10.15.1",
-		"next": "^13.4.13",
-		"nextra": "^2.10.0",
-		"nextra-theme-docs": "^2.10.0",
+		"framer-motion": "^10.16.0",
+		"next": "^13.4.19",
+		"nextra": "^2.11.1",
+		"nextra-theme-docs": "^2.11.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sharp": "^0.32.4"
+		"sharp": "^0.32.5"
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
