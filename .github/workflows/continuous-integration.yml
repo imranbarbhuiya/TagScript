@@ -20,7 +20,7 @@ jobs:
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/eslint.json"
             - name: Use Node.js v18
-              uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3
+              uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3
               with:
                   node-version: 18
                   cache: yarn
@@ -39,7 +39,7 @@ jobs:
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/tsc.json"
             - name: Use Node.js v18
-              uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3
+              uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3
               with:
                   node-version: 18
                   cache: yarn
@@ -68,7 +68,7 @@ jobs:
                   name: dist
                   path: packages/tagscript/dist/
             - name: Use Node.js v18
-              uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3
+              uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3
               with:
                   node-version: 18
                   cache: yarn
