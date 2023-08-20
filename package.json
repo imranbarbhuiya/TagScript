@@ -32,7 +32,7 @@
 		"eslint": "^8.47.0",
 		"eslint-config-mahir": "^0.0.31",
 		"husky": "^8.0.3",
-		"lint-staged": "^13.3.0",
+		"lint-staged": "^14.0.0",
 		"prettier": "^3.0.2",
 		"prompts": "^2.4.2",
 		"replace-in-file": "^7.0.1",
