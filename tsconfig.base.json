@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "node16",
+		"module": "commonjs",
 		"strict": true,
 		"skipLibCheck": true,
 		"noImplicitAny": true,
