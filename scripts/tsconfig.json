@@ -5,5 +5,5 @@
 		"checkJs": true,
 		"module": "nodenext"
 	},
-	"include": ["**/*.mjs", "**/*.js", "**/*.ts"]
+	"include": ["**/*.mjs", "**/*.js", "**/*.ts", "vitest.config.mts"]
 }
