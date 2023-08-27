@@ -13,21 +13,21 @@
 	"dependencies": {
 		"@unocss/reset": "^0.55.3",
 		"eslint-plugin-mdx": "^2.2.0",
-		"framer-motion": "^10.16.0",
+		"framer-motion": "^10.16.1",
 		"next": "^13.4.19",
-		"nextra": "^2.11.1",
-		"nextra-theme-docs": "^2.11.1",
+		"nextra": "^2.12.2",
+		"nextra-theme-docs": "^2.12.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sharp": "^0.32.5"
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
-		"@types/react": "^18.2.20",
+		"@types/react": "^18.2.21",
 		"@types/react-dom": "^18.2.7",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.55.3",
-		"concurrently": "^8.2.0",
+		"concurrently": "^8.2.1",
 		"tagscript": "workspace:^",
 		"unocss": "^0.55.3"
 	},
