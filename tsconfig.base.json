@@ -12,7 +12,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"moduleResolution": "node16",
+		"moduleResolution": "node",
 		"declaration": true,
 		"outDir": "dist"
 	},
