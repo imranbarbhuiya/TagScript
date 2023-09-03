@@ -9,6 +9,7 @@
 				"extraFileExtensions": [".mdx"]
 			},
 			"extends": ["mahir/common", "mahir/node", "mahir/react", "mahir/next", "plugin:mdx/recommended", "mahir/prettier"],
+			"plugins": ["prettier"],
 			// "settings": {
 			// 	"mdx/code-blocks": true,
 			// 	"mdx/language-mapper": false
