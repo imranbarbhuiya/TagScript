@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@unocss/reset": "^0.55.7",
 		"eslint-plugin-mdx": "^2.2.0",
-		"framer-motion": "^10.16.2",
+		"framer-motion": "^10.16.4",
 		"next": "^13.4.19",
 		"nextra": "^2.12.3",
 		"nextra-theme-docs": "^2.12.3",
