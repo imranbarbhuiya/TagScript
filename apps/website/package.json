@@ -14,16 +14,16 @@
 		"@unocss/reset": "^0.55.7",
 		"eslint-plugin-mdx": "^2.2.0",
 		"framer-motion": "^10.16.4",
-		"next": "^13.4.19",
+		"next": "^13.5.2",
 		"nextra": "^2.12.3",
 		"nextra-theme-docs": "^2.12.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sharp": "^0.32.5"
+		"sharp": "^0.32.6"
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
-		"@types/react": "^18.2.21",
+		"@types/react": "^18.2.22",
 		"@types/react-dom": "^18.2.7",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.55.7",
