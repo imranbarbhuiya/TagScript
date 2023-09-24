@@ -11,7 +11,7 @@
 		"format": "prettier --cache --write ."
 	},
 	"dependencies": {
-		"@unocss/reset": "^0.55.7",
+		"@unocss/reset": "^0.56.1",
 		"eslint-plugin-mdx": "^2.2.0",
 		"framer-motion": "^10.16.4",
 		"next": "^13.5.2",
@@ -26,10 +26,10 @@
 		"@types/react": "^18.2.22",
 		"@types/react-dom": "^18.2.7",
 		"@types/sharp": "^0.32.0",
-		"@unocss/cli": "^0.55.7",
+		"@unocss/cli": "^0.56.1",
 		"concurrently": "^8.2.1",
 		"tagscript": "workspace:^",
-		"unocss": "^0.55.7"
+		"unocss": "^0.56.1"
 	},
 	"nextBundleAnalysis": {}
 }
