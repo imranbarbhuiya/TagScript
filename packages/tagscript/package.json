@@ -33,7 +33,7 @@
 		"tag"
 	],
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.3",
+		"@favware/cliff-jumper": "^2.2.0",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
