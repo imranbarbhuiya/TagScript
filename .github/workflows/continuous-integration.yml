@@ -19,10 +19,10 @@ jobs:
               uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/eslint.json"
-            - name: Use Node.js v18
+            - name: Use Node.js v20
               uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
               with:
-                  node-version: 18
+                  node-version: 20
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
@@ -38,10 +38,10 @@ jobs:
               uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/tsc.json"
-            - name: Use Node.js v18
+            - name: Use Node.js v20
               uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
               with:
-                  node-version: 18
+                  node-version: 20
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
@@ -67,10 +67,10 @@ jobs:
               with:
                   name: dist
                   path: packages/tagscript/dist/
-            - name: Use Node.js v18
+            - name: Use Node.js v20
               uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
               with:
-                  node-version: 18
+                  node-version: 20
                   cache: yarn
                   registry-url: https://registry.npmjs.org/
             - name: Install Dependencies
