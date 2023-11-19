@@ -2,5 +2,6 @@
 	"entryPoints": ["./src/index.ts"],
 	"readme": "./README.md",
 	"tsconfig": "./src/tsconfig.json",
-	"externalLinkPath": "../../scripts/externalConfig.js"
+	"externalLinkPath": "../../scripts/externalConfig.js",
+	"additionalModuleSources": []
 }
