@@ -36,7 +36,7 @@
 		"prettier": "^3.1.0",
 		"prompts": "^2.4.2",
 		"replace-in-file": "^7.0.2",
-		"tsup": "^7.3.0",
+		"tsup": "^8.0.1",
 		"turbo": "^1.10.16",
 		"typedoc": "^0.25.3",
 		"typedoc-plugin-external-link": "^2.1.1",
