@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@unocss/reset": "^0.58.0",
-		"eslint-plugin-mdx": "^2.2.0",
+		"eslint-plugin-mdx": "^3.0.0",
 		"framer-motion": "^10.16.16",
 		"next": "^14.0.4",
 		"nextra": "^2.13.2",
