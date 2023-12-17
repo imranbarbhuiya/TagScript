@@ -23,8 +23,8 @@
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
-		"@types/react": "^18.2.43",
-		"@types/react-dom": "^18.2.17",
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.18",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.58.0",
 		"concurrently": "^8.2.2",
