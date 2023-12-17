@@ -12215,7 +12215,7 @@ __metadata:
     typedoc: "npm:^0.25.4"
     typedoc-plugin-external-link: "npm:^2.1.1"
     typedoc-plugin-markdown: "npm:3.17.1"
-    typedoc-plugin-mdn-links: "npm:^3.1.7"
+    typedoc-plugin-mdn-links: "npm:^3.1.8"
     typescript: "npm:^5.3.3"
     unocss: "npm:^0.58.0"
     vitest: "npm:^1.0.4"
@@ -13693,12 +13693,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.1.7":
-  version: 3.1.7
-  resolution: "typedoc-plugin-mdn-links@npm:3.1.7"
+"typedoc-plugin-mdn-links@npm:^3.1.8":
+  version: 3.1.8
+  resolution: "typedoc-plugin-mdn-links@npm:3.1.8"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x"
-  checksum: 114210ed1dd99f7c6799930b37c397767a98b8bcf2a082047181a0a65fad3e96fa7f93e10dad444121ec72a4364c9fd14bff14913f448683f373645e2347aef6
+  checksum: 8c8d9cbb42cc5c5fac0ff67bb8ff888ba6b23c9c60dbc02ab1ef68b590d451124aafe71318a8320061953523c1c76fb57b171067f8053d9c9588ac77a8aa00ae
   languageName: node
   linkType: hard
 
