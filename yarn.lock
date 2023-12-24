@@ -2278,7 +2278,7 @@ __metadata:
     "@unocss/cli": "npm:^0.58.0"
     "@unocss/reset": "npm:^0.58.0"
     concurrently: "npm:^8.2.2"
-    eslint-plugin-mdx: "npm:^3.0.1"
+    eslint-plugin-mdx: "npm:^3.1.0"
     framer-motion: "npm:^10.16.16"
     next: "npm:^14.0.4"
     nextra: "npm:^2.13.2"
@@ -5628,9 +5628,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-mdx@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "eslint-mdx@npm:3.0.1"
+"eslint-mdx@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "eslint-mdx@npm:3.1.0"
   dependencies:
     acorn: "npm:^8.11.2"
     acorn-jsx: "npm:^5.3.2"
@@ -5648,7 +5648,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: bffdfb11565cb836ef2fd05eb52a9616eaca60fb122a415339d247da8f5e020f246fd43bd63fa0c88554891bb44a62de2e0e90e7664ea373fc5ffac7543ea161
+  checksum: b65fe337484b59bf7c0510b8fc7983f5559b52f30a87725f1446641d2c96c38af91e180aec112ca80990f465cda5765459e838cffa3afc6026c3e9f3a144a273
   languageName: node
   linkType: hard
 
@@ -5731,11 +5731,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mdx@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "eslint-plugin-mdx@npm:3.0.1"
+"eslint-plugin-mdx@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "eslint-plugin-mdx@npm:3.1.0"
   dependencies:
-    eslint-mdx: "npm:^3.0.1"
+    eslint-mdx: "npm:^3.1.0"
     eslint-plugin-markdown: "npm:^3.0.1"
     remark-mdx: "npm:^3.0.0"
     remark-parse: "npm:^11.0.0"
@@ -5745,7 +5745,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 3adfc12a4bd48e50043ce0adfd5f96d59875c73a8bda4fb35f0e5dba5d6c8c7b981ef78a8666b355a9183ca082de3ad9735ee57c66de57769111dc11e19af5fa
+  checksum: 36945038564bd6c589d511ee0054a987553fc17ac6c6b44f3ebb604fe8cd9c1ca97d52e9ec07cd9f40a89e40f4f88dd7587164a220c5c64c3740dfae8efe56df
   languageName: node
   linkType: hard
 
