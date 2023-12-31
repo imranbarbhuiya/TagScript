@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@unocss/reset": "^0.58.0",
-		"eslint-plugin-mdx": "^3.1.0",
+		"eslint-plugin-mdx": "^3.1.1",
 		"framer-motion": "^10.16.16",
 		"next": "^14.0.4",
 		"nextra": "^2.13.2",
@@ -23,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
-		"@types/react": "^18.2.45",
+		"@types/react": "^18.2.46",
 		"@types/react-dom": "^18.2.18",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.58.0",

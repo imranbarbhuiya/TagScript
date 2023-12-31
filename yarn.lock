@@ -2272,13 +2272,13 @@ __metadata:
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
     "@tagscript/plugin-discord": "workspace:^"
-    "@types/react": "npm:^18.2.45"
+    "@types/react": "npm:^18.2.46"
     "@types/react-dom": "npm:^18.2.18"
     "@types/sharp": "npm:^0.32.0"
     "@unocss/cli": "npm:^0.58.0"
     "@unocss/reset": "npm:^0.58.0"
     concurrently: "npm:^8.2.2"
-    eslint-plugin-mdx: "npm:^3.1.0"
+    eslint-plugin-mdx: "npm:^3.1.1"
     framer-motion: "npm:^10.16.16"
     next: "npm:^14.0.4"
     nextra: "npm:^2.13.2"
@@ -2480,12 +2480,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.10.5":
-  version: 20.10.5
-  resolution: "@types/node@npm:20.10.5"
+"@types/node@npm:^20.10.6":
+  version: 20.10.6
+  resolution: "@types/node@npm:20.10.6"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 4a378428d2c9f692b19801a5a3d20dc4c0ad5d4a3d103350f8b401af439941a9aa5efeadc8eb9db13c66c620318bc7f336abfc8934f82fd32c4a689d85068c6f
+  checksum: 08471220d3cbbb6669835c4b78541edf5eface8f2c2e36c550cfa4ff73da73071c90e200a06359fac25d6564127597c23e178128058fb676824ec23d5178a017
   languageName: node
   linkType: hard
 
@@ -2533,14 +2533,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.2.45":
-  version: 18.2.45
-  resolution: "@types/react@npm:18.2.45"
+"@types/react@npm:^18.2.46":
+  version: 18.2.46
+  resolution: "@types/react@npm:18.2.46"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: bd27fd8a959fa776965997af89cb04e43e7868416850fdff421b5539f389efa35acae3d55915c9f32d7b00fb388550302bf8a7f06010abf9ad431e5bf58cb774
+  checksum: 10fb28a5b8504106512ce3b154c45d1ac045c31633786773a29f003b3079b434060368bb56f95ef6c39510835ceec4fb8fdc271d6ca2b9cdd979379cf53f126b
   languageName: node
   linkType: hard
 
@@ -5628,9 +5628,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-mdx@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "eslint-mdx@npm:3.1.0"
+"eslint-mdx@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "eslint-mdx@npm:3.1.1"
   dependencies:
     acorn: "npm:^8.11.2"
     acorn-jsx: "npm:^5.3.2"
@@ -5648,7 +5648,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: b65fe337484b59bf7c0510b8fc7983f5559b52f30a87725f1446641d2c96c38af91e180aec112ca80990f465cda5765459e838cffa3afc6026c3e9f3a144a273
+  checksum: a3893fde4a31aa451d5983eea915694b297988f14883fde642215fbb9bea85832a58c2016124d34206df32f7bfe68cb8c2949bf7c3b2ab17d85fcdecfdb2c027
   languageName: node
   linkType: hard
 
@@ -5731,11 +5731,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mdx@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "eslint-plugin-mdx@npm:3.1.0"
+"eslint-plugin-mdx@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "eslint-plugin-mdx@npm:3.1.1"
   dependencies:
-    eslint-mdx: "npm:^3.1.0"
+    eslint-mdx: "npm:^3.1.1"
     eslint-plugin-markdown: "npm:^3.0.1"
     remark-mdx: "npm:^3.0.0"
     remark-parse: "npm:^11.0.0"
@@ -5745,7 +5745,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 36945038564bd6c589d511ee0054a987553fc17ac6c6b44f3ebb604fe8cd9c1ca97d52e9ec07cd9f40a89e40f4f88dd7587164a220c5c64c3740dfae8efe56df
+  checksum: d117db22c5423d90bdd83a952004358c36a10cefa381cc91797cc4404888e7671ab8b9c4e84c61f0accdbdc5dff5fb1f2e81bc77958a3b8a2428fc55d81375a8
   languageName: node
   linkType: hard
 
@@ -11898,16 +11898,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"replace-in-file@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "replace-in-file@npm:7.0.2"
+"replace-in-file@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "replace-in-file@npm:7.1.0"
   dependencies:
     chalk: "npm:^4.1.2"
     glob: "npm:^8.1.0"
     yargs: "npm:^17.7.2"
   bin:
     replace-in-file: bin/cli.js
-  checksum: e77a430e6b133ff41e0c4f7e1526b83ab57eb2c4be67efa9b293f16dfaa622ab053c6e32211880206da6bdc0a50f0a2c021be2325a137c6f6a765f37380d25db
+  checksum: 575319cc1b5cdefb17a89e1642227be709fbd2fbd9347d2b0a218e71c74b73572699a29a75c095c0d2260e58e363395d066a755965c564537df30122a8f85fe7
   languageName: node
   linkType: hard
 
@@ -12208,7 +12208,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.10.5"
+    "@types/node": "npm:^20.10.6"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^1.1.0"
     cz-conventional-changelog: "npm:^3.3.0"
@@ -12218,13 +12218,13 @@ __metadata:
     lint-staged: "npm:^15.2.0"
     prettier: "npm:^3.1.1"
     prompts: "npm:^2.4.2"
-    replace-in-file: "npm:^7.0.2"
+    replace-in-file: "npm:^7.1.0"
     tsup: "npm:^8.0.1"
     turbo: "npm:^1.11.2"
     typedoc: "npm:^0.25.4"
     typedoc-plugin-external-link: "npm:^2.1.1"
     typedoc-plugin-markdown: "npm:3.17.1"
-    typedoc-plugin-mdn-links: "npm:^3.1.9"
+    typedoc-plugin-mdn-links: "npm:^3.1.10"
     typescript: "npm:^5.3.3"
     unocss: "npm:^0.58.0"
     vitest: "npm:^1.1.0"
@@ -13702,12 +13702,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.1.9":
-  version: 3.1.9
-  resolution: "typedoc-plugin-mdn-links@npm:3.1.9"
+"typedoc-plugin-mdn-links@npm:^3.1.10":
+  version: 3.1.10
+  resolution: "typedoc-plugin-mdn-links@npm:3.1.10"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x"
-  checksum: 4dc9cce1d7186ed71cad0a92ecc6d17750d411265810d6c7ab67355ea8ca8ba71a785f130c67b5f989dfbc984e4aa2e68ff2acb51ffa537a57a9633763b4bc06
+  checksum: 7de53f548f79a22bc43f40bd1cfccc538d445c164733b3767235ae4f672daa4958a6f36a2602202f29c686e9b98c33ca5d42b4d026185677d58f6a23e07200a4
   languageName: node
   linkType: hard
 
