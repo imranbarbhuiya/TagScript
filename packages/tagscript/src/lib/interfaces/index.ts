@@ -10,7 +10,7 @@ export interface ITransformer {
 	 *
 	 * @param tag - The tag that triggered the transformer.
 	 */
-	transform(tag: Lexer): string | null;
+	transform: (tag: Lexer) => string | null;
 }
 
 /**
@@ -22,13 +22,13 @@ export interface IParser {
 	 *
 	 * @param ctx - The context of the tag.
 	 */
-	parse(ctx: Context): Awaitable<string | null>;
+	parse: (ctx: Context) => Awaitable<string | null>;
 	/**
 	 * Whether the parser can handle the given tag.
 	 *
 	 * @param ctx - The context of the tag.
 	 */
-	willAccept(ctx: Context): Awaitable<boolean>;
+	willAccept: (ctx: Context) => Awaitable<boolean>;
 }
 
 /**
