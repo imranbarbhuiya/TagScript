@@ -82,3 +82,5 @@ jobs:
             - name: Upload Coverage
               if: github.repository_owner == 'imranbarbhuiya'
               uses: ./scripts/uploadCoverage
+              env:
+                CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
