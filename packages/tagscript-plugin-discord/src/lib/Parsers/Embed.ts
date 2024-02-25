@@ -102,9 +102,7 @@ export class EmbedParser extends BaseParser implements IParser {
 	private returnEmbed(ctx: Context, data: APIEmbed | EmbedData): string {
 		ctx.response.actions.embed ??= {} as EmbedData;
 		const { fields, ...rest } = data;
-		if (fields) {
-			ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
-		}
+		if (fields) ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
 
 		// @ts-expect-error - The return type should be unknown
 		ctx.response.actions.embed = { ...ctx.response.actions.embed, ...rest };

@@ -8,7 +8,15 @@
 			"parserOptions": {
 				"extraFileExtensions": [".mdx"]
 			},
-			"extends": ["mahir/common", "mahir/node", "mahir/react", "mahir/next", "plugin:mdx/recommended", "mahir/prettier"],
+			"extends": [
+				"mahir/common",
+				"mahir/node",
+				"mahir/react",
+				"mahir/next",
+				"plugin:mdx/recommended",
+				"mahir/edge"
+				// "plugin:tailwindcss/recommended"
+			],
 			// "settings": {
 			// 	"mdx/code-blocks": true,
 			// 	"mdx/language-mapper": false
@@ -17,15 +25,22 @@
 				"react/jsx-sort-props": "off",
 				"@next/next/no-img-element": "off",
 				"react/self-closing-comp": "off",
-				"react/prop-types": "off"
+				"react/prop-types": "off",
+				"max-statements-per-line": "off",
+				"react/jsx-indent": "off",
+				"react/jsx-closing-bracket-location": "off"
 			}
 		},
 		{
-			"files": ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"],
-			"extends": ["../../.eslintrc.json", "mahir/react", "mahir/next"],
+			"files": ["**/*.tsx", "**/*.ts", "**/*.cjs", "**/*.jsx", "**/*.js"],
+			"extends": [
+				"../../.eslintrc.json",
+				"mahir/react",
+				"mahir/next",
+				"mahir/edge"
+				// "plugin:tailwindcss/recommended"
+			],
 			"rules": {
-				"tsdoc/syntax": "off",
-				"jsdoc/valid-types": "off",
 				"react/prop-types": "off"
 			}
 		}

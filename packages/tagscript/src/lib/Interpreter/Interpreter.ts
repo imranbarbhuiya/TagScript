@@ -22,14 +22,10 @@ const buildNodeTree = (message: string): Node[] => {
 	// eslint-disable-next-line unicorn/no-for-loop -- this is a string
 	for (let index = 0; index < message.length; index++) {
 		const ch = message[index];
-		if (ch === '{' && previous !== '\\') {
-			starts.push(index);
-		}
+		if (ch === '{' && previous !== '\\') starts.push(index);
 
 		if (ch === '}' && previous !== '\\') {
-			if (!starts.length) {
-				continue;
-			}
+			if (!starts.length) continue;
 
 			const coords: [number, number] = [starts.pop()!, index];
 			const node = new Node(coords, null);
@@ -119,14 +115,11 @@ export class Interpreter {
 	}
 
 	private checkWorkload(charLimit: number | null, totalWork: number, output: string) {
-		if (!charLimit) {
-			return;
-		}
+		if (!charLimit) return;
 
 		const currentWork = totalWork + output.length;
-		if (currentWork > charLimit) {
+		if (currentWork > charLimit)
 			throw new Error(`The TS interpreter had its workload exceeded. The total characters attempted were ${currentWork}/${charLimit}`);
-		}
 
 		return currentWork;
 	}
@@ -144,17 +137,11 @@ export class Interpreter {
 			let newStart: number;
 			let newEnd: number;
 			const [fStart, fEnd] = futureN.coordinates;
-			if (fStart > start) {
-				newStart = fStart + differential;
-			} else {
-				newStart = fStart;
-			}
+			if (fStart > start) newStart = fStart + differential;
+			else newStart = fStart;
 
-			if (fEnd > start) {
-				newEnd = fEnd + differential;
-			} else {
-				newEnd = fEnd;
-			}
+			if (fEnd > start) newEnd = fEnd + differential;
+			else newEnd = fEnd;
 
 			futureN.coordinates = [newStart, newEnd];
 		}
@@ -181,9 +168,7 @@ export class Interpreter {
 				return `${final.slice(0, start)} ${(error as Error).message}`;
 			}
 
-			if (output === null) {
-				continue;
-			}
+			if (output === null) continue;
 
 			totalWork = this.checkWorkload(charLimit, totalWork, output)!;
 			const [fMessage, differential] = this.textDeform(start, end, final, output);

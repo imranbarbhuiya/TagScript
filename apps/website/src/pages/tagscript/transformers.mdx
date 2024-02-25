@@ -13,7 +13,8 @@ Transformers are used to transform a value based on the tag at runtime. You can 
     		await ts.run('Hi {user}', { user: new StringTransformer(args) });
     		// Hi Parbez
     	```
-    </Tab>
+
+ </Tab>
     <Tab>
     	```js copy showLineNumbers /Transformer/
     		const { Interpreter, StringTransformer, StrictVarsParser } = require('tagscript');
@@ -23,7 +24,7 @@ Transformers are used to transform a value based on the tag at runtime. You can 
     		// Hi Parbez
     	```
 
-</Tab>
+    </Tab>
 
 </Tabs>
 
@@ -70,7 +71,8 @@ You can write your own transformer by implementing [ITransformer](/typedoc-api/t
     			}
     		}
     	```
-    </Tab>
+
+ </Tab>
     <Tab>
     	```js copy showLineNumbers
     		/**
@@ -100,6 +102,6 @@ You can write your own transformer by implementing [ITransformer](/typedoc-api/t
     		}
     	```
 
-</Tab>
+    </Tab>
 
 </Tabs>

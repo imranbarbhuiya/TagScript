@@ -30,9 +30,7 @@ export const asyncFilter = async <T>(values: T[], fn: (t: T) => Awaitable<boolea
  * @param content - The content to escape
  * @returns
  */
-export const escapeContent = (content: string): string => {
-	return content.replaceAll(escapeRegex, '\\$1');
-};
+export const escapeContent = (content: string): string => content.replaceAll(escapeRegex, '\\$1');
 
 /**
  *
