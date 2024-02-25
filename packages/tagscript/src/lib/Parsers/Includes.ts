@@ -32,9 +32,7 @@ export class IncludesParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const dec = ctx.tag.declaration!.toLowerCase();
-		if (['includes', 'in'].includes(dec)) {
-			return `${ctx.tag.payload!.includes(ctx.tag.parameter!)}`;
-		}
+		if (['includes', 'in'].includes(dec)) return `${ctx.tag.payload!.includes(ctx.tag.parameter!)}`;
 
 		if (dec === 'contain') {
 			const index = ctx.tag.payload!.split(/\s+/).includes(ctx.tag.parameter!);

@@ -39,20 +39,20 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 					data.member instanceof GuildMember
 						? new MemberTransformer(data.member)
 						: data.role instanceof Role
-						? new RoleTransformer(data.role)
-						: data.user instanceof User
-						? new UserTransformer(data.user)
-						: // FIXME: added only for test. Will be removed after rewriting these tests
-						  new StringTransformer(data.value as string);
+							? new RoleTransformer(data.role)
+							: data.user instanceof User
+								? new UserTransformer(data.user)
+								: // FIXME: added only for test. Will be removed after rewriting these tests
+									new StringTransformer(data.value as string);
 				break;
 			case ApplicationCommandOptionType.User:
 				transformers[prefix + data.name] =
 					data.member instanceof GuildMember
 						? new MemberTransformer(data.member)
 						: data.user
-						? new UserTransformer(data.user)
-						: // FIXME: added only for test. Will be removed after rewriting these tests
-						  new StringTransformer(data.value as string);
+							? new UserTransformer(data.user)
+							: // FIXME: added only for test. Will be removed after rewriting these tests
+								new StringTransformer(data.value as string);
 				break;
 			case ApplicationCommandOptionType.Role:
 				if (data.role instanceof Role) transformers[prefix + data.name] = new RoleTransformer(data.role);

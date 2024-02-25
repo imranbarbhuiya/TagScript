@@ -28,9 +28,7 @@ export class BreakParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		if (parseIf(ctx.tag.parameter!)) {
-			ctx.response.body = ctx.tag.payload ?? '';
-		}
+		if (parseIf(ctx.tag.parameter!)) ctx.response.body = ctx.tag.payload ?? '';
 
 		return '';
 	}

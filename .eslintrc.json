@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"extends": ["mahir/common", "mahir/node", "mahir/typescript", "mahir/tsdoc", "mahir/prettier"],
+	"extends": ["mahir/common", "mahir/node", "mahir/typescript", "mahir/tsdoc"],
 	"ignorePatterns": ["**/dist/*", "**/coverage/*", "README.md"],
 	"rules": {
 		"no-console": "error",

@@ -17,13 +17,9 @@ export class IntegerTransformer implements ITransformer {
 	}
 
 	public transform(tag: Lexer) {
-		if (tag.parameter === '++') {
-			return `${++this.integer}`;
-		}
+		if (tag.parameter === '++') return `${++this.integer}`;
 
-		if (tag.parameter === '--') {
-			return `${--this.integer}`;
-		}
+		if (tag.parameter === '--') return `${--this.integer}`;
 
 		return `${this.integer}`;
 	}
