@@ -22,7 +22,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^18.6.1",
 		"@commitlint/config-conventional": "^18.6.2",
-		"@favware/cliff-jumper": "^2.2.3",
+		"@favware/cliff-jumper": "^3.0.1",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@types/node": "^20.11.20",
