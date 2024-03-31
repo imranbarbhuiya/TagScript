@@ -2204,14 +2204,14 @@ __metadata:
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
     "@tagscript/plugin-discord": "workspace:^"
-    "@types/react": "npm:^18.2.69"
-    "@types/react-dom": "npm:^18.2.22"
+    "@types/react": "npm:^18.2.73"
+    "@types/react-dom": "npm:^18.2.23"
     "@types/sharp": "npm:^0.32.0"
     "@unocss/cli": "npm:^0.58.8"
     "@unocss/reset": "npm:^0.58.8"
     concurrently: "npm:^8.2.2"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.0.20"
+    framer-motion: "npm:^11.0.24"
     next: "npm:^14.1.4"
     nextra: "npm:^2.13.4"
     nextra-theme-docs: "npm:^2.13.4"
@@ -2417,12 +2417,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.30":
-  version: 20.11.30
-  resolution: "@types/node@npm:20.11.30"
+"@types/node@npm:^20.12.2":
+  version: 20.12.2
+  resolution: "@types/node@npm:20.12.2"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/78515bc768d2b878e2e06a1c20eb4f5840072b79b8d28ff3dd0a7feaaf48fd3a2ac03cfa5bc7564da82db5906b43e9ba0e5df9f43d870b7aae2942306e208815
+  checksum: 10/f1f0ebfe475aefa183763b856e0023b81b76554196e8676a45b9fcfd1012cdd20d32adefb3c0330001c0011e074676603c34c24821a4924228250ea13a75da43
   languageName: node
   linkType: hard
 
@@ -2450,12 +2450,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.2.22":
-  version: 18.2.22
-  resolution: "@types/react-dom@npm:18.2.22"
+"@types/react-dom@npm:^18.2.23":
+  version: 18.2.23
+  resolution: "@types/react-dom@npm:18.2.23"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10/310da22244c1bb65a7f213f8727bda821dd211cfb2dd62d1f9b28dd50ef1c196d59e908494bd5f25c13a3844343f3a6135f39fb830aca6f79646fa56c1b56c08
+  checksum: 10/8311c67767b0aafb5cd94176a90f801f0f5f6930731d57caaa04bb0d87fdef6bc6f723a116d9777d2082ec022682acaad7a62d04dc27e330e818cf34f2ef2703
   languageName: node
   linkType: hard
 
@@ -2470,14 +2470,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.2.69":
-  version: 18.2.69
-  resolution: "@types/react@npm:18.2.69"
+"@types/react@npm:^18.2.73":
+  version: 18.2.73
+  resolution: "@types/react@npm:18.2.73"
   dependencies:
     "@types/prop-types": "npm:*"
-    "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/5cc185f00ad5a4c2261e127ad25241448492f391e2206738b0477cbdba6aa75692e18ece5e75854ed513342d95c9ee83315744cb6b1470d488772cef1f8b40c8
+  checksum: 10/799e30e73464dff40e04f4eb7499ebc31f99b1711a69263b9af340af738e35c9cdf53084e3dacc3b21c031aaa0cba1b51f4ba60490204b7abb75f115b841583f
   languageName: node
   linkType: hard
 
@@ -6142,9 +6141,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.0.20":
-  version: 11.0.20
-  resolution: "framer-motion@npm:11.0.20"
+"framer-motion@npm:^11.0.24":
+  version: 11.0.24
+  resolution: "framer-motion@npm:11.0.24"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -6158,7 +6157,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/63bfc253002f2180f89c78284d1a8ee496ad40b9763329816f73cd533531fd322dd6535df7001ed1e570529c4d7869ea3c0560415c3ccb91b46b193f4a410282
+  checksum: 10/b2bccbbd4cb362d8c73cce8b3d744257ba8648fc053ae60478fd70db6de0e01829e453cf4b016bb36303a91d85dad80fdcaa9ab5e3905e6bba741a2d1fb479f0
   languageName: node
   linkType: hard
 
@@ -11499,7 +11498,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^3.0.1"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.11.30"
+    "@types/node": "npm:^20.12.2"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^1.4.0"
     cz-conventional-changelog: "npm:^3.3.0"
@@ -11515,7 +11514,7 @@ __metadata:
     typedoc: "npm:^0.25.12"
     typedoc-plugin-external-link: "npm:^2.1.2"
     typedoc-plugin-markdown: "npm:3.17.1"
-    typedoc-plugin-mdn-links: "npm:^3.1.18"
+    typedoc-plugin-mdn-links: "npm:^3.1.19"
     typescript: "npm:^5.4.3"
     unocss: "npm:^0.58.8"
     vitest: "npm:^1.4.0"
@@ -12914,12 +12913,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.1.18":
-  version: 3.1.18
-  resolution: "typedoc-plugin-mdn-links@npm:3.1.18"
+"typedoc-plugin-mdn-links@npm:^3.1.19":
+  version: 3.1.19
+  resolution: "typedoc-plugin-mdn-links@npm:3.1.19"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x"
-  checksum: 10/b26cd117ddb87790e981b07514ac9112e21738abaf068c7781bb572cf36a202e26e857607f175b490020c7203235787b383ca1bb94bd68e09db44327cb0797dc
+  checksum: 10/211726c770b029326fe75c6e37b7e0fb2e039a6e001de6ef24232ff78194b19b1163cb122223726afce27427f01511842611f90dd51e0afe21c187e4500fa993
   languageName: node
   linkType: hard
 
