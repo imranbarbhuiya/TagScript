@@ -38,11 +38,11 @@
 		"bot tag"
 	],
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.1",
+		"@favware/cliff-jumper": "^3.0.2",
 		"discord.js": "^14.14.1",
 		"tagscript": "workspace:^",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.4"
+		"typescript": "^5.4.5"
 	},
 	"peerDependencies": {
 		"discord.js": "^14.0.0",
