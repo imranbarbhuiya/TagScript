@@ -13,8 +13,8 @@
 	"dependencies": {
 		"@unocss/reset": "^0.59.2",
 		"eslint-plugin-mdx": "^3.1.5",
-		"framer-motion": "^11.0.28",
-		"next": "^14.2.1",
+		"framer-motion": "^11.1.7",
+		"next": "^14.2.2",
 		"nextra": "^2.13.4",
 		"nextra-theme-docs": "^2.13.4",
 		"react": "^18.2.0",
@@ -23,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@tagscript/plugin-discord": "workspace:^",
-		"@types/react": "^18.2.78",
+		"@types/react": "^18.2.79",
 		"@types/react-dom": "^18.2.25",
 		"@types/sharp": "^0.32.0",
 		"@unocss/cli": "^0.59.2",
