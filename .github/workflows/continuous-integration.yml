@@ -16,7 +16,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Project
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/eslint.json"
             - name: Use Node.js v20
@@ -35,7 +35,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Project
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
             - name: Add problem matcher
               run: echo "::add-matcher::.github/problemMatchers/tsc.json"
             - name: Use Node.js v20
@@ -61,7 +61,7 @@ jobs:
         needs: Building
         steps:
             - name: Checkout Project
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
             - name: Download tagscript dist folder from artifacts
               uses: actions/download-artifact@8caf195ad4b1dee92908e23f56eeb0696f1dd42d # v4
               with:
