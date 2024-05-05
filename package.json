@@ -29,7 +29,7 @@
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-v8": "^1.6.0",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^8.57.0",
+		"eslint": "^9.2.0",
 		"eslint-config-mahir": "^0.0.43",
 		"husky": "^9.0.11",
 		"lint-staged": "^15.2.2",
