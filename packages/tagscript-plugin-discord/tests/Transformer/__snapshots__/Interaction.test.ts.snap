@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InteractionTransformer > should match the snapshot 1`] = `
+{
+  "applicationId": "938716130720235601",
+  "channelId": "933395546138357800",
+  "commandId": "938716130720235601",
+  "commandName": "ping",
+  "guildId": "933368398996447292",
+  "guildLocale": "en-US",
+  "id": "933368398996447292",
+  "locale": "en-US",
+  "mention": "/ping sub-command member:758880890159235083",
+  "name": "",
+}
+`;

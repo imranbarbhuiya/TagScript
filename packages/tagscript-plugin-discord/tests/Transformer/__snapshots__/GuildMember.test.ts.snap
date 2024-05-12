@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MemberTransformer > should match the snapshot 1`] = `
+{
+  "avatar": null,
+  "bot": false,
+  "color": "",
+  "createdAt": "2020-09-25T02:41:43.539Z",
+  "createdTimestamp": 1601001703539,
+  "discriminator": "0000",
+  "displayAvatar": "https://cdn.discordapp.com/avatars/758880890159235083/17ac5f89d5f8b08b5bbd6cc43c930399.webp",
+  "displayName": "Parbez",
+  "id": "758880890159235083",
+  "joinedAt": "2022-01-19T16:52:53.953Z",
+  "joinedTimestamp": 1642611173953,
+  "mention": "<@758880890159235083>",
+  "name": "",
+  "nickname": null,
+  "position": 1,
+  "roleIds": "933378013154906142, 933368398996447292",
+  "roleNames": "., @everyone",
+  "roles": "<@&933378013154906142> @everyone",
+  "tag": "parbez#0000",
+  "timeoutUntil": "",
+  "timeoutUntilTimestamp": null,
+  "topRole": ".",
+  "username": "parbez",
+}
+`;

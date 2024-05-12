@@ -1,24 +1,9 @@
 /* eslint-disable no-console, tsdoc/syntax */
 import { exec } from 'node:child_process';
-import { cp, rm, mkdir, opendir, rename } from 'node:fs/promises';
-import { join, basename, dirname } from 'node:path';
+import { cp, rm, mkdir, rename } from 'node:fs/promises';
 import process from 'node:process';
 
 import replaceInFile from 'replace-in-file';
-
-/**
- *
- * @param {string} path - The path to the directory to search
- * @returns {AsyncIterableIterator<string>}
- */
-async function* findFilesRecursively(path) {
-	const dir = await opendir(path);
-
-	for await (const item of dir) {
-		if (item.isFile()) yield join(dir.path, item.name);
-		else if (item.isDirectory()) yield* findFilesRecursively(join(dir.path, item.name));
-	}
-}
 
 console.log('Generating docs...');
 
@@ -64,24 +49,9 @@ await mkdir('apps/website/src/pages/typedoc-api');
 
 await rename('docs/tagscript/README.md', 'docs/tagscript/index.md');
 await rename('docs/@tagscript/plugin-discord/README.md', 'docs/@tagscript/plugin-discord/index.md');
-// await rm('docs/modules', { recursive: true });
-// await rm('docs/modules.md');
 await rm('docs/README.md');
 
-for await (const file of findFilesRecursively('docs')) {
-	const filename = basename(file);
-	const dir = dirname(file).replace(/^docs/, '');
-
-	if (file.endsWith('.md')) {
-		if (filename.startsWith('tagscript.')) {
-			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^tagscript\./, '');
-			await cp(file, `apps/website/src/pages/typedoc-api/tagscript/${dir}/${formattedFilename}`);
-		} else if (filename.startsWith('plugin-discord.')) {
-			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^plugin-discord\./, '');
-			await cp(file, `apps/website/src/pages/typedoc-api/@tagscript/plugin-discord/${dir}/${formattedFilename}`);
-		} else await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
-	} else await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
-}
+await cp('docs/', 'apps/website/src/pages/typedoc-api', { recursive: true });
 
 console.log('Organized and copied docs to new typedoc-api folder');
 

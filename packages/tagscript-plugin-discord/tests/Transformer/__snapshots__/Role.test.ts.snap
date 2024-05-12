@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RoleTransformer > should match the snapshot 1`] = `
+{
+  "color": "0",
+  "createdAt": "2022-01-19T15:10:59.661Z",
+  "createdTimestamp": 1642605059661,
+  "hoist": false,
+  "id": "933378013154906142",
+  "memberCount": 0,
+  "mention": "<@&933378013154906142>",
+  "mentionable": false,
+  "name": ".",
+  "permissions": "Administrator",
+  "position": 1,
+}
+`;

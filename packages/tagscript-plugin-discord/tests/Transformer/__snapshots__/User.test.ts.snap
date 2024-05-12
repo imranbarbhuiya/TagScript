@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserTransformer > should match the snapshot 1`] = `
+{
+  "avatar": "https://cdn.discordapp.com/avatars/758880890159235083/17ac5f89d5f8b08b5bbd6cc43c930399.webp",
+  "bot": false,
+  "createdAt": "2020-09-25T02:41:43.539Z",
+  "createdTimestamp": 1601001703539,
+  "discriminator": "0000",
+  "displayAvatar": "https://cdn.discordapp.com/avatars/758880890159235083/17ac5f89d5f8b08b5bbd6cc43c930399.webp",
+  "globalName": "Parbez",
+  "id": "758880890159235083",
+  "mention": "<@758880890159235083>",
+  "name": "",
+  "tag": "parbez#0000",
+  "username": "parbez",
+}
+`;

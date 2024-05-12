@@ -9,6 +9,7 @@ import type { User } from 'discord.js';
  * ```yaml
  * id: Gives user id.
  * mention: Mentions the user.
+ * globalName: Gives user's global name.
  * username: Gives username of the user.
  * discriminator: Gives discriminator of the user
  * tag: Gives username#discriminator
@@ -34,6 +35,7 @@ import type { User } from 'discord.js';
  */
 export class UserTransformer extends BaseTransformer<User> {
 	protected override updateSafeValues() {
+		this.safeValues.globalName = this.base.globalName;
 		this.safeValues.username = this.base.username;
 		this.safeValues.discriminator = this.base.discriminator;
 		this.safeValues.tag = this.base.tag;

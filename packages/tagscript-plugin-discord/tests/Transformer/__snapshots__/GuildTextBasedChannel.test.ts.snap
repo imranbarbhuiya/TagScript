@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ChannelTransformer > should match the snapshot 1`] = `
+{
+  "createdAt": "2022-01-19T16:20:39.850Z",
+  "createdTimestamp": 1642609239850,
+  "id": "933395546138357800",
+  "mention": "<#933395546138357800>",
+  "name": "test",
+  "nsfw": false,
+  "parentId": null,
+  "parentName": "",
+  "parentPosition": 0,
+  "parentType": "",
+  "position": 0,
+  "slowmode": 0,
+  "topic": "A test channel",
+  "type": 0,
+}
+`;

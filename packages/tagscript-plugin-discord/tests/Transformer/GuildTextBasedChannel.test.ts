@@ -11,4 +11,10 @@ describe('ChannelTransformer', () => {
 			'<#933395546138357800>'
 		);
 	});
+
+	it('should match the snapshot', async () => {
+		const userTransformer = new ChannelTransformer(channel);
+
+		expect(userTransformer.toJSON()).toMatchSnapshot();
+	});
 });

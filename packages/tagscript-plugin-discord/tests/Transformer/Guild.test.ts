@@ -6,6 +6,12 @@ import { guild } from '../Structures/Structures';
 const ts = new Interpreter(new StrictVarsParser());
 describe('GuildTransformer', () => {
 	test('GIVEN a guild tag THEN return value from guild variable', async () => {
-		expect((await ts.run('{guild}', { guild: new GuildTransformer(guild) })).body).toBe('Team R.O.T.I');
+		expect((await ts.run('{guild}', { guild: new GuildTransformer(guild) })).body).toBe('My Guild');
+	});
+
+	it('should match the snapshot', async () => {
+		const transformer = new GuildTransformer(guild);
+
+		expect(transformer.toJSON()).toMatchSnapshot();
 	});
 });

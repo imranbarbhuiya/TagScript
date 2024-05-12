@@ -1,29 +1,32 @@
 import {
+	ApplicationCommandOptionType,
+	ApplicationCommandType,
 	ChatInputCommandInteraction,
 	Client,
 	Guild,
 	GuildMember,
+	GuildMemberFlags,
+	InteractionType,
 	Role,
+	RoleFlags,
 	TextChannel,
 	User,
-	InteractionType,
-	ApplicationCommandType,
-	ApplicationCommandOptionType,
-	type APIUser,
-	type APIRole,
+	type APIApplicationCommandInteraction,
+	type APIAttachment,
+	type APIChannel,
 	type APIGuild,
 	type APIGuildMember,
-	type APIChannel,
-	type APIApplicationCommandInteraction,
-	type APIAttachment
+	type APIRole,
+	type APIUser
 } from 'discord.js';
 
 export const client = new Client({ intents: [] });
 
 const userObject: APIUser = {
 	id: '758880890159235083',
-	username: 'P<z, x>',
-	discriminator: '1572',
+	username: 'parbez',
+	global_name: 'Parbez',
+	discriminator: '0000',
 	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
 	bot: false,
 	system: false,
@@ -39,7 +42,8 @@ const roleObject: APIRole = {
 	position: 16,
 	permissions: '8',
 	managed: false,
-	mentionable: false
+	mentionable: false,
+	flags: RoleFlags.InPrompt
 };
 
 const everyoneRoleObject: APIRole = {
@@ -52,12 +56,13 @@ const everyoneRoleObject: APIRole = {
 	position: 0,
 	permissions: '0',
 	managed: false,
-	mentionable: false
+	mentionable: false,
+	flags: RoleFlags.InPrompt
 };
 
 const guildObject = {
 	id: '933368398996447292',
-	name: 'Team R.O.T.I',
+	name: 'My Guild',
 	icon: '396ee43e3064f8ec805fede6f3bcdc6d',
 	splash: null,
 	discovery_splash: null,
@@ -86,14 +91,16 @@ const memberObject: APIGuildMember = {
 	joined_at: '2022-01-19T16:52:53.953Z',
 	deaf: false,
 	mute: false,
-	user: userObject
+	user: userObject,
+	flags: GuildMemberFlags.CompletedOnboarding
 };
 
 const channelObject: APIChannel = {
 	id: '933395546138357800',
 	name: 'test',
 	type: 0,
-	topic: 'A test channel'
+	topic: 'A test channel',
+	position: 1
 };
 
 const channel2Object: APIChannel = {
@@ -226,7 +233,10 @@ const interactionObject: APIApplicationCommandInteraction = {
 	token: '',
 	version: 1,
 	locale: 'en-US',
-	guild_locale: 'en-US'
+	guild_locale: 'en-US',
+	entitlements: [],
+	app_permissions: '8',
+	channel: channelObject
 };
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */

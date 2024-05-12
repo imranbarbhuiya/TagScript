@@ -41,6 +41,10 @@ export abstract class BaseTransformer<T extends CommandInteraction | Guild | Gui
 		return `${value ?? ''}`;
 	}
 
+	public toJSON() {
+		return this.safeValues;
+	}
+
 	protected updateSafeValues() {
 		//
 	}

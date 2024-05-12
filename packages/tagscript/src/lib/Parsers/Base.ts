@@ -25,4 +25,12 @@ export abstract class BaseParser {
 			Boolean(!this.requiredPayload || ctx.tag.payload)
 		);
 	}
+
+	public toJSON() {
+		return {
+			acceptedNames: this.acceptedNames,
+			requiredParameter: this.requiredParameter,
+			requiredPayload: this.requiredPayload
+		};
+	}
 }

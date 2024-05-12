@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GuildTransformer > should match the snapshot 1`] = `
+{
+  "afkChannel": "null",
+  "afkTimeout": 300,
+  "banner": null,
+  "bots": 0,
+  "channelCount": 0,
+  "channelIds": "\`None\`",
+  "channelNames": "\`None\`",
+  "channels": "\`None\`",
+  "createdAt": "2022-01-19T14:32:47.467Z",
+  "createdTimestamp": 1642602767467,
+  "description": null,
+  "emojiCount": 0,
+  "features": "\`None\`",
+  "humans": 0,
+  "icon": "https://cdn.discordapp.com/icons/933368398996447292/396ee43e3064f8ec805fede6f3bcdc6d.webp",
+  "id": "933368398996447292",
+  "large": undefined,
+  "memberCount": undefined,
+  "mention": "My Guild",
+  "name": "My Guild",
+  "ownerId": "938716130720235601",
+  "random": "",
+  "roleCount": 2,
+  "roleIds": "933378013154906142, 933368398996447292",
+  "roleNames": "., @everyone",
+  "roles": "<@&933378013154906142> @everyone",
+  "splash": null,
+  "stickerCount": 0,
+  "verificationLevel": 0,
+}
+`;
