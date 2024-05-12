@@ -1,9 +1,21 @@
 /* eslint-disable no-console, tsdoc/syntax */
 import { exec } from 'node:child_process';
-import { cp, rm, mkdir, rename } from 'node:fs/promises';
+import { cp, rm, mkdir, rename, opendir, readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import process from 'node:process';
+/**
+ *
+ * @param {string} path - The path to the directory to search
+ * @returns {AsyncIterableIterator<string>}
+ */
+async function* findFilesRecursively(path) {
+	const dir = await opendir(path);
 
-import replaceInFile from 'replace-in-file';
+	for await (const item of dir) {
+		if (item.isFile()) yield join(dir.path, item.name);
+		else if (item.isDirectory()) yield* findFilesRecursively(join(dir.path, item.name));
+	}
+}
 
 console.log('Generating docs...');
 
@@ -58,25 +70,19 @@ console.log('Organized and copied docs to new typedoc-api folder');
 await rm('docs', { recursive: true });
 console.log('Deleted docs folder');
 
-/**
- * @type {import('replace-in-file').ReplaceInFileConfig & {processor: (input: string) => string}}
- */
-// @ts-expect-error - Invalid types
-const options = {
-	files: 'apps/website/src/pages/typedoc-api/**/*.md',
-	processor: (input) =>
-		input
-			// All the links are url encoded, so we need to replace them with the correct ones (is it a bug? or my setup issue?)
-			.replaceAll('%5C', '/')
-			.replaceAll('tagscript/@tagscript/plugin-discord/', `/typedoc-api/@tagscript/plugin-discord/`)
-			.replaceAll('tagscript/tagscript/', `/typedoc-api/tagscript/`)
-};
+for await (const file of findFilesRecursively('apps/website/src/pages/typedoc-api')) {
+	const content = await readFile(file, 'utf8');
 
-try {
-	const results = await replaceInFile.replaceInFile(options);
-	console.log('Replaced urls in ', results.filter((result) => result.hasChanged).length, ' files');
-} catch (error) {
-	console.error('Error occurred:', error);
+	const newContent = content
+		// All the links are url encoded, so we need to replace them with the correct ones (is it a bug? or my setup issue?)
+		.replaceAll('%5C', '/')
+		.replaceAll('tagscript/@tagscript/plugin-discord/', `/typedoc-api/@tagscript/plugin-discord/`)
+		.replaceAll('tagscript/tagscript/', `/typedoc-api/tagscript/`)
+		// There might be an option to do it but for now, lets do it this way
+		.replace('[**@tagscript/plugin-discord**](/typedoc-api/@tagscript/plugin-discord/README.md) • **Docs**\n\n***\n\n', '')
+		.replace('[**tagscript**](/typedoc-api/tagscript/README.md) • **Docs**\n\n***\n\n', '');
+
+	await writeFile(file, newContent);
 }
 
 console.log('Docs generated successfully!');

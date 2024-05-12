@@ -6348,7 +6348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^8.0.1, glob@npm:^8.1.0":
+"glob@npm:^8.0.1":
   version: 8.1.0
   resolution: "glob@npm:8.1.0"
   dependencies:
@@ -11014,19 +11014,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"replace-in-file@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "replace-in-file@npm:7.1.0"
-  dependencies:
-    chalk: "npm:^4.1.2"
-    glob: "npm:^8.1.0"
-    yargs: "npm:^17.7.2"
-  bin:
-    replace-in-file: bin/cli.js
-  checksum: 10/575319cc1b5cdefb17a89e1642227be709fbd2fbd9347d2b0a218e71c74b73572699a29a75c095c0d2260e58e363395d066a755965c564537df30122a8f85fe7
-  languageName: node
-  linkType: hard
-
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -11282,7 +11269,6 @@ __metadata:
     lint-staged: "npm:^15.2.2"
     prettier: "npm:^3.2.5"
     prompts: "npm:^2.4.2"
-    replace-in-file: "npm:^7.1.0"
     tsup: "npm:^8.0.2"
     turbo: "npm:^1.13.3"
     typedoc: "npm:^0.25.13"
