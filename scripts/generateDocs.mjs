@@ -1,6 +1,6 @@
 /* eslint-disable no-console, tsdoc/syntax */
 import { exec } from 'node:child_process';
-import { cp, rm, mkdir, opendir } from 'node:fs/promises';
+import { cp, rm, mkdir, opendir, rename } from 'node:fs/promises';
 import { join, basename, dirname } from 'node:path';
 import process from 'node:process';
 
@@ -15,11 +15,8 @@ async function* findFilesRecursively(path) {
 	const dir = await opendir(path);
 
 	for await (const item of dir) {
-		if (item.isFile()) {
-			yield join(dir.path, item.name);
-		} else if (item.isDirectory()) {
-			yield* findFilesRecursively(join(dir.path, item.name));
-		}
+		if (item.isFile()) yield join(dir.path, item.name);
+		else if (item.isDirectory()) yield* findFilesRecursively(join(dir.path, item.name));
 	}
 }
 
@@ -38,11 +35,8 @@ try {
 		child.stdout?.pipe(process.stdout);
 		child.stderr?.pipe(process.stderr);
 		child.on('exit', (code) => {
-			if (code === 0) {
-				resolve(true);
-			} else {
-				reject(new Error(`Typedoc exited with code ${code}`));
-			}
+			if (code === 0) resolve(true);
+			else reject(new Error(`Typedoc exited with code ${code}`));
 		});
 	});
 
@@ -68,20 +62,11 @@ try {
 
 await mkdir('apps/website/src/pages/typedoc-api');
 
-try {
-	await mkdir('docs/tagscript');
-} catch {}
-
-try {
-	await mkdir('docs/plugins/plugin-discord');
-} catch {}
-
-await cp('docs/modules/tagscript.md', 'docs/tagscript/index.md');
-await cp('docs/modules/tagscript_plugin_discord.md', 'docs/plugins/plugin-discord/index.md');
-await rm('docs/modules', { recursive: true });
-await rm('docs/modules.md');
+await rename('docs/tagscript/README.md', 'docs/tagscript/index.md');
+await rename('docs/@tagscript/plugin-discord/README.md', 'docs/@tagscript/plugin-discord/index.md');
+// await rm('docs/modules', { recursive: true });
+// await rm('docs/modules.md');
 await rm('docs/README.md');
-await rm('docs/.nojekyll');
 
 for await (const file of findFilesRecursively('docs')) {
 	const filename = basename(file);
@@ -91,15 +76,11 @@ for await (const file of findFilesRecursively('docs')) {
 		if (filename.startsWith('tagscript.')) {
 			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^tagscript\./, '');
 			await cp(file, `apps/website/src/pages/typedoc-api/tagscript/${dir}/${formattedFilename}`);
-		} else if (filename.startsWith('tagscript_plugin_discord.')) {
-			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^tagscript_plugin_discord\./, '');
-			await cp(file, `apps/website/src/pages/typedoc-api/plugins/plugin-discord/${dir}/${formattedFilename}`);
-		} else {
-			await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
-		}
-	} else {
-		await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
-	}
+		} else if (filename.startsWith('plugin-discord.')) {
+			const formattedFilename = filename === 'tagscript.md' ? filename : filename.replace(/^plugin-discord\./, '');
+			await cp(file, `apps/website/src/pages/typedoc-api/@tagscript/plugin-discord/${dir}/${formattedFilename}`);
+		} else await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
+	} else await cp(file, `apps/website/src/pages/typedoc-api/${dir}/${filename}`);
 }
 
 console.log('Organized and copied docs to new typedoc-api folder');
@@ -115,13 +96,10 @@ const options = {
 	files: 'apps/website/src/pages/typedoc-api/**/*.md',
 	processor: (input) =>
 		input
-			.replace(/\n\[tagscript(?:-plugin-discord)?]\(\.\/tagscript\/modules\/tagscript(?:_plugin_discord)?\.md\)\.\w+\n/, '')
-			.replaceAll(/\.\/tagscript\/modules\/tagscript(?<plugin>_plugin_discord)?.md/g, (_match, plugin) => {
-				return plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript';
-			})
-			.replaceAll(/\.\/tagscript\/(?<dir>\w+)\/tagscript(?<plugin>_plugin_discord)?\.(?<path>\w+)\.md/g, (_match, dir, plugin, path) => {
-				return `${plugin ? '/typedoc-api/plugins/plugin-discord' : '/typedoc-api/tagscript'}/${dir}/${path}`;
-			})
+			// All the links are url encoded, so we need to replace them with the correct ones (is it a bug? or my setup issue?)
+			.replaceAll('%5C', '/')
+			.replaceAll('tagscript/@tagscript/plugin-discord/', `/typedoc-api/@tagscript/plugin-discord/`)
+			.replaceAll('tagscript/tagscript/', `/typedoc-api/tagscript/`)
 };
 
 try {

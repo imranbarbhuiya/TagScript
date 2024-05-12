@@ -27,7 +27,7 @@
 			},
 			"plugins": {
 				"title": "Discord Plugin",
-				"href": "/typedoc-api/plugins/plugin-discord"
+				"href": "/typedoc-api/@tagscript/plugin-discord"
 			}
 		}
 	}

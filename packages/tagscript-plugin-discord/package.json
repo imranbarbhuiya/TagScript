@@ -22,7 +22,8 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "vitest run"
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.eslint.json --noEmit"
 	},
 	"keywords": [
 		"tagscript",
@@ -39,7 +40,7 @@
 	],
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.3",
-		"discord.js": "^14.14.1",
+		"discord.js": "^14.15.2",
 		"tagscript": "workspace:^",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5"

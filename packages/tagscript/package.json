@@ -20,7 +20,8 @@
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "vitest run"
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.eslint.json --noEmit"
 	},
 	"keywords": [
 		"tagscript",

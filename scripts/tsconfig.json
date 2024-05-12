@@ -3,7 +3,8 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
-		"module": "nodenext"
+		"module": "nodenext",
+		"moduleResolution": "node16"
 	},
 	"include": ["**/*.mjs", "**/*.js", "**/*.ts"]
 }

@@ -9,7 +9,6 @@
 	"externalLinkPath": "./scripts/externalConfig.js",
 	"hideGenerator": true,
 	"hideBreadcrumbs": true,
-	"hideInPageTOC": true,
 	"publicPath": "./tagscript/",
 	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-external-link"],
 	"additionalModuleSources": []

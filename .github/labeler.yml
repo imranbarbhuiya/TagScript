@@ -1,11 +1,11 @@
 apps:website:
-  - changed-files:
-      - any-glob-to-any-file: apps/website/**
+    - changed-files:
+          - any-glob-to-any-file: apps/website/**
 
 package:tagscript:
-  - changed-files:
-      - any-glob-to-any-file: packages/tagscript/**
+    - changed-files:
+          - any-glob-to-any-file: packages/tagscript/**
 
 plugin:discord:
-  - changed-files:
-      - any-glob-to-any-file: packages/tagscript-plugin-discord/**
+    - changed-files:
+          - any-glob-to-any-file: packages/tagscript-plugin-discord/**
