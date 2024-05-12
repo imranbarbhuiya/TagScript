@@ -25,7 +25,7 @@
 		"@favware/cliff-jumper": "^3.0.3",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
-		"@types/node": "^20.12.8",
+		"@types/node": "^20.12.11",
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-v8": "^1.6.0",
 		"cz-conventional-changelog": "^3.3.0",
@@ -41,7 +41,7 @@
 		"typedoc": "^0.25.13",
 		"typedoc-plugin-external-link": "^2.1.2",
 		"typedoc-plugin-markdown": "3.17.1",
-		"typedoc-plugin-mdn-links": "^3.1.24",
+		"typedoc-plugin-mdn-links": "^3.1.25",
 		"typescript": "^5.4.5",
 		"unocss": "^0.59.4",
 		"vitest": "^1.6.0"
@@ -72,6 +72,6 @@
 		"minimist": "^1.2.8",
 		"typedoc-plugin-markdown@3.15.0": "patch:typedoc-plugin-markdown@npm%3A3.15.0#./.yarn/patches/typedoc-plugin-markdown-npm-3.15.0-981f121e2f.patch"
 	},
-	"packageManager": "yarn@4.2.1",
+	"packageManager": "yarn@4.2.2",
 	"nextBundleAnalysis": {}
 }
