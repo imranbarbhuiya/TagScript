@@ -100,10 +100,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# nextjs vscode config
-apps/website/.vscode/settings.json
-apps/website/src/styles/unocss.css
-
 # Typedoc output
 apps/website/src/pages/typedoc-api/**/*.md
 

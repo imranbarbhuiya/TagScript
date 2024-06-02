@@ -6,6 +6,7 @@
 		"eamodio.gitlens",
 		"christian-kohler.npm-intellisense",
 		"christian-kohler.path-intellisense",
-		"unifiedjs.vscode-mdx"
+		"unifiedjs.vscode-mdx",
+		"bradlc.vscode-tailwindcss"
 	]
 }
