@@ -33,15 +33,15 @@
 		"eslint": "^8.57.0",
 		"eslint-config-mahir": "^0.0.43",
 		"husky": "^9.0.11",
-		"lint-staged": "^15.2.5",
-		"prettier": "^3.3.1",
+		"lint-staged": "^15.2.7",
+		"prettier": "^3.3.2",
 		"prompts": "^2.4.2",
 		"tsup": "^8.1.0",
 		"turbo": "^1.13.4",
 		"typedoc": "^0.25.13",
 		"typedoc-plugin-external-link": "^2.1.2",
 		"typedoc-plugin-markdown": "4.0.3",
-		"typedoc-plugin-mdn-links": "^3.1.29",
+		"typedoc-plugin-mdn-links": "^3.1.30",
 		"typescript": "^5.4.5",
 		"vitest": "^1.6.0"
 	},
@@ -70,6 +70,6 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8"
 	},
-	"packageManager": "yarn@4.2.2",
+	"packageManager": "yarn@4.3.0",
 	"nextBundleAnalysis": {}
 }
