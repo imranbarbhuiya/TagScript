@@ -1,6 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
+		"module": "esnext",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"forceConsistentCasingInFileNames": true,
@@ -14,7 +15,10 @@
 			{
 				"name": "next"
 			}
-		]
+		],
+		"paths": {
+			"@/*": ["./*"]
+		}
 	},
 	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", "next.config.js"]
 }

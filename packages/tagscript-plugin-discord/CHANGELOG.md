@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Use types first ([8818025](https://github.com/imranbarbhuiya/tagscript/commit/881802549a95f8d3a561246e03e49693cef97305))
 - Rename files and bump deps ([f73eaa3](https://github.com/imranbarbhuiya/tagscript/commit/f73eaa381a9c14047121160d7acf57834c2890cc))
-- Code block copy button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
+- Code block button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
 - Return number from embed parser (#120) ([2f23da2](https://github.com/imranbarbhuiya/tagscript/commit/2f23da2d04a4a79a9ad61117e5e502f3f075dd64))
 - Import awaitable from tagscript ([19423d0](https://github.com/imranbarbhuiya/tagscript/commit/19423d06064f3eb8198c549894f2c0991256e069))
 - **types:** Export override (#44) ([f748bc5](https://github.com/imranbarbhuiya/tagscript/commit/f748bc55aec015ed4930cd2979e902610c91c773))
@@ -65,7 +65,7 @@ All notable changes to this project will be documented in this file.
 ## 🐛 Bug Fixes
 
 - Rename files and bump deps ([f73eaa3](https://github.com/imranbarbhuiya/tagscript/commit/f73eaa381a9c14047121160d7acf57834c2890cc))
-- Code block copy button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
+- Code block button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
 
 ## 🚀 Features
 

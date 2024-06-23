@@ -101,7 +101,7 @@ dist
 .pnp.*
 
 # Typedoc output
-apps/website/src/pages/typedoc-api/**/*.md
+apps/website/content/docs/api/**/*.md
 
 # turbo cache
 .turbo

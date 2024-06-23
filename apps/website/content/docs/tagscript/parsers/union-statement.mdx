@@ -1,0 +1,56 @@
+---
+title: UnionStatementParser
+---
+
+# UnionStatementParser
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The union parser checks that any of the passed expressions are true.
+Multiple expressions can be passed to the parameter by splitting them with pipe (`|`).
+The payload is a required message that must be split by pipe (`|`).
+If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, UnionStatementParser } from 'tagscript';
+	const ts = new Interpreter(new UnionStatementParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, UnionStatementParser } = require('tagscript');
+	const ts = new Interpreter(new UnionStatementParser());
+	```
+</Tabs>
+
+## API
+
+Check [UnionStatementParser](../../typedoc-api/tagscript/classes/UnionStatementParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+{/* prettier-ignore-start */}
+```yaml
+{any(expression|expression|...):message}
+```
+{/* prettier-ignore-end */}
+
+### Examples
+
+```yaml
+{any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
+# if {args} is hi
+Hello Mr. Priyansh#2063!
+# if {args} is what's up
+How rude.
+```
+
+### Aliases
+
+`union`, `any`, `or`
+
+</Callout>

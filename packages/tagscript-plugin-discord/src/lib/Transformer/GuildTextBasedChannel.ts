@@ -26,7 +26,7 @@ import type { GuildChannel } from '../interfaces';
  * @remarks
  * You need to use `StrictVarsParser` parser to use this transformer.
  * @example
- * ```ts copy showLineNumbers
+ * ```ts showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
  * import { ChannelTransformer } from '@tagscript/plugin-discord';
  *

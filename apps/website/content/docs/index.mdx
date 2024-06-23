@@ -1,0 +1,104 @@
+---
+title: TagScript
+description: Tagscript is a simple, lightweight, and easy to use templating language.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+import Image from 'next/image';
+
+import Logo from '../../../../.github/logo_short.png';
+
+<div className="flex justify-center items-center flex-col">
+
+<Image src={Logo} alt="TagScript Logo" width={250} height={250} placeholder="blur" />
+
+# TagScript
+
+**A simple and safe template engine.**
+
+</div>
+
+## Description
+
+TagScript is a drop in easy to use string interpreter that lets you provide users with ways of customizing their profiles or chat rooms with interactive text.
+
+## Features
+
+-   Written In Typescript
+-   Offers CJS, ESM and UMD builds
+-   Full TypeScript & JavaScript support
+-   Blazingly Fast ⚡
+-   Simple, expressive and safe template engine.
+-   Supports many [plugins](/plugins).
+
+## Usage
+
+All TagScript tags begins with a left curly brace `{`, and ends with a right curly brace `}`. Anything outside the curly braces is treated as
+plain text. Immediately after the left curly brace is the tag declaration/name. It can have multiple aliases. Following the tag name is a
+parameter it's optional for some tags. The parameter can start with parentheses or a dot. If it starts with parentheses, It'll end in parentheses.
+If it starts with a dot, It'll either stop before colon `:` or at the end of the tag. Following the parameter is the payload of the tag. It starts
+with a colon `:` and continues up to the end. It's optional for some tags.
+
+### Examples
+
+```yaml
+# with parantheses
+{declaration(parameters):payload}
+# with dot
+{declaration.parameters:payload}
+```
+
+<Callout type="info" emoji={null}>
+	If you want to escape a curly brace, colon, or parentheses then you can use backslash `\` before the character.
+
+    ```yaml
+    {embed\.title.description:Hello world}
+    ```
+
+</Callout>
+
+### For Developers
+
+<Tabs items={['ESM', 'CommonJs']}>
+		```ts showLineNumbers tab="ESM"
+			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+    	```js showLineNumbers tab="CommonJs"
+    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
+    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
+    		// Parbez attempts to pick the lock!, I pick heads
+    	```
+
+</Tabs>
+
+## Buy me some doughnuts
+
+If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
+
+<div className="flex justify-center items-center gap-10">
+	<a href="https://www.buymeacoffee.com/parbez" rel="noreferrer" target="_blank">
+		<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
+	</a>
+	<a href="https://ko-fi.com/Y8Y1CBIJH" rel="noreferrer" target="_blank">
+		<img
+			height="36"
+			style={{ border: '0px', height: '36px' }}
+			src="https://cdn.ko-fi.com/cdn/kofi4.png?v=3"
+			border="0"
+			alt="Buy Me a Coffee at ko-fi.com"
+		/>
+	</a>
+</div>
+
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+
+<a href="https://github.com/imranbarbhuiya/TagScript/graphs/contributors">
+	<img src="https://contrib.rocks/image?repo=imranbarbhuiya/TagScript" />
+</a>

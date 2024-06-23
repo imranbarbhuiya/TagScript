@@ -40,7 +40,7 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  * ```
  * Developers need to construct the embed builder themselves with the output of the tag.
  * @example
- * ```ts copy showLineNumbers
+ * ```ts showLineNumbers
  * const { Interpreter } = require("tagscript")
  * const { EmbedParser } = require("@tagscript/plugin-discord")
  *

@@ -1,14 +1,22 @@
-/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-import nextra from 'nextra';
+import { remarkInstall } from 'fumadocs-docgen';
+import createMDX from 'fumadocs-mdx/config';
 
-const withNextra = nextra({ theme: 'nextra-theme-docs', themeConfig: './theme.config.tsx' });
-
-/**
- * @type {import('next').NextConfig}
- */
-export default withNextra({
-	reactStrictMode: true,
-	experimental: {
-		mdxRs: true
+const withMDX = createMDX({
+	mdxOptions: {
+		rehypeCodeOptions: {
+			themes: {
+				light: 'catppuccin-latte',
+				dark: 'catppuccin-mocha'
+			}
+		},
+		remarkPlugins: [[remarkInstall, { Tabs: 'InstallTabs' }]],
+		lastModifiedTime: 'git'
 	}
 });
+
+/** @type {import('next').NextConfig} */
+const config = {
+	reactStrictMode: true
+};
+
+export default withMDX(config);

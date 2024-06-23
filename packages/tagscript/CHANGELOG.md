@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 ## 🐛 Bug Fixes
 
 - Rename files and bump deps ([f73eaa3](https://github.com/imranbarbhuiya/tagscript/commit/f73eaa381a9c14047121160d7acf57834c2890cc))
-- Code block copy button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
+- Code block button ([ead3152](https://github.com/imranbarbhuiya/tagscript/commit/ead31521ac4406b30a6a090b203ba5587743f908))
 - Relative url ([6e7b0f9](https://github.com/imranbarbhuiya/tagscript/commit/6e7b0f98cf0cc51357c1a582ad9f736b93223b84))
 
 ## 🚀 Features

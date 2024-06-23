@@ -1,0 +1,20 @@
+---
+title: StringTransformer
+---
+
+# StringTransformer
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+String transformer transforms a string based on the given parameters.
+
+If no parameters are given, the string will be returned as is.
+If an integer parameter is given, the string will be splitted into an array of strings using payload or space as a separator.
+And will return the element at the given index (integer parameter).
+
+Use a `+` before the index to reference every element up to and including the index value.
+
+Use a `+` after the index to reference the index value and every element after it.
+a
+
+<Callout type="info">You need to use `StrictVarsParser` parser to use this transformer.</Callout>

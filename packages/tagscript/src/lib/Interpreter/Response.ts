@@ -24,7 +24,7 @@ export class Response {
 	 * If you are creating a parser where you need to store info in actions,
 	 * then you need to extend this interface.
 	 *
-	 * ```ts copy showLineNumbers
+	 * ```ts showLineNumbers
 	 * import 'tagscript';
 	 * declare module 'tagscript' {
 	 * 	interface IActions {

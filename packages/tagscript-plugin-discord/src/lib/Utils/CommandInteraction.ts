@@ -71,7 +71,7 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
  * Resolves {@link CommandInteractionOptionResolver} options to transformers.
  *
  * @example
- * ```ts copy showLineNumbers
+ * ```ts showLineNumbers
  * client.on('interactionCreate', async interaction => {
  *  if (!interaction.isCommand()) return;
  *

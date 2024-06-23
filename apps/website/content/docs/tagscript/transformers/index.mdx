@@ -1,0 +1,100 @@
+---
+title: TagScript Transformers
+description: Tagscript transformers are used to transform a value based on the tag at runtime.
+---
+
+# Transformers
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+Transformers are used to transform a value based on the tag at runtime. You can use [builtin transformers](#builtin-transformers) or write your [own transformer](#custom-transformer).
+
+<Tabs items={['ESM', 'CommonJs']}>
+		```ts showLineNumbers tab="ESM"
+			// [!code word:Transformer]
+			import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
+			const ts = new Interpreter(new StrictVarsParser());
+
+    		await ts.run('Hi {user}', { user: new StringTransformer(args) });
+    		// Hi Parbez
+    	```
+    	```js showLineNumbers tab="CommonJs"
+			// [!code word:Transformer]
+    		const { Interpreter, StringTransformer, StrictVarsParser } = require('tagscript');
+    		const ts = new Interpreter(new StrictVarsParser());
+
+    		await ts.run('Hi {user}', { user: new StringTransformer(args) });
+    		// Hi Parbez
+    	```
+</Tabs>
+
+## Builtin Transformers
+
+Following is the list of builtin transformers:
+
+{/* -   [BreakParser](/tagscript/parsers/break) */}
+
+## Custom Transformer
+
+You can write your own transformer by implementing [ITransformer](/typedoc-api/tagscript/interfaces/ITransformer) interface.
+
+<Tabs items={['Typescript', 'CommonJs']}>
+		```ts showLineNumbers /ITransformer/ tab="Typescript"
+			import type { ITransformer, Lexer } from 'tagscript';
+
+    		/**
+    		* Integer transformer transforms an integer based on the given parameters.
+    		*
+    		* If no parameters are given, the integer will be returned as is.
+    		*
+    		* if `++` parameter is given, the integer will be incremented.
+    		* if `--` parameter is given, the integer will be decremented.
+    		*/
+    		export class IntegerTransformer implements ITransformer {
+    			private integer: number;
+
+    			public constructor(int: `${bigint | number}`) {
+    				this.integer = Number.parseInt(int, 10);
+    			}
+
+    			public transform(tag: Lexer) {
+    				if (tag.parameter === '++') {
+    					return `${++this.integer}`;
+    				}
+
+    				if (tag.parameter === '--') {
+    					return `${--this.integer}`;
+    				}
+
+    				return `${this.integer}`;
+    			}
+    		}
+    	```
+    	```js showLineNumbers tab="CommonJs"
+    		/**
+    		* Integer transformer transforms an integer based on the given parameters.
+    		*
+    		* If no parameters are given, the integer will be returned as is.
+    		*
+    		* if `++` parameter is given, the integer will be incremented.
+    		* if `--` parameter is given, the integer will be decremented.
+    		*/
+    		module.exports = class IntegerTransformer {
+    			constructor(int) {
+    				this.integer = Number.parseInt(int, 10);
+    			}
+
+    			transform(tag) {
+    				if (tag.parameter === '++') {
+    					return `${++this.integer}`;
+    				}
+
+    				if (tag.parameter === '--') {
+    					return `${--this.integer}`;
+    				}
+
+    				return `${this.integer}`;
+    			}
+    		}
+    	```
+</Tabs>
