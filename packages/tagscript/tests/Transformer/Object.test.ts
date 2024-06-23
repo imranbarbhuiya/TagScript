@@ -50,4 +50,63 @@ describe('SafeObjectTransformer', () => {
 			}).setValues('{obj.get}', '{obj.get}')
 		);
 	});
+
+	test('GIVEN an object with an invalid key THEN return parameter', async () => {
+		const ts = new Interpreter(new StrictVarsParser());
+		await expect(
+			ts.run('{obj.name}', {
+				obj: new SafeObjectTransformer({ age: '5' })
+			})
+		).resolves.toStrictEqual(
+			new Response({
+				obj: new SafeObjectTransformer({ age: '5' })
+			}).setValues('{obj.name}', '{obj.name}')
+		);
+	});
+
+	test('GIVEN an object with nested key THEN return the value', async () => {
+		const ts = new Interpreter(new StrictVarsParser());
+		await expect(
+			ts.run('{obj.name.first}', {
+				obj: new SafeObjectTransformer({ name: { first: '5' } })
+			})
+		).resolves.toStrictEqual(
+			new Response({
+				obj: new SafeObjectTransformer({ name: { first: '5' } })
+			}).setValues('5', '{obj.name.first}')
+		);
+
+		await expect(
+			ts.run('{obj.name.first.second}', {
+				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } })
+			})
+		).resolves.toStrictEqual(
+			new Response({
+				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } })
+			}).setValues('5', '{obj.name.first.second}')
+		);
+
+		await expect(
+			ts.run('{obj.name.first.second.third}', {
+				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } })
+			})
+		).resolves.toStrictEqual(
+			new Response({
+				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } })
+			}).setValues('5', '{obj.name.first.second.third}')
+		);
+	});
+
+	test('GIVEN an object with an invalid nested key THEN return null', async () => {
+		const ts = new Interpreter(new StrictVarsParser());
+		await expect(
+			ts.run('{obj.name.first.second}', {
+				obj: new SafeObjectTransformer({ name: { first: '5' } })
+			})
+		).resolves.toStrictEqual(
+			new Response({
+				obj: new SafeObjectTransformer({ name: { first: '5' } })
+			}).setValues('{obj.name.first.second}', '{obj.name.first.second}')
+		);
+	});
 });

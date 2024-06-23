@@ -16,8 +16,22 @@ export class SafeObjectTransformer implements ITransformer {
 		if (tag.parameter === null) return `${this.obj}`;
 		if (tag.parameter.startsWith('_')) return null;
 
-		const attribute = this.obj[tag.parameter];
+		const attribute = this.getValue(this.obj, tag.parameter);
 		return attribute ? `${attribute}` : null;
+	}
+
+	private getValue(obj: Record<string, unknown>, key: string) {
+		if (key in obj) return obj[key];
+		if (!key.includes('.')) return null;
+		const keys = key.split('.');
+		let value = obj;
+
+		for (const key of keys) {
+			if (typeof value !== 'object') return null;
+			value = value[key] as Record<string, unknown>;
+		}
+
+		return value;
 	}
 
 	private makeObject(obj: Record<string, unknown> | string) {
