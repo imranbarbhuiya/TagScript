@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript@1.4.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.3.3...tagscript@1.4.0) - (2024-06-23)
+
+## 🚀 Features
+
+- Add support for nested object keys ([d3d803b](https://github.com/imranbarbhuiya/tagscript/commit/d3d803bdb75702b801cbf6f421d78a81a2ca0909))
+- New docs website ([4212d4b](https://github.com/imranbarbhuiya/tagscript/commit/4212d4bb16e7ab715224233b757442deb450fa0e))
+- Add toJSON to base classes ([31fda4e](https://github.com/imranbarbhuiya/tagscript/commit/31fda4e165c61a518da1b6fff02741fe5e1b3ed7))
+
 # [tagscript@1.3.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.3.0...tagscript@1.3.1) - (2023-05-27)
 
 ## 🐛 Bug Fixes
