@@ -9,8 +9,7 @@ const withMDX = createMDX({
 				dark: 'catppuccin-mocha'
 			}
 		},
-		remarkPlugins: [[remarkInstall, { Tabs: 'InstallTabs' }]],
-		lastModifiedTime: 'git'
+		remarkPlugins: [[remarkInstall, { Tabs: 'InstallTabs' }]]
 	}
 });
 

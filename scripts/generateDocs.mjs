@@ -1,5 +1,12 @@
+/**
+ * This script is used to generate the docs for the website.
+ *
+ * This script might contain some unnecessary fs and replace calls.
+ * Feel free to optimize it. I just added new codes whenever I need as I'm busy with other stuff and optimizing this script is not necessary.
+ */
+
 /* eslint-disable no-console, tsdoc/syntax */
-import { exec } from 'node:child_process';
+import { exec, execSync } from 'node:child_process';
 import { cp, rm, mkdir, rename, opendir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import process from 'node:process';
@@ -18,6 +25,12 @@ async function* findFilesRecursively(path) {
 }
 
 console.log('Generating docs...');
+
+if (process.env.VERCEL_URL) {
+	console.log('Vercel detected, setting up git remote...');
+	const remote = `https://github.com/imranbarbhuiya/TagScript`;
+	execSync(`git remote add origin ${remote}`);
+}
 
 // Try to remove the docs folder, if it exists
 try {
