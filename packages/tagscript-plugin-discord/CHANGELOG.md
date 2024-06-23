@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@tagscript/plugin-discord@3.1.0](https://github.com/imranbarbhuiya/tagscript/compare/@tagscript/plugin-discord@3.0.0...@tagscript/plugin-discord@3.1.0) - (2024-06-23)
+
+## 🚀 Features
+
+- New docs website ([4212d4b](https://github.com/imranbarbhuiya/tagscript/commit/4212d4bb16e7ab715224233b757442deb450fa0e))
+- Add toJSON to base classes ([31fda4e](https://github.com/imranbarbhuiya/tagscript/commit/31fda4e165c61a518da1b6fff02741fe5e1b3ed7))
+
 # [@tagscript/plugin-discord@3.0.0](https://github.com/imranbarbhuiya/tagscript/tree/@tagscript/plugin-discord@3.0.0) - (2023-05-27)
 
 ## 🐛 Bug Fixes
