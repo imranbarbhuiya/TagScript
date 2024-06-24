@@ -3,7 +3,8 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", ".next/**"]
+			"outputs": ["dist/**", ".next/**"],
+			"env": ["VERCEL_URL"]
 		},
 		"bump": {
 			"dependsOn": [],

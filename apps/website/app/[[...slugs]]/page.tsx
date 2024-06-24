@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slugs?: string[] } })
 	const Mdx = page.data.exports.default;
 
 	return (
-		<DocsPage full={page.data.full} toc={page.data.exports.toc}>
+		<DocsPage full toc={page.data.exports.toc}>
 			<DocsBody>
 				<Mdx />
 			</DocsBody>
