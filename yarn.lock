@@ -1503,7 +1503,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-accordion@npm:^1.1.2":
+"@radix-ui/react-accordion@npm:^1.2.0":
   version: 1.2.0
   resolution: "@radix-ui/react-accordion@npm:1.2.0"
   dependencies:
@@ -1549,7 +1549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-collapsible@npm:1.1.0, @radix-ui/react-collapsible@npm:^1.0.3":
+"@radix-ui/react-collapsible@npm:1.1.0, @radix-ui/react-collapsible@npm:^1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-collapsible@npm:1.1.0"
   dependencies:
@@ -1686,7 +1686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-dialog@npm:^1.0.5":
+"@radix-ui/react-dialog@npm:^1.1.1":
   version: 1.1.1
   resolution: "@radix-ui/react-dialog@npm:1.1.1"
   dependencies:
@@ -1718,7 +1718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-direction@npm:1.1.0, @radix-ui/react-direction@npm:^1.0.1":
+"@radix-ui/react-direction@npm:1.1.0, @radix-ui/react-direction@npm:^1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-direction@npm:1.1.0"
   peerDependencies:
@@ -1880,7 +1880,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-popover@npm:^1.0.7":
+"@radix-ui/react-popover@npm:^1.1.1":
   version: 1.1.1
   resolution: "@radix-ui/react-popover@npm:1.1.1"
   dependencies:
@@ -2088,7 +2088,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-scroll-area@npm:^1.0.5":
+"@radix-ui/react-scroll-area@npm:^1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-scroll-area@npm:1.1.0"
   dependencies:
@@ -2146,7 +2146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-tabs@npm:^1.0.4":
+"@radix-ui/react-tabs@npm:^1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-tabs@npm:1.1.0"
   dependencies:
@@ -2493,33 +2493,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/core@npm:1.9.0":
-  version: 1.9.0
-  resolution: "@shikijs/core@npm:1.9.0"
-  checksum: 10/ec07699742f0561ab4d2fb07715397183cbed23ca42e082b14e9e5f85eb7f8647897f69698d003d8c6a1b8682da0af77861b3a2f78d366eef7581bae4415142c
+"@shikijs/core@npm:1.10.0":
+  version: 1.10.0
+  resolution: "@shikijs/core@npm:1.10.0"
+  checksum: 10/301436c7c4cb048b8683af74eb306fe728112e231b17e56f3c7b28f82ac664c3b56f620e54bdfc9cfd99cbab486ec29ce98e1123d22bdc43a896c4f73b9aa7d8
   languageName: node
   linkType: hard
 
-"@shikijs/rehype@npm:^1.6.5":
-  version: 1.9.0
-  resolution: "@shikijs/rehype@npm:1.9.0"
+"@shikijs/rehype@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@shikijs/rehype@npm:1.10.0"
   dependencies:
-    "@shikijs/transformers": "npm:1.9.0"
+    "@shikijs/transformers": "npm:1.10.0"
     "@types/hast": "npm:^3.0.4"
     hast-util-to-string: "npm:^3.0.0"
-    shiki: "npm:1.9.0"
+    shiki: "npm:1.10.0"
     unified: "npm:^11.0.5"
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10/119928af9fe287f98ca8418101f80befdbc9303ec649b96ef147c3f5b7e376183fe21869dfeeaf20d3bb76e23c0daf95717022ce92aab338dd2aedc77f586f8e
+  checksum: 10/3c0cd79b15ecc2c9f161ab72b53c6b0b429365a39a5d7bc2d71db4ae5b154bea70495528d4468b22151572942ef113e349eafc46f722559124d15b49e9ab6047
   languageName: node
   linkType: hard
 
-"@shikijs/transformers@npm:1.9.0, @shikijs/transformers@npm:^1.6.5":
-  version: 1.9.0
-  resolution: "@shikijs/transformers@npm:1.9.0"
+"@shikijs/transformers@npm:1.10.0, @shikijs/transformers@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@shikijs/transformers@npm:1.10.0"
   dependencies:
-    shiki: "npm:1.9.0"
-  checksum: 10/63997b01803e17202419a825215339bdbee6ddec99e37dc0aa346e16368c3f24888b480e5529e664e6af0e3de9c25e900e15c8d52b7b1ca3969f5a04cf9d2fb9
+    shiki: "npm:1.10.0"
+  checksum: 10/6a389e5fc18c5b0ea3f9b78d7589e60a1bbd1b8376d2a91aee9e54367cea62dcbcfcf77475f82914e9ad84c226fdcebc4c054b64328c6bab0277dec704613bc5
   languageName: node
   linkType: hard
 
@@ -2578,11 +2578,11 @@ __metadata:
     "@types/react-dom": "npm:^18.3.0"
     "@types/sharp": "npm:^0.32.0"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.2.11"
-    fumadocs-core: "npm:^12.2.3"
+    framer-motion: "npm:^11.2.12"
+    fumadocs-core: "npm:^12.3.2"
     fumadocs-docgen: "npm:^1.0.2"
     fumadocs-mdx: "npm:^8.2.33"
-    fumadocs-ui: "npm:^12.2.3"
+    fumadocs-ui: "npm:^12.3.2"
     geist: "npm:^1.3.0"
     next: "npm:^14.2.4"
     react: "npm:^18.3.1"
@@ -2721,12 +2721,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.0.0, @types/node@npm:^20.14.8":
+"@types/node@npm:*, @types/node@npm:^20.0.0":
   version: 20.14.8
   resolution: "@types/node@npm:20.14.8"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10/73822f66f269ce865df7e2f586787ac7444bd1169fd265cbed1e851b72787f1170517c5b616e0308ec2fbc0934ec6403b0f28d4152acbb0486071aec41167d51
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.14.9":
+  version: 20.14.9
+  resolution: "@types/node@npm:20.14.9"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10/f313b06c79be92f5d3541159ef813b9fc606941f951ecf826e940658c6d4952755ca2f06277b746326cef0697ed79a04676ecde053d32e1121b3352c8168d2e9
   languageName: node
   linkType: hard
 
@@ -5727,9 +5736,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.2.11":
-  version: 11.2.11
-  resolution: "framer-motion@npm:11.2.11"
+"framer-motion@npm:^11.2.12":
+  version: 11.2.12
+  resolution: "framer-motion@npm:11.2.12"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -5743,7 +5752,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/2969da7c39bbbd206d5e2cd321fcb1bf8f8c5c13706b85779c4480fa63d0429063467374b896f94c04ca2594cbff96b9845c87ba5c052d90335d52d0cb554086
+  checksum: 10/34afcc8dc43665c9277d109b76d4a28197d5bf62628891957a2aedb93af24360a9b6903fcb85b9db1fdd021535945f1b858d12a83b16ea9a2b58d29a8f02f6f5
   languageName: node
   linkType: hard
 
@@ -5794,13 +5803,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-core@npm:12.2.3, fumadocs-core@npm:^12.2.3":
-  version: 12.2.3
-  resolution: "fumadocs-core@npm:12.2.3"
+"fumadocs-core@npm:12.3.2, fumadocs-core@npm:^12.3.2":
+  version: 12.3.2
+  resolution: "fumadocs-core@npm:12.3.2"
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.4"
-    "@shikijs/rehype": "npm:^1.6.5"
-    "@shikijs/transformers": "npm:^1.6.5"
+    "@shikijs/rehype": "npm:^1.10.0"
+    "@shikijs/transformers": "npm:^1.10.0"
     flexsearch: "npm:0.7.21"
     github-slugger: "npm:^2.0.0"
     negotiator: "npm:^0.6.3"
@@ -5810,14 +5819,14 @@ __metadata:
     remark-gfm: "npm:^4.0.0"
     remark-mdx: "npm:^3.0.1"
     scroll-into-view-if-needed: "npm:^3.1.0"
-    shiki: "npm:^1.6.5"
+    shiki: "npm:^1.10.0"
     swr: "npm:^2.2.5"
     unist-util-visit: "npm:^5.0.0"
   peerDependencies:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/6a60abcaa2daad7a8889a6b77fdfc9bdfe1a29eba334ea36570de0d4953e1458ba8bd259b8637adec41dfc252a6eac6fb0bb51afa0deab9697a924ca9964d5ad
+  checksum: 10/b8056172ee098873541529c602ebb33d4e282990ccb592a9c7f2750c12460e3e1cbe3d3e155189dee0b80f0a918343fd2419f227718b6c6c2bc14ecea82eb98f
   languageName: node
   linkType: hard
 
@@ -5866,30 +5875,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-ui@npm:^12.2.3":
-  version: 12.2.3
-  resolution: "fumadocs-ui@npm:12.2.3"
+"fumadocs-ui@npm:^12.3.2":
+  version: 12.3.2
+  resolution: "fumadocs-ui@npm:12.3.2"
   dependencies:
-    "@radix-ui/react-accordion": "npm:^1.1.2"
-    "@radix-ui/react-collapsible": "npm:^1.0.3"
-    "@radix-ui/react-dialog": "npm:^1.0.5"
-    "@radix-ui/react-direction": "npm:^1.0.1"
-    "@radix-ui/react-popover": "npm:^1.0.7"
-    "@radix-ui/react-scroll-area": "npm:^1.0.5"
-    "@radix-ui/react-tabs": "npm:^1.0.4"
+    "@radix-ui/react-accordion": "npm:^1.2.0"
+    "@radix-ui/react-collapsible": "npm:^1.1.0"
+    "@radix-ui/react-dialog": "npm:^1.1.1"
+    "@radix-ui/react-direction": "npm:^1.1.0"
+    "@radix-ui/react-popover": "npm:^1.1.1"
+    "@radix-ui/react-scroll-area": "npm:^1.1.0"
+    "@radix-ui/react-tabs": "npm:^1.1.0"
     "@tailwindcss/typography": "npm:^0.5.13"
     class-variance-authority: "npm:^0.7.0"
     cmdk: "npm:^1.0.0"
-    fumadocs-core: "npm:12.2.3"
-    lucide-react: "npm:^0.395.0"
+    fumadocs-core: "npm:12.3.2"
+    lucide-react: "npm:^0.399.0"
     next-themes: "npm:^0.3.0"
-    react-medium-image-zoom: "npm:^5.2.4"
+    react-medium-image-zoom: "npm:^5.2.5"
     tailwind-merge: "npm:^2.3.0"
   peerDependencies:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/c17f266b4d8f335c9ffdca89203832f9e6edc1c06bc394808a3047b202020051038c6ee3074e85f395ba1fb628b40e225319ea78712709c99014e7cc8a524f1b
+  checksum: 10/947d4bfdfc6faa8b5a598c8341ed79312b4c502c589ece9ede26c121c64a8b0a5191d85cf178497cf00b0c5fff142d6388ba617b1537fb3e7d917734c6b40370
   languageName: node
   linkType: hard
 
@@ -7721,12 +7730,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.395.0":
-  version: 0.395.0
-  resolution: "lucide-react@npm:0.395.0"
+"lucide-react@npm:^0.399.0":
+  version: 0.399.0
+  resolution: "lucide-react@npm:0.399.0"
   peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: 10/6ba49ba045b250e2d5de9ce431ac146fab3464f082ddfd6ffc7d1e8ccdd74f5d5d82e3288a1c965dff90fa0353aba116549ffc5349041c068be65cb48dd890e2
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/89212e54dc58c99f6d7593fc4ac5020771ec57bf334a4f5c1280df131cfb99b2c2ffabcf44a7c26670bee29979d687e7b4318b5d8681d404714faa1e9cc2a6ce
   languageName: node
   linkType: hard
 
@@ -8647,6 +8656,15 @@ __metadata:
   dependencies:
     brace-expansion: "npm:^2.0.1"
   checksum: 10/4cdc18d112b164084513e890d6323370db14c22249d536ad1854539577a895e690a27513dc346392f61a4a50afbbd8abc88f3f25558bfbbbb862cd56508b20f5
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:^9.0.5":
+  version: 9.0.5
+  resolution: "minimatch@npm:9.0.5"
+  dependencies:
+    brace-expansion: "npm:^2.0.1"
+  checksum: 10/dd6a8927b063aca6d910b119e1f2df6d2ce7d36eab91de83167dd136bb85e1ebff97b0d3de1cb08bd1f7e018ca170b4962479fefab5b2a69e2ae12cb2edc8348
   languageName: node
   linkType: hard
 
@@ -9776,7 +9794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-medium-image-zoom@npm:^5.2.4":
+"react-medium-image-zoom@npm:^5.2.5":
   version: 5.2.5
   resolution: "react-medium-image-zoom@npm:5.2.5"
   peerDependencies:
@@ -10309,7 +10327,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.0.2"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.14.8"
+    "@types/node": "npm:^20.14.9"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^1.6.0"
     cz-conventional-changelog: "npm:^3.3.0"
@@ -10320,11 +10338,11 @@ __metadata:
     prettier: "npm:^3.3.2"
     prompts: "npm:^2.4.2"
     tsup: "npm:^8.1.0"
-    turbo: "npm:^2.0.4"
-    typedoc: "npm:^0.26.1"
+    turbo: "npm:^2.0.6"
+    typedoc: "npm:^0.26.3"
     typedoc-plugin-external-link: "npm:^2.1.2"
     typedoc-plugin-markdown: "npm:4.1.0"
-    typedoc-plugin-mdn-links: "npm:^3.2.1"
+    typedoc-plugin-mdn-links: "npm:^3.2.2"
     typescript: "npm:^5.5.2"
     vitest: "npm:^1.6.0"
   languageName: unknown
@@ -10548,12 +10566,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:1.9.0, shiki@npm:^1.6.5, shiki@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "shiki@npm:1.9.0"
+"shiki@npm:1.10.0, shiki@npm:^1.10.0, shiki@npm:^1.9.1":
+  version: 1.10.0
+  resolution: "shiki@npm:1.10.0"
   dependencies:
-    "@shikijs/core": "npm:1.9.0"
-  checksum: 10/ce5648b4e1a5e5e81e54e01ec9dc94cf324530f460058f29f1e5e464dbf096fee2194fbef38b29128a747f783f9134531991316b01ed168f65d0617dabf84c33
+    "@shikijs/core": "npm:1.10.0"
+  checksum: 10/e5c844acece5eef2b796d63040ff9655fbd1070d10c50726eebaddc0506b9bdaee7fc28c7299168ef1a4eb9007db7e928bd03a80d3918c37df0fe3a96363d66b
   languageName: node
   linkType: hard
 
@@ -11392,58 +11410,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-darwin-64@npm:2.0.4"
+"turbo-darwin-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-64@npm:2.0.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-darwin-arm64@npm:2.0.4"
+"turbo-darwin-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-arm64@npm:2.0.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-linux-64@npm:2.0.4"
+"turbo-linux-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-64@npm:2.0.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-linux-arm64@npm:2.0.4"
+"turbo-linux-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-arm64@npm:2.0.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-windows-64@npm:2.0.4"
+"turbo-windows-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-64@npm:2.0.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-windows-arm64@npm:2.0.4"
+"turbo-windows-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-arm64@npm:2.0.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "turbo@npm:2.0.4"
+"turbo@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "turbo@npm:2.0.6"
   dependencies:
-    turbo-darwin-64: "npm:2.0.4"
-    turbo-darwin-arm64: "npm:2.0.4"
-    turbo-linux-64: "npm:2.0.4"
-    turbo-linux-arm64: "npm:2.0.4"
-    turbo-windows-64: "npm:2.0.4"
-    turbo-windows-arm64: "npm:2.0.4"
+    turbo-darwin-64: "npm:2.0.6"
+    turbo-darwin-arm64: "npm:2.0.6"
+    turbo-linux-64: "npm:2.0.6"
+    turbo-linux-arm64: "npm:2.0.6"
+    turbo-windows-64: "npm:2.0.6"
+    turbo-windows-arm64: "npm:2.0.6"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -11459,7 +11477,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/689b54d58c04ef04c81ade5f91edbab0805ec270d55f8d878f6958024e216ec06a82bea3246e117d631f408e3c2b5dba3e5d58df0fba80470c231cfd5d698793
+  checksum: 10/685b12a565c823d3392992d77619b860999861a53e046c196a09b03e3ba001db96f62192a0bf68c92b26e3629d91de40f2bd17ec67f83a1f694dfb34d5f480b9
   languageName: node
   linkType: hard
 
@@ -11586,29 +11604,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.1"
+"typedoc-plugin-mdn-links@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "typedoc-plugin-mdn-links@npm:3.2.2"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10/cfa0e486f5257b08d4dc85ac08eaa32d51c9c179041ba00d829bd3b33aa6265208d1fc752d7d31233e1260ec143cbc916a5cf27f64255e3aaf389e231c91dd2a
+  checksum: 10/ab0f928635ccfa523de88559ea6583d0b2855d748dd188a7cf85d344309e08eee2b82e6ab670b445702e3bba6382d3ca2ae9c1c1a62dbed5d5b1813d5ad8cb25
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.26.1":
-  version: 0.26.1
-  resolution: "typedoc@npm:0.26.1"
+"typedoc@npm:^0.26.3":
+  version: 0.26.3
+  resolution: "typedoc@npm:0.26.3"
   dependencies:
     lunr: "npm:^2.3.9"
     markdown-it: "npm:^14.1.0"
-    minimatch: "npm:^9.0.4"
-    shiki: "npm:^1.9.0"
+    minimatch: "npm:^9.0.5"
+    shiki: "npm:^1.9.1"
     yaml: "npm:^2.4.5"
   peerDependencies:
     typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x
   bin:
     typedoc: bin/typedoc
-  checksum: 10/fcc36bcc05aff51586a8672614be92d544ffeb0841699629dc172b0b622e80a6160b62cb1eddc0b06b7716117c84b6f04445a42f61f4c68b01694664c2178a20
+  checksum: 10/55473079de55140d29299b449c0c8de6da1c6c76553bae17c11d1be9e4521612c5f0d9d5a6ee4e18ba7103f79de9ff98223fa0fb2d0e09b2bd535e54efe3d08d
   languageName: node
   linkType: hard
 
