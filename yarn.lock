@@ -2500,26 +2500,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/rehype@npm:^1.10.0":
-  version: 1.10.0
-  resolution: "@shikijs/rehype@npm:1.10.0"
+"@shikijs/core@npm:1.10.2":
+  version: 1.10.2
+  resolution: "@shikijs/core@npm:1.10.2"
   dependencies:
-    "@shikijs/transformers": "npm:1.10.0"
     "@types/hast": "npm:^3.0.4"
-    hast-util-to-string: "npm:^3.0.0"
-    shiki: "npm:1.10.0"
-    unified: "npm:^11.0.5"
-    unist-util-visit: "npm:^5.0.0"
-  checksum: 10/3c0cd79b15ecc2c9f161ab72b53c6b0b429365a39a5d7bc2d71db4ae5b154bea70495528d4468b22151572942ef113e349eafc46f722559124d15b49e9ab6047
+  checksum: 10/e5d7a975771b21e5823b971fef69e4f1f8e7c1e9d7329567f2226246e8c3238839cdf5aa31fc4cbf332bb7ab5c84f8fa3b01b1fa68c76fda2db92c3a578b124b
   languageName: node
   linkType: hard
 
-"@shikijs/transformers@npm:1.10.0, @shikijs/transformers@npm:^1.10.0":
-  version: 1.10.0
-  resolution: "@shikijs/transformers@npm:1.10.0"
+"@shikijs/rehype@npm:^1.10.1":
+  version: 1.10.2
+  resolution: "@shikijs/rehype@npm:1.10.2"
   dependencies:
-    shiki: "npm:1.10.0"
-  checksum: 10/6a389e5fc18c5b0ea3f9b78d7589e60a1bbd1b8376d2a91aee9e54367cea62dcbcfcf77475f82914e9ad84c226fdcebc4c054b64328c6bab0277dec704613bc5
+    "@shikijs/transformers": "npm:1.10.2"
+    "@types/hast": "npm:^3.0.4"
+    hast-util-to-string: "npm:^3.0.0"
+    shiki: "npm:1.10.2"
+    unified: "npm:^11.0.5"
+    unist-util-visit: "npm:^5.0.0"
+  checksum: 10/82ef1ef703250af204ba19d548c585cadfbf72d2c2da37dd826e1bf9c7c252519b120b1db025aae1edbd0dbed3c888849cbd3282bc537811ce14895d05d57708
+  languageName: node
+  linkType: hard
+
+"@shikijs/transformers@npm:1.10.2, @shikijs/transformers@npm:^1.10.1":
+  version: 1.10.2
+  resolution: "@shikijs/transformers@npm:1.10.2"
+  dependencies:
+    shiki: "npm:1.10.2"
+  checksum: 10/84d4f82f7173cbaab3c2b1a70a7685929f66b73a19799e33c4d1b377bc0c870172550d90dccc20826928fd2bf00a2e0b21c99b6cb6560cd1259b08c39eedb02c
   languageName: node
   linkType: hard
 
@@ -2562,7 +2571,7 @@ __metadata:
     discord.js: "npm:^14.15.3"
     tagscript: "workspace:^"
     tsup: "npm:^8.1.0"
-    typescript: "npm:^5.5.2"
+    typescript: "npm:^5.5.3"
   peerDependencies:
     discord.js: ^14.0.0
     tagscript: "*"
@@ -2578,11 +2587,11 @@ __metadata:
     "@types/react-dom": "npm:^18.3.0"
     "@types/sharp": "npm:^0.32.0"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.2.12"
-    fumadocs-core: "npm:^12.3.2"
-    fumadocs-docgen: "npm:^1.0.2"
+    framer-motion: "npm:^11.2.13"
+    fumadocs-core: "npm:^12.4.1"
+    fumadocs-docgen: "npm:^1.1.0"
     fumadocs-mdx: "npm:^8.2.33"
-    fumadocs-ui: "npm:^12.3.2"
+    fumadocs-ui: "npm:^12.4.1"
     geist: "npm:^1.3.0"
     next: "npm:^14.2.4"
     react: "npm:^18.3.1"
@@ -2730,12 +2739,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.14.9":
-  version: 20.14.9
-  resolution: "@types/node@npm:20.14.9"
+"@types/node@npm:^20.14.10":
+  version: 20.14.10
+  resolution: "@types/node@npm:20.14.10"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/f313b06c79be92f5d3541159ef813b9fc606941f951ecf826e940658c6d4952755ca2f06277b746326cef0697ed79a04676ecde053d32e1121b3352c8168d2e9
+  checksum: 10/672892cf94d0d95cf052f11271990686a0fd204cd1e5fe7a4ef240e5315e06711765dc47b9ec98627d3adac18b8c92bb7e2d8db21d18faa20bc3e3203a143e79
   languageName: node
   linkType: hard
 
@@ -5422,7 +5431,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"estree-util-value-to-estree@npm:^3.1.1":
+"estree-util-value-to-estree@npm:^3.1.1, estree-util-value-to-estree@npm:^3.1.2":
   version: 3.1.2
   resolution: "estree-util-value-to-estree@npm:3.1.2"
   dependencies:
@@ -5736,9 +5745,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.2.12":
-  version: 11.2.12
-  resolution: "framer-motion@npm:11.2.12"
+"framer-motion@npm:^11.2.13":
+  version: 11.2.13
+  resolution: "framer-motion@npm:11.2.13"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -5752,7 +5761,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/34afcc8dc43665c9277d109b76d4a28197d5bf62628891957a2aedb93af24360a9b6903fcb85b9db1fdd021535945f1b858d12a83b16ea9a2b58d29a8f02f6f5
+  checksum: 10/41aa8a84cfa5747b305668e45dde6c5a92d995861c7b59a89b7f1e281413fcc8a9e8ff9d4e92bf20e83ab665992fe84a912da052610f8fe583a21025c7c2691e
   languageName: node
   linkType: hard
 
@@ -5803,13 +5812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-core@npm:12.3.2, fumadocs-core@npm:^12.3.2":
-  version: 12.3.2
-  resolution: "fumadocs-core@npm:12.3.2"
+"fumadocs-core@npm:12.4.1, fumadocs-core@npm:^12.4.1":
+  version: 12.4.1
+  resolution: "fumadocs-core@npm:12.4.1"
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.4"
-    "@shikijs/rehype": "npm:^1.10.0"
-    "@shikijs/transformers": "npm:^1.10.0"
+    "@shikijs/rehype": "npm:^1.10.1"
+    "@shikijs/transformers": "npm:^1.10.1"
     flexsearch: "npm:0.7.21"
     github-slugger: "npm:^2.0.0"
     negotiator: "npm:^0.6.3"
@@ -5819,27 +5828,27 @@ __metadata:
     remark-gfm: "npm:^4.0.0"
     remark-mdx: "npm:^3.0.1"
     scroll-into-view-if-needed: "npm:^3.1.0"
-    shiki: "npm:^1.10.0"
+    shiki: "npm:^1.10.1"
     swr: "npm:^2.2.5"
     unist-util-visit: "npm:^5.0.0"
   peerDependencies:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/b8056172ee098873541529c602ebb33d4e282990ccb592a9c7f2750c12460e3e1cbe3d3e155189dee0b80f0a918343fd2419f227718b6c6c2bc14ecea82eb98f
+  checksum: 10/d1c79a0d87bd7f2df096285e72c65de34512a2f96850a4ddd587afbd5361b33268e4e7819d5a48fefd4fb40364fb3308404c4ef339e4d0c11e590cdd13e44c51
   languageName: node
   linkType: hard
 
-"fumadocs-docgen@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "fumadocs-docgen@npm:1.0.2"
+"fumadocs-docgen@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "fumadocs-docgen@npm:1.1.0"
   dependencies:
-    estree-util-value-to-estree: "npm:^3.1.1"
+    estree-util-value-to-estree: "npm:^3.1.2"
     fumadocs-typescript: "npm:^2.0.1"
     hast-util-to-estree: "npm:^3.1.0"
     npm-to-yarn: "npm:^2.2.1"
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10/c2d1a39bf499b2c3cd4a53e44fd4a09061c192bb2a3381404be0100a003b3096d0d688ff278f400fec1cff487d62c5b9eb83594063a18193c28a3419c2383af4
+  checksum: 10/5e93ac0a97382bcc350135c3fc9f01e3bc14ac2518391d90b3c576099567b5ef07389c44f43025fec1574dcbba2746d6a08406496fc5ef135112fbb83002b405
   languageName: node
   linkType: hard
 
@@ -5875,9 +5884,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-ui@npm:^12.3.2":
-  version: 12.3.2
-  resolution: "fumadocs-ui@npm:12.3.2"
+"fumadocs-ui@npm:^12.4.1":
+  version: 12.4.1
+  resolution: "fumadocs-ui@npm:12.4.1"
   dependencies:
     "@radix-ui/react-accordion": "npm:^1.2.0"
     "@radix-ui/react-collapsible": "npm:^1.1.0"
@@ -5889,8 +5898,8 @@ __metadata:
     "@tailwindcss/typography": "npm:^0.5.13"
     class-variance-authority: "npm:^0.7.0"
     cmdk: "npm:^1.0.0"
-    fumadocs-core: "npm:12.3.2"
-    lucide-react: "npm:^0.399.0"
+    fumadocs-core: "npm:12.4.1"
+    lucide-react: "npm:^0.400.0"
     next-themes: "npm:^0.3.0"
     react-medium-image-zoom: "npm:^5.2.5"
     tailwind-merge: "npm:^2.3.0"
@@ -5898,7 +5907,7 @@ __metadata:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/947d4bfdfc6faa8b5a598c8341ed79312b4c502c589ece9ede26c121c64a8b0a5191d85cf178497cf00b0c5fff142d6388ba617b1537fb3e7d917734c6b40370
+  checksum: 10/1d5bdc0b678931b7da02e029322eeba45431cc4f27fc3c2de667eae0573a721d7754d45c808b52f6cad765d57ac95fe88b03d82d7af4346bdad0a8e1ed1cc508
   languageName: node
   linkType: hard
 
@@ -7730,12 +7739,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.399.0":
-  version: 0.399.0
-  resolution: "lucide-react@npm:0.399.0"
+"lucide-react@npm:^0.400.0":
+  version: 0.400.0
+  resolution: "lucide-react@npm:0.400.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/89212e54dc58c99f6d7593fc4ac5020771ec57bf334a4f5c1280df131cfb99b2c2ffabcf44a7c26670bee29979d687e7b4318b5d8681d404714faa1e9cc2a6ce
+  checksum: 10/6ed8234119658fee998945f39e31d78f4fa05df5216eb1d269fc211c84a382928e4e4705f75ce85dcb056d493e9cf7810303d08c56eb40dce5066c3182ec5e7f
   languageName: node
   linkType: hard
 
@@ -10327,7 +10336,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.0.2"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.14.9"
+    "@types/node": "npm:^20.14.10"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^1.6.0"
     cz-conventional-changelog: "npm:^3.3.0"
@@ -10341,9 +10350,9 @@ __metadata:
     turbo: "npm:^2.0.6"
     typedoc: "npm:^0.26.3"
     typedoc-plugin-external-link: "npm:^2.1.2"
-    typedoc-plugin-markdown: "npm:4.1.0"
-    typedoc-plugin-mdn-links: "npm:^3.2.2"
-    typescript: "npm:^5.5.2"
+    typedoc-plugin-markdown: "npm:4.1.2"
+    typedoc-plugin-mdn-links: "npm:^3.2.3"
+    typescript: "npm:^5.5.3"
     vitest: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
@@ -10566,7 +10575,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:1.10.0, shiki@npm:^1.10.0, shiki@npm:^1.9.1":
+"shiki@npm:1.10.2, shiki@npm:^1.10.1":
+  version: 1.10.2
+  resolution: "shiki@npm:1.10.2"
+  dependencies:
+    "@shikijs/core": "npm:1.10.2"
+    "@types/hast": "npm:^3.0.4"
+  checksum: 10/bbb41bc396201883a2bc49f04bfdbe47f5aaa0ac3e0c0d5a1b0a572f88628af66e47a3a3f43f38af9f7bbfe8d18411bfdb50481bba74c01b44dcd67d4665c39b
+  languageName: node
+  linkType: hard
+
+"shiki@npm:^1.9.1":
   version: 1.10.0
   resolution: "shiki@npm:1.10.0"
   dependencies:
@@ -11121,7 +11140,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^4.0.2"
     tsup: "npm:^8.1.0"
-    typescript: "npm:^5.5.2"
+    typescript: "npm:^5.5.3"
   languageName: unknown
   linkType: soft
 
@@ -11595,21 +11614,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:4.1.0":
-  version: 4.1.0
-  resolution: "typedoc-plugin-markdown@npm:4.1.0"
+"typedoc-plugin-markdown@npm:4.1.2":
+  version: 4.1.2
+  resolution: "typedoc-plugin-markdown@npm:4.1.2"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10/ff968737d6d84086ce13f51f507f7db6157932444a690df95fe6d33f457e60b797ae666e62101102deaadbfc06f1e3d1bac6ca90b0a1279cc5771ae63eb9905d
+  checksum: 10/6e62150209aae7d55804fe5df83639ffe7625bd5bac80840a6650af40ed8c9b0e560d106a4b2912e167fc73762c3beaef5e154fa44457b7f67cf9fced90b5037
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.2"
+"typedoc-plugin-mdn-links@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "typedoc-plugin-mdn-links@npm:3.2.3"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10/ab0f928635ccfa523de88559ea6583d0b2855d748dd188a7cf85d344309e08eee2b82e6ab670b445702e3bba6382d3ca2ae9c1c1a62dbed5d5b1813d5ad8cb25
+  checksum: 10/98446e2cf7da175549df575f8267d310c1eea902093d4e813c297bdf6969cb25fe815ac9dc3401b78faf0875c8ce86e3ab8ae5167834ca3ee3f0b74f7ac5f79e
   languageName: node
   linkType: hard
 
@@ -11630,23 +11649,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.2":
-  version: 5.5.2
-  resolution: "typescript@npm:5.5.2"
+"typescript@npm:^5.5.3":
+  version: 5.5.3
+  resolution: "typescript@npm:5.5.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/9118b20f248e76b0dbff8737fef65dfa89d02668d4e633d2c5ceac99033a0ca5e8a1c1a53bc94da68e8f67677a88f318663dde859c9e9a09c1e116415daec2ba
+  checksum: 10/11a867312419ed497929aafd2f1d28b2cd41810a5eb6c6e9e169559112e9ea073d681c121a29102e67cd4478d0a4ae37a306a5800f3717f59c4337e6a9bd5e8d
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>":
-  version: 5.5.2
-  resolution: "typescript@patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"
+"typescript@patch:typescript@npm%3A^5.5.3#optional!builtin<compat/typescript>":
+  version: 5.5.3
+  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/ac3145f65cf9e72ab29f2196e05d5816b355dc1a9195b9f010d285182a12457cfacd068be2dd22c877f88ebc966ac6e0e83f51c8586412b16499a27e3670ff4b
+  checksum: 10/7cf7acb78a80f749b82842f2ffe01e90e7b3e709a6f4268588e0b7599c41dca1059be217f47778fe1a380bfaf60933021ef20d002c426d4d7745e1b36c11467b
   languageName: node
   linkType: hard
 
