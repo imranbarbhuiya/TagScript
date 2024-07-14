@@ -28,7 +28,7 @@
 		"@favware/npm-deprecate": "^1.0.7",
 		"@types/node": "^20.14.10",
 		"@types/prompts": "^2.4.9",
-		"@vitest/coverage-v8": "^1.6.0",
+		"@vitest/coverage-v8": "^2.0.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.57.0",
 		"eslint-config-mahir": "^0.0.43",
@@ -43,7 +43,7 @@
 		"typedoc-plugin-markdown": "4.1.2",
 		"typedoc-plugin-mdn-links": "^3.2.3",
 		"typescript": "^5.5.3",
-		"vitest": "^1.6.0"
+		"vitest": "^2.0.2"
 	},
 	"repository": {
 		"type": "git",
