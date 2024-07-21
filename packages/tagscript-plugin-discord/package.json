@@ -42,7 +42,7 @@
 		"@favware/cliff-jumper": "^4.0.2",
 		"discord.js": "^14.15.3",
 		"tagscript": "workspace:^",
-		"tsup": "^8.1.0",
+		"tsup": "^8.2.1",
 		"typescript": "^5.5.3"
 	},
 	"peerDependencies": {
