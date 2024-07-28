@@ -34,9 +34,9 @@
 		"tag"
 	],
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.2",
-		"tsup": "^8.2.1",
-		"typescript": "^5.5.3"
+		"@favware/cliff-jumper": "^4.0.3",
+		"tsup": "^8.2.3",
+		"typescript": "^5.5.4"
 	},
 	"engines": {
 		"node": ">=v14.0.0"
