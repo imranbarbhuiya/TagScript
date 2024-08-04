@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"eslint-plugin-mdx": "^3.1.5",
-		"framer-motion": "^11.3.19",
+		"framer-motion": "^11.3.21",
 		"fumadocs-core": "^13.0.6",
 		"fumadocs-docgen": "^1.1.0",
 		"fumadocs-mdx": "^8.2.34",
