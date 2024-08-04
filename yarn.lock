@@ -2718,7 +2718,7 @@ __metadata:
     framer-motion: "npm:^11.3.19"
     fumadocs-core: "npm:^12.5.6"
     fumadocs-docgen: "npm:^1.1.0"
-    fumadocs-mdx: "npm:^8.2.34"
+    fumadocs-mdx: "npm:^9.0.0"
     fumadocs-ui: "npm:^12.5.6"
     geist: "npm:^1.3.1"
     next: "npm:^14.2.5"
@@ -5983,9 +5983,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-mdx@npm:^8.2.34":
-  version: 8.2.34
-  resolution: "fumadocs-mdx@npm:8.2.34"
+"fumadocs-mdx@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "fumadocs-mdx@npm:9.0.0"
   dependencies:
     "@mdx-js/mdx": "npm:^3.0.1"
     cross-spawn: "npm:^7.0.3"
@@ -5994,9 +5994,9 @@ __metadata:
     gray-matter: "npm:^4.0.3"
     zod: "npm:^3.23.8"
   peerDependencies:
-    fumadocs-core: 12.x.x
+    fumadocs-core: 13.x.x
     next: ">= 14.1.0"
-  checksum: 10/89a065a416d06bf1fd5570b703d15ac94547383bbf632af8d250bdd3488d4e45f16d054f05ffb96348602a9bee9e6ee29789956d2eddff9c25d73bc1e114abb4
+  checksum: 10/3e76328531e1fa3fb7a0135f18635058013d3a703c495844b8cce32e8fd6a315abe230e2f7635d90ea3289c23a12babb24d49bdc64b75e3e37356a8f2c7a1262
   languageName: node
   linkType: hard
 
