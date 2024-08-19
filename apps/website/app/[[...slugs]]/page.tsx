@@ -1,19 +1,39 @@
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 
+import { Edit } from './Edit';
+
 import type { Metadata } from 'next';
 
 import { getPage, getPages } from '@/app/source';
 
-export default async function Page({ params }: { params: { slugs?: string[] } }) {
+export default async function Page({ params }: { readonly params: { slugs?: string[] } }) {
 	const page = getPage(params.slugs);
 
 	if (!page) notFound();
 
 	const Mdx = page.data.exports.default;
 
+	const path = `apps/website/content/docs/${page.file.path}`;
+	const footer = path.includes('/api/') ? null : (
+		<a
+			className="inline-flex items-center justify-center font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring disabled:pointer-events-none disabled:opacity-50 border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-secondary/80 h-9 rounded-md px-3 text-xs gap-1.5"
+			href={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`}
+			rel="noreferrer noopener"
+			target="_blank"
+		>
+			<Edit className="size-3" />
+			Edit on Github
+		</a>
+	);
+
 	return (
-		<DocsPage full toc={page.data.exports.toc}>
+		<DocsPage
+			full={page.data.full}
+			tableOfContent={{ footer, style: 'clerk', single: true }}
+			tableOfContentPopover={{ footer }}
+			toc={page.data.exports.toc}
+		>
 			<DocsBody>
 				<Mdx />
 			</DocsBody>

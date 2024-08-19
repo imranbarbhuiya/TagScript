@@ -41,12 +41,6 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 												description: 'Auto generated api docs for tagscript',
 												url: '/api/plugins/plugin-discord',
 												active: 'nested-url'
-											},
-											{
-												type: 'secondary',
-												title: 'Github',
-												description: 'Check out the source code on github',
-												url: 'https://github.com/imranbarbhuiya/tagscript'
 											}
 										] as any
 									}
