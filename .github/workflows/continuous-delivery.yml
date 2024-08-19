@@ -43,7 +43,7 @@ jobs:
             - name: Install Dependencies
               uses: ./scripts/yarnCache
             - name: Build all packages
-              run: yarn build
+              run: yarn build --filter="./packages/*"
             - name: Bump Versions & Publish
               run: |
                   # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
@@ -59,4 +59,4 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  YARN_NPM_CONFIG_PROVENANCE: true
+                  NPM_CONFIG_PROVENANCE: true

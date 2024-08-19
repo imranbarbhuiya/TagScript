@@ -2576,7 +2576,6 @@ __metadata:
     "@tagscript/plugin-discord": "workspace:^"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
-    "@types/sharp": "npm:^0.32.0"
     eslint-plugin-mdx: "npm:^3.1.5"
     framer-motion: "npm:^11.3.28"
     fumadocs-core: "npm:^13.3.1"
@@ -2778,15 +2777,6 @@ __metadata:
   version: 7.5.8
   resolution: "@types/semver@npm:7.5.8"
   checksum: 10/3496808818ddb36deabfe4974fd343a78101fa242c4690044ccdc3b95dcf8785b494f5d628f2f47f38a702f8db9c53c67f47d7818f2be1b79f2efb09692e1178
-  languageName: node
-  linkType: hard
-
-"@types/sharp@npm:^0.32.0":
-  version: 0.32.0
-  resolution: "@types/sharp@npm:0.32.0"
-  dependencies:
-    sharp: "npm:*"
-  checksum: 10/9d0ca925ebb18e870740db0e0abcaaa2458645673068166b9f26e042640fa430644fe39aada320e03834f7ba3600e678de822201ffc312f9df1f515ba107ebd5
   languageName: node
   linkType: hard
 
@@ -10604,7 +10594,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:*, sharp@npm:^0.33.5":
+"sharp@npm:^0.33.5":
   version: 0.33.5
   resolution: "sharp@npm:0.33.5"
   dependencies:
