@@ -52,10 +52,11 @@ jobs:
                   yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
                   for d in packages/*; do
                     pushd $d
-                    yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+                    yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)" --skip-changelog
                     yarn npm publish --tag ${TAG}
                     popd
                   done
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  # YARN_NPM_CONFIG_PROVENANCE: true
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  YARN_NPM_CONFIG_PROVENANCE: true
