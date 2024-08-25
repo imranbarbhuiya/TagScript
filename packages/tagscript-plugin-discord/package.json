@@ -39,7 +39,7 @@
 		"bot tag"
 	],
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.3",
+		"@favware/cliff-jumper": "^4.1.0",
 		"discord.js": "^14.15.3",
 		"tagscript": "workspace:^",
 		"tsup": "^8.2.4",

@@ -781,28 +781,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "@favware/cliff-jumper@npm:4.0.3"
+"@favware/cliff-jumper@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@favware/cliff-jumper@npm:4.1.0"
   dependencies:
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@octokit/auth-token": "npm:^5.1.1"
     "@octokit/core": "npm:^6.1.2"
     "@octokit/plugin-retry": "npm:^7.1.1"
     "@sapphire/result": "npm:^2.6.6"
-    "@sapphire/utilities": "npm:3.16.2"
+    "@sapphire/utilities": "npm:3.17.0"
     colorette: "npm:^2.0.20"
     commander: "npm:^12.1.0"
     conventional-recommended-bump: "npm:^10.0.0"
-    execa: "npm:^9.3.0"
-    git-cliff: "npm:^2.4.0"
+    execa: "npm:^9.3.1"
+    git-cliff: "npm:^2.5.0"
     js-yaml: "npm:^4.1.0"
     semver: "npm:^7.6.3"
     smol-toml: "npm:^1.3.0"
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 10/c39b331b8ffee92491ecb17e7d797936f6fbc10fe79cfa789e55bb195858a41e1d0401b8d4b84d027ba29f10fe5d73745c7ca0d7b44e38213d45a9f93005e410
+  checksum: 10/aeaa6ff69ff5fc3302178436b5c61a97f4e31544c0451fe8787fa14f8ab847e30971a108c56437be2a9642ad072030e5b8c1177769bb6781b2a73c4ca9b8895d
   languageName: node
   linkType: hard
 
@@ -1201,10 +1201,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/env@npm:14.2.5"
-  checksum: 10/0462db6a82120220ad518eabbe85144b75cf741cf96f520b1b3dd5978c51c5e7a92ad4bff2b8157f029cdc87ba0f8eeed9f3a30711822fae5195fa5db4e40280
+"@next/env@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/env@npm:14.2.6"
+  checksum: 10/ee0efd5ee521c73f968f9f4a13bfe4298c3b28180182960e37e88eb6c081c1883abf8a9463ee2ea2219c8ddd19ddf232ebbae6af169222ceb7c5a7a7f0ca48f2
   languageName: node
   linkType: hard
 
@@ -1217,65 +1217,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-darwin-arm64@npm:14.2.5"
+"@next/swc-darwin-arm64@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-darwin-arm64@npm:14.2.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-darwin-x64@npm:14.2.5"
+"@next/swc-darwin-x64@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-darwin-x64@npm:14.2.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-linux-arm64-gnu@npm:14.2.5"
+"@next/swc-linux-arm64-gnu@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-linux-arm64-gnu@npm:14.2.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-linux-arm64-musl@npm:14.2.5"
+"@next/swc-linux-arm64-musl@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-linux-arm64-musl@npm:14.2.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-linux-x64-gnu@npm:14.2.5"
+"@next/swc-linux-x64-gnu@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-linux-x64-gnu@npm:14.2.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-linux-x64-musl@npm:14.2.5"
+"@next/swc-linux-x64-musl@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-linux-x64-musl@npm:14.2.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-win32-arm64-msvc@npm:14.2.5"
+"@next/swc-win32-arm64-msvc@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-win32-arm64-msvc@npm:14.2.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-win32-ia32-msvc@npm:14.2.5"
+"@next/swc-win32-ia32-msvc@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-win32-ia32-msvc@npm:14.2.6"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:14.2.5":
-  version: 14.2.5
-  resolution: "@next/swc-win32-x64-msvc@npm:14.2.5"
+"@next/swc-win32-x64-msvc@npm:14.2.6":
+  version: 14.2.6
+  resolution: "@next/swc-win32-x64-msvc@npm:14.2.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2484,7 +2484,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:3.16.2, @sapphire/utilities@npm:^3.11.0":
+"@sapphire/utilities@npm:3.17.0":
+  version: 3.17.0
+  resolution: "@sapphire/utilities@npm:3.17.0"
+  checksum: 10/cfdf604be06e1e4f7fd26f10c198586eef9012001b83dcc8178886d88145334db06e164725aadf5bfb065b39ecdefaa8286c695576e7674b5a3bc9280ce02e0d
+  languageName: node
+  linkType: hard
+
+"@sapphire/utilities@npm:^3.11.0":
   version: 3.16.2
   resolution: "@sapphire/utilities@npm:3.16.2"
   checksum: 10/9801f26cc7c37f1c4d56231d2e3967e7ac072d037dbc11b577d1ecf09fe7c6e4141bd1d1a10490f3c51eeeaf81eac0373502d41366dc68627b490597ea6d1ebe
@@ -2558,7 +2565,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tagscript/plugin-discord@workspace:packages/tagscript-plugin-discord"
   dependencies:
-    "@favware/cliff-jumper": "npm:^4.0.3"
+    "@favware/cliff-jumper": "npm:^4.1.0"
     discord.js: "npm:^14.15.3"
     tagscript: "workspace:^"
     tsup: "npm:^8.2.4"
@@ -2574,16 +2581,16 @@ __metadata:
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
     "@tagscript/plugin-discord": "workspace:^"
-    "@types/react": "npm:^18.3.3"
+    "@types/react": "npm:^18.3.4"
     "@types/react-dom": "npm:^18.3.0"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.3.28"
-    fumadocs-core: "npm:^13.3.1"
+    framer-motion: "npm:^11.3.30"
+    fumadocs-core: "npm:^13.3.2"
     fumadocs-docgen: "npm:^1.1.0"
     fumadocs-mdx: "npm:^9.0.2"
-    fumadocs-ui: "npm:^13.3.1"
+    fumadocs-ui: "npm:^13.3.2"
     geist: "npm:^1.3.1"
-    next: "npm:^14.2.5"
+    next: "npm:^14.2.6"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     sharp: "npm:^0.33.5"
@@ -2772,13 +2779,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.3.3":
+"@types/react@npm:*":
   version: 18.3.3
   resolution: "@types/react@npm:18.3.3"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/68e203b7f1f91d6cf21f33fc7af9d6d228035a26c83f514981e54aa3da695d0ec6af10c277c6336de1dd76c4adbe9563f3a21f80c4462000f41e5f370b46e96c
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.3.4":
+  version: 18.3.4
+  resolution: "@types/react@npm:18.3.4"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/359973924be42cf9e7366e1d885b28e0b3bd56d31f24458c5351af7a3f2fc070511e90d517b2195fb229146cdcb70342db6318e279c31dd5057beec1105b704e
   languageName: node
   linkType: hard
 
@@ -5606,15 +5623,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^9.3.0":
-  version: 9.3.0
-  resolution: "execa@npm:9.3.0"
+"execa@npm:^9.3.1":
+  version: 9.3.1
+  resolution: "execa@npm:9.3.1"
   dependencies:
     "@sindresorhus/merge-streams": "npm:^4.0.0"
     cross-spawn: "npm:^7.0.3"
     figures: "npm:^6.1.0"
     get-stream: "npm:^9.0.0"
-    human-signals: "npm:^7.0.0"
+    human-signals: "npm:^8.0.0"
     is-plain-obj: "npm:^4.1.0"
     is-stream: "npm:^4.0.1"
     npm-run-path: "npm:^5.2.0"
@@ -5622,7 +5639,7 @@ __metadata:
     signal-exit: "npm:^4.1.0"
     strip-final-newline: "npm:^4.0.0"
     yoctocolors: "npm:^2.0.0"
-  checksum: 10/07cf570a8482b124971e7a01ba047a3d3f80c7ebf7a6c937a65d9cd593f6487b419ba9e7cf4388464e4a605ea4849d4c266d57465bb0496d8fa9275a063ce842
+  checksum: 10/ec4a5aec9660cd990cb6f850159945a25f50ab24e1dc5333700299ed874d8a0e7306c6a870121f0eb83662562c49d5009abf01ae5c1d81d425290c5ca49c0f4f
   languageName: node
   linkType: hard
 
@@ -5844,9 +5861,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.3.28":
-  version: 11.3.28
-  resolution: "framer-motion@npm:11.3.28"
+"framer-motion@npm:^11.3.30":
+  version: 11.3.30
+  resolution: "framer-motion@npm:11.3.30"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -5860,7 +5877,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/4c73757e9c5f0553b352d73ea3d52627388b1da29151f6f3edbdd9a030559993dab815caaf5ba2053a6e099124b32c4e1aac9cfbf9c3e80fd1195ca0615663cc
+  checksum: 10/3cb710ae8a6e54538bc7cae1ecc852487867341c5d9156d7c3a9793af7ef3d3d466babce6c70cf0ef58ff996f6ce5c35510e9af834b0064467b6a8fc523eaefa
   languageName: node
   linkType: hard
 
@@ -5911,9 +5928,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-core@npm:13.3.1, fumadocs-core@npm:^13.3.1":
-  version: 13.3.1
-  resolution: "fumadocs-core@npm:13.3.1"
+"fumadocs-core@npm:13.3.2, fumadocs-core@npm:^13.3.2":
+  version: 13.3.2
+  resolution: "fumadocs-core@npm:13.3.2"
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.4"
     "@shikijs/rehype": "npm:^1.13.0"
@@ -5935,7 +5952,7 @@ __metadata:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/ba693eca6aefd7fc9ef046d0a571e28e4b4a1ba1fe3ac2ccdce6c6ebf101c6ebe5bf806c89c688db370914a7ca8badabcfd6380cfc8e9a1131942baf45a978c5
+  checksum: 10/12603366f1565c015e29b48146181adcd4b83a79c138e2f39a5ee238443ffea0a154b165c3fa7289e1e75426d8c0f9bd218f07da4f0742ec851f7abb205c61c6
   languageName: node
   linkType: hard
 
@@ -5984,9 +6001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-ui@npm:^13.3.1":
-  version: 13.3.1
-  resolution: "fumadocs-ui@npm:13.3.1"
+"fumadocs-ui@npm:^13.3.2":
+  version: 13.3.2
+  resolution: "fumadocs-ui@npm:13.3.2"
   dependencies:
     "@radix-ui/react-accordion": "npm:^1.2.0"
     "@radix-ui/react-collapsible": "npm:^1.1.0"
@@ -5998,7 +6015,7 @@ __metadata:
     "@tailwindcss/typography": "npm:^0.5.14"
     class-variance-authority: "npm:^0.7.0"
     cmdk: "npm:^1.0.0"
-    fumadocs-core: "npm:13.3.1"
+    fumadocs-core: "npm:13.3.2"
     lucide-react: "npm:^0.428.0"
     next-themes: "npm:^0.3.0"
     react-medium-image-zoom: "npm:^5.2.8"
@@ -6008,7 +6025,7 @@ __metadata:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/5daced6f9402641fa088320a30491d37f4d4ad8d940ab6ff3416e067bcf0d4b6a9fdfb219d9c5100cb9c994e8aada6f873581b804d0d9b4d9a6302f7ae6b0b6b
+  checksum: 10/33c838efb9e0752edb421b9b47e7b015269657621f218052f200e0905953da7d06d45ce050e18798b014ac8674ee458d07a55bd4a4507549d9542b83a810f147
   languageName: node
   linkType: hard
 
@@ -6155,59 +6172,59 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-cliff-darwin-arm64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-darwin-arm64@npm:2.4.0"
+"git-cliff-darwin-arm64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-darwin-arm64@npm:2.5.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"git-cliff-darwin-x64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-darwin-x64@npm:2.4.0"
+"git-cliff-darwin-x64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-darwin-x64@npm:2.5.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"git-cliff-linux-arm64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-linux-arm64@npm:2.4.0"
+"git-cliff-linux-arm64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-linux-arm64@npm:2.5.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"git-cliff-linux-x64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-linux-x64@npm:2.4.0"
+"git-cliff-linux-x64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-linux-x64@npm:2.5.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"git-cliff-windows-arm64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-windows-arm64@npm:2.4.0"
+"git-cliff-windows-arm64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-windows-arm64@npm:2.5.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"git-cliff-windows-x64@npm:2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff-windows-x64@npm:2.4.0"
+"git-cliff-windows-x64@npm:2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff-windows-x64@npm:2.5.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"git-cliff@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "git-cliff@npm:2.4.0"
+"git-cliff@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "git-cliff@npm:2.5.0"
   dependencies:
     execa: "npm:^8.0.1"
-    git-cliff-darwin-arm64: "npm:2.4.0"
-    git-cliff-darwin-x64: "npm:2.4.0"
-    git-cliff-linux-arm64: "npm:2.4.0"
-    git-cliff-linux-x64: "npm:2.4.0"
-    git-cliff-windows-arm64: "npm:2.4.0"
-    git-cliff-windows-x64: "npm:2.4.0"
+    git-cliff-darwin-arm64: "npm:2.5.0"
+    git-cliff-darwin-x64: "npm:2.5.0"
+    git-cliff-linux-arm64: "npm:2.5.0"
+    git-cliff-linux-x64: "npm:2.5.0"
+    git-cliff-windows-arm64: "npm:2.5.0"
+    git-cliff-windows-x64: "npm:2.5.0"
   dependenciesMeta:
     git-cliff-darwin-arm64:
       optional: true
@@ -6223,7 +6240,7 @@ __metadata:
       optional: true
   bin:
     git-cliff: lib/cli/cli.js
-  checksum: 10/74f7f46766a7f81bf7930c72b2f0079e2832581082290ff46db00df1711c2c09d26e06a0c290dc6cd326f88f860791e7b0c521de607fac7d0d0cdb83ca8f3a88
+  checksum: 10/98dcbacb1cfcd2b7ed4add2ae1096ddcdd8360fc82a62c32e9ad441909da00d3319437d10d344b296797de9610a17627e27739a7c10d1a20f3afcec4b6100b99
   languageName: node
   linkType: hard
 
@@ -6647,10 +6664,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"human-signals@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "human-signals@npm:7.0.0"
-  checksum: 10/f1356547f6553a90530527ba2325c2281e33fa3b9b372a647e377fd8f24e9eb8119082051ca6a9f8821e24f1faa13cd462c849a9476c86e7c190dbf0aa2ee8a4
+"human-signals@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "human-signals@npm:8.0.0"
+  checksum: 10/89acdc7081ac2a065e41cca7351c4b0fe2382e213b7372f90df6a554e340f31b49388a307adc1d6f4c60b2b4fe81eeff0bc1f44be6f5d844311cd92ccc7831c6
   languageName: node
   linkType: hard
 
@@ -6663,12 +6680,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.4":
-  version: 9.1.4
-  resolution: "husky@npm:9.1.4"
+"husky@npm:^9.1.5":
+  version: 9.1.5
+  resolution: "husky@npm:9.1.5"
   bin:
     husky: bin.js
-  checksum: 10/c43aa7cbf98246d4f347bc3da807049555b5003af7c6e1658c5cea44a9743b4d0683c72973a4fe02a4ccceb81031a664ecaa7a1a86efe4d37a80a0af17c988ea
+  checksum: 10/21a3036dd03141c41347693bde301c62502b4e3bffb87310e7e42b3011c2e55691af2e4a9a5f39bd94e6b1d69e3cfc26ec636d8e164e19737b26f11c556caf10
   languageName: node
   linkType: hard
 
@@ -8984,20 +9001,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^14.2.5":
-  version: 14.2.5
-  resolution: "next@npm:14.2.5"
+"next@npm:^14.2.6":
+  version: 14.2.6
+  resolution: "next@npm:14.2.6"
   dependencies:
-    "@next/env": "npm:14.2.5"
-    "@next/swc-darwin-arm64": "npm:14.2.5"
-    "@next/swc-darwin-x64": "npm:14.2.5"
-    "@next/swc-linux-arm64-gnu": "npm:14.2.5"
-    "@next/swc-linux-arm64-musl": "npm:14.2.5"
-    "@next/swc-linux-x64-gnu": "npm:14.2.5"
-    "@next/swc-linux-x64-musl": "npm:14.2.5"
-    "@next/swc-win32-arm64-msvc": "npm:14.2.5"
-    "@next/swc-win32-ia32-msvc": "npm:14.2.5"
-    "@next/swc-win32-x64-msvc": "npm:14.2.5"
+    "@next/env": "npm:14.2.6"
+    "@next/swc-darwin-arm64": "npm:14.2.6"
+    "@next/swc-darwin-x64": "npm:14.2.6"
+    "@next/swc-linux-arm64-gnu": "npm:14.2.6"
+    "@next/swc-linux-arm64-musl": "npm:14.2.6"
+    "@next/swc-linux-x64-gnu": "npm:14.2.6"
+    "@next/swc-linux-x64-musl": "npm:14.2.6"
+    "@next/swc-win32-arm64-msvc": "npm:14.2.6"
+    "@next/swc-win32-ia32-msvc": "npm:14.2.6"
+    "@next/swc-win32-x64-msvc": "npm:14.2.6"
     "@swc/helpers": "npm:0.5.5"
     busboy: "npm:1.6.0"
     caniuse-lite: "npm:^1.0.30001579"
@@ -9038,7 +9055,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 10/c107b45ffe7b75649618d8b5fc0bfe4936317daf12384d2546603b250ceb4e24aca9862cb062c6302a6bafafe5e682bb83f25f2f30ab7533bf0c4a30b3be6875
+  checksum: 10/fe883537393cce2538c15d9d43e2234be731dd369059f8e513a06b93c4fc0b9348ae92788a90b9f6cbc91c438983119a041fdded3eaf79afa2317b31c2e4fb60
   languageName: node
   linkType: hard
 
@@ -10420,7 +10437,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": "npm:^19.4.0"
     "@commitlint/config-conventional": "npm:^19.2.2"
-    "@favware/cliff-jumper": "npm:^4.0.3"
+    "@favware/cliff-jumper": "npm:^4.1.0"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
     "@types/node": "npm:^20.16.1"
@@ -10429,7 +10446,7 @@ __metadata:
     cz-conventional-changelog: "npm:^3.3.0"
     eslint: "npm:^8.57.0"
     eslint-config-mahir: "npm:^0.0.45"
-    husky: "npm:^9.1.4"
+    husky: "npm:^9.1.5"
     lint-staged: "npm:^15.2.9"
     prettier: "npm:^3.3.3"
     prompts: "npm:^2.4.2"
@@ -10438,7 +10455,7 @@ __metadata:
     typedoc: "npm:^0.26.6"
     typedoc-plugin-external-link: "npm:^2.1.2"
     typedoc-plugin-markdown: "npm:4.2.5"
-    typedoc-plugin-mdn-links: "npm:^3.2.9"
+    typedoc-plugin-mdn-links: "npm:^3.2.10"
     typescript: "npm:^5.5.4"
     vitest: "npm:^2.0.5"
   languageName: unknown
@@ -11256,7 +11273,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tagscript@workspace:packages/tagscript"
   dependencies:
-    "@favware/cliff-jumper": "npm:^4.0.3"
+    "@favware/cliff-jumper": "npm:^4.1.0"
     tsup: "npm:^8.2.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
@@ -11762,12 +11779,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.9":
-  version: 3.2.9
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.9"
+"typedoc-plugin-mdn-links@npm:^3.2.10":
+  version: 3.2.10
+  resolution: "typedoc-plugin-mdn-links@npm:3.2.10"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10/7f449a397445f058587dc211b2c2aefc891442c7c10e2aca2e92508c2d8b397ce9933c5653e70c720354c961b13aeca64f18d50294a1876c95fce16327711819
+  checksum: 10/de31da63d8cb0d8127b5dd44326faa59a87a1f0658e2ec442c980f230ba09196066cece54b9b142b4d19ed95bb76e5bdf7af7487b66e43f3ec5cd2d0e9140aab
   languageName: node
   linkType: hard
 
