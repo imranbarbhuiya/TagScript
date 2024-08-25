@@ -10454,7 +10454,7 @@ __metadata:
     turbo: "npm:^2.0.14"
     typedoc: "npm:^0.26.6"
     typedoc-plugin-external-link: "npm:^2.1.2"
-    typedoc-plugin-markdown: "npm:4.2.5"
+    typedoc-plugin-markdown: "npm:4.2.6"
     typedoc-plugin-mdn-links: "npm:^3.2.10"
     typescript: "npm:^5.5.4"
     vitest: "npm:^2.0.5"
@@ -11770,12 +11770,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:4.2.5":
-  version: 4.2.5
-  resolution: "typedoc-plugin-markdown@npm:4.2.5"
+"typedoc-plugin-markdown@npm:4.2.6":
+  version: 4.2.6
+  resolution: "typedoc-plugin-markdown@npm:4.2.6"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10/d8fe3dbdd6d5af1e2ba6d8853b5f23907383a664fb94b8dc040b89806e44d7e762288c1f6828f7b02212b8bb1013953f8bd09686f79865117dd2d8e2227f7a27
+  checksum: 10/957634564092f883c7a17422c98bbf915d5814ae819bff992c433e61b17d2ff2a5825b4682eba2eda30629a4473592be11fed38cc7a67e743dd960571cfc5974
   languageName: node
   linkType: hard
 
