@@ -1201,10 +1201,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/env@npm:14.2.7"
-  checksum: 10/c77425847009f663dda362d8d6cfe1a3d8477ed909d90c5953fe41f5bb6a1434c9b4f0458b078485752110600576d59cbc2302e2d347423e42d54f2b7363d059
+"@next/env@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/env@npm:14.2.8"
+  checksum: 10/df5325326458382b7af475b1846b6649aaa9f05568d1774d1efc9179228b2e990a4abae3728329d8174c73ac0342feb8aaad00bf476b3b80fa860df142144ee0
   languageName: node
   linkType: hard
 
@@ -1217,65 +1217,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-darwin-arm64@npm:14.2.7"
+"@next/swc-darwin-arm64@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-darwin-arm64@npm:14.2.8"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-darwin-x64@npm:14.2.7"
+"@next/swc-darwin-x64@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-darwin-x64@npm:14.2.8"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-linux-arm64-gnu@npm:14.2.7"
+"@next/swc-linux-arm64-gnu@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-linux-arm64-gnu@npm:14.2.8"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-linux-arm64-musl@npm:14.2.7"
+"@next/swc-linux-arm64-musl@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-linux-arm64-musl@npm:14.2.8"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-linux-x64-gnu@npm:14.2.7"
+"@next/swc-linux-x64-gnu@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-linux-x64-gnu@npm:14.2.8"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-linux-x64-musl@npm:14.2.7"
+"@next/swc-linux-x64-musl@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-linux-x64-musl@npm:14.2.8"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-win32-arm64-msvc@npm:14.2.7"
+"@next/swc-win32-arm64-msvc@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-win32-arm64-msvc@npm:14.2.8"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-win32-ia32-msvc@npm:14.2.7"
+"@next/swc-win32-ia32-msvc@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-win32-ia32-msvc@npm:14.2.8"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:14.2.7":
-  version: 14.2.7
-  resolution: "@next/swc-win32-x64-msvc@npm:14.2.7"
+"@next/swc-win32-x64-msvc@npm:14.2.8":
+  version: 14.2.8
+  resolution: "@next/swc-win32-x64-msvc@npm:14.2.8"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2514,26 +2514,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shikijs/rehype@npm:^1.13.0":
-  version: 1.14.1
-  resolution: "@shikijs/rehype@npm:1.14.1"
+"@shikijs/core@npm:1.16.2":
+  version: 1.16.2
+  resolution: "@shikijs/core@npm:1.16.2"
   dependencies:
-    "@shikijs/transformers": "npm:1.14.1"
+    "@shikijs/vscode-textmate": "npm:^9.2.0"
     "@types/hast": "npm:^3.0.4"
-    hast-util-to-string: "npm:^3.0.0"
-    shiki: "npm:1.14.1"
-    unified: "npm:^11.0.5"
-    unist-util-visit: "npm:^5.0.0"
-  checksum: 10/114d85f42a0f695360f2e7d8e3aba2f42ddab81a997de87e3dea70289d1e011dd3605eb58ebda77c96a9386aabfc93ae64a28a0056d854a515a99b083ddbd1db
+  checksum: 10/4114403a0928b9b0027c7f23f9014d81263342ef8e2d30ad62c697241a3d702d25b245fe1c3897053f86ed0c8cc31b514a4e17d6ce27b8d5a15e757d4ce7f5eb
   languageName: node
   linkType: hard
 
-"@shikijs/transformers@npm:1.14.1, @shikijs/transformers@npm:^1.13.0":
-  version: 1.14.1
-  resolution: "@shikijs/transformers@npm:1.14.1"
+"@shikijs/rehype@npm:^1.16.2":
+  version: 1.16.2
+  resolution: "@shikijs/rehype@npm:1.16.2"
   dependencies:
-    shiki: "npm:1.14.1"
-  checksum: 10/c6b1da08987b6b9579f42680286ff0e58297332ff811b0bb9ea907e1f30fd1816d73d52d2e431fc20b8557717e8dd569dd2bf67a6ee45b20fb77ff96779bb13f
+    "@shikijs/transformers": "npm:1.16.2"
+    "@types/hast": "npm:^3.0.4"
+    hast-util-to-string: "npm:^3.0.0"
+    shiki: "npm:1.16.2"
+    unified: "npm:^11.0.5"
+    unist-util-visit: "npm:^5.0.0"
+  checksum: 10/580cbe104ba0107e2327b29b589732e8e5b64f916b4f203a981ff5418d17ef5f21a837a55e3b9d4100af4fa94d7c09e664e19c2c316fba615230bdcec3b0601e
+  languageName: node
+  linkType: hard
+
+"@shikijs/transformers@npm:1.16.2, @shikijs/transformers@npm:^1.16.2":
+  version: 1.16.2
+  resolution: "@shikijs/transformers@npm:1.16.2"
+  dependencies:
+    shiki: "npm:1.16.2"
+  checksum: 10/bca0c0e7f4571c7c31152c4a9eb3323bbcb832e969038804d58217b6eb7fa70c848ddb4661025d182d77ea8fbcfbd46b1fc9f9ffc172a2375078dc021c93e1dc
+  languageName: node
+  linkType: hard
+
+"@shikijs/vscode-textmate@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "@shikijs/vscode-textmate@npm:9.2.0"
+  checksum: 10/16e2521387bb60044919ec7a61359d75adc74daf7d03daefd074ccd4994b0fbd22923c3f258dcd3fd70d9a730920579462afeb3922a08b4e6549a4f43e059962
   languageName: node
   linkType: hard
 
@@ -2584,13 +2601,13 @@ __metadata:
     "@types/react": "npm:^18.3.5"
     "@types/react-dom": "npm:^18.3.0"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.3.31"
-    fumadocs-core: "npm:^13.4.1"
-    fumadocs-docgen: "npm:^1.1.0"
+    framer-motion: "npm:^11.5.4"
+    fumadocs-core: "npm:^13.4.8"
+    fumadocs-docgen: "npm:^1.2.0"
     fumadocs-mdx: "npm:^9.0.4"
-    fumadocs-ui: "npm:^13.4.1"
+    fumadocs-ui: "npm:^13.4.8"
     geist: "npm:^1.3.1"
-    next: "npm:^14.2.7"
+    next: "npm:^14.2.8"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     sharp: "npm:^0.33.5"
@@ -2600,9 +2617,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tailwindcss/typography@npm:^0.5.14":
-  version: 0.5.14
-  resolution: "@tailwindcss/typography@npm:0.5.14"
+"@tailwindcss/typography@npm:^0.5.15":
+  version: 0.5.15
+  resolution: "@tailwindcss/typography@npm:0.5.15"
   dependencies:
     lodash.castarray: "npm:^4.4.0"
     lodash.isplainobject: "npm:^4.0.6"
@@ -2610,7 +2627,7 @@ __metadata:
     postcss-selector-parser: "npm:6.0.10"
   peerDependencies:
     tailwindcss: "*"
-  checksum: 10/89b88d48a65a91d64bc0c12380bcf10824897442f81a51a120483e62a1bd654c745577d29567f48ec724c77044f65135f0f7ff2f75fa38b26691d3f3db5e8164
+  checksum: 10/8c677e4de25a5362d757c3c0b9d594b63c789ab287cad846a082ca227e0d3435145793301ced8f32d5215d5c21537195e7d87ca08a6e7a8facf47a11e7f07d22
   languageName: node
   linkType: hard
 
@@ -2737,12 +2754,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.16.2":
-  version: 20.16.2
-  resolution: "@types/node@npm:20.16.2"
+"@types/node@npm:^20.16.5":
+  version: 20.16.5
+  resolution: "@types/node@npm:20.16.5"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/fcae2ffaa681c2947cd3dae67a6dcf83ef666fc0994281ad881b9e3bb542fec3a9206d9ce899c20e5cdddace2b96b42e32f247864de9baf95756c07b9eff15d7
+  checksum: 10/39a8457149dc17cdea57afc90d4da53182fdb8b958d5bb065a15d123d81d4efa6b51a0de92428d05ead2e63ce07195586f71083401b99cdbcd04662344fbf7a1
   languageName: node
   linkType: hard
 
@@ -5861,9 +5878,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.3.31":
-  version: 11.3.31
-  resolution: "framer-motion@npm:11.3.31"
+"framer-motion@npm:^11.5.4":
+  version: 11.5.4
+  resolution: "framer-motion@npm:11.5.4"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -5877,7 +5894,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/79424fbb0f3d2f866b74df68210980b3e3a57d86b46695f18d3808af1898507c245f807f0e0d3da8808f6096b0558a127c6821db7f8c773b406705a60774fff8
+  checksum: 10/49171015b9d4ff3584d2cd229a15a16cdffe828f9019a2673e2f3952816696c654f3407f41cb0cf0ac0d005ca961af21b96a797a32a779169932a1746151caad
   languageName: node
   linkType: hard
 
@@ -5928,13 +5945,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-core@npm:13.4.1, fumadocs-core@npm:^13.4.1":
-  version: 13.4.1
-  resolution: "fumadocs-core@npm:13.4.1"
+"fumadocs-core@npm:13.4.8, fumadocs-core@npm:^13.4.8":
+  version: 13.4.8
+  resolution: "fumadocs-core@npm:13.4.8"
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.4"
-    "@shikijs/rehype": "npm:^1.13.0"
-    "@shikijs/transformers": "npm:^1.13.0"
+    "@shikijs/rehype": "npm:^1.16.2"
+    "@shikijs/transformers": "npm:^1.16.2"
     flexsearch: "npm:0.7.21"
     github-slugger: "npm:^2.0.0"
     image-size: "npm:^1.1.1"
@@ -5945,27 +5962,28 @@ __metadata:
     remark-gfm: "npm:^4.0.0"
     remark-mdx: "npm:^3.0.1"
     scroll-into-view-if-needed: "npm:^3.1.0"
-    shiki: "npm:^1.13.0"
+    shiki: "npm:^1.16.2"
     swr: "npm:^2.2.5"
     unist-util-visit: "npm:^5.0.0"
   peerDependencies:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/e6417573ebb32a8d78de9be89be15950303273fc6c11734d9581be23dca523fab5b63ab890d144360015e4b99ad09cca9cc4bd32febf7f576d1fb340a525c7ad
+  checksum: 10/cb75edede95eee21620be1a8a474bb26032c86d4908e07ca9acd427bed699849dba426b8a73fc97f77d52ed95ca3b7f8b58cf49785e9456bc8dbf8cafe91e15f
   languageName: node
   linkType: hard
 
-"fumadocs-docgen@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "fumadocs-docgen@npm:1.1.0"
+"fumadocs-docgen@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "fumadocs-docgen@npm:1.2.0"
   dependencies:
     estree-util-value-to-estree: "npm:^3.1.2"
-    fumadocs-typescript: "npm:^2.0.1"
+    fumadocs-typescript: "npm:^2.1.0"
     hast-util-to-estree: "npm:^3.1.0"
-    npm-to-yarn: "npm:^2.2.1"
+    npm-to-yarn: "npm:^3.0.0"
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10/5e93ac0a97382bcc350135c3fc9f01e3bc14ac2518391d90b3c576099567b5ef07389c44f43025fec1574dcbba2746d6a08406496fc5ef135112fbb83002b405
+    zod: "npm:^3.23.8"
+  checksum: 10/dbf6c56d47ee98e1c39ca7b76cf2453820df335b7b5424f119d706b7ed05cfcfc0ef1f9892dace41093f6e16b92c9e627514f3a96e91c9ec63e115688408ed3b
   languageName: node
   linkType: hard
 
@@ -5986,24 +6004,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-typescript@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "fumadocs-typescript@npm:2.0.1"
+"fumadocs-typescript@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "fumadocs-typescript@npm:2.1.0"
   dependencies:
     fast-glob: "npm:^3.3.1"
     hast-util-to-jsx-runtime: "npm:^2.3.0"
-    mdast-util-from-markdown: "npm:^2.0.0"
+    mdast-util-from-markdown: "npm:^2.0.1"
     mdast-util-gfm: "npm:^3.0.0"
-    mdast-util-to-hast: "npm:^13.1.0"
+    mdast-util-to-hast: "npm:^13.2.0"
   peerDependencies:
     typescript: "*"
-  checksum: 10/219cff40ed096f68b6a94dfc84920d4a0e86b7f6f2c0606697d3d0268c8beae1d4f2a8f6a329e15ed555169f72b537efb7a798d41b32b1db3507ba3eccfe574a
+  checksum: 10/d844b9cbb7da3def919ce615f16f1755a06817a1a495d4c96800c6afdda26a7b2c3ef379c59b01f7ce7169e3fff43cd1eb93ca24dad8642547027fcd529581cd
   languageName: node
   linkType: hard
 
-"fumadocs-ui@npm:^13.4.1":
-  version: 13.4.1
-  resolution: "fumadocs-ui@npm:13.4.1"
+"fumadocs-ui@npm:^13.4.8":
+  version: 13.4.8
+  resolution: "fumadocs-ui@npm:13.4.8"
   dependencies:
     "@radix-ui/react-accordion": "npm:^1.2.0"
     "@radix-ui/react-collapsible": "npm:^1.1.0"
@@ -6012,20 +6030,20 @@ __metadata:
     "@radix-ui/react-popover": "npm:^1.1.1"
     "@radix-ui/react-scroll-area": "npm:^1.1.0"
     "@radix-ui/react-tabs": "npm:^1.1.0"
-    "@tailwindcss/typography": "npm:^0.5.14"
+    "@tailwindcss/typography": "npm:^0.5.15"
     class-variance-authority: "npm:^0.7.0"
     cmdk: "npm:^1.0.0"
-    fumadocs-core: "npm:13.4.1"
-    lucide-react: "npm:^0.428.0"
+    fumadocs-core: "npm:13.4.8"
+    lucide-react: "npm:^0.438.0"
     next-themes: "npm:^0.3.0"
-    react-medium-image-zoom: "npm:^5.2.8"
+    react-medium-image-zoom: "npm:^5.2.9"
     swr: "npm:^2.2.5"
     tailwind-merge: "npm:^2.5.2"
   peerDependencies:
     next: ">= 14.1.0"
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/2b1a93747199e731d32136bb0cc8462523849ecac5ac4366abe8b9ec8f6f8d222f2cd47ea0ae09cb72179ba9379a9bf24498cf368a5feb03262a20a3ff2d9c3f
+  checksum: 10/7ba19a80b96929e3a51d05225da49d2a1181bc1e27a6c97a1f177a35b92bd16931eaf65bce6d9c448637d05c77a34d305d077982d071876540d196e86156317c
   languageName: node
   linkType: hard
 
@@ -7623,9 +7641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^15.2.9":
-  version: 15.2.9
-  resolution: "lint-staged@npm:15.2.9"
+"lint-staged@npm:^15.2.10":
+  version: 15.2.10
+  resolution: "lint-staged@npm:15.2.10"
   dependencies:
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -7633,13 +7651,13 @@ __metadata:
     execa: "npm:~8.0.1"
     lilconfig: "npm:~3.1.2"
     listr2: "npm:~8.2.4"
-    micromatch: "npm:~4.0.7"
+    micromatch: "npm:~4.0.8"
     pidtree: "npm:~0.6.0"
     string-argv: "npm:~0.3.2"
     yaml: "npm:~2.5.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/2f7342ca3fc7e2a8a0cc3db79ca8d2ad0269b98b13220f3a6745a514aacf1f83487a23a550569081ea962f9a576af7df8d687a8330a9c3c2c27348d5a4d5440e
+  checksum: 10/ab6930cd633dbb5b6ec7c81fc06c65df41e9f80d93dd22e0d79c6e272cdfd8110a0fbdec60303d46a06b30bcd92261153630e2c937531b77ec5ae41e7e9d90d3
   languageName: node
   linkType: hard
 
@@ -7863,12 +7881,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.428.0":
-  version: 0.428.0
-  resolution: "lucide-react@npm:0.428.0"
+"lucide-react@npm:^0.438.0":
+  version: 0.438.0
+  resolution: "lucide-react@npm:0.438.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
-  checksum: 10/902e2c44f8de99d5f005b289a8cbbf17f290bf8de2f3f4ba0f38a2c3dc08b1ae15bc8e50ac8fdc4ebffdb1a72ddf14f315c88210b21d61740a0ed9834f37ba52
+  checksum: 10/4c163b8f00c1a7af5993163d4da1b2ebb41c99ddd7408df8211b7751090c106992aca994e5bc92d9214432b6d1abb99425c0347e79127f47c74ea392ff92693c
   languageName: node
   linkType: hard
 
@@ -8038,6 +8056,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdast-util-from-markdown@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "mdast-util-from-markdown@npm:2.0.1"
+  dependencies:
+    "@types/mdast": "npm:^4.0.0"
+    "@types/unist": "npm:^3.0.0"
+    decode-named-character-reference: "npm:^1.0.0"
+    devlop: "npm:^1.0.0"
+    mdast-util-to-string: "npm:^4.0.0"
+    micromark: "npm:^4.0.0"
+    micromark-util-decode-numeric-character-reference: "npm:^2.0.0"
+    micromark-util-decode-string: "npm:^2.0.0"
+    micromark-util-normalize-identifier: "npm:^2.0.0"
+    micromark-util-symbol: "npm:^2.0.0"
+    micromark-util-types: "npm:^2.0.0"
+    unist-util-stringify-position: "npm:^4.0.0"
+  checksum: 10/4172759cdd8cf9990701796c5617c8b6a4bd3f9863e730bb4e9689189daec80af3122e77eed2ab09090f1a2d396c4f5754416a41769d7c49efd165a1c0a033c8
+  languageName: node
+  linkType: hard
+
 "mdast-util-gfm-autolink-literal@npm:^2.0.0":
   version: 2.0.0
   resolution: "mdast-util-gfm-autolink-literal@npm:2.0.0"
@@ -8187,7 +8225,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdast-util-to-hast@npm:^13.0.0, mdast-util-to-hast@npm:^13.1.0":
+"mdast-util-to-hast@npm:^13.0.0, mdast-util-to-hast@npm:^13.2.0":
   version: 13.2.0
   resolution: "mdast-util-to-hast@npm:13.2.0"
   dependencies:
@@ -8725,7 +8763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5, micromatch@npm:~4.0.7":
+"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5, micromatch@npm:~4.0.8":
   version: 4.0.8
   resolution: "micromatch@npm:4.0.8"
   dependencies:
@@ -9001,20 +9039,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^14.2.7":
-  version: 14.2.7
-  resolution: "next@npm:14.2.7"
+"next@npm:^14.2.8":
+  version: 14.2.8
+  resolution: "next@npm:14.2.8"
   dependencies:
-    "@next/env": "npm:14.2.7"
-    "@next/swc-darwin-arm64": "npm:14.2.7"
-    "@next/swc-darwin-x64": "npm:14.2.7"
-    "@next/swc-linux-arm64-gnu": "npm:14.2.7"
-    "@next/swc-linux-arm64-musl": "npm:14.2.7"
-    "@next/swc-linux-x64-gnu": "npm:14.2.7"
-    "@next/swc-linux-x64-musl": "npm:14.2.7"
-    "@next/swc-win32-arm64-msvc": "npm:14.2.7"
-    "@next/swc-win32-ia32-msvc": "npm:14.2.7"
-    "@next/swc-win32-x64-msvc": "npm:14.2.7"
+    "@next/env": "npm:14.2.8"
+    "@next/swc-darwin-arm64": "npm:14.2.8"
+    "@next/swc-darwin-x64": "npm:14.2.8"
+    "@next/swc-linux-arm64-gnu": "npm:14.2.8"
+    "@next/swc-linux-arm64-musl": "npm:14.2.8"
+    "@next/swc-linux-x64-gnu": "npm:14.2.8"
+    "@next/swc-linux-x64-musl": "npm:14.2.8"
+    "@next/swc-win32-arm64-msvc": "npm:14.2.8"
+    "@next/swc-win32-ia32-msvc": "npm:14.2.8"
+    "@next/swc-win32-x64-msvc": "npm:14.2.8"
     "@swc/helpers": "npm:0.5.5"
     busboy: "npm:1.6.0"
     caniuse-lite: "npm:^1.0.30001579"
@@ -9055,7 +9093,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 10/5a423cb65b19bd8d53de4a5d5b54c3b2ec28300fae99b81156442f90b299cda123bae40fb7621c3a682498f99d0b045c829e74f26861a4ff7b4878ae1e33d150
+  checksum: 10/452e4a5b9109885c7454b74fbcbcf7c89337363536c1585886fd1967699b783bc777145857c5468682ba1d0ca363e81f2328681f32dd7114ee35182d408f21bc
   languageName: node
   linkType: hard
 
@@ -9190,13 +9228,6 @@ __metadata:
   dependencies:
     path-key: "npm:^4.0.0"
   checksum: 10/ae8e7a89da9594fb9c308f6555c73f618152340dcaae423e5fb3620026fefbec463618a8b761920382d666fa7a2d8d240b6fe320e8a6cdd54dc3687e2b659d25
-  languageName: node
-  linkType: hard
-
-"npm-to-yarn@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "npm-to-yarn@npm:2.2.1"
-  checksum: 10/d3509a61389482e225808b7a9f73ab66d107e53c39d07ab9d5c09139b737185ce91d80e0090d21a9939593a1e729efdd9059ccf52edffda1837805ffea05e2b3
   languageName: node
   linkType: hard
 
@@ -9929,13 +9960,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-medium-image-zoom@npm:^5.2.8":
-  version: 5.2.8
-  resolution: "react-medium-image-zoom@npm:5.2.8"
+"react-medium-image-zoom@npm:^5.2.9":
+  version: 5.2.9
+  resolution: "react-medium-image-zoom@npm:5.2.9"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/fff1ba6ffc2b17f6c8d65f52894957291013e453c9a2ee879df2af6672caf6f403d37519dd03e564161c6fb0e58e268da269223f8fa9e7a12351d9eb9a63c23d
+  checksum: 10/0d02a152209061cd9659c3c3670de44a9d8b899d770d2b0895e91436f8ccb30747ad9e8917f6d7fba9a5568efd1534d3a41fa1f403a3a434dbb8710b0a4605e0
   languageName: node
   linkType: hard
 
@@ -10447,22 +10478,22 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.1.0"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.16.2"
+    "@types/node": "npm:^20.16.5"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^2.0.5"
     cz-conventional-changelog: "npm:^3.3.0"
     eslint: "npm:^8.57.0"
     eslint-config-mahir: "npm:^0.0.45"
     husky: "npm:^9.1.5"
-    lint-staged: "npm:^15.2.9"
+    lint-staged: "npm:^15.2.10"
     prettier: "npm:^3.3.3"
     prompts: "npm:^2.4.2"
     tsup: "npm:^8.2.4"
     turbo: "npm:^2.1.1"
     typedoc: "npm:^0.26.6"
     typedoc-plugin-external-link: "npm:^2.1.2"
-    typedoc-plugin-markdown: "npm:4.2.6"
-    typedoc-plugin-mdn-links: "npm:^3.2.11"
+    typedoc-plugin-markdown: "npm:4.2.7"
+    typedoc-plugin-mdn-links: "npm:^3.2.12"
     typescript: "npm:^5.5.4"
     vitest: "npm:^2.0.5"
   languageName: unknown
@@ -10712,7 +10743,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:1.14.1, shiki@npm:^1.13.0, shiki@npm:^1.9.1":
+"shiki@npm:1.16.2, shiki@npm:^1.16.2":
+  version: 1.16.2
+  resolution: "shiki@npm:1.16.2"
+  dependencies:
+    "@shikijs/core": "npm:1.16.2"
+    "@shikijs/vscode-textmate": "npm:^9.2.0"
+    "@types/hast": "npm:^3.0.4"
+  checksum: 10/9c5ffd2e82f781a1f2c33fed756e093bea7b01cc744c3dcf3deed611dc9e7caba30d5b7ef5a99bdef512b38269e63704b3727db732779ebae253a0352a57b288
+  languageName: node
+  linkType: hard
+
+"shiki@npm:^1.9.1":
   version: 1.14.1
   resolution: "shiki@npm:1.14.1"
   dependencies:
@@ -11777,21 +11819,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:4.2.6":
-  version: 4.2.6
-  resolution: "typedoc-plugin-markdown@npm:4.2.6"
+"typedoc-plugin-markdown@npm:4.2.7":
+  version: 4.2.7
+  resolution: "typedoc-plugin-markdown@npm:4.2.7"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10/957634564092f883c7a17422c98bbf915d5814ae819bff992c433e61b17d2ff2a5825b4682eba2eda30629a4473592be11fed38cc7a67e743dd960571cfc5974
+  checksum: 10/edaffa2d23994eaff63a9de6cfa40e553e3dcc05b2f106307dfea9d282501829416f1280f3cc50c35cfb8548cdf5023f111dc5cc6c2d9cb2c491f2ac4a864ae2
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.2.11":
-  version: 3.2.11
-  resolution: "typedoc-plugin-mdn-links@npm:3.2.11"
+"typedoc-plugin-mdn-links@npm:^3.2.12":
+  version: 3.2.12
+  resolution: "typedoc-plugin-mdn-links@npm:3.2.12"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10/57b522d2865cefadfa1a47d7c7f4d47af12ea104a6c516a4a9b66c93ec50f1c81cba95fa11c2a8a0736f7e9da6afae506bd2ca0a0cf3de29eebb81ccb26d235d
+  checksum: 10/785b45fac2cfd58ce3f651c715fcdd5f31d572c59da20d494e534778ef4fc6583e5cec2eed98ee413a8c4c1486a50e1ee9311667eb914584b1d8bccd5a10ee87
   languageName: node
   linkType: hard
 
