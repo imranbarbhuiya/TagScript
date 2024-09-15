@@ -2621,7 +2621,7 @@ __metadata:
   resolution: "@tagscript/plugin-discord@workspace:packages/tagscript-plugin-discord"
   dependencies:
     "@favware/cliff-jumper": "npm:^4.1.0"
-    discord.js: "npm:^14.16.1"
+    discord.js: "npm:^14.16.2"
     tagscript: "workspace:^"
     tsup: "npm:^8.2.4"
     typescript: "npm:^5.5.4"
@@ -4641,9 +4641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.16.1":
-  version: 14.16.1
-  resolution: "discord.js@npm:14.16.1"
+"discord.js@npm:^14.16.2":
+  version: 14.16.2
+  resolution: "discord.js@npm:14.16.2"
   dependencies:
     "@discordjs/builders": "npm:^1.9.0"
     "@discordjs/collection": "npm:1.5.3"
@@ -4657,7 +4657,7 @@ __metadata:
     lodash.snakecase: "npm:4.1.1"
     tslib: "npm:^2.6.3"
     undici: "npm:6.19.8"
-  checksum: 10/e75d0f8dd1a8e9aae313e016ba88d0c4b75dfe502663b08edae94cc99936f634e5647022bae71f517b6233d44af2a8bd4cabbe53db398e954116178b196030c4
+  checksum: 10/9da5621e88734b3cc8236de492c4fb6b78ee8c0a9a751472aa221234f66cf741f0947e81eb1842dd5ba711b95228593855a9f16453b4786455f3cb7c7cd1c381
   languageName: node
   linkType: hard
 
