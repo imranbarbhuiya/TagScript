@@ -2717,10 +2717,10 @@ __metadata:
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
     "@tagscript/plugin-discord": "workspace:^"
-    "@types/react": "npm:^18.3.8"
+    "@types/react": "npm:^18.3.10"
     "@types/react-dom": "npm:^18.3.0"
     eslint-plugin-mdx: "npm:^3.1.5"
-    framer-motion: "npm:^11.5.6"
+    framer-motion: "npm:^11.9.0"
     fumadocs-core: "npm:^13.4.10"
     fumadocs-docgen: "npm:^1.2.0"
     fumadocs-mdx: "npm:^9.0.4"
@@ -2731,7 +2731,7 @@ __metadata:
     react-dom: "npm:^18.3.1"
     sharp: "npm:^0.33.5"
     tagscript: "workspace:^"
-    tailwindcss: "npm:^3.4.12"
+    tailwindcss: "npm:^3.4.13"
     tailwindcss-animate: "npm:^1.0.7"
   languageName: unknown
   linkType: soft
@@ -2873,12 +2873,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.16.5":
-  version: 20.16.5
-  resolution: "@types/node@npm:20.16.5"
+"@types/node@npm:^20.16.10":
+  version: 20.16.10
+  resolution: "@types/node@npm:20.16.10"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/39a8457149dc17cdea57afc90d4da53182fdb8b958d5bb065a15d123d81d4efa6b51a0de92428d05ead2e63ce07195586f71083401b99cdbcd04662344fbf7a1
+  checksum: 10/f0832d16fed07737c2c3edd6cb6414a22e8379173e56e701ab8890b8798c8f9bc37337332631818f813ff7f8c0e168e9900e8f44cdfd2406d15150289c813acc
   languageName: node
   linkType: hard
 
@@ -2925,13 +2925,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.3.8":
-  version: 18.3.8
-  resolution: "@types/react@npm:18.3.8"
+"@types/react@npm:^18.3.10":
+  version: 18.3.10
+  resolution: "@types/react@npm:18.3.10"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/75e64e7f481c28e6c8ce6dae12f49ccc3f36c7b10b82da3eb7728ad9c02bec58a2c967105603e38665902e8db9296962c7718bc2062e2cb64a16e92333bd1f4b
+  checksum: 10/cdc946f15fcad62387e6485a2bbef3e45609708fd81e3ce30b03580077bb8a8a1bd0d19858d8602b33c3921bbb8907ddbc9411fd25294a2c2e944907dad8dd67
   languageName: node
   linkType: hard
 
@@ -6106,9 +6106,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.5.6":
-  version: 11.5.6
-  resolution: "framer-motion@npm:11.5.6"
+"framer-motion@npm:^11.9.0":
+  version: 11.9.0
+  resolution: "framer-motion@npm:11.9.0"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -6122,7 +6122,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/8662b888f3665e947aef37e5609dce985ba32d4e264328bae0935829fba15b34704ef4d51c163b9c80e24ef8f202ae25a3f6aeb4d3161c23ff96592eb4a473d0
+  checksum: 10/fa9dec871d99bd3289767eb2b1c2d4b68e142bbe3116deb6a17177c45e90d128e4184a0e96097bed15cf54d2db5c63c1ceed0b1156518e245b807ec8aa653a19
   languageName: node
   linkType: hard
 
@@ -10713,7 +10713,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.1.0"
     "@favware/colorette-spinner": "npm:^1.0.1"
     "@favware/npm-deprecate": "npm:^1.0.7"
-    "@types/node": "npm:^20.16.5"
+    "@types/node": "npm:^20.16.10"
     "@types/prompts": "npm:^2.4.9"
     "@vitest/coverage-v8": "npm:^2.1.1"
     cz-conventional-changelog: "npm:^3.3.0"
@@ -10727,8 +10727,8 @@ __metadata:
     turbo: "npm:^2.1.2"
     typedoc: "npm:^0.26.7"
     typedoc-plugin-external-link: "npm:^2.1.2"
-    typedoc-plugin-markdown: "npm:4.2.7"
-    typedoc-plugin-mdn-links: "npm:^3.3.1"
+    typedoc-plugin-markdown: "npm:4.2.8"
+    typedoc-plugin-mdn-links: "npm:^3.3.2"
     typescript: "npm:^5.6.2"
     vitest: "npm:^2.1.1"
   languageName: unknown
@@ -11569,9 +11569,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.4.12":
-  version: 3.4.12
-  resolution: "tailwindcss@npm:3.4.12"
+"tailwindcss@npm:^3.4.13":
+  version: 3.4.13
+  resolution: "tailwindcss@npm:3.4.13"
   dependencies:
     "@alloc/quick-lru": "npm:^5.2.0"
     arg: "npm:^5.0.2"
@@ -11598,7 +11598,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: 10/34d8306d63c39e3bb93ad2d8fb8f800138ca1bf6c31feceb8331305efd253a61c52b47d0e80879774b859453420d47c52fb2b1f052c9536818356c3b62298a73
+  checksum: 10/01b8dd35a65a028474c632b9ea7fb38634060a2c70f1f3fdfa2fe6ec74dec8224e2ee1178a5428182849790dad324e7a810de7301a9126946528c59d37f455cf
   languageName: node
   linkType: hard
 
@@ -12061,21 +12061,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:4.2.7":
-  version: 4.2.7
-  resolution: "typedoc-plugin-markdown@npm:4.2.7"
+"typedoc-plugin-markdown@npm:4.2.8":
+  version: 4.2.8
+  resolution: "typedoc-plugin-markdown@npm:4.2.8"
   peerDependencies:
     typedoc: 0.26.x
-  checksum: 10/edaffa2d23994eaff63a9de6cfa40e553e3dcc05b2f106307dfea9d282501829416f1280f3cc50c35cfb8548cdf5023f111dc5cc6c2d9cb2c491f2ac4a864ae2
+  checksum: 10/4d6dee53b44b9f84e48651e51ec5f9cd4b3f0e7cb45a0a03b6463d4c6556e6b06afd61ed5f04f637d0db6e3126a1a87c557cdfa979e7d462fca9f06fee06095e
   languageName: node
   linkType: hard
 
-"typedoc-plugin-mdn-links@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "typedoc-plugin-mdn-links@npm:3.3.1"
+"typedoc-plugin-mdn-links@npm:^3.3.2":
+  version: 3.3.2
+  resolution: "typedoc-plugin-mdn-links@npm:3.3.2"
   peerDependencies:
     typedoc: ">= 0.23.14 || 0.24.x || 0.25.x || 0.26.x"
-  checksum: 10/dc54837d915d21f435ff11e7ad14e368a37f9ec6feb8d8db6ea0be35af59be61a4668ae480c219f87cc31490ac46c79c143a68d455d939de200735d5b4bb8750
+  checksum: 10/6b807fcb1febe5d59ffee1ccedb512a8c31c338a98822ccb6f34bae174f8ea09a025662b4effe0f457217876d26675677b0f0565d9b9b54fbb01588141d822d9
   languageName: node
   linkType: hard
 
