@@ -8,7 +8,7 @@ import { Provider } from './provider';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
-import { pageTree } from '@/app/source';
+import { source } from '@/app/source';
 
 import 'fumadocs-ui/style.css';
 import './globals.css';
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 								/>
 							)
 						}}
-						tree={pageTree}
+						tree={source.pageTree}
 					>
 						{children}
 					</DocsLayout>

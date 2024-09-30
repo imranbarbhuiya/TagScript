@@ -1,21 +1,8 @@
-import { remarkInstall } from 'fumadocs-docgen';
-import createMDX from 'fumadocs-mdx/config';
+import { createMDX } from 'fumadocs-mdx/next';
 
-const withMDX = createMDX({
-	mdxOptions: {
-		rehypeCodeOptions: {
-			themes: {
-				light: 'catppuccin-latte',
-				dark: 'catppuccin-mocha'
-			}
-		},
-		remarkPlugins: [[remarkInstall, { Tabs: 'InstallTabs' }]]
-	}
-});
+const withMDX = createMDX({});
 
 /** @type {import('next').NextConfig} */
-const config = {
-	reactStrictMode: true
-};
+const config = {};
 
 export default withMDX(config);

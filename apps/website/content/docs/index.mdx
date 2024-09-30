@@ -60,8 +60,8 @@ with a colon `:` and continues up to the end. It's optional for some tags.
 
 ### For Developers
 
-<Tabs items={['ESM', 'CommonJs']}>
-		```ts showLineNumbers tab="ESM"
+<Tabs items={['Typescript', 'CommonJs']}>
+		```ts showLineNumbers tab="Typescript"
 			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
     		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
     		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);

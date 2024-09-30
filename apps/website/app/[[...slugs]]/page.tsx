@@ -1,18 +1,26 @@
+/* eslint-disable react/no-unstable-nested-components */
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Pre, CodeBlock } from 'fumadocs-ui/components/codeblock';
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import defaultComponents from 'fumadocs-ui/mdx';
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 
 import { Edit } from './Edit';
 
+import type { MDXComponents } from 'mdx/types';
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-import { getPage, getPages } from '@/app/source';
+import { source } from '@/app/source';
 
 export default async function Page({ params }: { readonly params: { slugs?: string[] } }) {
-	const page = getPage(params.slugs);
+	const page = source.getPage(params.slugs);
 
 	if (!page) notFound();
 
-	const Mdx = page.data.exports.default;
+	const Mdx = page.data.body;
 
 	const path = `apps/website/content/docs/${page.file.path}`;
 	const footer = path.includes('/api/') ? null : (
@@ -30,25 +38,43 @@ export default async function Page({ params }: { readonly params: { slugs?: stri
 	return (
 		<DocsPage
 			full={page.data.full}
+			lastUpdate={page.data.lastModified}
 			tableOfContent={{ footer, style: 'clerk', single: true }}
 			tableOfContentPopover={{ footer }}
-			toc={page.data.exports.toc}
+			toc={page.data.toc}
 		>
 			<DocsBody>
-				<Mdx />
+				<Mdx
+					components={{
+						...(defaultComponents as MDXComponents),
+						pre: ({ ref: _ref, ...props }) => (
+							<CodeBlock {...props}>
+								<Pre>{props.children}</Pre>
+							</CodeBlock>
+						),
+						Tab,
+						Tabs,
+						InstallTabs: ({ items, children }: { readonly children: ReactNode; readonly items: string[] }) => (
+							<Tabs id="package-manager" items={items}>
+								{children}
+							</Tabs>
+						),
+						blockquote: (props) => <Callout>{props.children}</Callout>,
+						// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+						img: (props) => <ImageZoom {...(props as any)} />
+					}}
+				/>
 			</DocsBody>
 		</DocsPage>
 	);
 }
 
 export async function generateStaticParams() {
-	return getPages().map((page) => ({
-		slug: page.slugs
-	}));
+	return source.generateParams();
 }
 
 export function generateMetadata({ params }: { params: { slugs?: string[] } }) {
-	const page = getPage(params.slugs);
+	const page = source.getPage(params.slugs);
 
 	if (!page) notFound();
 
