@@ -20,7 +20,7 @@ jobs:
             - name: Install Dependencies
               uses: ./scripts/yarnCache
             - name: Build Dependencies
-              run: yarn turbo run build --filter=tagscript --no-deps
+              run: yarn turbo run build --filter=tagscript
             - name: Deprecate versions
               run: yarn npm-deprecate
               env:
