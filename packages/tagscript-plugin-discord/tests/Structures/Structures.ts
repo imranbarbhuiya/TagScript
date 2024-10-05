@@ -236,7 +236,8 @@ const interactionObject: APIApplicationCommandInteraction = {
 	guild_locale: 'en-US',
 	entitlements: [],
 	app_permissions: '8',
-	channel: channelObject
+	channel: channelObject,
+	authorizing_integration_owners: {}
 };
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
