@@ -105,3 +105,6 @@ apps/website/content/docs/api/**/*.md
 
 # turbo cache
 .turbo
+
+# fumadocs source
+.source
