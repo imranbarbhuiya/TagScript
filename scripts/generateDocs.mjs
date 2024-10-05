@@ -90,8 +90,8 @@ for await (const file of findFilesRecursively('apps/website/content/docs/api')) 
 	const newContent = content
 		// All the links are url encoded, so we need to replace them with the correct ones (is it a bug? or my setup issue?)
 		.replaceAll('%5C', '/')
-		.replaceAll('tagscript/@tagscript/plugin-discord/', `/api/@tagscript/plugin-discord/`)
-		.replaceAll('tagscript/tagscript/', `/api/tagscript/`)
+		.replaceAll('./tagscript/@tagscript/plugin-discord/', `/api/plugins/`)
+		.replaceAll('./tagscript/tagscript/', `/api/tagscript/`)
 		// There might be an option to do it but for now, lets do it this way
 		.replace('[**@tagscript/plugin-discord**](/api/@tagscript/plugin-discord/README.md) • **Docs**\n\n***\n\n', '')
 		.replace('[**tagscript**](/api/tagscript/README.md) • **Docs**\n\n***\n\n', '')
