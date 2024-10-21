@@ -6,7 +6,7 @@
 		"dev": "next dev --turbo",
 		"build": "yarn run --top-level docs && next build",
 		"start": "next start",
-		"lint": "TIMING=1 eslint . --fix --ext js,jsx,mdx,ts,tsx",
+		"lint": "TIMING=1 eslint . --fix",
 		"format": "prettier --cache --write .",
 		"postinstall": "fumadocs-mdx"
 	},

@@ -17,7 +17,8 @@ import type { Context } from '../Interpreter';
  */
 export class StrictVarsParser implements IParser {
 	public willAccept(ctx: Context) {
-		return ctx.tag.declaration! in ctx.response.variables;
+		const declaration = ctx.tag.declaration!;
+		return declaration in ctx.response.variables;
 	}
 
 	public parse(ctx: Context) {

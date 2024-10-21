@@ -20,7 +20,8 @@ export class LooseVarsParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		if (ctx.tag.declaration! in ctx.response.variables) return ctx.response.variables[ctx.tag.declaration!].transform(ctx.tag);
+		const declaration = ctx.tag.declaration!;
+		if (declaration in ctx.response.variables) return ctx.response.variables[declaration].transform(ctx.tag);
 		return null;
 	}
 }
