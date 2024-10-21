@@ -5,7 +5,6 @@
 		"packages/*",
 		"apps/*"
 	],
-	"type": "module",
 	"scripts": {
 		"build": "turbo run build",
 		"bump": "turbo run bump --concurrency=1",

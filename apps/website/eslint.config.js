@@ -26,6 +26,6 @@ export default [
 	...edge,
 	...mdx,
 	{
-		ignores: ['next-env.d.ts', '**/*.md']
+		ignores: ['next-env.d.ts', '**/*.md', '.source']
 	}
 ];
