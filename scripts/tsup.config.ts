@@ -14,6 +14,7 @@ export const createTsupConfig = (options: Options = {}) =>
 		skipNodeModulesBundle: true,
 		sourcemap: true,
 		target: 'esnext',
+		// eslint-disable-next-line unicorn/prefer-module
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
 		...options

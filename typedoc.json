@@ -5,7 +5,7 @@
 	"entryPoints": ["packages/tagscript/", "packages/tagscript-plugin-discord/"],
 	"name": "TagScript",
 	"out": "./docs/",
-	"tsconfig": "./tsconfig.base.json",
+	"tsconfig": "./tsconfig.json",
 	"externalLinkPath": "./scripts/externalConfig.js",
 	"hideGenerator": true,
 	"hideBreadcrumbs": true,
