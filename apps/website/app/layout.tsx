@@ -1,5 +1,5 @@
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { DocsLayout } from 'fumadocs-ui/layout';
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 

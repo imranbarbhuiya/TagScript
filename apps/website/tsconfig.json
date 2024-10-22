@@ -1,5 +1,5 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"module": "esnext",
 		"lib": ["dom", "dom.iterable", "esnext"],
@@ -11,6 +11,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
+		"moduleResolution": "bundler",
 		"plugins": [
 			{
 				"name": "next"

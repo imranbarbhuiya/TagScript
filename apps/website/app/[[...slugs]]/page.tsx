@@ -15,7 +15,8 @@ import type { ReactNode } from 'react';
 
 import { source } from '@/app/source';
 
-export default async function Page({ params }: { readonly params: { slugs?: string[] } }) {
+export default async function Page(props: { readonly params: Promise<{ slugs?: string[] }> }) {
+	const params = await props.params;
 	const page = source.getPage(params.slugs);
 
 	if (!page) notFound();
@@ -47,9 +48,9 @@ export default async function Page({ params }: { readonly params: { slugs?: stri
 				<Mdx
 					components={{
 						...(defaultComponents as MDXComponents),
-						pre: ({ ref: _ref, ...props }) => (
-							<CodeBlock {...props}>
-								<Pre>{props.children}</Pre>
+						pre: ({ ref: _ref, ...rest }) => (
+							<CodeBlock {...rest}>
+								<Pre>{rest.children}</Pre>
 							</CodeBlock>
 						),
 						Tab,
@@ -73,7 +74,8 @@ export async function generateStaticParams() {
 	return source.generateParams();
 }
 
-export function generateMetadata({ params }: { params: { slugs?: string[] } }) {
+export async function generateMetadata(props: { params: Promise<{ slugs?: string[] }> }) {
+	const params = await props.params;
 	const page = source.getPage(params.slugs);
 
 	if (!page) notFound();
