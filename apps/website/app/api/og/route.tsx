@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 const font = fetch(new URL('Inter-SemiBold.otf', import.meta.url)).then((res) => res.arrayBuffer());
 
 export async function GET(req: Request) {

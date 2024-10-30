@@ -7,13 +7,13 @@ import defaultComponents from 'fumadocs-ui/mdx';
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 
+import { source } from '@/app/source';
+
 import { Edit } from './Edit';
 
 import type { MDXComponents } from 'mdx/types';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-
-import { source } from '@/app/source';
 
 export default async function Page(props: { readonly params: Promise<{ slugs?: string[] }> }) {
 	const params = await props.params;
@@ -61,7 +61,6 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 							</Tabs>
 						),
 						blockquote: (props) => <Callout>{props.children}</Callout>,
-						// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 						img: (props) => <ImageZoom {...(props as any)} />
 					}}
 				/>
