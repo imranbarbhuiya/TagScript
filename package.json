@@ -70,7 +70,7 @@
 		"ansi-regex": "^5.0.1",
 		"minimist": "^1.2.8",
 		"@types/react": "npm:types-react@19.0.0-rc.1",
-		"@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+		"@types/react-dom": "npm:types-react-dom@19.0.0"
 	},
 	"packageManager": "yarn@4.5.1",
 	"nextBundleAnalysis": {}
