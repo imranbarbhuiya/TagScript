@@ -12928,7 +12928,7 @@ __metadata:
     tsup: "npm:^8.3.5"
     turbo: "npm:^2.3.0"
     typedoc: "npm:^0.26.11"
-    typedoc-plugin-external-link: "npm:^2.1.2"
+    typedoc-plugin-external-link: "npm:^3.0.1"
     typedoc-plugin-markdown: "npm:4.2.10"
     typedoc-plugin-mdn-links: "npm:^4.0.2"
     typescript: "npm:^5.6.3"
@@ -14300,12 +14300,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-external-link@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "typedoc-plugin-external-link@npm:2.1.2"
+"typedoc-plugin-external-link@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "typedoc-plugin-external-link@npm:3.0.1"
   peerDependencies:
-    typedoc: ">=0.24.0"
-  checksum: 10/df9895fffcea15f75adc342cb8c2a3b7ffcc8be0c05c6b3472c89924edae239c80eeaa83e4bc483949ebaceba00b89b2406b74e958b3bad7d2a6d08bef0a3d89
+    typedoc: ">=0.27.0"
+  checksum: 10/b328f8ecb1818c6ec19e60f7e0fddf8be528c21e6e33c4d07a5e587b54280a993241f87afc160ac41716c25c68415ad82564447e2268905f0df08e4050f96b41
   languageName: node
   linkType: hard
 
