@@ -36,7 +36,7 @@ export interface IParser {
  * It is empty by default and so has type `{}`.
  * If you want to use it, you need to use [Augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) to add your own properties.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IKeyValues {}
 
 /**

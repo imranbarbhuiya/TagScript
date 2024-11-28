@@ -1,5 +1,5 @@
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 											{
 												title: 'Discord Plugin API Docs',
 												description: 'Auto generated api docs for tagscript',
-												url: '/api/plugins/plugin-discord',
+												url: '/api/plugins',
 												active: 'nested-url'
 											}
 										] as any

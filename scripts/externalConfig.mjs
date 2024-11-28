@@ -67,4 +67,4 @@ function getURL(packageName, type) {
 	return undefined;
 }
 
-module.exports = { packageNames, getURL };
+export { packageNames, getURL };
