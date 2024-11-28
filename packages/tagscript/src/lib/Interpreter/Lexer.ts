@@ -128,7 +128,7 @@ export class Lexer {
 		const [declaration, ...payloads] = this.parsedInput.split(':');
 		const payload = payloads.join(Part.colon);
 		if (payload.length) this.payload = payload;
-		this.declaration ||= declaration;
+		this.declaration ??= declaration;
 	}
 
 	private openParameter(index: number, type: ParenType = this.usedParenType) {

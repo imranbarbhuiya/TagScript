@@ -16,12 +16,12 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 ## Features
 
--   Written In Typescript
--   Offers CJS, ESM and UMD builds
--   Full TypeScript & JavaScript support
--   Faster than ⚡
--   Simple, expressive and safe template engine.
--   Supports your own parsers and transformers
+- Written In Typescript
+- Offers CJS, ESM and UMD builds
+- Full TypeScript & JavaScript support
+- Faster than ⚡
+- Simple, expressive and safe template engine.
+- Supports your own parsers and transformers
 
 ## Installation
 
@@ -104,4 +104,4 @@ Thanks goes to these wonderful people:
 
 ## Special Thanks
 
--   [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.
+- [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.

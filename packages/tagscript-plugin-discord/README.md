@@ -12,16 +12,16 @@ A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with d
 
 ## Features
 
--   Written In Typescript
--   Offers CJS, and ESM builds
--   Full TypeScript & JavaScript support
+- Written In Typescript
+- Offers CJS, and ESM builds
+- Full TypeScript & JavaScript support
 
 ## Installation
 
 `@tagscript/plugin-discord` depends on the following packages. Be sure to install these along with this package!
 
--   [tagscript](https://www.npmjs.com/package/tagscript)
--   [discord.js](https://www.npmjs.com/package/discord.js)
+- [tagscript](https://www.npmjs.com/package/tagscript)
+- [discord.js](https://www.npmjs.com/package/discord.js)
 
 You can use the following command to install this package, or replace npm install with your package manager of choice.
 

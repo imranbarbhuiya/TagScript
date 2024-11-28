@@ -28,12 +28,12 @@ Read Full Documentation [here](https://tagscript.js.org/).
 
 ## Features
 
--   Written In Typescript
--   Offers CJS, ESM and UMD builds
--   Full TypeScript & JavaScript support
--   Blazingly Fast ⚡
--   Simple, expressive and safe template engine.
--   Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
+- Written In Typescript
+- Offers CJS, ESM and UMD builds
+- Full TypeScript & JavaScript support
+- Blazingly Fast ⚡
+- Simple, expressive and safe template engine.
+- Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
 
 ## Usage
 
