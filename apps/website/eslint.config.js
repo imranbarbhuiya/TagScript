@@ -17,7 +17,6 @@ export default [
 	...react,
 	...next,
 	...edge,
-
 	...mdx.map((config) => ({
 		files: ['**/*.mdx'],
 		...config

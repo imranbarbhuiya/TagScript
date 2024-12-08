@@ -5,7 +5,7 @@
  * Feel free to optimize it. I just added new codes whenever I need as I'm busy with other stuff and optimizing this script is not necessary.
  */
 
-/* eslint-disable no-console, tsdoc/syntax */
+/* eslint-disable tsdoc/syntax */
 import { exec, execSync } from 'node:child_process';
 import { cp, rm, mkdir, rename, opendir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
