@@ -11,7 +11,7 @@ import { source } from '@/app/source';
 
 import { Edit } from './Edit';
 
-import type { MDXComponents } from 'mdx/types';
+import type { MDXComponents, MDXContent } from 'mdx/types';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
@@ -21,7 +21,7 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 
 	if (!page) notFound();
 
-	const Mdx = page.data.body;
+	const Mdx = page.data.body as MDXContent;
 
 	const path = `apps/website/content/docs/${page.file.path}`;
 	const footer = path.includes('/api/') ? null : (
@@ -61,7 +61,7 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 							</Tabs>
 						),
 						blockquote: (props) => <Callout>{props.children}</Callout>,
-						img: (props) => <ImageZoom {...(props as any)} />
+						img: (props) => <ImageZoom {...props} />
 					}}
 				/>
 			</DocsBody>
