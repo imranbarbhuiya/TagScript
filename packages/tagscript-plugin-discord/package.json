@@ -43,7 +43,7 @@
 		"discord.js": "^14.17.3",
 		"tagscript": "workspace:^",
 		"tsup": "^8.3.5",
-		"typescript": "^5.7.2"
+		"typescript": "^5.7.3"
 	},
 	"peerDependencies": {
 		"discord.js": "^14.0.0",

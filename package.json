@@ -21,28 +21,28 @@
 		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.6.0",
+		"@commitlint/cli": "^19.6.1",
 		"@commitlint/config-conventional": "^19.6.0",
 		"@favware/cliff-jumper": "^5.0.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^2.0.0",
-		"@types/node": "^22.10.1",
+		"@types/node": "^22.10.5",
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-v8": "^2.1.8",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^9.16.0",
+		"eslint": "^9.18.0",
 		"eslint-config-mahir": "^1.0.7",
 		"husky": "^9.1.7",
-		"lint-staged": "^15.2.10",
+		"lint-staged": "^15.3.0",
 		"prettier": "^3.4.2",
 		"prompts": "^2.4.2",
 		"tsup": "^8.3.5",
 		"turbo": "^2.3.3",
-		"typedoc": "^0.27.3",
+		"typedoc": "^0.27.6",
 		"typedoc-plugin-external-link": "^3.0.2",
-		"typedoc-plugin-markdown": "4.3.2",
-		"typedoc-plugin-mdn-links": "^4.0.4",
-		"typescript": "^5.7.2",
+		"typedoc-plugin-markdown": "4.4.1",
+		"typedoc-plugin-mdn-links": "^4.0.8",
+		"typescript": "^5.7.3",
 		"vitest": "^2.1.8"
 	},
 	"repository": {
@@ -72,6 +72,6 @@
 		"@types/react": "npm:types-react@19.0.0-rc.1",
 		"@types/react-dom": "npm:types-react-dom@19.0.0"
 	},
-	"packageManager": "yarn@4.5.3",
+	"packageManager": "yarn@4.6.0",
 	"nextBundleAnalysis": {}
 }
