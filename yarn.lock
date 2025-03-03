@@ -2879,58 +2879,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-darwin-arm64@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-darwin-arm64@npm:0.51.0"
+"@oxc-transform/binding-darwin-arm64@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-darwin-arm64@npm:0.53.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-darwin-x64@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-darwin-x64@npm:0.51.0"
+"@oxc-transform/binding-darwin-x64@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-darwin-x64@npm:0.53.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm64-gnu@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-linux-arm64-gnu@npm:0.51.0"
+"@oxc-transform/binding-linux-arm64-gnu@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-linux-arm64-gnu@npm:0.53.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm64-musl@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.51.0"
+"@oxc-transform/binding-linux-arm64-musl@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.53.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-x64-gnu@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-linux-x64-gnu@npm:0.51.0"
+"@oxc-transform/binding-linux-x64-gnu@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-linux-x64-gnu@npm:0.53.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-x64-musl@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.51.0"
+"@oxc-transform/binding-linux-x64-musl@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.53.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-win32-arm64-msvc@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-win32-arm64-msvc@npm:0.51.0"
+"@oxc-transform/binding-win32-arm64-msvc@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-win32-arm64-msvc@npm:0.53.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-win32-x64-msvc@npm:0.51.0":
-  version: 0.51.0
-  resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.51.0"
+"@oxc-transform/binding-win32-x64-msvc@npm:0.53.0":
+  version: 0.53.0
+  resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.53.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4072,7 +4072,7 @@ __metadata:
     "@types/react-dom": "npm:19.0.4"
     eslint-config-mahir: "npm:^1.0.7"
     fumadocs-core: "npm:^15.0.15"
-    fumadocs-docgen: "npm:^1.3.8"
+    fumadocs-docgen: "npm:^2.0.0"
     fumadocs-mdx: "npm:^11.5.6"
     fumadocs-ui: "npm:^15.0.15"
     geist: "npm:^1.3.1"
@@ -7669,19 +7669,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-docgen@npm:^1.3.8":
-  version: 1.3.8
-  resolution: "fumadocs-docgen@npm:1.3.8"
+"fumadocs-docgen@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "fumadocs-docgen@npm:2.0.0"
   dependencies:
     estree-util-to-js: "npm:^2.0.0"
     estree-util-value-to-estree: "npm:^3.3.2"
-    fumadocs-typescript: "npm:^3.0.4"
-    hast-util-to-estree: "npm:^3.1.2"
     npm-to-yarn: "npm:^3.0.1"
-    oxc-transform: "npm:^0.51.0"
+    oxc-transform: "npm:^0.53.0"
     unist-util-visit: "npm:^5.0.0"
     zod: "npm:^3.24.2"
-  checksum: 10/0c9d25c079b20c07d31d79c1fde582a5b0d3952921fa590a0f532e55f746aedf657766ef7e47066a5375276d6e811339d97c63c8e524afc952f97a232bf824fd
+  checksum: 10/1f117ba77e8d1810a6b6f956a5149227f6810f0f7b447ce40eadcb74fdb244e21a9ef802fbfc69a7fc630d473882fb369e53f7e568601a8a947dbce12a444fe6
   languageName: node
   linkType: hard
 
@@ -7709,25 +7707,6 @@ __metadata:
   bin:
     fumadocs-mdx: bin.js
   checksum: 10/6a3580c092c9eed77eab2e84d537a90abcb8bb78847e539b5c8ed3f915848fea676c66b35522da35c4e7ab57ba5c110a09e1df1746d8a4295a417c741bfc7a0c
-  languageName: node
-  linkType: hard
-
-"fumadocs-typescript@npm:^3.0.4":
-  version: 3.1.0
-  resolution: "fumadocs-typescript@npm:3.1.0"
-  dependencies:
-    estree-util-value-to-estree: "npm:^3.3.2"
-    fast-glob: "npm:^3.3.3"
-    hast-util-to-estree: "npm:^3.1.2"
-    hast-util-to-jsx-runtime: "npm:^2.3.5"
-    remark: "npm:^15.0.1"
-    remark-rehype: "npm:^11.1.1"
-    shiki: "npm:^3.1.0"
-    ts-morph: "npm:^25.0.1"
-    unist-util-visit: "npm:^5.0.0"
-  peerDependencies:
-    typescript: "*"
-  checksum: 10/c29ce69e7c8b1bc15e03c2b75ff3cfaf5cbfd439e50fd1d41ec3039e9f646189677349353c42ddf897b9aacd6a8af7bd28b987c1f3745b7e4aa3c7556ab81f9b
   languageName: node
   linkType: hard
 
@@ -11188,18 +11167,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxc-transform@npm:^0.51.0":
-  version: 0.51.0
-  resolution: "oxc-transform@npm:0.51.0"
+"oxc-transform@npm:^0.53.0":
+  version: 0.53.0
+  resolution: "oxc-transform@npm:0.53.0"
   dependencies:
-    "@oxc-transform/binding-darwin-arm64": "npm:0.51.0"
-    "@oxc-transform/binding-darwin-x64": "npm:0.51.0"
-    "@oxc-transform/binding-linux-arm64-gnu": "npm:0.51.0"
-    "@oxc-transform/binding-linux-arm64-musl": "npm:0.51.0"
-    "@oxc-transform/binding-linux-x64-gnu": "npm:0.51.0"
-    "@oxc-transform/binding-linux-x64-musl": "npm:0.51.0"
-    "@oxc-transform/binding-win32-arm64-msvc": "npm:0.51.0"
-    "@oxc-transform/binding-win32-x64-msvc": "npm:0.51.0"
+    "@oxc-transform/binding-darwin-arm64": "npm:0.53.0"
+    "@oxc-transform/binding-darwin-x64": "npm:0.53.0"
+    "@oxc-transform/binding-linux-arm64-gnu": "npm:0.53.0"
+    "@oxc-transform/binding-linux-arm64-musl": "npm:0.53.0"
+    "@oxc-transform/binding-linux-x64-gnu": "npm:0.53.0"
+    "@oxc-transform/binding-linux-x64-musl": "npm:0.53.0"
+    "@oxc-transform/binding-win32-arm64-msvc": "npm:0.53.0"
+    "@oxc-transform/binding-win32-x64-msvc": "npm:0.53.0"
   dependenciesMeta:
     "@oxc-transform/binding-darwin-arm64":
       optional: true
@@ -11217,7 +11196,7 @@ __metadata:
       optional: true
     "@oxc-transform/binding-win32-x64-msvc":
       optional: true
-  checksum: 10/7b99ca277ddd76325054f26d735e941acba1eced8d60e68590155d73c264251de7d8a73038b49f56b9bd7e78b0780bd00efa2bd382bf347539211a3b48fc5fab
+  checksum: 10/7a694ade56e731673b47647204dcf610aab1f6674521c037ba72041fd968ebbf67b5f718e0d742923099378119882b76471438575298e823343f515789b0dfa8
   languageName: node
   linkType: hard
 
@@ -12204,19 +12183,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:^11.1.1":
-  version: 11.1.1
-  resolution: "remark-rehype@npm:11.1.1"
-  dependencies:
-    "@types/hast": "npm:^3.0.0"
-    "@types/mdast": "npm:^4.0.0"
-    mdast-util-to-hast: "npm:^13.0.0"
-    unified: "npm:^11.0.0"
-    vfile: "npm:^6.0.0"
-  checksum: 10/39404bd19c57b2b69660be7e3d587ddb2240495845d42fad3bcc506c9c132d07abacb0a20182b73c530857b2da0c463ad5658382b448243ce432152ab49af08d
-  languageName: node
-  linkType: hard
-
 "remark-stringify@npm:^11.0.0":
   version: 11.0.0
   resolution: "remark-stringify@npm:11.0.0"
@@ -12228,7 +12194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark@npm:^15.0.0, remark@npm:^15.0.1":
+"remark@npm:^15.0.0":
   version: 15.0.1
   resolution: "remark@npm:15.0.1"
   dependencies:
