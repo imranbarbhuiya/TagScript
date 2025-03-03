@@ -14,10 +14,10 @@ jobs:
               with:
                   fetch-depth: 0
                   ref: main
-            - name: Use Node.js v20
+            - name: Use Node.js v22
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 22
                   cache: yarn
                   registry-url: https://registry.yarnpkg.com/
             - name: Install Dependencies

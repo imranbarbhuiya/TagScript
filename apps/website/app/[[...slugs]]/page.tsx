@@ -26,7 +26,7 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 	const path = `apps/website/content/docs/${page.file.path}`;
 	const footer = path.includes('/api/') ? null : (
 		<a
-			className="inline-flex items-center justify-center font-medium ring-offset-fd-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring disabled:pointer-events-none disabled:opacity-50 border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-secondary/80 h-9 rounded-md px-3 text-xs gap-1.5"
+			className="inline-flex items-center justify-center font-medium ring-offset-fd-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-fd-ring disabled:pointer-events-none disabled:opacity-50 border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-secondary/80 h-9 rounded-md px-3 text-xs gap-1.5"
 			href={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`}
 			rel="noreferrer noopener"
 			target="_blank"
