@@ -8279,11 +8279,11 @@ __metadata:
   linkType: hard
 
 "image-size@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "image-size@npm:2.0.0"
+  version: 2.0.2
+  resolution: "image-size@npm:2.0.2"
   bin:
     image-size: bin/image-size.js
-  checksum: 10/1c94a5160798af27f970f50260ec3458ad9ed288c9b1d9f9c1681fd645f63f56ebc499e4b1ee78e18510129547ac0009493677db983a748fe4d5415f24de9c88
+  checksum: 10/d15203279fe7ada01252d8c56ba97516385d6d5ac2cbf3d734580fc88db4f5272b9b3f7f378ad63abc7d06b5500c43b90d9f84626e2bda1cab403c16eb469592
   languageName: node
   linkType: hard
 
