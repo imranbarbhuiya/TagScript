@@ -30,7 +30,7 @@
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-v8": "^3.1.1",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^9.24.0",
+		"eslint": "^9.25.0",
 		"eslint-config-mahir": "^1.0.7",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.1",
@@ -38,7 +38,7 @@
 		"prompts": "^2.4.2",
 		"tsup": "^8.4.0",
 		"turbo": "^2.5.0",
-		"typedoc": "^0.28.2",
+		"typedoc": "^0.28.3",
 		"typedoc-plugin-external-link": "^3.0.2",
 		"typedoc-plugin-markdown": "4.6.2",
 		"typedoc-plugin-mdn-links": "^5.0.1",
@@ -72,6 +72,6 @@
 		"@types/react": "npm:types-react@19.0.0-rc.1",
 		"@types/react-dom": "npm:types-react-dom@19.0.0"
 	},
-	"packageManager": "yarn@4.9.0",
+	"packageManager": "yarn@4.9.1",
 	"nextBundleAnalysis": {}
 }
