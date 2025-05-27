@@ -12,21 +12,21 @@
 	},
 	"dependencies": {
 		"@types/mdx": "^2.0.13",
-		"fumadocs-core": "^15.3.3",
+		"fumadocs-core": "^15.4.1",
 		"fumadocs-docgen": "^2.0.0",
-		"fumadocs-mdx": "^11.6.4",
-		"fumadocs-ui": "^15.3.3",
+		"fumadocs-mdx": "^11.6.6",
+		"fumadocs-ui": "^15.4.1",
 		"geist": "^1.4.2",
 		"next": "15.3.2",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"sharp": "^0.34.1"
+		"sharp": "^0.34.2"
 	},
 	"devDependencies": {
-		"@fumadocs/cli": "^0.1.1",
+		"@fumadocs/cli": "^0.2.0",
 		"@tagscript/plugin-discord": "workspace:^",
 		"@tailwindcss/postcss": "^4.1.7",
-		"@types/react": "19.1.4",
+		"@types/react": "19.1.6",
 		"@types/react-dom": "19.1.5",
 		"eslint-config-mahir": "^1.0.7",
 		"tagscript": "workspace:^",
