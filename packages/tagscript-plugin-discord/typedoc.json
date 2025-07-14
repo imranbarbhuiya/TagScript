@@ -2,6 +2,35 @@
 	"entryPoints": ["./src/index.ts"],
 	"readme": "./README.md",
 	"tsconfig": "./src/tsconfig.json",
-	"externalLinkPath": "../../scripts/externalConfig.mjs",
+	"externalSymbolLinkMappings": {
+		"discord.js": {
+			"BaseChannel": "https://discord.js.org/docs/packages/discord.js/main/BaseChannel:Class",
+			"ChatInputCommandInteraction": "https://discord.js.org/docs/packages/discord.js/main/ChatInputCommandInteraction:Class",
+			"Client": "https://discord.js.org/docs/packages/discord.js/main/Client:Class",
+			"CommandInteraction": "https://discord.js.org/docs/packages/discord.js/main/CommandInteraction:Class",
+			"CommandInteractionOptionResolver": "https://discord.js.org/docs/packages/discord.js/main/CommandInteractionOptionResolver:Class",
+			"Guild": "https://discord.js.org/docs/packages/discord.js/main/Guild:Class",
+			"GuildMember": "https://discord.js.org/docs/packages/discord.js/main/GuildMember:Class",
+			"Role": "https://discord.js.org/docs/packages/discord.js/main/Role:Class",
+			"TextChannel": "https://discord.js.org/docs/packages/discord.js/main/TextChannel:Class",
+			"User": "https://discord.js.org/docs/packages/discord.js/main/User:Class",
+			"CommandInteractionOption": "https://discord.js.org/docs/packages/discord.js/main/CommandInteractionOption:Interface",
+			"CacheType": "https://discord.js.org/docs/packages/discord.js/main/CacheType:TypeAlias",
+			"Channel": "https://discord.js.org/docs/packages/discord.js/main/Channel:TypeAlias",
+			"EmbedData": "https://discord.js.org/docs/packages/discord.js/main/EmbedData:Interface"
+		},
+		"discord-api-types": {
+			"ApplicationCommandOptionType": "https://discord-api-types.dev/api/discord-api-types-v10/enum/ApplicationCommandOptionType",
+			"ApplicationCommandType": "https://discord-api-types.dev/api/discord-api-types-v10/enum/ApplicationCommandType",
+			"InteractionType": "https://discord-api-types.dev/api/discord-api-types-v10/enum/InteractionType",
+			"APIAttachment": "https://discord-api-types.dev/api/discord-api-types-v10/interface/APIAttachment",
+			"APIEmbed": "https://discord-api-types.dev/api/discord-api-types-v10/interface/APIEmbed",
+			"APIGuild": "https://discord-api-types.dev/api/discord-api-types-v10/interface/APIGuild",
+			"APIGuildMember": "https://discord-api-types.dev/api/discord-api-types-v10/interface/APIGuildMember",
+			"APIRole": "https://discord-api-types.dev/api/discord-api-types-v10/interface/APIRole",
+			"APIApplicationCommandInteraction": "https://discord-api-types.dev/api/discord-api-types-v10#APIApplicationCommandInteraction",
+			"APIChannel": "https://discord-api-types.dev/api/discord-api-types-v10#APIChannel"
+		}
+	},
 	"additionalModuleSources": []
 }

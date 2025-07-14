@@ -6,10 +6,9 @@
 	"name": "TagScript",
 	"out": "./docs/",
 	"tsconfig": "./tsconfig.json",
-	"externalLinkPath": "./scripts/externalConfig.mjs",
 	"hideGenerator": true,
 	"hideBreadcrumbs": true,
 	"publicPath": "./tagscript/",
-	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links", "typedoc-plugin-external-link"],
+	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links"],
 	"additionalModuleSources": []
 }

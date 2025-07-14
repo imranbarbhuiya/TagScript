@@ -1,5 +1,5 @@
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
@@ -10,8 +10,8 @@ import { Provider } from './provider';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
-import 'fumadocs-ui/style.css';
 import './globals.css';
+import 'fumadocs-ui/style.css';
 
 export default function RootLayout({ children }: { readonly children: ReactNode }) {
 	return (

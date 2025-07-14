@@ -12,15 +12,16 @@
 	},
 	"dependencies": {
 		"@types/mdx": "^2.0.13",
-		"fumadocs-core": "^15.6.1",
+		"fumadocs-core": "^15.6.3",
 		"fumadocs-docgen": "^2.1.0",
-		"fumadocs-mdx": "^11.6.10",
-		"fumadocs-ui": "^15.6.1",
+		"fumadocs-mdx": "^11.6.11",
+		"fumadocs-ui": "^15.6.3",
 		"geist": "^1.4.2",
 		"next": "15.3.5",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"sharp": "^0.34.2"
+		"sharp": "^0.34.3",
+		"zod": "^4.0.5"
 	},
 	"devDependencies": {
 		"@fumadocs/cli": "^0.2.1",
