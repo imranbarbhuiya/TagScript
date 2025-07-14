@@ -1,11 +1,10 @@
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { RootProvider } from 'fumadocs-ui/provider';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
 import { source } from '@/app/source';
-
-import { Provider } from './provider';
 
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
@@ -17,7 +16,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 	return (
 		<html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en" suppressHydrationWarning>
 			<body>
-				<Provider>
+				<RootProvider>
 					<DocsLayout
 						githubUrl="https://github.com/imranbarbhuiya/tagscript"
 						nav={{ title: 'Tagscript' }}
@@ -51,7 +50,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 					>
 						{children}
 					</DocsLayout>
-				</Provider>
+				</RootProvider>
 			</body>
 		</html>
 	);
