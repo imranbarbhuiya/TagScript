@@ -21,8 +21,6 @@
 		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.8.1",
-		"@commitlint/config-conventional": "^19.8.1",
 		"@favware/cliff-jumper": "^6.0.0",
 		"@favware/colorette-spinner": "^1.0.1",
 		"@favware/npm-deprecate": "^2.0.0",
@@ -51,11 +49,6 @@
 	"engines": {
 		"node": ">=v14.0.0",
 		"npm": ">=7.0.0"
-	},
-	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		]
 	},
 	"lint-staged": {
 		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
