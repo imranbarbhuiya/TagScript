@@ -20,7 +20,7 @@ exports[`MemberTransformer > should match the snapshot 1`] = `
   "roleIds": "933378013154906142, 933368398996447292",
   "roleNames": "., @everyone",
   "roles": "<@&933378013154906142> @everyone",
-  "tag": "parbez#0000",
+  "tag": "parbez",
   "timeoutUntil": "",
   "timeoutUntilTimestamp": null,
   "topRole": ".",

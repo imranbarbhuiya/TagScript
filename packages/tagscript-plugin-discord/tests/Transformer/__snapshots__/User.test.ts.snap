@@ -12,7 +12,7 @@ exports[`UserTransformer > should match the snapshot 1`] = `
   "id": "758880890159235083",
   "mention": "<@758880890159235083>",
   "name": "",
-  "tag": "parbez#0000",
+  "tag": "parbez",
   "username": "parbez",
 }
 `;
