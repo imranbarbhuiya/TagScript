@@ -24,6 +24,13 @@ async function* findFilesRecursively(path) {
 	}
 }
 
+/**
+ *
+ * @param {string} str
+ * @returns
+ */
+const escapeRegex = (str) => str.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&').replaceAll('-', '\\x2d');
+
 console.log('Generating docs...');
 
 if (process.env.VERCEL_URL) {
@@ -107,7 +114,7 @@ for await (const file of findFilesRecursively('apps/website/content/docs/api')) 
 				`title: ${fileHeading?.replaceAll(/-|_|.md/g, ' ').replaceAll(/\b\w/g, (line) => line.toUpperCase()) ?? 'Tagscript Docs'}`,
 				'---',
 				'',
-				newContent.replace(new RegExp(`^# ${fileHeading}`), '')
+				newContent.replace(new RegExp(`^# ${escapeRegex(fileHeading ?? '')}`), '')
 			].join('\n')
 		: newContent;
 
