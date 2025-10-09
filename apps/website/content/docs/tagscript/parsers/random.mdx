@@ -1,0 +1,65 @@
+---
+title: RandomParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The random tag picks a random item from a list of strings, split by either `~` or `,`.
+This parser is useful for selecting random messages, responses, or values from a predefined list.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, RandomParser } from 'tagscript';
+	const ts = new Interpreter(new RandomParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, RandomParser } = require('tagscript');
+	const ts = new Interpreter(new RandomParser());
+	```
+</Tabs>
+
+## API
+
+Check [RandomParser](../../typedoc-api/tagscript/classes/RandomParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{random:item1,item2,item3}
+{random:item1~item2~item3}
+```
+
+### Examples
+
+```yaml
+{random:foo, bar, baz}
+# foo
+# bar
+# baz
+```
+
+```yaml
+{random:Hello, Hi, Hey} there!
+# Hello there!
+# Hi there!
+# Hey there!
+```
+
+```yaml
+{random:apple~banana~cherry~date}
+# apple
+# banana
+# cherry
+# date
+```
+
+### Aliases
+
+`rand`
+
+</Callout>

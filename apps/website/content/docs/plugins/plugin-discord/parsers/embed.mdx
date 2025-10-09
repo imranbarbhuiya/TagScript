@@ -1,3 +1,115 @@
 ---
 title: EmbedParser
 ---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The embed tag creates Discord embeds that can be sent along with messages.
+There are two ways to use the embed tag: either by using properly formatted embed JSON or by manually inputting the accepted embed properties.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter } from 'tagscript';
+	import { EmbedParser } from '@tagscript/plugin-discord';
+	const ts = new Interpreter(new EmbedParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter } = require('tagscript');
+	const { EmbedParser } = require('@tagscript/plugin-discord');
+	const ts = new Interpreter(new EmbedParser());
+	```
+</Tabs>
+
+## API
+
+Check [EmbedParser](../../../typedoc-api/@tagscript/plugin-discord/classes/EmbedParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+
+**Using JSON:**
+```yaml
+{embed:json}
+```
+
+**Using properties:**
+```yaml
+{embed(property):value}
+```
+
+### Examples
+
+**JSON Format:**
+```yaml
+{embed:{"title": "Hello!", "description": "This is a test embed."}}
+```
+
+```yaml
+{embed:{
+    "title": "Here's a random duck!",
+    "image": {"url": "https://random-d.uk/api/randomimg"},
+    "color": 15194415
+}}
+```
+
+**Property Format:**
+```yaml
+{embed(color):0x37b2cb}
+{embed(title):Rules}
+{embed(description):Follow these rules to ensure a good experience in our server!}
+{embed(field):Rule 1|Respect everyone you speak to.|false}
+```
+
+```yaml
+{embed(author):Author Name}
+{embed(thumbnail):https://example.com/image.png}
+{embed(footer):Footer text}
+{embed(timestamp):true}
+```
+
+### Available Properties
+
+- `title` - The embed title
+- `description` - The embed description
+- `color` - The embed color (hex code or number)
+- `author` - The embed author name
+- `thumbnail` - URL for the thumbnail image
+- `image` - URL for the main image
+- `footer` - The footer text
+- `timestamp` - Set to `true` to add current timestamp
+- `field` - Add a field with format: `name|value|inline`
+
+### Field Format
+
+Fields use the format: `{embed(field):name|value|inline}`
+- `name` - The field name
+- `value` - The field value
+- `inline` - `true` or `false` for inline display
+
+### Notes
+
+- Multiple embed tags in the same TagScript will merge properties
+- Color values can be hex codes (0x37b2cb) or decimal numbers
+- JSON format allows for more complex embed structures
+- Developers need to construct the embed builder with the parser output
+
+</Callout>
+
+## Developer Example
+
+```ts showLineNumbers
+import { Interpreter } from 'tagscript';
+import { EmbedParser } from '@tagscript/plugin-discord';
+import { EmbedBuilder } from 'discord.js';
+
+const ts = new Interpreter(new EmbedParser());
+const result = await ts.run('{embed:{"title": "Hello!", "description": "This is a test embed."}}');
+
+// You might need to modify the embed object before passing to EmbedBuilder
+const embed = new EmbedBuilder(result.actions.embed);
+```

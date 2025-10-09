@@ -1,0 +1,70 @@
+---
+title: ReplaceParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The replace tag replaces specific characters or substrings in a string with new values.
+The parameter should be split by a comma (`,`), containing the characters/text to find before the comma and the replacement text after.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, ReplaceParser } from 'tagscript';
+	const ts = new Interpreter(new ReplaceParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, ReplaceParser } = require('tagscript');
+	const ts = new Interpreter(new ReplaceParser());
+	```
+</Tabs>
+
+## API
+
+Check [ReplaceParser](../../typedoc-api/tagscript/classes/ReplaceParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{replace(find,replacement):text}
+```
+
+### Examples
+
+```yaml
+{replace(o,i):welcome to the server}
+# welcime ti the server
+```
+
+```yaml
+{replace(1,6):1637812}
+# 6637862
+```
+
+```yaml
+{replace(, ):Test}
+# T e s t
+```
+
+```yaml
+{replace(old,new):This is the old way of doing things}
+# This is the new way of doing things
+```
+
+```yaml
+{replace(@,at):user@example.com}
+# useratexample.com
+```
+
+### Notes
+
+- All occurrences of the search text will be replaced
+- The replacement is case-sensitive
+- If you need to include a comma in the search or replacement text, it should be the last comma in the parameter
+- Empty strings are valid for both search and replacement values
+
+</Callout>

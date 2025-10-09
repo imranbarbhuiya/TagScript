@@ -1,6 +1,12 @@
 {
 	"break": "Break Parser",
+	"fifty-fifty": "FiftyFifty Parser",
 	"if-statement": "If Statement Parser",
 	"intersection-statement": "Intersection Statement Parser",
+	"random": "Random Parser",
+	"range": "Range Parser",
+	"replace": "Replace Parser",
+	"slice": "Slice Parser",
+	"stop": "Stop Parser",
 	"union-statement": "Union Statement Parser"
 }

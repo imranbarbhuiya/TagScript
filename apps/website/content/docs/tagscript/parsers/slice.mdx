@@ -1,0 +1,76 @@
+---
+title: SliceParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The slice tag takes a string and returns a substring of it based on the provided start and end indices.
+This parser is useful for extracting portions of text or limiting string length.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, SliceParser } from 'tagscript';
+	const ts = new Interpreter(new SliceParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, SliceParser } = require('tagscript');
+	const ts = new Interpreter(new SliceParser());
+	```
+</Tabs>
+
+## API
+
+Check [SliceParser](../../typedoc-api/tagscript/classes/SliceParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{slice(start):text}
+{slice(start-end):text}
+{slice(start,end):text}
+```
+
+### Examples
+
+```yaml
+{slice(3):Hello World}
+# lo World
+```
+
+```yaml
+{slice(0-5):Hello World}
+# Hello
+```
+
+```yaml
+{slice(6,11):Hello World}
+# World
+```
+
+```yaml
+{slice(0-3):Welcome to our server!}
+# Wel
+```
+
+```yaml
+{slice(-5):Hello World}
+# World
+```
+
+### Aliases
+
+`substr`, `substring`
+
+### Notes
+
+- Start index is inclusive, end index is exclusive
+- Negative indices count from the end of the string
+- If only start index is provided, slices from that position to the end
+- Uses JavaScript's `String.slice()` method internally
+
+</Callout>

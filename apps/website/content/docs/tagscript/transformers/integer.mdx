@@ -1,0 +1,80 @@
+---
+title: IntegerTransformer
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+Integer transformer transforms an integer based on the given parameters.
+
+If no parameters are given, the integer will be returned as is.
+If `++` parameter is given, the integer will be incremented.
+If `--` parameter is given, the integer will be decremented.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, IntegerTransformer, StrictVarsParser } from 'tagscript';
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, IntegerTransformer, StrictVarsParser } = require('tagscript');
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+</Tabs>
+
+## API
+
+Check [IntegerTransformer](../../typedoc-api/tagscript/classes/IntegerTransformer) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{variable}
+{variable(++)}
+{variable(--)}
+```
+
+### Examples
+
+```yaml
+# Basic usage - returns the integer as string
+{count}
+# 5
+```
+
+```yaml
+# Increment the integer
+{count(++)}
+# 6 (if count was initially 5)
+```
+
+```yaml
+# Decrement the integer
+{count(--)}
+# 4 (if count was initially 5)
+```
+
+```yaml
+# Practical example with counter
+Current count: {counter}
+Incremented: {counter(++)}
+Decremented: {counter(--)}
+# Current count: 10
+# Incremented: 11
+# Decremented: 10
+```
+
+### Notes
+
+- The transformer modifies the internal integer value when using `++` or `--`
+- Multiple calls to `{variable(++)}` will continue incrementing the value
+- The integer value persists for the lifetime of the transformer instance
+- Input must be a valid integer string or number
+
+</Callout>
+
+<Callout type="info">You need to use `StrictVarsParser` parser to use this transformer.</Callout>
