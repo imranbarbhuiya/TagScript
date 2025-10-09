@@ -11,7 +11,7 @@ describe('UserTransformer', () => {
 		expect((await ts.run('{user(username)}', { user: new UserTransformer(user) })).body).toBe('parbez');
 		expect((await ts.run('{user(a)}', { user: new UserTransformer(user) })).body).toBe('{user(a)}');
 		expect((await ts.run('{user(b)}', { user: new UserTransformer(user, { b: (user) => user.defaultAvatarURL }) })).body).toBe(
-			'https://cdn.discordapp.com/embed/avatars/0.png'
+			'https://cdn.discordapp.com/embed/avatars/3.png'
 		);
 	});
 

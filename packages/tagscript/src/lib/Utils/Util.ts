@@ -19,6 +19,7 @@ export const escapeRegex = /(?<!\\)(?<block>[():{|}])/g;
  */
 export const asyncFilter = async <T>(values: T[], fn: (t: T) => Awaitable<boolean>) => {
 	const promises = values.map(fn);
+	// eslint-disable-next-line @typescript-eslint/await-thenable
 	const booleans = await Promise.all(promises);
 	return values.filter((_, index) => booleans[index]);
 };

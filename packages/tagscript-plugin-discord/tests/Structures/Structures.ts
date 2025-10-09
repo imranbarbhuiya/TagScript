@@ -7,6 +7,7 @@ import {
 	GuildMember,
 	GuildMemberFlags,
 	InteractionType,
+	Locale,
 	Role,
 	RoleFlags,
 	TextChannel,
@@ -43,7 +44,12 @@ const roleObject: APIRole = {
 	permissions: '8',
 	managed: false,
 	mentionable: false,
-	flags: RoleFlags.InPrompt
+	flags: RoleFlags.InPrompt,
+	colors: {
+		primary_color: 0,
+		secondary_color: 0,
+		tertiary_color: 0
+	}
 };
 
 const everyoneRoleObject: APIRole = {
@@ -57,7 +63,12 @@ const everyoneRoleObject: APIRole = {
 	permissions: '0',
 	managed: false,
 	mentionable: false,
-	flags: RoleFlags.InPrompt
+	flags: RoleFlags.InPrompt,
+	colors: {
+		primary_color: 0,
+		secondary_color: 0,
+		tertiary_color: 0
+	}
 };
 
 const guildObject = {
@@ -232,15 +243,14 @@ const interactionObject: APIApplicationCommandInteraction = {
 	user: userObject,
 	token: '',
 	version: 1,
-	locale: 'en-US',
-	guild_locale: 'en-US',
+	locale: Locale.EnglishUS,
+	guild_locale: Locale.EnglishUS,
 	entitlements: [],
 	app_permissions: '8',
 	channel: channelObject,
-	authorizing_integration_owners: {}
+	authorizing_integration_owners: {},
+	attachment_size_limit: 8_388_608
 };
-
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 // @ts-expect-error(2674) using protected constructor to test
 export const user: User = new User(client, userObject);
@@ -262,5 +272,3 @@ export const channel2: TextChannel = new TextChannel(guild, channel2Object, clie
 
 // @ts-expect-error(2674) using protected constructor to test
 export const interaction: ChatInputCommandInteraction = new ChatInputCommandInteraction(client, interactionObject);
-
-/* eslint-enable @typescript-eslint/no-unsafe-assignment */
