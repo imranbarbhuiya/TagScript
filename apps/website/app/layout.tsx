@@ -4,7 +4,7 @@ import { RootProvider } from 'fumadocs-ui/provider';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
-import { source } from '@/app/source';
+import { source } from '@/lib/source';
 
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
@@ -73,5 +73,6 @@ export const viewport: Viewport = {
 	themeColor: [
 		{ media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
 		{ media: '(prefers-color-scheme: light)', color: '#fff' }
-	]
+	],
+	viewportFit: 'cover'
 };

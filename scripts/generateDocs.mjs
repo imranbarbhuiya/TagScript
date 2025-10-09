@@ -107,7 +107,7 @@ for await (const file of findFilesRecursively('apps/website/content/docs/api')) 
 				`title: ${fileHeading?.replaceAll(/-|_|.md/g, ' ').replaceAll(/\b\w/g, (line) => line.toUpperCase()) ?? 'Tagscript Docs'}`,
 				'---',
 				'',
-				newContent
+				newContent.replace(new RegExp(`^# ${fileHeading}`), '')
 			].join('\n')
 		: newContent;
 
