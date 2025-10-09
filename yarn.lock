@@ -396,18 +396,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/builders@npm:^1.11.2":
-  version: 1.11.2
-  resolution: "@discordjs/builders@npm:1.11.2"
+"@discordjs/builders@npm:^1.12.1":
+  version: 1.12.2
+  resolution: "@discordjs/builders@npm:1.12.2"
   dependencies:
     "@discordjs/formatters": "npm:^0.6.1"
     "@discordjs/util": "npm:^1.1.1"
     "@sapphire/shapeshift": "npm:^4.0.0"
-    discord-api-types: "npm:^0.38.1"
+    discord-api-types: "npm:^0.38.26"
     fast-deep-equal: "npm:^3.1.3"
     ts-mixer: "npm:^6.0.4"
     tslib: "npm:^2.6.3"
-  checksum: 10/b3e76c12c170d6719c4ba3c755e81a0a58d93e9ed260fcd435990411c355c06f7984f1170d4332f544db09ee8a2bcea3421f63c46e1f84f8e62eee757dfa2659
+  checksum: 10/861da3526dc02d0897af493da44c61e1213eb3268b76b2ab842996907c9f34add1505ec560d997cabf9dab856cbcb7d09c85d0727e6c235b2d4b8a962db64761
   languageName: node
   linkType: hard
 
@@ -905,19 +905,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fumadocs/cli@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@fumadocs/cli@npm:0.2.1"
+"@fumadocs/cli@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@fumadocs/cli@npm:1.0.2"
   dependencies:
     "@clack/prompts": "npm:^0.11.0"
-    commander: "npm:^14.0.0"
+    commander: "npm:^14.0.1"
     package-manager-detector: "npm:^1.3.0"
     picocolors: "npm:^1.1.1"
     tinyexec: "npm:^1.0.1"
-    ts-morph: "npm:^26.0.0"
+    ts-morph: "npm:^27.0.0"
+    zod: "npm:^4.1.11"
   bin:
     fumadocs: dist/index.js
-  checksum: 10/6a2ad840803066f18916f31149c626698e1ee7edce993f9a96b306ed6bf694a95805501d675f35f8f46ead4918458d8f657ae6da5bb107eaa515584363708938
+  checksum: 10/e03fe963f51edf25e9b723233d1e2f5539778b30eb2b5a3c2b601dca8e0239baf4845401e72ad3015c33c5603a1d0c33691b5f22369ec0d026d5285244323704
   languageName: node
   linkType: hard
 
@@ -1635,109 +1636,109 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-android-arm64@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-android-arm64@npm:0.75.1"
+"@oxc-transform/binding-android-arm64@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-android-arm64@npm:0.93.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-darwin-arm64@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-darwin-arm64@npm:0.75.1"
+"@oxc-transform/binding-darwin-arm64@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-darwin-arm64@npm:0.93.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-darwin-x64@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-darwin-x64@npm:0.75.1"
+"@oxc-transform/binding-darwin-x64@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-darwin-x64@npm:0.93.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-freebsd-x64@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-freebsd-x64@npm:0.75.1"
+"@oxc-transform/binding-freebsd-x64@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-freebsd-x64@npm:0.93.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm-gnueabihf@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-arm-gnueabihf@npm:0.75.1"
+"@oxc-transform/binding-linux-arm-gnueabihf@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-arm-gnueabihf@npm:0.93.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm-musleabihf@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-arm-musleabihf@npm:0.75.1"
+"@oxc-transform/binding-linux-arm-musleabihf@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-arm-musleabihf@npm:0.93.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm64-gnu@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-arm64-gnu@npm:0.75.1"
+"@oxc-transform/binding-linux-arm64-gnu@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-arm64-gnu@npm:0.93.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-arm64-musl@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.75.1"
+"@oxc-transform/binding-linux-arm64-musl@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.93.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-riscv64-gnu@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-riscv64-gnu@npm:0.75.1"
+"@oxc-transform/binding-linux-riscv64-gnu@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-riscv64-gnu@npm:0.93.0"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-s390x-gnu@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-s390x-gnu@npm:0.75.1"
+"@oxc-transform/binding-linux-s390x-gnu@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-s390x-gnu@npm:0.93.0"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-x64-gnu@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-x64-gnu@npm:0.75.1"
+"@oxc-transform/binding-linux-x64-gnu@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-x64-gnu@npm:0.93.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-linux-x64-musl@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.75.1"
+"@oxc-transform/binding-linux-x64-musl@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.93.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-wasm32-wasi@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-wasm32-wasi@npm:0.75.1"
+"@oxc-transform/binding-wasm32-wasi@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-wasm32-wasi@npm:0.93.0"
   dependencies:
-    "@napi-rs/wasm-runtime": "npm:^0.2.11"
+    "@napi-rs/wasm-runtime": "npm:^1.0.5"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-win32-arm64-msvc@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-win32-arm64-msvc@npm:0.75.1"
+"@oxc-transform/binding-win32-arm64-msvc@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-win32-arm64-msvc@npm:0.93.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-transform/binding-win32-x64-msvc@npm:0.75.1":
-  version: 0.75.1
-  resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.75.1"
+"@oxc-transform/binding-win32-x64-msvc@npm:0.93.0":
+  version: 0.93.0
+  resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.93.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2707,7 +2708,7 @@ __metadata:
   resolution: "@tagscript/plugin-discord@workspace:packages/tagscript-plugin-discord"
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
-    discord.js: "npm:^14.22.1"
+    discord.js: "npm:^14.23.2"
     tagscript: "workspace:^"
     tsup: "npm:^8.5.0"
     typescript: "npm:^5.9.3"
@@ -2721,23 +2722,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tagscript/website@workspace:apps/website"
   dependencies:
-    "@fumadocs/cli": "npm:^0.2.1"
+    "@fumadocs/cli": "npm:^1.0.2"
     "@tagscript/plugin-discord": "workspace:^"
     "@tailwindcss/postcss": "npm:^4.1.14"
     "@types/mdx": "npm:^2.0.13"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.1"
+    class-variance-authority: "npm:^0.7.1"
+    clsx: "npm:^2.1.1"
     eslint-config-mahir: "npm:^1.0.9"
     fumadocs-core: "npm:^15.8.5"
-    fumadocs-docgen: "npm:^2.1.0"
-    fumadocs-mdx: "npm:^11.10.1"
+    fumadocs-docgen: "npm:^3.0.2"
+    fumadocs-mdx: "npm:^12.0.3"
     fumadocs-ui: "npm:^15.8.5"
     geist: "npm:^1.5.1"
+    lucide-react: "npm:^0.545.0"
     next: "npm:15.5.4"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     sharp: "npm:^0.34.4"
     tagscript: "workspace:^"
+    tailwind-merge: "npm:^3.3.1"
     tailwindcss: "npm:^4.1.14"
     tailwindcss-animate: "npm:^1.0.7"
     zod: "npm:^4.1.12"
@@ -2917,14 +2922,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ts-morph/common@npm:~0.27.0":
-  version: 0.27.0
-  resolution: "@ts-morph/common@npm:0.27.0"
+"@ts-morph/common@npm:~0.28.0":
+  version: 0.28.0
+  resolution: "@ts-morph/common@npm:0.28.0"
   dependencies:
-    fast-glob: "npm:^3.3.3"
     minimatch: "npm:^10.0.1"
     path-browserify: "npm:^1.0.1"
-  checksum: 10/842d8973cb34fa6d7535092e17e6d22c2642af1d9020aa06936cd1e9d6970830a888f9abf8907f60408c0a684b476b3b74316938d1edbad215881f9743f3940a
+    tinyglobby: "npm:^0.2.14"
+  checksum: 10/1927609acab6979df5b57ce82fb90f16711cf6ed9a2c9e830d62f82dfca86ebcf82f539f45ab95b76c450f865e12741fdffdb31566f65545be04dfe60ba12dd1
   languageName: node
   linkType: hard
 
@@ -4515,7 +4520,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^14.0.0, commander@npm:^14.0.1":
+"commander@npm:^14.0.1":
   version: 14.0.1
   resolution: "commander@npm:14.0.1"
   checksum: 10/783115e9403caeca29c0fcbd4e0358f70c67760e4e4933f3453fcdd5ddba2ec44173c8da5213d7ce5e404f51c7e71203a42c548164dbe27b668b32a8981577f1
@@ -4927,31 +4932,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16":
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.26, discord-api-types@npm:^0.38.29":
   version: 0.38.29
   resolution: "discord-api-types@npm:0.38.29"
   checksum: 10/dc4bd18e7a55099883dd80b4915ff2b72115ec94a6ab640ce93e065dc0b315d0e9e3e61b172670bcdb23eceb09a1cd7daa7e3251dafb3b1a40dc905aef5e5fe9
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.22.1":
-  version: 14.22.1
-  resolution: "discord.js@npm:14.22.1"
+"discord.js@npm:^14.23.2":
+  version: 14.23.2
+  resolution: "discord.js@npm:14.23.2"
   dependencies:
-    "@discordjs/builders": "npm:^1.11.2"
+    "@discordjs/builders": "npm:^1.12.1"
     "@discordjs/collection": "npm:1.5.3"
     "@discordjs/formatters": "npm:^0.6.1"
     "@discordjs/rest": "npm:^2.6.0"
     "@discordjs/util": "npm:^1.1.1"
     "@discordjs/ws": "npm:^1.2.3"
     "@sapphire/snowflake": "npm:3.5.3"
-    discord-api-types: "npm:^0.38.16"
+    discord-api-types: "npm:^0.38.29"
     fast-deep-equal: "npm:3.1.3"
     lodash.snakecase: "npm:4.1.1"
     magic-bytes.js: "npm:^1.10.0"
     tslib: "npm:^2.6.3"
     undici: "npm:6.21.3"
-  checksum: 10/16d9273bf55c34ac45e59dcd678bb2ab7bc8a2813a2f90c85ac3e722cd03339e8bd96904e9d06a0bdeaa6157d250bb05f64bedb4a3858c000c776f0f326c4b44
+  checksum: 10/cbe0a13b677e81d38969ca07b7028e1ac3c4add615ba4f0051113bd93a6d56796745dbba64e9e43c3a805914556a7031f347946347103fd37b3bdb9af9a41002
   languageName: node
   linkType: hard
 
@@ -5238,7 +5243,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.25.0, esbuild@npm:^0.25.9":
+"esbuild@npm:^0.25.0, esbuild@npm:^0.25.10":
   version: 0.25.10
   resolution: "esbuild@npm:0.25.10"
   dependencies:
@@ -6031,7 +6036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.2, fast-glob@npm:^3.3.3":
+"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.2":
   version: 3.3.3
   resolution: "fast-glob@npm:3.3.3"
   dependencies:
@@ -6325,31 +6330,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fumadocs-docgen@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "fumadocs-docgen@npm:2.1.0"
+"fumadocs-docgen@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "fumadocs-docgen@npm:3.0.2"
   dependencies:
     estree-util-to-js: "npm:^2.0.0"
     estree-util-value-to-estree: "npm:^3.4.0"
     npm-to-yarn: "npm:^3.0.1"
-    oxc-transform: "npm:^0.75.0"
+    oxc-transform: "npm:^0.93.0"
     unist-util-visit: "npm:^5.0.0"
-    zod: "npm:^3.25.67"
-  checksum: 10/2fb1c6af9f181d9c47ecfdd9129dd2d4da28326837e8a1d2ec056c8f8a0183f192f2978eb5b7d569f19cee6753c930f04a9a7ef05407fda291fc9fbf1e7cd8da
+    zod: "npm:^4.1.11"
+  peerDependencies:
+    fumadocs-core: ^15.7.2
+  checksum: 10/f62658dd8d6e66be3b93078a3d0b70d293e007c3518fe9048b1e80a9b4ccbf8a4633e06ef82bb92549a7ccaa328d0cc2f227306230dbd2887da960e2b2a58c39
   languageName: node
   linkType: hard
 
-"fumadocs-mdx@npm:^11.10.1":
-  version: 11.10.1
-  resolution: "fumadocs-mdx@npm:11.10.1"
+"fumadocs-mdx@npm:^12.0.3":
+  version: 12.0.3
+  resolution: "fumadocs-mdx@npm:12.0.3"
   dependencies:
     "@mdx-js/mdx": "npm:^3.1.1"
     "@standard-schema/spec": "npm:^1.0.0"
     chokidar: "npm:^4.0.3"
-    esbuild: "npm:^0.25.9"
+    esbuild: "npm:^0.25.10"
     estree-util-value-to-estree: "npm:^3.4.0"
     js-yaml: "npm:^4.1.0"
-    lru-cache: "npm:^11.2.1"
+    lru-cache: "npm:^11.2.2"
+    mdast-util-to-markdown: "npm:^2.1.2"
     picocolors: "npm:^1.1.1"
     remark-mdx: "npm:^3.1.1"
     remark-parse: "npm:^11.0.0"
@@ -6357,7 +6365,7 @@ __metadata:
     tinyglobby: "npm:^0.2.15"
     unified: "npm:^11.0.5"
     unist-util-visit: "npm:^5.0.0"
-    zod: "npm:^4.1.8"
+    zod: "npm:^4.1.11"
   peerDependencies:
     "@fumadocs/mdx-remote": ^1.4.0
     fumadocs-core: ^14.0.0 || ^15.0.0
@@ -6375,7 +6383,7 @@ __metadata:
       optional: true
   bin:
     fumadocs-mdx: dist/bin.js
-  checksum: 10/751fa700a3fe4f9786d81d1575938c410c2c9cee7c77334a41a0bbba317eec798431d2ae1fb0af7e39a6bd7a314f3556780d3aa27395598801050b248b8969a3
+  checksum: 10/ac1a750d82232560c9626ae40d625b305c617d25590b5f54dba40711ec37a3d85f5c1fdbdd6bd31392dc40d4492e866a3cd8644d4ddd1b629295df122517d173
   languageName: node
   linkType: hard
 
@@ -8257,7 +8265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^11.2.1":
+"lru-cache@npm:^11.2.2":
   version: 11.2.2
   resolution: "lru-cache@npm:11.2.2"
   checksum: 10/fa7919fbf068a739f79a1ad461eb273514da7246cebb9dca68e3cd7ba19e3839e7e2aaecd9b72867e08038561eeb96941189e89b3d4091c75ced4f56c71c80db
@@ -8277,6 +8285,15 @@ __metadata:
   version: 7.14.1
   resolution: "lru-cache@npm:7.14.1"
   checksum: 10/f29a86e9eb3fac3dd2f41c218f6e5b1668786a9ab12d095525994cf1072ad66d0850a41957b6b5da1aea6209c691a1b2bc14e5111467e97112bbf2323d680df2
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.545.0":
+  version: 0.545.0
+  resolution: "lucide-react@npm:0.545.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/06ce9470c4c5b9d5dd8f9a0cfe2004f281824cdbf3f96f38772f57b6479178aaff66059f2e86190886906ec9115203228020bd044d47a09318c3c10a4532d4ad
   languageName: node
   linkType: hard
 
@@ -8601,19 +8618,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdast-util-to-markdown@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "mdast-util-to-markdown@npm:2.1.0"
+"mdast-util-to-markdown@npm:^2.0.0, mdast-util-to-markdown@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "mdast-util-to-markdown@npm:2.1.2"
   dependencies:
     "@types/mdast": "npm:^4.0.0"
     "@types/unist": "npm:^3.0.0"
     longest-streak: "npm:^3.0.0"
     mdast-util-phrasing: "npm:^4.0.0"
     mdast-util-to-string: "npm:^4.0.0"
+    micromark-util-classify-character: "npm:^2.0.0"
     micromark-util-decode-string: "npm:^2.0.0"
     unist-util-visit: "npm:^5.0.0"
     zwitch: "npm:^2.0.0"
-  checksum: 10/1c66462feab6bf574566d8f20912ccb11d43f6658a93dee068610cd39a5d9377dfb34ea7109c9467d485466300a116e74236b174fcb9fc34f1d16fc3917e0d7c
+  checksum: 10/ab494a32f1ec90f0a502970b403b1847a10f3ba635adddb66ce70994cc47b4924c6c05078ddd29a8c2c5c9bc8c0bcc20e5fc1ef0fcb9b0cb9c0589a000817f1c
   languageName: node
   linkType: hard
 
@@ -9760,25 +9778,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxc-transform@npm:^0.75.0":
-  version: 0.75.1
-  resolution: "oxc-transform@npm:0.75.1"
+"oxc-transform@npm:^0.93.0":
+  version: 0.93.0
+  resolution: "oxc-transform@npm:0.93.0"
   dependencies:
-    "@oxc-transform/binding-android-arm64": "npm:0.75.1"
-    "@oxc-transform/binding-darwin-arm64": "npm:0.75.1"
-    "@oxc-transform/binding-darwin-x64": "npm:0.75.1"
-    "@oxc-transform/binding-freebsd-x64": "npm:0.75.1"
-    "@oxc-transform/binding-linux-arm-gnueabihf": "npm:0.75.1"
-    "@oxc-transform/binding-linux-arm-musleabihf": "npm:0.75.1"
-    "@oxc-transform/binding-linux-arm64-gnu": "npm:0.75.1"
-    "@oxc-transform/binding-linux-arm64-musl": "npm:0.75.1"
-    "@oxc-transform/binding-linux-riscv64-gnu": "npm:0.75.1"
-    "@oxc-transform/binding-linux-s390x-gnu": "npm:0.75.1"
-    "@oxc-transform/binding-linux-x64-gnu": "npm:0.75.1"
-    "@oxc-transform/binding-linux-x64-musl": "npm:0.75.1"
-    "@oxc-transform/binding-wasm32-wasi": "npm:0.75.1"
-    "@oxc-transform/binding-win32-arm64-msvc": "npm:0.75.1"
-    "@oxc-transform/binding-win32-x64-msvc": "npm:0.75.1"
+    "@oxc-transform/binding-android-arm64": "npm:0.93.0"
+    "@oxc-transform/binding-darwin-arm64": "npm:0.93.0"
+    "@oxc-transform/binding-darwin-x64": "npm:0.93.0"
+    "@oxc-transform/binding-freebsd-x64": "npm:0.93.0"
+    "@oxc-transform/binding-linux-arm-gnueabihf": "npm:0.93.0"
+    "@oxc-transform/binding-linux-arm-musleabihf": "npm:0.93.0"
+    "@oxc-transform/binding-linux-arm64-gnu": "npm:0.93.0"
+    "@oxc-transform/binding-linux-arm64-musl": "npm:0.93.0"
+    "@oxc-transform/binding-linux-riscv64-gnu": "npm:0.93.0"
+    "@oxc-transform/binding-linux-s390x-gnu": "npm:0.93.0"
+    "@oxc-transform/binding-linux-x64-gnu": "npm:0.93.0"
+    "@oxc-transform/binding-linux-x64-musl": "npm:0.93.0"
+    "@oxc-transform/binding-wasm32-wasi": "npm:0.93.0"
+    "@oxc-transform/binding-win32-arm64-msvc": "npm:0.93.0"
+    "@oxc-transform/binding-win32-x64-msvc": "npm:0.93.0"
   dependenciesMeta:
     "@oxc-transform/binding-android-arm64":
       optional: true
@@ -9810,7 +9828,7 @@ __metadata:
       optional: true
     "@oxc-transform/binding-win32-x64-msvc":
       optional: true
-  checksum: 10/459fbd8a7d54ce8159d40b8593b8a1b70051c449f7bd39e54e34bf516980e81ef828c93a747b77b8e31a4d222eac736156865a6db7527cfe88d60b4cd0582f3d
+  checksum: 10/21091b7c43229cd5d967d783b26c1d5c9b24d06a58b8d1db34aff934df02ceb88a75029c290bd7222803da784ca4ec613302764593ae807ae36f9eb6d0df7b52
   languageName: node
   linkType: hard
 
@@ -11909,13 +11927,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-morph@npm:^26.0.0":
-  version: 26.0.0
-  resolution: "ts-morph@npm:26.0.0"
+"ts-morph@npm:^27.0.0":
+  version: 27.0.0
+  resolution: "ts-morph@npm:27.0.0"
   dependencies:
-    "@ts-morph/common": "npm:~0.27.0"
+    "@ts-morph/common": "npm:~0.28.0"
     code-block-writer: "npm:^13.0.3"
-  checksum: 10/0b76beec9f9641bf3304de8f41327db4e563729b4e13b37b546a4231a4310cb760cad0c88fe8d11235bbe6f9de0471dda0992b8c35535a4e4c34033304f22d14
+  checksum: 10/69da50b6aa2c548a52d74b2b2a80796babd22146ad883a152625faeb778f61e0f9711b889cdfe37eb87b9fd14ec19e43bc1f101d7239e56c97704ba7a749c4df
   languageName: node
   linkType: hard
 
@@ -13011,14 +13029,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.4, zod@npm:^3.25.67":
+"zod@npm:^3.22.4":
   version: 3.25.74
   resolution: "zod@npm:3.25.74"
   checksum: 10/2db3efb6ed77996c880486bf966419e3d611808a5972f7f7da599b01f7af55393facee5f6dba1be626a052985b8dbc3c151efc3ee62832067b788946aebd0364
   languageName: node
   linkType: hard
 
-"zod@npm:^4.1.12, zod@npm:^4.1.8":
+"zod@npm:^4.1.11, zod@npm:^4.1.12":
   version: 4.1.12
   resolution: "zod@npm:4.1.12"
   checksum: 10/c5f04e6ac306515c4db6ef73cf7705f521c7a2107c8c8912416a0658d689f361db9bee829b0bf01ef4a22492f1065c5cbcdb523ce532606ac6792fd714f3c326

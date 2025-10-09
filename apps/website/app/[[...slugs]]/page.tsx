@@ -1,19 +1,13 @@
-/* eslint-disable react/no-unstable-nested-components */
-import { Callout } from 'fumadocs-ui/components/callout';
-import { Pre, CodeBlock } from 'fumadocs-ui/components/codeblock';
-import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import defaultComponents from 'fumadocs-ui/mdx';
-import { DocsPage, DocsBody } from 'fumadocs-ui/page';
+import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 
-import { source } from '@/app/source';
+import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
+import { source } from '@/lib/source';
+import { getMDXComponents } from '@/mdx-components';
 
 import { Edit } from './Edit';
 
-import type { MDXComponents, MDXContent } from 'mdx/types';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 
 export default async function Page(props: { readonly params: Promise<{ slugs?: string[] }> }) {
 	const params = await props.params;
@@ -21,9 +15,9 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 
 	if (!page) notFound();
 
-	const Mdx = page.data.body as MDXContent;
+	const Mdx = page.data.body;
 
-	const path = `apps/website/content/docs/${page.file.path}`;
+	const path = `apps/website/content/docs/${page.path}`;
 	const footer = path.includes('/api/') ? null : (
 		<a
 			className="inline-flex items-center justify-center font-medium ring-offset-fd-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-fd-ring disabled:pointer-events-none disabled:opacity-50 border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-secondary/80 h-9 rounded-md px-3 text-xs gap-1.5"
@@ -44,27 +38,21 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 			tableOfContentPopover={{ footer }}
 			toc={page.data.toc}
 		>
+			<DocsTitle>{page.data.title}</DocsTitle>
+			<DocsDescription>{page.data.description}</DocsDescription>
+			<div className="flex flex-row gap-2 items-center border-b pb-6">
+				<LLMCopyButton markdownUrl={`${page.url}.mdx`} />
+				<ViewOptions githubUrl={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`} markdownUrl={`${page.url}.mdx`} />
+			</div>
 			<DocsBody>
-				<Mdx
-					components={{
-						...(defaultComponents as MDXComponents),
-						pre: ({ ref: _ref, ...rest }) => (
-							<CodeBlock {...rest}>
-								<Pre>{rest.children}</Pre>
-							</CodeBlock>
-						),
-						Tab,
-						Tabs,
-						InstallTabs: ({ items, children }: { readonly children: ReactNode; readonly items: string[] }) => (
-							<Tabs id="package-manager" items={items}>
-								{children}
-							</Tabs>
-						),
-						blockquote: (props) => <Callout>{props.children}</Callout>,
-						img: (props) => <ImageZoom {...props} />
-					}}
-				/>
+				<Mdx components={getMDXComponents()} />
 			</DocsBody>
+			{/* <Rate
+				onRateAction={async (url, feedback) => {
+					'use server';
+					console.log('Feedback received:', { url, feedback });
+				}}
+			/> */}
 		</DocsPage>
 	);
 }
@@ -73,7 +61,7 @@ export async function generateStaticParams() {
 	return source.generateParams();
 }
 
-export async function generateMetadata(props: { params: Promise<{ slugs?: string[] }> }) {
+export async function generateMetadata(props: { params: Promise<{ slugs?: string[] }> }): Promise<Metadata> {
 	const params = await props.params;
 	const page = source.getPage(params.slugs);
 
@@ -94,11 +82,28 @@ export async function generateMetadata(props: { params: Promise<{ slugs?: string
 		title: page.data.title,
 		description: page.data.description,
 		openGraph: {
+			title: page.data.title,
+			description: page.data.description,
 			url: `/docs/${page.slugs.join('/')}`,
 			images: image
 		},
 		twitter: {
-			images: image
+			card: 'summary_large_image',
+			title: page.data.title,
+			description: page.data.description,
+			images: image,
+			site: 'https://tagscript.js.org'
+		},
+		alternates: {
+			canonical: `https://tagscript.js.org/${page.url}`,
+			languages: {
+				en: `https://tagscript.js.org/${page.url}`
+			}
+		},
+		appleWebApp: {
+			capable: true,
+			title: 'Tagscript',
+			statusBarStyle: 'default'
 		}
-	} satisfies Metadata;
+	};
 }
