@@ -5,16 +5,99 @@ title: StringTransformer
 # StringTransformer
 
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
 
 String transformer transforms a string based on the given parameters.
 
 If no parameters are given, the string will be returned as is.
-If an integer parameter is given, the string will be splitted into an array of strings using payload or space as a separator.
-And will return the element at the given index (integer parameter).
+If an integer parameter is given, the string will be split into an array of strings using payload or space as a separator,
+and will return the element at the given index (integer parameter).
 
 Use a `+` before the index to reference every element up to and including the index value.
 
 Use a `+` after the index to reference the index value and every element after it.
-a
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, StringTransformer, StrictVarsParser } = require('tagscript');
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+</Tabs>
+
+## API
+
+Check [StringTransformer](../../typedoc-api/tagscript/classes/StringTransformer) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{variable}
+{variable(index)}
+{variable(+index)}
+{variable(index+)}
+{variable.index:separator}
+```
+
+### Examples
+
+```yaml
+# Basic usage
+{args}
+# Hi, How are you?
+```
+
+```yaml
+# Get specific index (1-based)
+{args(1)}
+# Hi,
+
+{args(2)}
+# How
+```
+
+```yaml
+# Get everything up to and including index
+{args(+2)}
+# Hi, How
+
+{args(+3)}
+# Hi, How are
+```
+
+```yaml
+# Get everything from index onwards
+{args(2+)}
+# How are you?
+
+{args(3+)}
+# are you?
+```
+
+```yaml
+# Using custom separator
+{args.1:|}
+# If args contains "apple|banana|cherry"
+# apple
+
+{args.2+:|}
+# banana|cherry
+```
+
+### Notes
+
+- Index is 1-based (first element is index 1)
+- Default separator is space when splitting
+- You can specify custom separators using the payload syntax
+- Returns the original string if index is out of bounds
+
+</Callout>
 
 <Callout type="info">You need to use `StrictVarsParser` parser to use this transformer.</Callout>

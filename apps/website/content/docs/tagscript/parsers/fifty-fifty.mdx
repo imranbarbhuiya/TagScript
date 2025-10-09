@@ -1,0 +1,62 @@
+---
+title: FiftyFiftyParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The fifty-fifty tag has a 50% chance of returning the payload, and a 50% chance of returning an empty string.
+This parser is useful for creating random events or decisions with equal probability.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, FiftyFiftyParser } from 'tagscript';
+	const ts = new Interpreter(new FiftyFiftyParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, FiftyFiftyParser } = require('tagscript');
+	const ts = new Interpreter(new FiftyFiftyParser());
+	```
+</Tabs>
+
+## API
+
+Check [FiftyFiftyParser](../../typedoc-api/tagscript/classes/FiftyFiftyParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{5050:message}
+{50:message}
+{?:message}
+```
+
+### Examples
+
+```yaml
+{5050:You got lucky!}
+# 50% chance: You got lucky!
+# 50% chance: (empty string)
+```
+
+```yaml
+I pick {if({5050:.}!=):heads|tails}
+# 50% chance: I pick heads
+# 50% chance: I pick tails
+```
+
+```yaml
+{?:Rare event occurred!} Welcome to the server!
+# 50% chance: Rare event occurred! Welcome to the server!
+# 50% chance: Welcome to the server!
+```
+
+### Aliases
+
+`5050`, `50`, `?`
+
+</Callout>

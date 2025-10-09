@@ -1,0 +1,55 @@
+---
+title: StopParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The stop tag stops tag processing if the given parameter evaluates to true.
+If a message is passed to the payload, it will return that message instead of an empty string.
+This tag throws an error to halt all further processing, unlike the [BreakParser](/tagscript/parsers/break) which only affects the current tag output.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, StopParser } from 'tagscript';
+	const ts = new Interpreter(new StopParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, StopParser } = require('tagscript');
+	const ts = new Interpreter(new StopParser());
+	```
+</Tabs>
+
+## API
+
+Check [StopParser](../../typedoc-api/tagscript/classes/StopParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{stop(expression):message}
+```
+
+### Examples
+
+```yaml
+{stop({args}!=10):You didn't provide valid input.}
+# if {args} is not 10
+You didn't provide valid input.
+# if {args} is 10
+# Processing continues normally
+```
+
+```yaml
+{stop({user.id}==12345):Access denied for this user.}
+```
+
+### Aliases
+
+`halt`, `stop`, `error`
+
+</Callout>

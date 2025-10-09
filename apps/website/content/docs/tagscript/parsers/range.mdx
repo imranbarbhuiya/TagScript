@@ -1,0 +1,69 @@
+---
+title: RangeParser
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+The range tag picks a random number from a range of numbers separated by `-` or `,`.
+The number range is inclusive, so it can pick the starting/ending number as well.
+Using the `rangef` tag will pick a number to the tenth decimal place for floating-point values.
+
+## Usage
+
+<Tabs items={['ESM', 'CommonJs']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, RangeParser } from 'tagscript';
+	const ts = new Interpreter(new RangeParser());
+	```
+	```js showLineNumbers tab="CommonJs"
+	const { Interpreter, RangeParser } = require('tagscript');
+	const ts = new Interpreter(new RangeParser());
+	```
+</Tabs>
+
+## API
+
+Check [RangeParser](../../typedoc-api/tagscript/classes/RangeParser) for the API documentation.
+
+## For End Users
+
+<Callout type="info" emoji={null}>
+### Syntax
+```yaml
+{range:min-max}
+{range:min,max}
+{rangef:min-max}
+{rangef:min,max}
+```
+
+### Examples
+
+```yaml
+{range:1-10}
+# 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10
+```
+
+```yaml
+Your lucky number is {range:10-30}!
+# Your lucky number is 14!
+# Your lucky number is 25!
+```
+
+```yaml
+{rangef:5.0-7.0}
+I am guessing your height is {rangef:5-7}ft.
+# I am guessing your height is 5.3ft.
+# I am guessing your height is 6.8ft.
+```
+
+```yaml
+Dice roll: {range:1,6}
+# Dice roll: 4
+```
+
+### Aliases
+
+`rangef` (for floating-point numbers)
+
+</Callout>
