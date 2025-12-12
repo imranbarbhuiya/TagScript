@@ -20,7 +20,7 @@
     "fumadocs-ui": "^15.8.5",
     "geist": "^1.5.1",
     "lucide-react": "^0.545.0",
-    "next": "16.0.8",
+    "next": "16.0.9",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "sharp": "^0.34.4",
