@@ -40,9 +40,9 @@
 	],
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",
-		"discord.js": "^14.23.2",
+		"discord.js": "^14.25.1",
 		"tagscript": "workspace:^",
-		"tsup": "^8.5.0",
+		"tsup": "^8.5.1",
 		"typescript": "^5.9.3"
 	},
 	"peerDependencies": {

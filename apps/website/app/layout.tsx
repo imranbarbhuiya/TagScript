@@ -1,6 +1,5 @@
-import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
@@ -21,30 +20,22 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 						githubUrl="https://github.com/imranbarbhuiya/tagscript"
 						nav={{ title: 'Tagscript' }}
 						sidebar={{
-							banner: (
-								<RootToggle
-									options={
-										[
-											{
-												title: 'Tagscript',
-												url: '/'
-											},
-											{
-												title: 'Tagscript API Docs',
-												description: 'Auto generated api docs for tagscript',
-												url: '/api/tagscript',
-												active: 'nested-url'
-											},
-											{
-												title: 'Discord Plugin API Docs',
-												description: 'Auto generated api docs for tagscript',
-												url: '/api/plugins',
-												active: 'nested-url'
-											}
-										] as any
-									}
-								/>
-							)
+							tabs: [
+								{
+									title: 'Tagscript',
+									url: '/'
+								},
+								{
+									title: 'Tagscript API Docs',
+									description: 'Auto generated api docs for tagscript',
+									url: '/api/tagscript'
+								},
+								{
+									title: 'Discord Plugin API Docs',
+									description: 'Auto generated api docs for tagscript',
+									url: '/api/plugins'
+								}
+							]
 						}}
 						tree={source.pageTree}
 					>
