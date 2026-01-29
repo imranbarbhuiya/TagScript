@@ -15,18 +15,18 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 	for (const data of options) {
 		switch (data.type) {
 			case ApplicationCommandOptionType.SubcommandGroup:
-				transformers.subCommandGroup = new StringTransformer(data.value as string);
+				transformers.subCommandGroup = new StringTransformer(String(data.value ?? data.name));
 				mapOptions(data.options!, transformers, `${data.name}-`);
 				break;
 			case ApplicationCommandOptionType.Subcommand:
-				transformers.subCommand = new StringTransformer(data.value as string);
+				transformers.subCommand = new StringTransformer(String(data.value ?? data.name));
 				mapOptions(data.options!, transformers, `${prefix}${data.name}-`);
 				break;
 			case ApplicationCommandOptionType.String:
-				transformers[prefix + data.name] = new StringTransformer(data.value as string);
+				transformers[prefix + data.name] = new StringTransformer(String(data.value));
 				break;
 			case ApplicationCommandOptionType.Boolean:
-				transformers[prefix + data.name] = new StringTransformer(data.value as string);
+				transformers[prefix + data.name] = new StringTransformer(String(data.value));
 				break;
 			case ApplicationCommandOptionType.Integer:
 				transformers[prefix + data.name] = new IntegerTransformer(data.value as `${number}`);

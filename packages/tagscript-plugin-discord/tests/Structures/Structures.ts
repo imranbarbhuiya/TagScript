@@ -34,6 +34,17 @@ const userObject: APIUser = {
 	mfa_enabled: false
 };
 
+const userObject2: APIUser = {
+	id: '758880890159235081',
+	username: 'parbez2',
+	global_name: 'Parbez Two',
+	discriminator: '0001',
+	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
+	bot: false,
+	system: false,
+	mfa_enabled: false
+};
+
 const roleObject: APIRole = {
 	unicode_emoji: null,
 	id: '933378013154906142',
@@ -111,7 +122,8 @@ const channelObject: APIChannel = {
 	name: 'test',
 	type: 0,
 	topic: 'A test channel',
-	position: 1
+	position: 1,
+	guild_id: '933368398996447292'
 };
 
 const channel2Object: APIChannel = {
@@ -120,18 +132,17 @@ const channel2Object: APIChannel = {
 	type: 0,
 	position: 2,
 	nsfw: false,
-	rate_limit_per_user: 0
+	rate_limit_per_user: 0,
+	guild_id: '933368398996447292'
 };
 
-const attachment: APIAttachment = {
+export const attachment: APIAttachment = {
 	id: '933368398996447291',
 	filename: 'test.png',
 	proxy_url: 'https://media.discordapp.net/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
 	size: 4_096,
 	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp'
 };
-
-// TODO(@imranbarbhuiya): Make this a valid interaction object.
 const interactionObject: APIApplicationCommandInteraction = {
 	id: '933368398996447292',
 	application_id: '938716130720235601',
@@ -141,7 +152,7 @@ const interactionObject: APIApplicationCommandInteraction = {
 		name: 'ping',
 		type: ApplicationCommandType.ChatInput,
 		resolved: {
-			users: { '758880890159235081': userObject, '758880890159235083': userObject },
+			users: { '758880890159235081': userObject2, '758880890159235083': userObject },
 			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
 			channels: {
 				'933395546138357800': { ...channelObject, permissions: '8', name: 'test' }
@@ -173,8 +184,8 @@ const interactionObject: APIApplicationCommandInteraction = {
 						options: [
 							{
 								name: 'channel',
-								type: ApplicationCommandOptionType.User,
-								value: '933368398996447292'
+								type: ApplicationCommandOptionType.Channel,
+								value: '933395546138357800'
 							}
 						]
 					}
@@ -188,7 +199,7 @@ const interactionObject: APIApplicationCommandInteraction = {
 			{
 				name: 'channel',
 				type: ApplicationCommandOptionType.Channel,
-				value: '933368398996447292'
+				value: '933395546138357800'
 			},
 			{
 				name: 'role',
@@ -203,7 +214,7 @@ const interactionObject: APIApplicationCommandInteraction = {
 			{
 				name: 'mentionable-2',
 				type: ApplicationCommandOptionType.Mentionable,
-				value: '758880890159235083'
+				value: '758880890159235081'
 			},
 			{
 				name: 'boolean',
@@ -229,16 +240,11 @@ const interactionObject: APIApplicationCommandInteraction = {
 				name: 'user',
 				type: ApplicationCommandOptionType.User,
 				value: '758880890159235081'
-			},
-			{
-				name: 'role',
-				type: ApplicationCommandOptionType.Role,
-				value: '933378013154906142'
 			}
 		]
 	},
 	guild_id: '933368398996447292',
-	channel_id: '933368398996447292',
+	channel_id: '933395546138357800',
 	member: { ...memberObject, permissions: '8', user: userObject },
 	user: userObject,
 	token: '',
