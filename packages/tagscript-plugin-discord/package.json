@@ -2,23 +2,28 @@
 	"name": "@tagscript/plugin-discord",
 	"version": "3.1.0",
 	"description": "A plugin for tagscript to work with discord.js.",
-	"main": "dist/index.js",
+	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"types": "dist/index.d.cts",
 	"publishConfig": {
 		"access": "public"
 	},
 	"exports": {
-		"types": "./dist/index.d.ts",
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js"
+		"import": {
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
+		},
+		"require": {
+			"types": "./dist/index.d.cts",
+			"default": "./dist/index.cjs"
+		}
 	},
 	"sideEffects": false,
 	"author": "@imranbarbhuiya",
 	"license": "MIT",
 	"scripts": {
 		"lint": "TIMING=1 eslint src --fix --cache -c ../../eslint.config.mjs",
-		"build": "tsup",
+		"build": "tsdown",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
@@ -42,7 +47,7 @@
 		"@favware/cliff-jumper": "^6.1.0",
 		"discord.js": "^14.26.4",
 		"tagscript": "workspace:^",
-		"tsup": "^8.5.1",
+		"tsdown": "^0.22.0",
 		"typescript": "^6.0.3"
 	},
 	"peerDependencies": {
@@ -53,7 +58,7 @@
 		"node": ">=v16.9.0"
 	},
 	"files": [
-		"dist/**/*.js*",
+		"dist/**/*.cjs*",
 		"dist/**/*.mjs*",
 		"dist/**/*.d*"
 	],
