@@ -34,7 +34,7 @@
 		"prettier": "^3.8.3",
 		"prompts": "^2.4.2",
 		"tsdown": "^0.22.0",
-		"turbo": "^2.9.10",
+		"turbo": "^2.9.14",
 		"typedoc": "^0.28.19",
 		"typedoc-plugin-markdown": "4.11.0",
 		"typedoc-plugin-mdn-links": "^5.1.1",
