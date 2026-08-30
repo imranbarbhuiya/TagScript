@@ -2,7 +2,7 @@ import { BaseParser, split, type Context, type IParser, type Awaitable } from 't
 
 import { resolveColor } from '../Utils';
 
-import type { EmbedData, APIEmbed } from 'discord.js';
+import type { APIEmbed } from 'discord-api-types/v10';
 
 /**
  *  An embed tag will send an embed in the tag response.
@@ -37,21 +37,26 @@ import type { EmbedData, APIEmbed } from 'discord.js';
  * {embed(title): Rules}
  * {embed(description): Follow these rules to ensure a good experience in our server!}
  * {embed(field): Rule 1|Respect everyone you speak to.|false}
+ * {embed(image): https://random-d.uk/api/randomimg}
+ * {embed(footer): Posted by the mods|https://random-d.uk/api/randomimg}
  * ```
- * Developers need to construct the embed builder themselves with the output of the tag.
+ *
+ * The result is an {@link APIEmbed}, the shape Discord's API takes and the shape discord.js
+ * {@link https://discord.js.org/docs/packages/discord.js/main/EmbedBuilder:Class#from | EmbedBuilder.from} reads.
  * @example
  * ```ts showLineNumbers
- * const { Interpreter } = require("tagscript")
- * const { EmbedParser } = require("@tagscript/plugin-discord")
+ * import { EmbedBuilder } from 'discord.js';
+ * import { EmbedParser } from '@tagscript/plugin-discord';
+ * import { Interpreter } from 'tagscript';
  *
- * const ts = new Interpreter(new EmbedParser())
- * const result = await ts.run('{embed: { "title": "Hello!", "description": "This is a test embed." }}')
+ * const ts = new Interpreter(new EmbedParser());
+ * const result = await ts.run('{embed: { "title": "Hello!", "description": "This is a test embed." }}');
  *
- * // You might need to change the embed object before passing to `EmbedBuilder`. Changes such as change thumbnail and image value from string to object.
- * const embed = new EmbedBuilder(response.actions.embed);
+ * const embed = EmbedBuilder.from(result.actions.embed);
  * ```
  * @remarks
- * The return type depends on user's input. So it might not be `EmbedData | APIEmbed`. So use a typeguard to check.
+ * A template author picks both the property names and the values, so the result is typed `APIEmbed` for
+ * convenience and is not validated. Check it before you send it.
  */
 export class EmbedParser extends BaseParser implements IParser {
 	public constructor() {
@@ -61,30 +66,45 @@ export class EmbedParser extends BaseParser implements IParser {
 	public async parse(ctx: Context) {
 		if (!ctx.tag.parameter) return this.returnEmbed(ctx, await this.parseEmbedJSON(ctx.tag.payload!));
 
-		if (ctx.tag.payload!.startsWith('{') && ctx.tag.payload!.endsWith('}'))
-			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(ctx.tag.payload!) as unknown });
-		if (ctx.tag.parameter === 'field') {
-			const [name, value, inline] = split(ctx.tag.payload!);
-			if (!name || !value) return '';
-			return this.returnEmbed(ctx, {
-				fields: [
-					{
-						name,
-						value,
-						inline: inline === 'true',
-					},
-				],
-			});
-		}
+		const payload = ctx.tag.payload!;
 
-		if (ctx.tag.parameter === 'color') {
-			return this.returnEmbed(ctx, {
-				// This can return number but it should be handled by the dev
-				color: resolveColor(ctx.tag.payload!) as number,
-			});
-		}
+		if (payload.startsWith('{') && payload.endsWith('}'))
+			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(payload) as unknown });
 
-		return this.returnEmbed(ctx, { [ctx.tag.parameter]: ctx.tag.payload });
+		switch (ctx.tag.parameter) {
+			case 'field': {
+				const [name, value, inline] = split(payload);
+				if (!name || !value) return '';
+				return this.returnEmbed(ctx, { fields: [{ name, value, inline: inline === 'true' }] });
+			}
+
+			case 'color': {
+				// This can return a string but it should be handled by the dev
+				return this.returnEmbed(ctx, { color: resolveColor(payload) as number });
+			}
+
+			case 'image':
+			case 'thumbnail': {
+				return this.returnEmbed(ctx, { [ctx.tag.parameter]: { url: payload } });
+			}
+
+			case 'author': {
+				const [name, url, iconUrl] = split(payload);
+				if (!name) return '';
+				return this.returnEmbed(ctx, {
+					author: { name, ...(url && { url }), ...(iconUrl && { icon_url: iconUrl }) },
+				});
+			}
+
+			case 'footer': {
+				const [text, iconUrl] = split(payload);
+				if (!text) return '';
+				return this.returnEmbed(ctx, { footer: { text, ...(iconUrl && { icon_url: iconUrl }) } });
+			}
+
+			default:
+				return this.returnEmbed(ctx, { [ctx.tag.parameter]: payload });
+		}
 	}
 
 	/**
@@ -93,18 +113,17 @@ export class EmbedParser extends BaseParser implements IParser {
 	 * @param payload - The payload to parse
 	 * @returns
 	 */
-	protected parseEmbedJSON(payload: string): Awaitable<APIEmbed | EmbedData> {
+	protected parseEmbedJSON(payload: string): Awaitable<APIEmbed> {
 		const parsedResult = JSON.parse(payload);
 		if (parsedResult.color) parsedResult.color = resolveColor(parsedResult.color);
 		return parsedResult;
 	}
 
-	private returnEmbed(ctx: Context, data: APIEmbed | EmbedData): string {
-		ctx.response.actions.embed ??= {} as EmbedData;
+	private returnEmbed(ctx: Context, data: APIEmbed): string {
+		ctx.response.actions.embed ??= {};
 		const { fields, ...rest } = data;
 		if (fields) ctx.response.actions.embed.fields = [...(ctx.response.actions.embed.fields ?? []), ...fields];
 
-		// @ts-expect-error - The return type should be unknown
 		ctx.response.actions.embed = { ...ctx.response.actions.embed, ...rest };
 		return '';
 	}

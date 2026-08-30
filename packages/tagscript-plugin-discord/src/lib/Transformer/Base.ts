@@ -1,5 +1,3 @@
-import type { GuildChannel } from '../interfaces';
-import type { Role, User, GuildMember, Guild, CommandInteraction } from 'discord.js';
 import type { Lexer, ITransformer } from 'tagscript';
 
 export type outputResolvable = boolean | number | string | null | undefined;
@@ -14,22 +12,24 @@ export interface SafeValues<T> {
 }
 
 /**
- * Transformer for {@link https://discord.js.org | discord.js} objects.
+ * Transformer for raw Discord API payloads, the objects typed by
+ * {@link https://discord-api-types.dev | discord-api-types}.
  *
- * @typeParam T - The base type.
+ * Every subclass answers with a fixed list of keys, so a template can read `{member.displayName}` and has no
+ * way to reach a client, a token or a method.
+ *
+ * @typeParam T - The payload type.
  */
-export abstract class BaseTransformer<
-	T extends CommandInteraction | Guild | GuildChannel | GuildMember | Role | User,
-> implements ITransformer {
+export abstract class BaseTransformer<T extends object> implements ITransformer {
 	protected base: T;
 
 	protected safeValues: SafeValues<T> = {};
 
 	public constructor(base: T, safeValues: SafeValues<T> = {}) {
 		this.base = base;
-		this.safeValues.id = this.base.id;
-		this.safeValues.mention = base.toString();
-		this.safeValues.name = 'name' in base ? base.name : '';
+		this.safeValues.id = this.resolveId();
+		this.safeValues.mention = this.resolveMention();
+		this.safeValues.name = 'name' in base ? (base.name as outputResolvable) : '';
 		this.updateSafeValues();
 		this.safeValues = { ...this.safeValues, ...safeValues };
 	}
@@ -45,6 +45,16 @@ export abstract class BaseTransformer<
 	public toJSON() {
 		return this.safeValues;
 	}
+
+	/**
+	 * The snowflake this payload is identified by. Read as `{thing.id}`.
+	 */
+	protected abstract resolveId(): string;
+
+	/**
+	 * What a bare `{thing}` renders to.
+	 */
+	protected abstract resolveMention(): string;
 
 	protected updateSafeValues() {
 		//

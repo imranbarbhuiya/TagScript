@@ -1,9 +1,12 @@
 import { BaseTransformer } from './Base';
 
-import type { User } from 'discord.js';
+import { defaultUserAvatarURL, userAvatarURL } from '../Utils/cdn';
+import { snowflakeDate, snowflakeTimestamp } from '../Utils/snowflake';
+
+import type { APIUser } from 'discord-api-types/v10';
 
 /**
- * Transformer for  Discord {@link User}.
+ * Transformer for a Discord {@link APIUser} payload.
  *
  * Properties:
  * ```yaml
@@ -12,7 +15,7 @@ import type { User } from 'discord.js';
  * globalName: Gives user's global name.
  * username: Gives username of the user.
  * discriminator: Gives discriminator of the user
- * tag: Gives username#discriminator
+ * tag: Gives username#discriminator for legacy accounts, username otherwise.
  * avatar: Gives user's custom avatar if they have one. Else it'll be an empty string.
  * displayAvatar: Gives user's avatar URL if they have one else gives user's default avatar.
  * createdAt: Gives user's account create date.
@@ -29,20 +32,29 @@ import type { User } from 'discord.js';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *
- * await ts.run('Hi {user}', { user: new UserTransformer(message.author) });
+ * await ts.run('Hi {user}', { user: new UserTransformer(user) });
  * // Hi <@758880890159235083>
  * ```
  */
-export class UserTransformer extends BaseTransformer<User> {
+export class UserTransformer extends BaseTransformer<APIUser> {
+	protected resolveId() {
+		return this.base.id;
+	}
+
+	protected resolveMention() {
+		return `<@${this.base.id}>`;
+	}
+
 	protected override updateSafeValues() {
-		this.safeValues.globalName = this.base.globalName;
+		this.safeValues.globalName = this.base.global_name;
 		this.safeValues.username = this.base.username;
 		this.safeValues.discriminator = this.base.discriminator;
-		this.safeValues.tag = this.base.tag;
-		this.safeValues.avatar = this.base.avatarURL();
-		this.safeValues.displayAvatar = this.base.displayAvatarURL();
-		this.safeValues.createdAt = this.base.createdAt.toISOString();
-		this.safeValues.createdTimestamp = this.base.createdTimestamp;
-		this.safeValues.bot = this.base.bot;
+		this.safeValues.tag =
+			this.base.discriminator === '0' ? this.base.username : `${this.base.username}#${this.base.discriminator}`;
+		this.safeValues.avatar = this.base.avatar ? userAvatarURL(this.base.id, this.base.avatar) : '';
+		this.safeValues.displayAvatar = this.safeValues.avatar || defaultUserAvatarURL(this.base.id);
+		this.safeValues.createdAt = snowflakeDate(this.base.id);
+		this.safeValues.createdTimestamp = snowflakeTimestamp(this.base.id);
+		this.safeValues.bot = this.base.bot ?? false;
 	}
 }

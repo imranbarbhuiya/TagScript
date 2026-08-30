@@ -3,7 +3,7 @@ title: GuildTransformer
 description: Expose a guild to a template.
 ---
 
-`GuildTransformer` exposes a discord.js `Guild`, including a few counts and a `random` key that picks a member each time it renders.
+`GuildTransformer` reads an `APIGuild` payload, including the roles it ships with and a few counts derived from them.
 
 ## For template authors
 
@@ -15,13 +15,13 @@ description: Expose a guild to a template.
 {{guild.key}}
 ```
 
-The bare tag renders the mention. A parameter picks one field.
+The bare tag renders the guild name. A parameter picks one field.
 
 ### Examples
 
 ```yaml
-Welcome to {guild(name)}, member number {guild(memberCount)}.
-# Welcome to My Server, member number 1204.
+Welcome to {guild}, owned by <@{guild(ownerId)}>.
+# Welcome to My Server, owned by <@938716130720235601>.
 ```
 
 ### Fields
@@ -38,23 +38,15 @@ Welcome to {guild(name)}, member number {guild(memberCount)}.
 | `ownerId` | The owner ID. |
 | `createdAt` | Creation date as an ISO string. |
 | `createdTimestamp` | Creation time in milliseconds. |
-| `large` | `true` or `false`. |
-| `memberCount` | The member count. |
-| `random` | A random member, rolled per tag. |
-| `roles` | The roles. |
+| `memberCount` | The approximate member count, when the payload was fetched with counts. |
+| `roles` | A mention per role. |
 | `roleIds` | The role IDs. |
 | `roleNames` | The role names. |
 | `roleCount` | How many roles. |
-| `channels` | The channels. |
-| `channelIds` | The channel IDs. |
-| `channelNames` | The channel names. |
-| `channelCount` | How many channels. |
 | `emojiCount` | How many emojis. |
 | `stickerCount` | How many stickers. |
-| `bots` | How many bots. |
-| `humans` | How many humans. |
 | `afkTimeout` | The AFK timeout. |
-| `afkChannel` | The AFK channel. |
+| `afkChannel` | A mention of the AFK channel. |
 | `verificationLevel` | The verification level. |
 
 A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
@@ -70,7 +62,7 @@ import { Interpreter, StrictVarsParser } from 'tagscript';
 const ts = new Interpreter(new StrictVarsParser());
 
 const response = await ts.run(template, {
-	guild: new GuildTransformer(interaction.guild),
+	guild: new GuildTransformer(guild),
 });
 ```
 
@@ -78,7 +70,7 @@ A [variable parser](/tagscript/parsers/variables) has to be registered for the t
 
 ### Adding your own fields
 
-Pass a second argument to expose extra keys. A function receives the Guild and runs when the tag renders.
+Pass a second argument to expose extra keys. A function receives the payload and runs when the tag renders.
 
 ```ts showLineNumbers
 new GuildTransformer(guild, {
@@ -87,7 +79,17 @@ new GuildTransformer(guild, {
 });
 ```
 
-Counts such as `memberCount` and `roleCount` read from the cache, so they are only as complete as your intents and cache settings make them.
+Channels are a separate endpoint and are not part of a guild payload, and `memberCount` reads
+`approximate_member_count`, which Discord only sends when you fetch the guild with `with_counts`. Pass what
+you have:
+
+```ts showLineNumbers
+new GuildTransformer(guild, {
+	channelCount: channels.length,
+	channelNames: channels.map((channel) => channel.name).join(', '),
+	memberCount: cachedMemberCount,
+});
+```
 
 ### API reference
 

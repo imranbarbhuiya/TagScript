@@ -1,9 +1,22 @@
+import { PermissionFlagsBits } from 'discord-api-types/v10';
+
 import { BaseTransformer } from './Base';
 
-import type { Role } from 'discord.js';
+import { snowflakeDate, snowflakeTimestamp } from '../Utils/snowflake';
+
+import type { APIRole } from 'discord-api-types/v10';
+
+const permissionNames = (permissions: string) => {
+	const bits = BigInt(permissions);
+
+	return Object.entries(PermissionFlagsBits)
+		.filter(([, bit]) => (bits & bit) === bit)
+		.map(([name]) => name)
+		.join(', ');
+};
 
 /**
- * Transformer for Discord {@link Role}.
+ * Transformer for a Discord {@link APIRole} payload.
  *
  * Properties:
  * ```yaml
@@ -17,11 +30,13 @@ import type { Role } from 'discord.js';
  * permissions: Gives role permissions.
  * createdAt: Gives role create date.
  * createdTimestamp: Gives role create date in ms.
- * memberCount: Gives role member count.
  * ```
  *
  * @remarks
  * You need to use `StrictVarsParser` parser to use this transformer.
+ *
+ * A role payload does not say who holds the role, so pass a member count yourself if a template needs one:
+ * `new RoleTransformer(role, { memberCount: members.filter((member) => member.roles.includes(role.id)).length })`.
  * @example
  * ```ts showLineNumbers
  * import { Interpreter, StrictVarsParser } from 'tagscript';
@@ -29,19 +44,26 @@ import type { Role } from 'discord.js';
  *
  * const ts = new Interpreter(new StrictVarsParser());
  *
- * await ts.run('Ping {role}', { role: new RoleTransformer(Role) });
+ * await ts.run('Ping {role}', { role: new RoleTransformer(role) });
  * // Ping <@&868430685231271966>
  * ```
  */
-export class RoleTransformer extends BaseTransformer<Role> {
+export class RoleTransformer extends BaseTransformer<APIRole> {
+	protected resolveId() {
+		return this.base.id;
+	}
+
+	protected resolveMention() {
+		return `<@&${this.base.id}>`;
+	}
+
 	protected override updateSafeValues() {
 		this.safeValues.color = this.base.color.toString();
 		this.safeValues.hoist = this.base.hoist;
 		this.safeValues.mentionable = this.base.mentionable;
 		this.safeValues.position = this.base.position;
-		this.safeValues.permissions = this.base.permissions.toArray().join(', ');
-		this.safeValues.createdAt = this.base.createdAt.toISOString();
-		this.safeValues.createdTimestamp = this.base.createdTimestamp;
-		this.safeValues.memberCount = this.base.members.size;
+		this.safeValues.permissions = permissionNames(this.base.permissions);
+		this.safeValues.createdAt = snowflakeDate(this.base.id);
+		this.safeValues.createdTimestamp = snowflakeTimestamp(this.base.id);
 	}
 }

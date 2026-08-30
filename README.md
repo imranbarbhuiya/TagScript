@@ -145,10 +145,10 @@ The template asked to post an embed, rate-limit itself, restrict itself to moder
 
 ## Packages
 
-| Package                                                            | Version                                                                                                                                            | Description                                                                          |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.        |
-| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | discord.js parsers and transformers for embeds, cooldowns, permissions and mentions. |
+| Package                                                            | Version                                                                                                                                            | Description                                                                       |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.     |
+| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | Discord parsers and transformers for embeds, cooldowns, permissions and mentions. |
 
 `tagscript` ships ESM, CJS and an IIFE build (global `TagScript`), and has no runtime dependencies.
 

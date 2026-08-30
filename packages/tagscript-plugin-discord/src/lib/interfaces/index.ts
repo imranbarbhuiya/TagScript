@@ -1,5 +1,13 @@
-import type { EmbedData, APIEmbed, Channel, Guild } from 'discord.js';
 import 'tagscript';
+import type {
+	APIEmbed,
+	APIGuildChannel,
+	APIGuildMember,
+	APIInteractionDataResolvedChannel,
+	APIInteractionDataResolvedGuildMember,
+	APIUser,
+	GuildChannelType,
+} from 'discord-api-types/v10';
 
 declare module 'tagscript' {
 	export interface IActions {
@@ -8,10 +16,20 @@ declare module 'tagscript' {
 			message: string | null;
 		};
 		deleteMessage?: boolean;
-		embed?: APIEmbed | EmbedData;
+		embed?: APIEmbed;
 		files?: string[];
 		silentResponse?: boolean;
 	}
 }
 
-export type GuildChannel = Extract<Channel, { guild: Guild }>;
+/**
+ * A channel that lives in a guild, either the full payload or the trimmed one Discord attaches to an
+ * interaction's resolved data.
+ */
+export type GuildChannel = APIGuildChannel<GuildChannelType> | APIInteractionDataResolvedChannel;
+
+/**
+ * A guild member payload with its user attached. Discord leaves `user` out of the members it resolves into an
+ * interaction, so add it back from `resolved.users` before handing a member to {@link MemberTransformer}.
+ */
+export type GuildMember = (APIGuildMember | APIInteractionDataResolvedGuildMember) & { user: APIUser };

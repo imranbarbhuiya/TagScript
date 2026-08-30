@@ -97,6 +97,49 @@ describe('EmbedParser', () => {
 		});
 	});
 
+	test('GIVEN image or thumbnail as a bare url THEN wrap it in an object', async () => {
+		const iText = '{embed(image):https://example.com/image.png}';
+
+		expect((await ts.run(iText)).actions.embed).toStrictEqual({
+			image: {
+				url: 'https://example.com/image.png',
+			},
+		});
+
+		const tText = '{embed(thumbnail):https://example.com/image.png}';
+
+		expect((await ts.run(tText)).actions.embed).toStrictEqual({
+			thumbnail: {
+				url: 'https://example.com/image.png',
+			},
+		});
+	});
+
+	test('GIVEN author or footer as text THEN build the object Discord expects', async () => {
+		const aText = '{embed(author):Mahir}';
+
+		expect((await ts.run(aText)).actions.embed).toStrictEqual({
+			author: { name: 'Mahir' },
+		});
+
+		const aFullText = '{embed(author):Mahir|https://example.com|https://example.com/icon.png}';
+
+		expect((await ts.run(aFullText)).actions.embed).toStrictEqual({
+			author: { name: 'Mahir', url: 'https://example.com', icon_url: 'https://example.com/icon.png' },
+		});
+
+		const fText = '{embed(footer):Posted by the mods|https://example.com/icon.png}';
+
+		expect((await ts.run(fText)).actions.embed).toStrictEqual({
+			footer: { text: 'Posted by the mods', icon_url: 'https://example.com/icon.png' },
+		});
+	});
+
+	test('GIVEN an author or footer without the required part THEN set nothing', async () => {
+		expect((await ts.run('{embed(author):}')).actions.embed).toBeUndefined();
+		expect((await ts.run('{embed(footer):}')).actions.embed).toBeUndefined();
+	});
+
 	test('GIVEN color in JSON THEN resolve it to hex color', async () => {
 		const text = '{embed:{"color":"0x00ff00"}}';
 

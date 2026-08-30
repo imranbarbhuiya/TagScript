@@ -3,7 +3,7 @@ title: RoleTransformer
 description: Expose a role to a template.
 ---
 
-`RoleTransformer` exposes a discord.js `Role`.
+`RoleTransformer` reads an `APIRole` payload.
 
 ## For template authors
 
@@ -20,8 +20,8 @@ The bare tag renders the mention. A parameter picks one field.
 ### Examples
 
 ```yaml
-The {role(name)} role has {role(memberCount)} members.
-# The Moderator role has 4 members.
+The {role(name)} role sits at position {role(position)}.
+# The Moderator role sits at position 16.
 ```
 
 ### Fields
@@ -38,7 +38,6 @@ The {role(name)} role has {role(memberCount)} members.
 | `permissions` | The permission names, comma separated. |
 | `createdAt` | Creation date as an ISO string. |
 | `createdTimestamp` | Creation time in milliseconds. |
-| `memberCount` | How many members hold the role. |
 
 A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
 
@@ -53,7 +52,7 @@ import { Interpreter, StrictVarsParser } from 'tagscript';
 const ts = new Interpreter(new StrictVarsParser());
 
 const response = await ts.run(template, {
-	role: interaction.guild.roles.cache.get(id) && new RoleTransformer(role),
+	role: new RoleTransformer(role),
 });
 ```
 
@@ -61,12 +60,20 @@ A [variable parser](/tagscript/parsers/variables) has to be registered for the t
 
 ### Adding your own fields
 
-Pass a second argument to expose extra keys. A function receives the Role and runs when the tag renders.
+Pass a second argument to expose extra keys. A function receives the payload and runs when the tag renders.
 
 ```ts showLineNumbers
 new RoleTransformer(role, {
 	custom: 'a fixed value',
 	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+A role payload does not say who holds the role, so count the members yourself if a template needs it:
+
+```ts showLineNumbers
+new RoleTransformer(role, {
+	memberCount: members.filter((member) => member.roles.includes(role.id)).length,
 });
 ```
 

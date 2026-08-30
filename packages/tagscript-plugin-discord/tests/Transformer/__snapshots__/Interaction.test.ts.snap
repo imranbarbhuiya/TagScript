@@ -10,7 +10,7 @@ exports[`InteractionTransformer should match the snapshot 1`] = `
   "guildLocale": "en-US",
   "id": "933368398996447292",
   "locale": "en-US",
-  "mention": "/ping sub-command member:758880890159235083",
-  "name": "",
+  "mention": "</ping:938716130720235601>",
+  "name": "ping",
 }
 `;
