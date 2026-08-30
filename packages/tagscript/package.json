@@ -1,16 +1,21 @@
 {
 	"name": "tagscript",
 	"version": "1.4.0",
-	"description": "A simple and safe template engine.",
+	"description": "A sandboxed template language for text your users write.",
 	"keywords": [
+		"interpreter",
 		"safe string",
+		"sandbox",
 		"string parser",
 		"tag",
 		"tagscript",
 		"template",
 		"template engine",
 		"template string",
-		"typescript"
+		"template-language",
+		"templating",
+		"typescript",
+		"user-generated-content"
 	],
 	"homepage": "https://tagscript.js.org/",
 	"bugs": {

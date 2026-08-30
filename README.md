@@ -4,68 +4,155 @@
 
 # TagScript
 
-**A simple and safe template engine.**
+**A sandboxed template language for text your users write.**
 
 [![Continuous Integration](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/imranbarbhuiya/TagScript/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-
-## Packages
-
 [![npm](https://img.shields.io/npm/v/tagscript?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/tagscript)
-[![codecov](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=tagscript)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-[![npm-tagscript](https://img.shields.io/npm/dw/tagscript)](https://www.npmjs.com/package/tagscript)
 [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?color=crimson&logo=npm&style=flat-square&label=@tagscript/plugin-discord)](https://www.npmjs.com/package/@tagscript/plugin-discord)
-[![codecov-tagscript](https://codecov.io/gh/imranbarbhuiya/tagscript/branch/main/graph/badge.svg?precision=2&flag=plugin-discord)](https://codecov.io/gh/imranbarbhuiya/tagscript)
-[![npm-tagscript-plugin-discord](https://img.shields.io/npm/dw/@tagscript/plugin-discord)](https://www.npmjs.com/package/@tagscript/plugin-discord)
 
 </div>
 
-## Description
+## What is TagScript?
 
-TagScript is a drop in easy to use string interpreter that lets you provide users with ways of customizing their profiles or chat rooms with interactive text.
+TagScript is a template language for the case where **the person writing the template is not the person who wrote the app** — a Discord server admin building a custom command, a user customising their profile, a support team editing an auto-reply.
 
-Read Full Documentation [here](https://tagscript.js.org/).
-
-## Features
-
-- Written In Typescript
-- Offers CJS, ESM and UMD builds
-- Full TypeScript & JavaScript support
-- Blazingly Fast ⚡
-- Simple, expressive and safe template engine.
-- Supports many [plugins](https://github.com/imranbarbhuiya/tagscript/packages/).
-
-## Usage
-
----
-
-**Note:** While examples uses `import`, it maps 1:1 with CommonJS' require syntax. For example,
+You cannot hand those people a JavaScript template literal, Handlebars or EJS: those languages assume the template author is trusted. TagScript assumes the opposite. A template is plain text sprinkled with `{tags}`, and the interpreter knows **nothing** except the parsers you explicitly register.
 
 ```ts
-import { Interpreter } from 'tagscript';
+import { Interpreter, RandomParser } from 'tagscript';
+
+const ts = new Interpreter(new RandomParser());
+
+(await ts.run('{random:heads,tails}')).body; // -> 'tails'
+(await ts.run('{if(1==1):yes|no}')).body; // -> '{if(1==1):yes|no}' — no IfStatementParser registered
 ```
 
-is the same as
+There is no host object to reach, no prototype to walk, no `require` to find. An unknown tag is not an error and not a crash — it is left in the output as literal text. The blast radius of a bad template is the template itself.
 
-```js
-const { Interpreter } = require('tagscript');
+### What that buys you
+
+- **A capability allowlist, not a sandbox-escape hunt.** The interpreter has no built-in tags at all. `new Interpreter()` renders plain text and nothing else. Every capability is a parser you passed in.
+- **Templates ask, they never do.** A template cannot send a message, delete a message or set a cooldown. It can only record a _request_ on `response.actions`, which your code reads and decides on. See [Actions](#actions-templates-ask-your-code-decides).
+- **Bounded work.** `charLimit` and `tagLimit` cap how much output a single render may produce and how much of a tag body is read, so nobody hands you a template that expands forever.
+- **Data you choose to expose.** Values reach a template through transformers, which expose a fixed set of keys — never the underlying object.
+
+## Anatomy of a tag
+
+```yaml
+{declaration(parameter):payload}
+{declaration.parameter:payload}
 ```
 
----
+| Part            | Required | Notes                                                                                      |
+| --------------- | -------- | ------------------------------------------------------------------------------------------ |
+| **declaration** | yes      | The tag name, e.g. `if`, `random`, `upper`. Matched case-insensitively; most have aliases. |
+| **parameter**   | varies   | `(...)` or `.` form. The `.` form ends at the `:` or at the end of the tag.                |
+| **payload**     | varies   | Everything after the first un-nested `:`, up to the closing `}`.                           |
 
-```ts showLineNumbers
-import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+Tags nest, and inner tags resolve first — `{upper:{lower:ABC}}` renders `lower` before `upper`. Anything outside braces is plain text. Prefix a `{`, `}`, `(`, `)`, `:` or `|` with a backslash to stop it being read as syntax.
+
+## Quick start
+
+```sh
+npm install tagscript
+```
+
+```ts
+import { FiftyFiftyParser, IfStatementParser, Interpreter, RandomParser, SliceParser } from 'tagscript';
+
 const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
 
-const result = await ts.run(
-	`
-    {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
-    I pick {if({5050:.}!=):heads|tails}
-    `,
-); // Parbez attempts to pick the lock!, I pick heads
+const response = await ts.run(
+	'{random:Parbez,Rkn,Priyansh} attempts to pick the lock! I pick {if({5050:.}!=):heads|tails}',
+);
+
+response.body; // -> 'Parbez attempts to pick the lock! I pick heads'
+response.raw; // the original template
+response.actions; // what the template asked for
 ```
 
-For more usage, check out the documentation [here](https://tagscript.js.org/).
+`run()` returns a [`Response`](https://tagscript.js.org/api/tagscript/classes/Response), not a string — the rendered text is `response.body`.
+
+## The two extension points
+
+**Parsers** implement tags. A parser declares which tag names it accepts and returns the string that replaces the tag — or `null` to decline, letting the next parser try.
+
+```ts
+import { BaseParser, type Context, type IParser } from 'tagscript';
+
+class ShoutParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['shout'], false, true); // accepted names, requires parameter, requires payload
+	}
+
+	public parse(ctx: Context) {
+		return `${ctx.tag.payload!.toUpperCase()}!!!`;
+	}
+}
+
+(await new Interpreter(new ShoutParser()).run('{shout:hello}')).body; // -> 'HELLO!!!'
+```
+
+**Transformers** supply the values behind variables. You seed them per render and the template reaches them by name, but only through the keys the transformer chooses to expose.
+
+```ts
+import { Interpreter, StrictVarsParser, StringTransformer } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+(await ts.run('Hi {user}, your surname is {user(2)}', { user: new StringTransformer('Parbez Barbhuiya') })).body;
+// -> 'Hi Parbez Barbhuiya, your surname is Barbhuiya'
+```
+
+The full list of built-in parsers and transformers is in the [`tagscript` README](./packages/tagscript#built-in-parsers).
+
+## Actions: templates ask, your code decides
+
+This is the part that makes TagScript usable for untrusted authors. Side effects are never performed by a parser — they are recorded on `response.actions` as a plain, inspectable object. Nothing happens until your code chooses to act on it.
+
+```ts
+const response = await ts.run(`
+  {embed(title):Server Rules}
+  {embed(color):0x37b2cb}
+  {embed(field):Rule 1|Be nice.|false}
+  {cooldown(30):Slow down, try again in {retryAfter}.}
+  {require(Moderator)}
+  {delete}
+  Posted {date:2020-01-01}
+`);
+```
+
+```jsonc
+{
+	"body": "Posted <t:1577836800:f>",
+	"actions": {
+		"embed": {
+			"title": "Server Rules",
+			"color": 3650251,
+			"fields": [{ "name": "Rule 1", "value": "Be nice.", "inline": false }],
+		},
+		"cooldown": { "cooldown": 30, "message": "Slow down, try again in {retryAfter}." },
+		"require": { "ids": ["Moderator"], "message": null },
+		"deleteMessage": true,
+	},
+}
+```
+
+The template asked to post an embed, rate-limit itself, restrict itself to moderators and delete the trigger message. Your bot is free to honour all of that, some of it or none of it — and to enforce its own ceilings on top, such as capping that 30 second cooldown request at whatever the user is actually allowed.
+
+`IActions` is declaration-merged, so plugins and your own parsers add their own typed fields to it.
+
+## Packages
+
+| Package                                                            | Version                                                                                                                                            | Description                                                                     |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.   |
+| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | discord.js parsers and transformers — embeds, cooldowns, permissions, mentions. |
+
+`tagscript` ships ESM, CJS and an IIFE build (global `TagScript`), and has no runtime dependencies.
+
+Full documentation, including every built-in tag, is at **[tagscript.js.org](https://tagscript.js.org/)**.
 
 ## Development
 
@@ -106,3 +193,7 @@ Thanks goes to these wonderful people:
 <a href="https://github.com/imranbarbhuiya/TagScript/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=imranbarbhuiya/TagScript" />
 </a>
+
+## Special Thanks
+
+- [JonSnowbd](https://github.com/JonSnowbd/) for creating [TagScript](https://github.com/JonSnowbd/TagScript) in Python, which this project is a TypeScript reimagining of.

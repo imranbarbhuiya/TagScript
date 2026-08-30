@@ -1,11 +1,14 @@
 {
 	"name": "@tagscript/plugin-discord",
 	"version": "3.1.0",
-	"description": "A plugin for tagscript to work with discord.js.",
+	"description": "discord.js parsers and transformers for TagScript — embeds, cooldowns, permissions and mentions from user-written templates.",
 	"keywords": [
 		"bot tag",
+		"discord-bot",
 		"discord.js",
+		"discordjs",
 		"safe string",
+		"sandbox",
 		"string parser",
 		"tag",
 		"tagscript",
@@ -13,7 +16,9 @@
 		"template",
 		"template engine",
 		"template string",
-		"typescript"
+		"templating",
+		"typescript",
+		"user-generated-content"
 	],
 	"homepage": "https://tagscript.js.org/",
 	"bugs": {
