@@ -6,7 +6,7 @@ export const createTsdownConfig = (options: UserConfig = {}) =>
 		dts: true,
 		treeshake: true,
 		entry: ['src/index.ts'],
-		format: ['esm', 'cjs', 'iife'],
+		format: ['esm', 'cjs'],
 		minify: false,
 		sourcemap: true,
 		target: 'esnext',
@@ -15,7 +15,7 @@ export const createTsdownConfig = (options: UserConfig = {}) =>
 			keepNames: true,
 		},
 		deps: {
-			skipNodeModulesBundle: true,
+			neverBundle: true,
 		},
 		...options,
 	});
