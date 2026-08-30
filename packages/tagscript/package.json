@@ -46,8 +46,6 @@
 	},
 	"scripts": {
 		"build": "tsdown",
-		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run",
 		"prepack": "bun run build",
 		"test": "bun test",
 		"test:coverage": "bun test --coverage --coverage-reporter=text --coverage-reporter=lcov",

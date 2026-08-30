@@ -6,15 +6,6 @@
 			"outputs": ["dist/**", ".next/**"],
 			"env": ["VERCEL_URL"]
 		},
-		"bump": {
-			"dependsOn": [],
-			"outputs": ["CHANGELOG.md"],
-			"cache": false
-		},
-		"check-update": {
-			"dependsOn": [],
-			"outputs": []
-		},
 		"typecheck": {
 			"dependsOn": ["^build"],
 			"outputs": []

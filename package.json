@@ -12,8 +12,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "turbo run build",
-		"bump": "turbo run bump --concurrency=1",
-		"check-update": "turbo run check-update",
+		"bump": "bun scripts/bump.mjs",
+		"check-update": "bun scripts/bump.mjs --dry-run --yes",
 		"clean": "bun scripts/clean.mjs",
 		"clean:full": "bun scripts/clean-full.mjs",
 		"docs": "bun scripts/generateDocs.mjs",

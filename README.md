@@ -83,7 +83,7 @@ bun run format     # oxfmt
 
 ### Releasing
 
-Versions are bumped locally with [cliff-jumper](https://github.com/favware/cliff-jumper), which writes the changelog and creates a tag such as `tagscript@1.4.0`:
+Versions are bumped locally with `bun run bump`, which asks which packages to release and then runs [cliff-jumper](https://github.com/favware/cliff-jumper) in each of them. cliff-jumper writes the changelog and creates a tag such as `tagscript@1.4.0`. Use `bun run check-update` to see what each package would be bumped to without changing anything.
 
 ```sh
 bun run bump
