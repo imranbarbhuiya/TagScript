@@ -79,23 +79,38 @@ Parsers can also be swapped after construction with `ts.addParsers(...)` and `ts
 ### `run()` options
 
 ```ts
-ts.run(message, seedVariables?, charLimit?, tagLimit?, parenType?, keyValues?);
+ts.run(message, options?);
 ```
 
-| Argument        | Default          | Description                                                                                      |
-| --------------- | ---------------- | ------------------------------------------------------------------------------------------------ |
-| `message`       | required         | The template to render.                                                                          |
-| `seedVariables` | `{}`             | Variables available to `StrictVarsParser` / `LooseVarsParser`, as name → transformer.            |
-| `charLimit`     | `null`           | Max characters a render may produce. Exceeding it **throws** out of `run()`. `null` disables it. |
-| `tagLimit`      | `2000`           | Max characters read from inside a single `{...}`; the rest of that tag body is truncated.        |
-| `parenType`     | `ParenType.Both` | Which parameter syntaxes are accepted: `Both`, `Parenthesis` or `Dot`.                           |
-| `keyValues`     | `{}`             | Arbitrary data for your own parsers, reachable at `ctx.response.keyValues`.                      |
+| Option          | Default          | Description                                                                                   |
+| --------------- | ---------------- | ----------------------------------------------------------------------------------------------- |
+| `message`       | required         | The template to render. Passed positionally.                                                  |
+| `seedVariables` | `{}`             | Variables available to `StrictVarsParser` / `LooseVarsParser`, as name → transformer.         |
+| `charLimit`     | `null`           | Max characters a render may produce. Exceeding it **rejects** out of `run()`. `null` disables it. |
+| `tagLimit`      | `2000`           | Max characters read from inside a single `{...}`; the rest of that tag body is truncated.     |
+| `parenType`     | `ParenType.Both` | Which parameter syntaxes are accepted: `Both`, `Parenthesis` or `Dot`.                        |
+| `keyValues`     | `{}`             | Arbitrary data for your own parsers, reachable at `ctx.response.keyValues`.                   |
 
 `charLimit` is your defence against a template that expands cheaply into a huge string, so set it whenever the template author is untrusted:
 
 ```ts
-await ts.run(template, vars, 2_000); // throws if the render exceeds 2000 characters
+// rejects with a WorkloadExceededError if the render exceeds 2000 characters
+await ts.run(template, { seedVariables: vars, charLimit: 2_000 });
 ```
+
+The positional form, `run(message, seedVariables, charLimit, tagLimit, parenType, keyValues)`, still works and is deprecated.
+
+### Errors
+
+A parser failing does not reject and does not end the render — the interpreter replaces that one tag and carries on, recording what happened on `response.errors`.
+
+| The parser raises | The body gets                       | `response.errors` gets                          |
+| ----------------- | ----------------------------------- | ----------------------------------------------- |
+| `TemplateError`   | the error's message, as written     | the `TemplateError`                             |
+| anything else     | a generic message                   | a `ParserError`, with the real error on `cause` |
+| `StopSignal`      | the render so far, then its message | nothing — this is control flow, not a failure   |
+
+The person who wrote the template usually has no console, so raise a `TemplateError` for a mistake **they** can fix and its message is shown to them. Anything else is a bug in your parser, so the body gets a generic line and the real error is kept on `response.errors` for you.
 
 ## Built-in parsers
 

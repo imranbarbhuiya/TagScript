@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 
-import { Interpreter, Response, UrlDecodeParser, UrlEncodeParser } from '../../src';
+import { Interpreter, Response, TemplateError, UrlDecodeParser, UrlEncodeParser } from '../../src';
 
 const ts = new Interpreter(new UrlEncodeParser(), new UrlDecodeParser());
 
@@ -25,5 +25,13 @@ describe('UrlDecodedParser', () => {
 	test('GIVEN a string in UrlDecode parser with + param THEN returns the urldecoded string by replacing + with space', async () => {
 		const text = '{urldecode(+):This+is+Rkn}';
 		expect(await ts.run(text)).toStrictEqual(new Response().setValues('This is Rkn', text));
+	});
+
+	test('GIVEN a malformed escape THEN report it as a TemplateError', async () => {
+		const response = await ts.run('{urldecode:%zz}');
+
+		expect(response.errors).toHaveLength(1);
+		expect(response.errors[0]).toBeInstanceOf(TemplateError);
+		expect(response.body).toBe('urldecode was given a url it cannot decode');
 	});
 });

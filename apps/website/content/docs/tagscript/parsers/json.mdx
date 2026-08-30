@@ -59,9 +59,10 @@ A [variable parser](/tagscript/parsers/variables) is needed to read the result b
 Both the parameter and the payload are required. `parse` stores a [`SafeObjectTransformer`](/tagscript/transformers/object) on `ctx.response.variables` and returns an empty string.
 
 <Callout type="warn">
-	The payload is `JSON.parse`d. Invalid JSON throws, the interpreter catches it, and the render ends
-	with the parser error as the body. Feed this tag output from a source you control, or wrap it in your
-	own parser that validates first.
+	The payload is `JSON.parse`d. Invalid JSON raises a `TemplateError`, so `json was given something that
+	is not valid JSON` replaces the tag, the rest of the template still renders, and the error is on
+	`response.errors`. Feed this tag output from a source you control, or wrap it in your own parser that
+	validates first.
 </Callout>
 
 ### API reference

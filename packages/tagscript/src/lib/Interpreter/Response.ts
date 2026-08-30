@@ -1,3 +1,4 @@
+import type { TagScriptError } from '../Errors';
 import type { ITransformer, IKeyValues, IActions } from '../interfaces';
 
 /**
@@ -37,11 +38,23 @@ export class Response {
 
 	public keyValues: IKeyValues;
 
+	/**
+	 * Every error a parser raised during the render, in the order they happened.
+	 *
+	 * The render does not stop for these. A {@link TemplateError} has already been rendered into
+	 * `body` in place of its tag; a {@link ParserError} means a parser threw a bug and `body` got a
+	 * generic message instead, with the real error on its `cause`.
+	 *
+	 * An empty array means the render was clean.
+	 */
+	public errors: TagScriptError[];
+
 	public constructor(variables: { [key: string]: ITransformer } = {}, keyValues: IKeyValues = {}) {
 		this.body = null;
 		this.actions = {};
 		this.variables = variables;
 		this.keyValues = keyValues;
+		this.errors = [];
 	}
 
 	public setValues(output: string, raw: string) {
@@ -59,6 +72,7 @@ export class Response {
 			actions: this.actions,
 			variables: this.variables,
 			keyValues: this.keyValues,
+			errors: this.errors,
 		};
 	}
 }

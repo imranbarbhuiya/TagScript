@@ -1,41 +1,67 @@
 import { Context } from './Context';
+import { buildNodeTree, checkWorkload, textDeform, translateNodes } from './engine';
 import { Lexer, ParenType } from './Lexer';
-import { Node } from './Node';
 import { Response } from './Response';
 
+import { GENERIC_PARSER_ERROR_MESSAGE, ParserError, StopSignal, TemplateError } from '../Errors';
 import { asyncFilter } from '../Utils/Util';
 
 import type { ITransformer, IParser, IKeyValues } from '../interfaces';
+import type { Node } from './Node';
+
+/**
+ * The options a single render accepts.
+ */
+export interface RunOptions {
+	/**
+	 * The maximum number of characters the render may produce. Going over it rejects with a
+	 * {@link WorkloadExceededError}. `null` means no limit.
+	 *
+	 * @defaultValue null
+	 */
+	charLimit?: number | null;
+	/**
+	 * Arbitrary data for your own parsers to read at `ctx.response.keyValues`. The interpreter
+	 * never touches it.
+	 *
+	 * @defaultValue \{\}
+	 */
+	keyValues?: IKeyValues;
+	/**
+	 * Which parameter syntaxes a template may use.
+	 *
+	 * @defaultValue ParenType.Both
+	 */
+	parenType?: ParenType;
+	/**
+	 * Variables the template can read, as name to transformer.
+	 *
+	 * @defaultValue \{\}
+	 */
+	seedVariables?: { [key: string]: ITransformer };
+	/**
+	 * The maximum number of characters read from inside one `\{...\}`. The rest of that tag body
+	 * is dropped.
+	 *
+	 * @defaultValue 2000
+	 */
+	tagLimit?: number;
+}
+
+const RUN_OPTION_KEYS = new Set(['charLimit', 'keyValues', 'parenType', 'seedVariables', 'tagLimit']);
 
 /**
  *
- * Function that finds all possible nodes in a string.
+ * Tells a {@link RunOptions} object apart from a bag of seed variables.
  *
- * @param message - The message to parse.
- * @returns A list of all possible text bracket tags.
+ * Both are plain objects, so this goes by key name. A seed variable named after one of the
+ * options is the one case it gets wrong, which is why the positional overload still exists.
+ *
+ * @param value - The second argument passed to `run`.
+ * @returns
  */
-const buildNodeTree = (message: string): Node[] => {
-	const nodes: Node[] = [];
-	let previous = '';
-	const starts: number[] = [];
-
-	for (let index = 0; index < message.length; index++) {
-		const ch = message[index];
-		if (ch === '{' && previous !== '\\') starts.push(index);
-
-		if (ch === '}' && previous !== '\\') {
-			if (!starts.length) continue;
-
-			const coords: [number, number] = [starts.pop()!, index];
-			const node = new Node(coords, null);
-			nodes.push(node);
-		}
-
-		previous = ch;
-	}
-
-	return nodes;
-};
+const isRunOptions = (value: object): value is RunOptions =>
+	Object.keys(value).every((key) => RUN_OPTION_KEYS.has(key));
 
 /**
  * The TagScript interpreter.
@@ -69,6 +95,16 @@ export class Interpreter {
 	 * Processes a given TagScript string.
 	 *
 	 * @param message - The TagScript string that to be processed.
+	 * @param options - The options for this render.
+	 * @returns - {@link Response} class containing the raw string, processed body, actions and variables.
+	 */
+	public async run(message: string, options?: RunOptions): Promise<Response>;
+	/**
+	 * Processes a given TagScript string.
+	 *
+	 * @deprecated Pass a {@link RunOptions} object instead. This overload will be removed in the
+	 * next major.
+	 * @param message - The TagScript string that to be processed.
 	 * @param seedVariables - A object containing strings to transformer to provide context variables for processing.
 	 * @param charLimit - The maximum characters to process.
 	 * @param tagLimit - The maximum tags to process.
@@ -78,15 +114,42 @@ export class Interpreter {
 	 */
 	public async run(
 		message: string,
-		seedVariables: { [key: string]: ITransformer } = {},
+		seedVariables?: { [key: string]: ITransformer },
+		charLimit?: number | null,
+		tagLimit?: number,
+		parenType?: ParenType,
+		keyValues?: IKeyValues,
+	): Promise<Response>;
+
+	public async run(
+		message: string,
+		seedVariablesOrOptions: RunOptions | { [key: string]: ITransformer } = {},
 		charLimit: number | null = null,
 		tagLimit = 2_000,
 		parenType = ParenType.Both,
 		keyValues: IKeyValues = {},
 	): Promise<Response> {
-		const response = new Response(seedVariables, keyValues);
+		const options: RunOptions =
+			arguments.length <= 2 && isRunOptions(seedVariablesOrOptions)
+				? seedVariablesOrOptions
+				: {
+						seedVariables: seedVariablesOrOptions as { [key: string]: ITransformer },
+						charLimit,
+						tagLimit,
+						parenType,
+						keyValues,
+					};
+
+		const response = new Response(options.seedVariables ?? {}, options.keyValues ?? {});
 		const nodeOrderedList = buildNodeTree(message);
-		const output = await this.solve(message, nodeOrderedList, response, charLimit, tagLimit, parenType);
+		const output = await this.solve(
+			message,
+			nodeOrderedList,
+			response,
+			options.charLimit ?? null,
+			options.tagLimit ?? 2_000,
+			options.parenType ?? ParenType.Both,
+		);
 		return response.setValues(output, message);
 	}
 
@@ -120,40 +183,28 @@ export class Interpreter {
 		return null;
 	}
 
-	private checkWorkload(charLimit: number | null, totalWork: number, output: string) {
-		if (!charLimit) return;
-
-		const currentWork = totalWork + output.length;
-		if (currentWork > charLimit) {
-			throw new Error(
-				`The TS interpreter had its workload exceeded. The total characters attempted were ${currentWork}/${charLimit}`,
-			);
+	/**
+	 *
+	 * Turns whatever a parser threw into the text that replaces its tag.
+	 *
+	 * A {@link TemplateError} is the template author's mistake and they are the one reading the
+	 * output, so its message goes in as written. Anything else is a bug in the parser, so the
+	 * output gets a generic line and the real error is kept on the response for the host
+	 * application.
+	 *
+	 * @param response - The response being built.
+	 * @param ctx - The context of the tag that failed.
+	 * @param error - Whatever the parser threw.
+	 * @returns The text to render in place of the tag.
+	 */
+	private recordError(response: Response, ctx: Context, error: unknown): string {
+		if (error instanceof TemplateError) {
+			response.errors.push(error);
+			return error.message;
 		}
 
-		return currentWork;
-	}
-
-	private textDeform(start: number, end: number, final: string, output: string): [string, number] {
-		const messageSliceLen = end + 1 - start;
-		const replacementLen = output.length;
-		const differential = replacementLen - messageSliceLen;
-		const currentFinal = final.slice(0, start) + output + final.slice(end + 1);
-		return [currentFinal, differential];
-	}
-
-	private translateNodes(nodeOrderedList: Node[], index: number, start: number, differential: number) {
-		for (const futureN of nodeOrderedList.slice(index + 1)) {
-			let newStart: number;
-			let newEnd: number;
-			const [fStart, fEnd] = futureN.coordinates;
-			if (fStart > start) newStart = fStart + differential;
-			else newStart = fStart;
-
-			if (fEnd > start) newEnd = fEnd + differential;
-			else newEnd = fEnd;
-
-			futureN.coordinates = [newStart, newEnd];
-		}
+		response.errors.push(new ParserError(ctx.tag.declaration, error));
+		return GENERIC_PARSER_ERROR_MESSAGE;
 	}
 
 	private async solve(
@@ -170,19 +221,20 @@ export class Interpreter {
 			const node = nodeOrderedList[index];
 			const [start, end] = node.coordinates;
 			const ctx = this.getContext(node, final, response, message, tagLimit, parenType);
-			let output;
+			let output: string | null;
 			try {
 				output = await this.processTags(ctx, node);
 			} catch (error) {
-				return `${final.slice(0, start)} ${(error as Error).message}`;
+				if (error instanceof StopSignal) return `${final.slice(0, start)} ${error.message}`;
+				output = this.recordError(response, ctx, error);
 			}
 
 			if (output === null) continue;
 
-			totalWork = this.checkWorkload(charLimit, totalWork, output)!;
-			const [fMessage, differential] = this.textDeform(start, end, final, output);
+			totalWork = checkWorkload(charLimit, totalWork, output);
+			const [fMessage, differential] = textDeform(start, end, final, output);
 			final = fMessage;
-			this.translateNodes(nodeOrderedList, index, start, differential);
+			translateNodes(nodeOrderedList, index, start, differential);
 		}
 
 		return final;

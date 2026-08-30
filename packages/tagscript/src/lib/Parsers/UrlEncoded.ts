@@ -1,7 +1,28 @@
 import { BaseParser } from './Base';
 
+import { TemplateError } from '../Errors';
+
 import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
+
+/**
+ *
+ * Decodes a url written by a template author.
+ *
+ * `decodeURI` throws a `URIError` on a malformed escape such as `%zz`, which is the template
+ * author's mistake rather than a bug, so it is reported as a {@link TemplateError}.
+ *
+ * @param value - The url the template author wrote.
+ * @param tag - The declaration to attribute the error to.
+ * @returns
+ */
+const decode = (value: string, tag: string | null) => {
+	try {
+		return decodeURI(value);
+	} catch {
+		throw new TemplateError('urldecode was given a url it cannot decode', tag);
+	}
+};
 
 /**
  * This tag will encode a given string into a properly formatted url
@@ -44,7 +65,7 @@ export class UrlDecodeParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		return ctx.tag.parameter === '+'
-			? decodeURI(ctx.tag.payload!.replaceAll(ctx.tag.parameter, ' '))
-			: decodeURI(ctx.tag.payload!);
+			? decode(ctx.tag.payload!.replaceAll(ctx.tag.parameter, ' '), ctx.tag.declaration)
+			: decode(ctx.tag.payload!, ctx.tag.declaration);
 	}
 }

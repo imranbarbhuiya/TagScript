@@ -1,8 +1,29 @@
-import { BaseParser, split, type Context, type IParser, type Awaitable } from 'tagscript';
+import { BaseParser, split, TemplateError, type Context, type IParser, type Awaitable } from 'tagscript';
 
 import { resolveColor } from '../Utils';
 
 import type { APIEmbed } from 'discord-api-types/v10';
+
+/**
+ *
+ * Reads a JSON payload written by a template author.
+ *
+ * `JSON.parse` throws a `SyntaxError` whose message describes a character offset, which is a
+ * developer's error message, not something the person who wrote `\{embed: ...\}` can act on. This
+ * reports it as a {@link TemplateError} instead, so the interpreter renders it in place of the tag
+ * and carries on with the rest of the template.
+ *
+ * @param payload - The JSON the template author wrote.
+ * @param tag - The declaration to attribute the error to.
+ * @returns
+ */
+const parseJSON = (payload: string, tag: string) => {
+	try {
+		return JSON.parse(payload);
+	} catch {
+		throw new TemplateError(`${tag} was given something that is not valid JSON`, tag);
+	}
+};
 
 /**
  *  An embed tag will send an embed in the tag response.
@@ -68,8 +89,11 @@ export class EmbedParser extends BaseParser implements IParser {
 
 		const payload = ctx.tag.payload!;
 
-		if (payload.startsWith('{') && payload.endsWith('}'))
-			return this.returnEmbed(ctx, { [ctx.tag.parameter]: JSON.parse(payload) as unknown });
+		if (payload.startsWith('{') && payload.endsWith('}')) {
+			return this.returnEmbed(ctx, {
+				[ctx.tag.parameter]: parseJSON(payload, `embed(${ctx.tag.parameter})`) as unknown,
+			});
+		}
 
 		switch (ctx.tag.parameter) {
 			case 'field': {
@@ -114,7 +138,7 @@ export class EmbedParser extends BaseParser implements IParser {
 	 * @returns
 	 */
 	protected parseEmbedJSON(payload: string): Awaitable<APIEmbed> {
-		const parsedResult = JSON.parse(payload);
+		const parsedResult = parseJSON(payload, 'embed');
 		if (parsedResult.color) parsedResult.color = resolveColor(parsedResult.color);
 		return parsedResult;
 	}

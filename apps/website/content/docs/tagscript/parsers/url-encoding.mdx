@@ -63,7 +63,7 @@ https://www.google.com/search?q={urlencode(+):{args}}
 
 Both require a payload. They call `encodeURI` and `decodeURI`, not the `Component` variants, so reserved URL characters such as `&`, `=`, `?` and `/` pass through unchanged. That is fine for a whole URL and wrong for a single query parameter value, where an `&` in user input would start a new parameter. Write your own parser around `encodeURIComponent` if you need that.
 
-`decodeURI` throws on a malformed sequence such as `%zz`. The interpreter catches it and the render ends with the error as the body.
+`decodeURI` fails on a malformed sequence such as `%zz`. That is the template author's mistake, so it raises a `TemplateError`: `urldecode was given a url it cannot decode` replaces the tag, the rest of the template still renders, and the error is on `response.errors`.
 
 ### API reference
 

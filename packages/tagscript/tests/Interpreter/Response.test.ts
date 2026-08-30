@@ -12,6 +12,7 @@ describe('Response', () => {
 			actions: {},
 			keyValues: {},
 			variables: {},
+			errors: [],
 		});
 	});
 });

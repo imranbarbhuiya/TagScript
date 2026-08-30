@@ -1,5 +1,6 @@
 import { BaseParser } from './Base';
 
+import { TemplateError } from '../Errors';
 import { SafeObjectTransformer } from '../Transformer';
 
 import type { IParser } from '../interfaces';
@@ -24,7 +25,12 @@ export class JSONVarParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		ctx.response.variables[ctx.tag.parameter!] = new SafeObjectTransformer(ctx.tag.payload!);
+		try {
+			ctx.response.variables[ctx.tag.parameter!] = new SafeObjectTransformer(ctx.tag.payload!);
+		} catch {
+			throw new TemplateError(`json was given something that is not valid JSON`, ctx.tag.declaration);
+		}
+
 		return '';
 	}
 }

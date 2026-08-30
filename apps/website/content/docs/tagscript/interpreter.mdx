@@ -18,17 +18,29 @@ One interpreter can render any number of templates, and it holds no per-render s
 ## run
 
 ```ts
-ts.run(message, seedVariables?, charLimit?, tagLimit?, parenType?, keyValues?);
+ts.run(message, options?);
 ```
 
-| Argument        | Default          | What it does                                                                                  |
-| --------------- | ---------------- | ----------------------------------------------------------------------------------------------- |
-| `message`       | required         | The template to render.                                                                        |
-| `seedVariables` | `{}`             | Variables the template can read, as name to [transformer](/tagscript/transformers).            |
-| `charLimit`     | `null`           | Maximum characters the render may produce. Going over throws. `null` means no limit.           |
-| `tagLimit`      | `2000`           | Maximum characters read from inside one `{...}`. The rest of that tag body is dropped.         |
-| `parenType`     | `ParenType.Both` | Which parameter syntaxes are allowed: `Both`, `Parenthesis` or `Dot`.                          |
-| `keyValues`     | `{}`             | Arbitrary data for your own parsers, readable at `ctx.response.keyValues`.                     |
+| Option          | Default          | What it does                                                                            |
+| --------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| `message`       | required         | The template to render. Passed positionally.                                            |
+| `seedVariables` | `{}`             | Variables the template can read, as name to [transformer](/tagscript/transformers).     |
+| `charLimit`     | `null`           | Maximum characters the render may produce. Going over rejects. `null` means no limit.   |
+| `tagLimit`      | `2000`           | Maximum characters read from inside one `{...}`. The rest of that tag body is dropped.  |
+| `parenType`     | `ParenType.Both` | Which parameter syntaxes are allowed: `Both`, `Parenthesis` or `Dot`.                   |
+| `keyValues`     | `{}`             | Arbitrary data for your own parsers, readable at `ctx.response.keyValues`.              |
+
+```ts showLineNumbers
+const response = await ts.run(template, {
+	seedVariables: { args: new StringTransformer('hello') },
+	charLimit: 2_000,
+});
+```
+
+<Callout>
+	The old positional form, `run(message, seedVariables, charLimit, tagLimit, parenType, keyValues)`, still
+	works and is deprecated. It will be removed in the next major.
+</Callout>
 
 ## Response
 
@@ -41,31 +53,69 @@ ts.run(message, seedVariables?, charLimit?, tagLimit?, parenType?, keyValues?);
 | `actions`   | `IActions`                     | Side effects the template requested. Your code decides what to do.   |
 | `variables` | `Record<string, ITransformer>` | Seeded variables plus anything the template defined during the render. |
 | `keyValues` | `IKeyValues`                   | Whatever you passed in. The interpreter never touches it.            |
+| `errors`    | `TagScriptError[]`             | Every error a parser raised. Empty when the render was clean.        |
 
 ## Limits
 
 `charLimit` is the one that matters for untrusted templates. Without it, a template that expands cheaply into a very large string is the remaining way a template author can cause trouble.
 
 ```ts showLineNumbers
-await ts.run(template, vars, 2_000);
+await ts.run(template, { seedVariables: vars, charLimit: 2_000 });
 ```
 
-Going over the limit throws out of `run`, so wrap the call:
+Going over the limit rejects with a `WorkloadExceededError`, so wrap the call:
 
 ```ts showLineNumbers
 try {
-	const response = await ts.run(template, vars, 2_000);
+	const response = await ts.run(template, { seedVariables: vars, charLimit: 2_000 });
 	return response.body;
 } catch (error) {
-	return 'That tag produced too much output.';
+	if (error instanceof WorkloadExceededError) return 'That tag produced too much output.';
+	throw error;
+}
+```
+
+## Errors
+
+A parser failing does not reject and does not end the render. The interpreter replaces just that tag
+and keeps going, and records what happened on `response.errors`.
+
+What lands in the body depends on whose mistake it was.
+
+| The parser raises      | The body gets                     | `response.errors` gets                          |
+| ---------------------- | --------------------------------- | ----------------------------------------------- |
+| `TemplateError`        | the error's message, as written   | the `TemplateError`                             |
+| anything else          | a generic message                 | a `ParserError`, with the real error on `cause` |
+| `StopSignal`           | the render so far, then its message | nothing — this is control flow, not a failure |
+
+The split exists because the person who wrote the template is usually not the person running the
+process. They have no console and no stack trace, so a mistake **they** can fix — malformed JSON in
+an `{embed}`, a parameter that is not a number — is worth putting in front of them. Raise a
+`TemplateError` for those:
+
+```ts showLineNumbers
+public parse(ctx: Context) {
+	const seconds = Number.parseInt(ctx.tag.parameter!, 10);
+	if (Number.isNaN(seconds)) throw new TemplateError('cooldown needs a number of seconds', ctx.tag.declaration);
+	return '';
+}
+```
+
+Anything else your parser throws is a bug in your parser, not in the template. Telling a template
+author `Cannot read properties of undefined` helps nobody and can leak internals into a public
+channel, so the body gets `GENERIC_PARSER_ERROR_MESSAGE` and the real error is kept for you:
+
+```ts showLineNumbers
+const response = await ts.run(template);
+for (const error of response.errors) {
+	if (error instanceof ParserError) logger.error(error.cause);
 }
 ```
 
 <Callout type="warn">
-	A parser error behaves differently. When a parser throws, the interpreter catches it and returns the text
-	rendered so far plus the error message as the body. That is how [`stop`](/tagscript/parsers/stop) works.
-	So a `try` block around `run` catches the character limit, and a body containing a parser's error message
-	is something you check for separately.
+	Before 3.0, any `throw` from a parser ended the render and put the raw error message in the body, which
+	is how [`stop`](/tagscript/parsers/stop) worked. Ending the render early is now `StopSignal`. If you
+	wrote a parser that throws a plain `Error` to halt, switch it to `throw new StopSignal(message)`.
 </Callout>
 
 `tagLimit` caps how much of a single tag's body the lexer reads, at 2000 characters by default. It truncates rather than throwing, which can turn a long tag into a different, shorter tag, so lower it only when you have a reason.

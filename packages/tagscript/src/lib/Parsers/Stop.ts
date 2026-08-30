@@ -1,5 +1,6 @@
 import { BaseParser } from './Base';
 
+import { StopSignal } from '../Errors';
 import { parseIf } from '../Utils/Util';
 
 import type { IParser } from '../interfaces';
@@ -22,7 +23,7 @@ export class StopParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		if (parseIf(ctx.tag.parameter!)) throw new Error(ctx.tag.payload ?? '');
+		if (parseIf(ctx.tag.parameter!)) throw new StopSignal(ctx.tag.payload ?? '');
 		return '';
 	}
 }

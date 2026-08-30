@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 
-import { Interpreter } from 'tagscript';
+import { Interpreter, TemplateError } from 'tagscript';
 
 import { EmbedParser } from '../../src';
 
@@ -152,5 +152,19 @@ describe('EmbedParser', () => {
 		expect((await ts.run(`{embed(color):${color}}`)).actions.embed).toStrictEqual({
 			color: 0xed4245,
 		});
+	});
+
+	test('GIVEN malformed JSON THEN report it as a TemplateError instead of leaking the SyntaxError', async () => {
+		const response = await ts.run('{embed:{"title": }}');
+
+		expect(response.errors).toHaveLength(1);
+		expect(response.errors[0]).toBeInstanceOf(TemplateError);
+		expect(response.errors[0].message).toBe('embed was given something that is not valid JSON');
+		expect(response.body).not.toContain('JSON.parse');
+		expect(response.body).not.toContain('position');
+	});
+
+	test('GIVEN malformed JSON THEN keep rendering the rest of the template', async () => {
+		expect((await ts.run('a {embed:{"title": }} b')).body).toBe('a embed was given something that is not valid JSON b');
 	});
 });

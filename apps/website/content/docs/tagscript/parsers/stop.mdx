@@ -48,7 +48,15 @@ Hello Parbez
 
 The parameter is required. The payload is optional and defaults to an empty string.
 
-`parse` throws an `Error` carrying the payload. The interpreter catches it, abandons the remaining tags and returns the text rendered so far plus the message. Nothing propagates to your `await ts.run(...)` call, so you do not need a `try` block for this.
+`parse` throws a `StopSignal` carrying the payload. The interpreter catches it, abandons the remaining tags and returns the text rendered so far plus the message. Nothing propagates to your `await ts.run(...)` call, so you do not need a `try` block for this, and nothing is added to `response.errors` — a stop is control flow, not a failure.
+
+`StopSignal` is exported, so your own parsers can end a render the same way:
+
+```ts showLineNumbers
+import { StopSignal } from 'tagscript';
+
+if (overBudget) throw new StopSignal('That is enough for now.');
+```
 
 A stopped render still returns a normal `Response`. Anything earlier tags wrote to `response.actions` is still there, so check the actions you care about rather than assuming a stop means "do nothing".
 

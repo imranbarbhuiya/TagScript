@@ -50,6 +50,7 @@
 		}
 	},
 	"scripts": {
+		"bench": "bun bench/interpreter.bench.ts",
 		"build": "tsdown",
 		"prepack": "bun run build",
 		"test": "bun test",

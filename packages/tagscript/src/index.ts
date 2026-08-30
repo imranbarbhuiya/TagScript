@@ -1,3 +1,4 @@
+export * from './lib/Errors';
 export * from './lib/Interpreter';
 export * from './lib/Transformer';
 export * from './lib/Parsers';
