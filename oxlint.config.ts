@@ -46,5 +46,13 @@ export default defineConfig({
 				'tsdoc-js/syntax': 'off',
 			},
 		},
+		{
+			// mitata registers a benchmark as `bench('name', function* () { ... })`, so the generator
+			// is anonymous by design and the label is the string argument next to it.
+			files: ['**/bench/**'],
+			rules: {
+				'eslint/func-names': 'off',
+			},
+		},
 	],
 });

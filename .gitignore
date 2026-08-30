@@ -99,3 +99,5 @@ apps/website/content/docs/api/**/*.md
 
 # fumadocs source
 .source
+# Benchmark output
+bench-results.json

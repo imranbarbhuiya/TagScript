@@ -82,14 +82,14 @@ Parsers can also be swapped after construction with `ts.addParsers(...)` and `ts
 ts.run(message, options?);
 ```
 
-| Option          | Default          | Description                                                                                   |
-| --------------- | ---------------- | ----------------------------------------------------------------------------------------------- |
-| `message`       | required         | The template to render. Passed positionally.                                                  |
-| `seedVariables` | `{}`             | Variables available to `StrictVarsParser` / `LooseVarsParser`, as name → transformer.         |
+| Option          | Default          | Description                                                                                       |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
+| `message`       | required         | The template to render. Passed positionally.                                                      |
+| `seedVariables` | `{}`             | Variables available to `StrictVarsParser` / `LooseVarsParser`, as name → transformer.             |
 | `charLimit`     | `null`           | Max characters a render may produce. Exceeding it **rejects** out of `run()`. `null` disables it. |
-| `tagLimit`      | `2000`           | Max characters read from inside a single `{...}`; the rest of that tag body is truncated.     |
-| `parenType`     | `ParenType.Both` | Which parameter syntaxes are accepted: `Both`, `Parenthesis` or `Dot`.                        |
-| `keyValues`     | `{}`             | Arbitrary data for your own parsers, reachable at `ctx.response.keyValues`.                   |
+| `tagLimit`      | `2000`           | Max characters read from inside a single `{...}`; the rest of that tag body is truncated.         |
+| `parenType`     | `ParenType.Both` | Which parameter syntaxes are accepted: `Both`, `Parenthesis` or `Dot`.                            |
+| `keyValues`     | `{}`             | Arbitrary data for your own parsers, reachable at `ctx.response.keyValues`.                       |
 
 `charLimit` is your defence against a template that expands cheaply into a huge string, so set it whenever the template author is untrusted:
 

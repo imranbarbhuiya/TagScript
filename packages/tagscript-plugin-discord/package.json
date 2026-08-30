@@ -55,6 +55,7 @@
 		"access": "public"
 	},
 	"scripts": {
+		"bench": "bun bench/index.ts",
 		"build": "tsdown",
 		"prepack": "bun run build",
 		"test": "bun test",

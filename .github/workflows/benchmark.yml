@@ -1,0 +1,68 @@
+name: Benchmark
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  deployments: write
+  pull-requests: write
+
+jobs:
+  Benchmark:
+    name: Run benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v7
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Use Node.js v22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+      - name: Run benchmarks
+        run: bun run bench -- --out bench-results.json
+
+      # Pushes to main become the baseline every later run is compared against, and feed the chart
+      # published at https://imranbarbhuiya.github.io/tagscript/dev/bench.
+      - name: Record baseline
+        if: github.event_name == 'push'
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: TagScript
+          tool: customSmallerIsBetter
+          output-file-path: bench-results.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          summary-always: true
+          comment-on-alert: true
+          alert-threshold: '150%'
+          fail-on-alert: false
+          max-items-in-chart: 250
+
+      # Pull requests read that baseline and report against it without writing to it, so a PR can
+      # never move the line it is being measured against.
+      - name: Compare against baseline
+        if: github.event_name == 'pull_request'
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: TagScript
+          tool: customSmallerIsBetter
+          output-file-path: bench-results.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: false
+          save-data-file: false
+          summary-always: true
+          comment-always: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+          alert-threshold: '150%'
+          fail-on-alert: false
