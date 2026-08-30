@@ -7,13 +7,13 @@ export enum Part {
 	parenStart = '(',
 	pipe = '|',
 	tagEnd = '}',
-	tagStart = '{'
+	tagStart = '{',
 }
 
 export enum ParenType {
 	Parenthesis,
 	Dot,
-	Both
+	Both,
 }
 
 /**
@@ -55,8 +55,12 @@ export class Lexer {
 	public toString() {
 		let response: string = Part.tagStart;
 		if (this.declaration !== null) response += this.declaration;
-		if (this.parameter !== null)
-			response += this.usedParenType === ParenType.Dot ? `${Part.dot}${this.parameter}` : `${Part.parenStart}${this.parameter}${Part.parenEnd}`;
+		if (this.parameter !== null) {
+			response +=
+				this.usedParenType === ParenType.Dot
+					? `${Part.dot}${this.parameter}`
+					: `${Part.parenStart}${this.parameter}${Part.parenEnd}`;
+		}
 		if (this.payload !== null) response += `${Part.colon}${this.payload}`;
 		response += Part.tagEnd;
 		return response;
@@ -67,7 +71,7 @@ export class Lexer {
 			declaration: this.declaration,
 			parameter: this.parameter,
 			payload: this.payload,
-			usedParenType: this.usedParenType
+			usedParenType: this.usedParenType,
 		};
 	}
 

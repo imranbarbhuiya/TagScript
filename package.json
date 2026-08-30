@@ -1,62 +1,66 @@
 {
 	"name": "root-tagscript",
 	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git"
+	},
 	"workspaces": [
 		"packages/*",
 		"apps/*"
 	],
+	"type": "module",
 	"scripts": {
 		"build": "turbo run build",
 		"bump": "turbo run bump --concurrency=1",
 		"check-update": "turbo run check-update",
-		"clean": "node scripts/clean.mjs",
-		"clean:full": "node scripts/clean-full.mjs",
-		"docs": "node scripts/generateDocs.mjs",
-		"format": "prettier --cache --write .",
-		"lint": "turbo run lint",
-		"update": "yarn upgrade-interactive",
-		"postinstall": "husky install .github/husky",
+		"clean": "bun scripts/clean.mjs",
+		"clean:full": "bun scripts/clean-full.mjs",
+		"docs": "bun scripts/generateDocs.mjs",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"lint": "oxlint --fix .",
+		"lint:check": "oxlint .",
+		"postinstall": "husky .github/husky",
+		"preflight": "bun run typecheck && git diff --name-only HEAD | xargs bunx oxfmt && git diff --name-only HEAD | xargs bunx oxlint --fix",
 		"test": "turbo run test",
+		"test:coverage": "turbo run test:coverage",
 		"test:watch": "turbo run test:watch",
-		"typecheck": "turbo run typecheck"
+		"typecheck": "turbo run typecheck",
+		"update": "bun update --interactive"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.1.0",
 		"@favware/colorette-spinner": "^1.0.1",
+		"@imranbarbhuiya/oxc-config": "^0.1.12",
+		"@types/bun": "^1.4.0",
 		"@types/node": "^22.19.18",
 		"@types/prompts": "^2.4.9",
-		"@vitest/coverage-v8": "^4.1.5",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^9.39.4",
-		"eslint-config-mahir": "^1.1.10",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.0.2",
-		"prettier": "^3.8.3",
+		"oxfmt": "^0.65.0",
+		"oxlint": "^1.80.0",
+		"oxlint-tsgolint": "^7.0.2001",
 		"prompts": "^2.4.2",
 		"tsdown": "^0.22.0",
 		"turbo": "^2.9.14",
 		"typedoc": "^0.28.19",
 		"typedoc-plugin-markdown": "4.11.0",
 		"typedoc-plugin-mdn-links": "^5.1.1",
-		"typescript": "^6.0.3",
-		"vitest": "^4.1.5"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/imranbarbhuiya/tagscript.git"
-	},
-	"engines": {
-		"node": ">=v14.0.0",
-		"npm": ">=7.0.0"
+		"typescript": "^6.0.3"
 	},
 	"lint-staged": {
-		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+		"*": "oxfmt",
+		"*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}": "oxlint --fix"
 	},
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"packageManager": "yarn@4.14.1",
-	"nextBundleAnalysis": {}
+	"engines": {
+		"node": ">=v22.0.0"
+	},
+	"packageManager": "bun@1.4.0"
 }

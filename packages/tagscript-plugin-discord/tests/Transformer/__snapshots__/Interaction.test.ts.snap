@@ -1,6 +1,6 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
 
-exports[`InteractionTransformer > should match the snapshot 1`] = `
+exports[`InteractionTransformer should match the snapshot 1`] = `
 {
   "applicationId": "938716130720235601",
   "channelId": "933395546138357800",

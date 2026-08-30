@@ -1,6 +1,6 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
 
-exports[`UserTransformer > should match the snapshot 1`] = `
+exports[`UserTransformer should match the snapshot 1`] = `
 {
   "avatar": "https://cdn.discordapp.com/avatars/758880890159235083/17ac5f89d5f8b08b5bbd6cc43c930399.webp",
   "bot": false,

@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Lexer, ParenType } from '../../src';
 
 describe('ParenType.Both', () => {
@@ -10,14 +12,14 @@ describe('ParenType.Both', () => {
 			declaration: 'embed',
 			parameter: 'title',
 			payload: 'Hello world',
-			usedParenType: ParenType.Dot
+			usedParenType: ParenType.Dot,
 		});
 
 		expect(result2.toJSON()).toStrictEqual({
 			declaration: 'embed',
 			parameter: 'title',
 			payload: 'Hello world',
-			usedParenType: ParenType.Parenthesis
+			usedParenType: ParenType.Parenthesis,
 		});
 	});
 
@@ -41,7 +43,7 @@ describe('ParenType.Dot', () => {
 			declaration: 'embed',
 			parameter: 'title',
 			payload: 'Hello world',
-			usedParenType: ParenType.Dot
+			usedParenType: ParenType.Dot,
 		});
 
 		const textP = '{embed(title):Hello world}';
@@ -60,7 +62,7 @@ describe('ParenType.Parenthesis', () => {
 			declaration: 'embed',
 			parameter: 'title',
 			payload: 'Hello world',
-			usedParenType: ParenType.Parenthesis
+			usedParenType: ParenType.Parenthesis,
 		});
 
 		const textD = '{embed.title:Hello world}';
@@ -80,7 +82,7 @@ describe('Escape', () => {
 			declaration: 'embed\\.title',
 			parameter: 'description',
 			payload: 'Hello world',
-			usedParenType: ParenType.Dot
+			usedParenType: ParenType.Dot,
 		});
 
 		expect(result.toString()).toStrictEqual(text);
@@ -95,7 +97,7 @@ describe('decDepth', () => {
 			declaration: 'embed',
 			parameter: 'title(description)',
 			payload: 'Hello world',
-			usedParenType: ParenType.Parenthesis
+			usedParenType: ParenType.Parenthesis,
 		});
 	});
 
@@ -106,7 +108,7 @@ describe('decDepth', () => {
 			declaration: 'embed',
 			parameter: 'title.description',
 			payload: 'Hello world',
-			usedParenType: ParenType.Parenthesis
+			usedParenType: ParenType.Parenthesis,
 		});
 
 		const text2 = '{embed.title.description:Hello world}';
@@ -115,7 +117,7 @@ describe('decDepth', () => {
 			declaration: 'embed',
 			parameter: 'title.description',
 			payload: 'Hello world',
-			usedParenType: ParenType.Dot
+			usedParenType: ParenType.Dot,
 		});
 
 		const text3 = '{embed.title.description}';
@@ -124,7 +126,7 @@ describe('decDepth', () => {
 			declaration: 'embed',
 			parameter: 'title.description',
 			payload: null,
-			usedParenType: ParenType.Dot
+			usedParenType: ParenType.Dot,
 		});
 	});
 });

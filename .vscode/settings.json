@@ -1,14 +1,17 @@
 {
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "never",
+		"source.fixAll.oxc": "explicit",
+		"source.organizeImports": "never"
+	},
 	"editor.tabSize": 4,
 	"editor.useTabStops": true,
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.eol": "\n",
-	"cSpell.words": ["cooldown", "tagscript"],
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
-	},
-	"eslint.validate": ["markdown", "mdx", "javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"cSpell.words": ["cooldown", "oxfmt", "oxlint", "tagscript"],
 	"files.associations": {
 		"*.css": "tailwindcss"
 	}

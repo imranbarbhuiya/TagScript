@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Context, Interpreter, Lexer, Response } from '../../src';
 
 describe('Context', () => {
@@ -11,7 +13,7 @@ describe('Context', () => {
 			tag: lexer,
 			originalMessage: '{tag}',
 			interpreter,
-			response
+			response,
 		});
 	});
 });

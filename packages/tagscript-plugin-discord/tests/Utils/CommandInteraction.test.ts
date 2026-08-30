@@ -1,4 +1,6 @@
-import { ApplicationCommandOptionType } from 'discord.js';
+import { describe, expect, test } from 'bun:test';
+
+import { ApplicationCommandOptionType, type CommandInteractionOptionResolver } from 'discord.js';
 import { Interpreter, StrictVarsParser } from 'tagscript';
 
 import { resolveCommandOptions } from '../../src';
@@ -19,9 +21,9 @@ describe('resolveCommandOptions', () => {
 							name: 'member',
 							type: ApplicationCommandOptionType.User,
 							value: member.id,
-							member
-						}
-					]
+							member,
+						},
+					],
 				},
 				{
 					name: 'sub-command-group',
@@ -37,70 +39,70 @@ describe('resolveCommandOptions', () => {
 									name: 'channel',
 									type: ApplicationCommandOptionType.Channel,
 									value: channel.id,
-									channel
-								}
-							]
-						}
-					]
+									channel,
+								},
+							],
+						},
+					],
 				},
 				{
 					name: 'string',
 					type: ApplicationCommandOptionType.String,
-					value: 'Hello'
+					value: 'Hello',
 				},
 				{
 					name: 'channel',
 					type: ApplicationCommandOptionType.Channel,
 					value: channel.id,
-					channel
+					channel,
 				},
 				{
 					name: 'role',
 					type: ApplicationCommandOptionType.Role,
 					value: role.id,
-					role
+					role,
 				},
 				{
 					name: 'mentionable',
 					type: ApplicationCommandOptionType.Mentionable,
 					value: role.id,
-					role
+					role,
 				},
 				{
 					name: 'mentionable-2',
 					type: ApplicationCommandOptionType.Mentionable,
 					value: user.id,
-					user
+					user,
 				},
 				{
 					name: 'boolean',
 					type: ApplicationCommandOptionType.Boolean,
-					value: true
+					value: true,
 				},
 				{
 					name: 'number',
 					type: ApplicationCommandOptionType.Number,
-					value: 1.1
+					value: 1.1,
 				},
 				{
 					name: 'integer',
 					type: ApplicationCommandOptionType.Integer,
-					value: 1
+					value: 1,
 				},
 				{
 					name: 'attachment',
 					type: ApplicationCommandOptionType.Attachment,
 					value: attachment.id,
-					attachment
+					attachment,
 				},
 				{
 					name: 'user',
 					type: ApplicationCommandOptionType.User,
 					value: user.id,
-					user
-				}
-			]
-		});
+					user,
+				},
+			],
+		} as unknown as Omit<CommandInteractionOptionResolver, 'getFocused' | 'getMessage'>);
 
 		expect((await ts.run('{subCommand}', transformers)).body).toBe('sub-command');
 		expect((await ts.run('{subCommandGroup}', transformers)).body).toBe('sub-command-group');
@@ -115,7 +117,7 @@ describe('resolveCommandOptions', () => {
 		expect((await ts.run('{number}', transformers)).body).toBe('1');
 		expect((await ts.run('{integer}', transformers)).body).toBe('1');
 		expect((await ts.run('{attachment}', transformers)).body).toBe(
-			'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp'
+			'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
 		);
 		expect((await ts.run('{user}', transformers)).body).toBe('<@758880890159235083>');
 	});

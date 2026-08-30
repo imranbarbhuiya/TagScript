@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter, JSONVarParser, Response, SafeObjectTransformer, StrictVarsParser } from '../../src';
 
 describe('JSONVar', () => {
@@ -8,16 +10,16 @@ describe('JSONVar', () => {
 
 		expect(await ts.run(text)).toStrictEqual(
 			new Response({
-				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}')
-			}).setValues('', text)
+				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
+			}).setValues('', text),
 		);
 
 		const text1 = `${text}{data.name}`;
 
 		expect(await ts.run(text1)).toStrictEqual(
 			new Response({
-				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}')
-			}).setValues('John Doe', text1)
+				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
+			}).setValues('John Doe', text1),
 		);
 	});
 });

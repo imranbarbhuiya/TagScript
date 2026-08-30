@@ -12,10 +12,10 @@ export const createTsdownConfig = (options: UserConfig = {}) =>
 		target: 'esnext',
 		tsconfig: 'src/tsconfig.json',
 		outputOptions: {
-			keepNames: true
+			keepNames: true,
 		},
 		deps: {
-			skipNodeModulesBundle: true
+			skipNodeModulesBundle: true,
 		},
-		...options
+		...options,
 	});

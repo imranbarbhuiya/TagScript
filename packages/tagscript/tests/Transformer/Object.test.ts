@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { SafeObjectTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
 
 describe('SafeObjectTransformer', () => {
@@ -6,22 +8,22 @@ describe('SafeObjectTransformer', () => {
 
 		await expect(
 			ts.run('{obj}', {
-				obj: new SafeObjectTransformer({ toString: () => '5' })
-			})
+				obj: new SafeObjectTransformer({ toString: () => '5' }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ toString: () => '5' })
-			}).setValues('5', '{obj}')
+				obj: new SafeObjectTransformer({ toString: () => '5' }),
+			}).setValues('5', '{obj}'),
 		);
 
 		await expect(
 			ts.run('{obj.name}', {
-				obj: new SafeObjectTransformer({ name: '5' })
-			})
+				obj: new SafeObjectTransformer({ name: '5' }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ name: '5' })
-			}).setValues('5', '{obj.name}')
+				obj: new SafeObjectTransformer({ name: '5' }),
+			}).setValues('5', '{obj.name}'),
 		);
 	});
 
@@ -29,12 +31,12 @@ describe('SafeObjectTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		await expect(
 			ts.run('{obj._name}', {
-				obj: new SafeObjectTransformer({ _name: '5' })
-			})
+				obj: new SafeObjectTransformer({ _name: '5' }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ _name: '5' })
-			}).setValues('{obj._name}', '{obj._name}')
+				obj: new SafeObjectTransformer({ _name: '5' }),
+			}).setValues('{obj._name}', '{obj._name}'),
 		);
 	});
 
@@ -42,12 +44,12 @@ describe('SafeObjectTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		await expect(
 			ts.run('{obj.get}', {
-				obj: new SafeObjectTransformer({ get: () => '5' })
-			})
+				obj: new SafeObjectTransformer({ get: () => '5' }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ get: () => '5' })
-			}).setValues('{obj.get}', '{obj.get}')
+				obj: new SafeObjectTransformer({ get: () => '5' }),
+			}).setValues('{obj.get}', '{obj.get}'),
 		);
 	});
 
@@ -55,12 +57,12 @@ describe('SafeObjectTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		await expect(
 			ts.run('{obj.name}', {
-				obj: new SafeObjectTransformer({ age: '5' })
-			})
+				obj: new SafeObjectTransformer({ age: '5' }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ age: '5' })
-			}).setValues('{obj.name}', '{obj.name}')
+				obj: new SafeObjectTransformer({ age: '5' }),
+			}).setValues('{obj.name}', '{obj.name}'),
 		);
 	});
 
@@ -68,32 +70,32 @@ describe('SafeObjectTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		await expect(
 			ts.run('{obj.name.first}', {
-				obj: new SafeObjectTransformer({ name: { first: '5' } })
-			})
+				obj: new SafeObjectTransformer({ name: { first: '5' } }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ name: { first: '5' } })
-			}).setValues('5', '{obj.name.first}')
+				obj: new SafeObjectTransformer({ name: { first: '5' } }),
+			}).setValues('5', '{obj.name.first}'),
 		);
 
 		await expect(
 			ts.run('{obj.name.first.second}', {
-				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } })
-			})
+				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } })
-			}).setValues('5', '{obj.name.first.second}')
+				obj: new SafeObjectTransformer({ name: { first: { second: '5' } } }),
+			}).setValues('5', '{obj.name.first.second}'),
 		);
 
 		await expect(
 			ts.run('{obj.name.first.second.third}', {
-				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } })
-			})
+				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } })
-			}).setValues('5', '{obj.name.first.second.third}')
+				obj: new SafeObjectTransformer({ name: { first: { second: { third: '5' } } } }),
+			}).setValues('5', '{obj.name.first.second.third}'),
 		);
 	});
 
@@ -101,12 +103,12 @@ describe('SafeObjectTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		await expect(
 			ts.run('{obj.name.first.second}', {
-				obj: new SafeObjectTransformer({ name: { first: '5' } })
-			})
+				obj: new SafeObjectTransformer({ name: { first: '5' } }),
+			}),
 		).resolves.toStrictEqual(
 			new Response({
-				obj: new SafeObjectTransformer({ name: { first: '5' } })
-			}).setValues('{obj.name.first.second}', '{obj.name.first.second}')
+				obj: new SafeObjectTransformer({ name: { first: '5' } }),
+			}).setValues('{obj.name.first.second}', '{obj.name.first.second}'),
 		);
 	});
 });

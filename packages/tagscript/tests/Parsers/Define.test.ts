@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter, DefineParser, LooseVarsParser, Response, StringTransformer, StrictVarsParser } from '../../src';
 
 describe('DefineParser', () => {
@@ -8,8 +10,8 @@ describe('DefineParser', () => {
 
 			expect(await ts.run(text)).toStrictEqual(
 				new Response({
-					user: new StringTransformer('mahir')
-				}).setValues('mahir {ok}', text)
+					user: new StringTransformer('mahir'),
+				}).setValues('mahir {ok}', text),
 			);
 		});
 	});
@@ -20,8 +22,8 @@ describe('DefineParser', () => {
 			const text1 = '{=(user):mahir} {user} {ok}';
 			expect(await ts.run(text1)).toStrictEqual(
 				new Response({
-					user: new StringTransformer('mahir')
-				}).setValues('mahir {ok}', text1)
+					user: new StringTransformer('mahir'),
+				}).setValues('mahir {ok}', text1),
 			);
 		});
 	});

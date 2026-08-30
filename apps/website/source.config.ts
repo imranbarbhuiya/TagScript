@@ -7,15 +7,15 @@ export const docs = defineDocs({
 	docs: {
 		postprocess: {
 			includeProcessedMarkdown: true,
-			extractLinkReferences: true
-		}
-	}
+			extractLinkReferences: true,
+		},
+	},
 });
 
 export default defineConfig({
 	plugins: [lastModified()],
 	mdxOptions: {
 		rehypeCodeOptions: { themes: { light: 'catppuccin-latte', dark: 'catppuccin-mocha' } },
-		remarkPlugins: [[remarkNpm, { Tabs: 'InstallTabs' }]]
-	}
+		remarkPlugins: [[remarkNpm, { Tabs: 'InstallTabs' }]],
+	},
 });

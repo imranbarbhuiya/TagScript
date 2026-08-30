@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Response } from '../../src';
 
 describe('Response', () => {
@@ -9,7 +11,7 @@ describe('Response', () => {
 			raw: '{Hello World}',
 			actions: {},
 			keyValues: {},
-			variables: {}
+			variables: {},
 		});
 	});
 });

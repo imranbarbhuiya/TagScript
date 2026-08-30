@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter, Response, UrlDecodeParser, UrlEncodeParser } from '../../src';
 
 const ts = new Interpreter(new UrlEncodeParser(), new UrlDecodeParser());

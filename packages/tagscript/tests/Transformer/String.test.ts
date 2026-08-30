@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter, Response, StrictVarsParser, StringTransformer } from '../../src';
 
 describe('StringTransformer', () => {
@@ -5,12 +7,12 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		expect(
 			await ts.run('{user}', {
-				user: new StringTransformer('mahir')
-			})
+				user: new StringTransformer('mahir'),
+			}),
 		).toStrictEqual(
 			new Response({
-				user: new StringTransformer('mahir')
-			}).setValues('mahir', '{user}')
+				user: new StringTransformer('mahir'),
+			}).setValues('mahir', '{user}'),
 		);
 	});
 
@@ -18,7 +20,7 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{user(2)}';
 		const variables = {
-			user: new StringTransformer('Hello World')
+			user: new StringTransformer('Hello World'),
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('World', text));
 
@@ -33,22 +35,26 @@ describe('StringTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{user(+2)}';
 		const variables = {
-			user: new StringTransformer('Hello World. Hello World.')
+			user: new StringTransformer('Hello World. Hello World.'),
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('Hello World.', text));
 
 		const text2 = '{user(2+)}';
-		expect(await ts.run(text2, variables)).toStrictEqual(new Response(variables).setValues('World. Hello World.', text2));
+		expect(await ts.run(text2, variables)).toStrictEqual(
+			new Response(variables).setValues('World. Hello World.', text2),
+		);
 
 		const text3 = '{user(2+3)}';
-		expect(await ts.run(text3, variables)).toStrictEqual(new Response(variables).setValues('Hello World. Hello World.', text3));
+		expect(await ts.run(text3, variables)).toStrictEqual(
+			new Response(variables).setValues('Hello World. Hello World.', text3),
+		);
 	});
 
 	test('GIVEN a string in StringTransformer with escape true THEN escape the string', async () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{user}';
 		const variables = {
-			user: new StringTransformer('Parbez|Barbhuiya', true)
+			user: new StringTransformer('Parbez|Barbhuiya', true),
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('Parbez\\|Barbhuiya', text));
 	});

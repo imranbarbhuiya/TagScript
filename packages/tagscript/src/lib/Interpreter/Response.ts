@@ -58,7 +58,7 @@ export class Response {
 			raw: this.raw,
 			actions: this.actions,
 			variables: this.variables,
-			keyValues: this.keyValues
+			keyValues: this.keyValues,
 		};
 	}
 }

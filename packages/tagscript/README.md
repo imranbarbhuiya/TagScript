@@ -60,7 +60,7 @@ const result = await ts.run(
 	`
     {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
     I pick {if({5050:.}!=):heads|tails}
-    `
+    `,
 );
 ```
 

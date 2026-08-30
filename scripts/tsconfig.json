@@ -2,9 +2,7 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
-		"checkJs": true,
-		"module": "nodenext",
-		"moduleResolution": "node16"
+		"checkJs": true
 	},
 	"include": ["**/*.mjs", "**/*.js", "**/*.ts"]
 }

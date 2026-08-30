@@ -11,7 +11,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 	return {
 		...defaultMdxComponents,
 		img: (props) => <ImageZoom {...(props as any)} />,
-		Image: (props) => <ImageZoom {...(props as any)} />,
+		Image: (props) => <ImageZoom {...props} />,
 		pre: ({ ref: _ref, ...rest }) => (
 			<CodeBlock {...rest}>
 				<Pre>{rest.children}</Pre>
@@ -25,6 +25,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 			</Tabs>
 		),
 		blockquote: (props) => <Callout>{props.children}</Callout>,
-		...components
+		...components,
 	};
 }

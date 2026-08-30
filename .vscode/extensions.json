@@ -1,7 +1,6 @@
 {
 	"recommendations": [
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
+		"oxc.oxc-vscode",
 		"github.vscode-pull-request-github",
 		"eamodio.gitlens",
 		"christian-kohler.npm-intellisense",

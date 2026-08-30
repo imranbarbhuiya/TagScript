@@ -1,62 +1,68 @@
 name: Continuous Delivery
 
 on:
-    workflow_dispatch:
-        inputs:
-            prNumber:
-                description: The number of the PR that is being deployed
-                required: true
-            ref:
-                description: The branch that is being deployed. Should be a branch on the given repository
-                required: false
-                default: main
-            repository:
-                description: The {owner}/{repository} that is being deployed.
-                required: false
-                default: imranbarbhuiya/tagscript
-    push:
-        branches:
-            - main
+  push:
+    tags:
+      - '**@*'
 
 jobs:
-    Publish:
-        name: Publish Next to npm
-        permissions:
-            id-token: write
-        runs-on: ubuntu-latest
-        if: github.repository_owner == 'imranbarbhuiya'
-        steps:
-            - name: Checkout Project
-              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-              with:
-                  fetch-depth: 0
-                  repository: ${{ github.event.inputs.repository || 'imranbarbhuiya/tagscript' }}
-                  ref: ${{ github.event.inputs.ref || 'main' }}
-            - name: Add TypeScript problem matcher
-              run: echo "::add-matcher::.github/problemMatchers/tsc.json"
-            - name: Use Node.js v22
-              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-              with:
-                  node-version: 22
-                  cache: yarn
-                  registry-url: https://registry.yarnpkg.com/
-            - name: Install Dependencies
-              uses: ./scripts/yarnCache
-            - name: Build all packages
-              run: yarn build --filter="./packages/*"
-            - name: Bump Versions & Publish
-              run: |
-                  # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
-                  TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
-                  yarn config set npmAuthToken ${NODE_AUTH_TOKEN}
-                  yarn config set npmPublishRegistry "https://registry.yarnpkg.com"
-                  for d in packages/*; do
-                    pushd $d
-                    yarn bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)" --skip-changelog
-                    yarn npm publish --tag ${TAG}
-                    popd
-                  done
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_CONFIG_PROVENANCE: true
+  Publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'imranbarbhuiya'
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Use Node.js v24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+      - name: Resolve released package
+        id: package
+        run: |
+          PACKAGE_NAME="${GITHUB_REF_NAME%@*}"
+          PACKAGE_DIR=$(
+            for dir in packages/*; do
+              if [ "$(node -p "require('./$dir/package.json').name")" = "$PACKAGE_NAME" ]; then
+                echo "$dir"
+                break
+              fi
+            done
+          )
+          if [ -z "$PACKAGE_DIR" ]; then
+            echo "No workspace package matches tag $GITHUB_REF_NAME"
+            exit 1
+          fi
+          echo "name=$PACKAGE_NAME" >> "$GITHUB_OUTPUT"
+          echo "dir=$PACKAGE_DIR" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p "require('./$PACKAGE_DIR/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Build all packages
+        run: bun run build --filter="./packages/*"
+      - name: Resolve workspace dependencies
+        run: bun scripts/resolveWorkspaceDeps.mjs "${{ steps.package.outputs.dir }}"
+      - name: Publish
+        working-directory: ${{ steps.package.outputs.dir }}
+        run: |
+          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version >/dev/null 2>&1; then
+            echo "$PACKAGE_NAME@$PACKAGE_VERSION is already published"
+          else
+            npm publish --access public --provenance --ignore-scripts
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          PACKAGE_NAME: ${{ steps.package.outputs.name }}
+          PACKAGE_VERSION: ${{ steps.package.outputs.version }}
+      - name: Create GitHub Release
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+        env:
+          GH_TOKEN: ${{ github.token }}

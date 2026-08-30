@@ -61,11 +61,36 @@ const result = await ts.run(
 	`
     {random: Parbez,Rkn,Priyansh} attempts to pick the lock!,
     I pick {if({5050:.}!=):heads|tails}
-    `
+    `,
 ); // Parbez attempts to pick the lock!, I pick heads
 ```
 
 For more usage, check out the documentation [here](https://tagscript.js.org/).
+
+## Development
+
+This repository uses [Bun](https://bun.sh) as its package manager and script runner, [Turborepo](https://turborepo.com) for task orchestration, and [Oxlint](https://oxc.rs/docs/guide/usage/linter) / [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) for linting and formatting.
+
+```sh
+bun install
+
+bun run build      # build every workspace
+bun run test       # run the test suites with `bun test`
+bun run typecheck  # typecheck every workspace
+bun run lint       # oxlint, autofixing what it can (type-aware, so run `bun run build` first)
+bun run format     # oxfmt
+```
+
+### Releasing
+
+Versions are bumped locally with [cliff-jumper](https://github.com/favware/cliff-jumper), which writes the changelog and creates a tag such as `tagscript@1.4.0`:
+
+```sh
+bun run bump
+git push --follow-tags
+```
+
+Pushing that tag triggers the `Continuous Delivery` workflow, which publishes the matching package to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements) and opens a GitHub release.
 
 ## Buy me some doughnuts
 

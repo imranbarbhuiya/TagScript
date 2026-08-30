@@ -71,16 +71,16 @@ export class EmbedParser extends BaseParser implements IParser {
 					{
 						name,
 						value,
-						inline: inline === 'true'
-					}
-				]
+						inline: inline === 'true',
+					},
+				],
 			});
 		}
 
 		if (ctx.tag.parameter === 'color') {
 			return this.returnEmbed(ctx, {
 				// This can return number but it should be handled by the dev
-				color: resolveColor(ctx.tag.payload!) as number
+				color: resolveColor(ctx.tag.payload!) as number,
 			});
 		}
 

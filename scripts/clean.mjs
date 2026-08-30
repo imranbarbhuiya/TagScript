@@ -1,5 +1,4 @@
 import { rm } from 'node:fs/promises';
-import { URL } from 'node:url';
 
 const rootDir = new URL('../', import.meta.url);
 const packagesDir = new URL('packages/', rootDir);
@@ -12,7 +11,7 @@ const paths = [
 
 	// Turbo folders
 	new URL('tagscript/.turbo/', packagesDir),
-	new URL('tagscript-plugin-discord/.turbo/', packagesDir)
+	new URL('tagscript-plugin-discord/.turbo/', packagesDir),
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

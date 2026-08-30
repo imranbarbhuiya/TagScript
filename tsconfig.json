@@ -1,21 +1,21 @@
 {
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "commonjs",
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
 		"strict": true,
 		"skipLibCheck": true,
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"noImplicitThis": true,
-		"alwaysStrict": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"moduleResolution": "node",
 		"declaration": true,
 		"outDir": "dist"
 	},
-	"includes": ["packages/**/*.ts"],
+	"include": ["packages/**/*.ts"],
 	"exclude": ["packages/**/dist/**"]
 }

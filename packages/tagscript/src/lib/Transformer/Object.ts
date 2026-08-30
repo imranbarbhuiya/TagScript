@@ -37,7 +37,7 @@ export class SafeObjectTransformer implements ITransformer {
 	private makeObject(obj: Record<string, unknown> | string) {
 		const safeObject = JSON.parse(typeof obj === 'string' ? obj : JSON.stringify(obj)) as Record<string, unknown>;
 		Object.defineProperty(safeObject, 'toString', {
-			value: obj.toString.bind(obj)
+			value: obj.toString.bind(obj),
 		});
 		return safeObject;
 	}

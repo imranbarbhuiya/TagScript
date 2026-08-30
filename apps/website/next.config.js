@@ -13,24 +13,24 @@ const config = {
 					{
 						type: 'header',
 						key: 'accept',
-						value: '(.*)text/markdown(.*)'
-					}
-				]
-			}
-		]
+						value: '(.*)text/markdown(.*)',
+					},
+				],
+			},
+		],
 	}),
 	redirects: async () => [
 		{
 			source: '/:path*.mdx',
 			destination: '/llms.mdx/:path*',
-			permanent: true
+			permanent: true,
 		},
 		{
 			source: '/basic-guide/:path*',
 			destination: '/general-commands/:path*',
-			permanent: true
-		}
-	]
+			permanent: true,
+		},
+	],
 };
 
 export default withMDX(config);

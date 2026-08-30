@@ -5,11 +5,9 @@
  * Feel free to optimize it. I just added new codes whenever I need as I'm busy with other stuff and optimizing this script is not necessary.
  */
 
-/* eslint-disable tsdoc/syntax */
 import { exec, execSync } from 'node:child_process';
 import { cp, rm, mkdir, rename, opendir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import process from 'node:process';
 /**
  *
  * @param {string} path - The path to the directory to search
@@ -66,7 +64,7 @@ try {
 	// Copy all the `meta.json` files from api to docs folder
 	await cp('apps/website/content/docs/api/', 'docs', {
 		recursive: true,
-		filter: (path) => !path.endsWith('.md') || path.includes('meta.json')
+		filter: (path) => !path.endsWith('.md') || path.includes('meta.json'),
 	});
 	console.log('Copied meta.json files');
 } catch {}
@@ -114,7 +112,7 @@ for await (const file of findFilesRecursively('apps/website/content/docs/api')) 
 				`title: ${fileHeading?.replaceAll(/-|_|.md/g, ' ').replaceAll(/\b\w/g, (line) => line.toUpperCase()) ?? 'Tagscript Docs'}`,
 				'---',
 				'',
-				newContent.replace(new RegExp(`^# ${escapeRegex(fileHeading ?? '')}`), '')
+				newContent.replace(new RegExp(`^# ${escapeRegex(fileHeading ?? '')}`), ''),
 			].join('\n')
 		: newContent;
 
@@ -123,7 +121,7 @@ for await (const file of findFilesRecursively('apps/website/content/docs/api')) 
 
 await mkdir('apps/website/content/docs/api/plugins', { recursive: true });
 await cp('apps/website/content/docs/api/@tagscript/plugin-discord', 'apps/website/content/docs/api/plugins', {
-	recursive: true
+	recursive: true,
 });
 
 console.log('Docs generated successfully!');

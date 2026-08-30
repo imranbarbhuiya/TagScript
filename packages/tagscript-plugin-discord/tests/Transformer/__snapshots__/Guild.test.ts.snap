@@ -1,6 +1,6 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
 
-exports[`GuildTransformer > should match the snapshot 1`] = `
+exports[`GuildTransformer should match the snapshot 1`] = `
 {
   "afkChannel": "null",
   "afkTimeout": 300,

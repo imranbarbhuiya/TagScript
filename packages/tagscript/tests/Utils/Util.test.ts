@@ -1,8 +1,9 @@
+import { describe, expect, test } from 'bun:test';
+
 import { asyncFilter, escapeContent, implicitBool, parseIf, split } from '../../src';
 
 describe('asyncFilter', () => {
 	test('GIVEN async tasks in AsyncFilter THEN filter out all Promise<false>', async () => {
-		// eslint-disable-next-line @typescript-eslint/require-await
 		const result = await asyncFilter([true, false], async (value) => Boolean(value));
 		expect(result).toStrictEqual([true]);
 	});

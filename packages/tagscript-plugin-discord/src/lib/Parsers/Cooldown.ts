@@ -29,7 +29,7 @@ export class CooldownParser extends BaseParser implements IParser {
 
 		ctx.response.actions.cooldown = {
 			cooldown,
-			message: payload
+			message: payload,
 		};
 		return '';
 	}

@@ -18,7 +18,7 @@ import {
 	type APIGuild,
 	type APIGuildMember,
 	type APIRole,
-	type APIUser
+	type APIUser,
 } from 'discord.js';
 
 export const client = new Client({ intents: [] });
@@ -31,7 +31,7 @@ const userObject: APIUser = {
 	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
 	bot: false,
 	system: false,
-	mfa_enabled: false
+	mfa_enabled: false,
 };
 
 const userObject2: APIUser = {
@@ -42,7 +42,7 @@ const userObject2: APIUser = {
 	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
 	bot: false,
 	system: false,
-	mfa_enabled: false
+	mfa_enabled: false,
 };
 
 const roleObject: APIRole = {
@@ -59,8 +59,8 @@ const roleObject: APIRole = {
 	colors: {
 		primary_color: 0,
 		secondary_color: 0,
-		tertiary_color: 0
-	}
+		tertiary_color: 0,
+	},
 };
 
 const everyoneRoleObject: APIRole = {
@@ -78,8 +78,8 @@ const everyoneRoleObject: APIRole = {
 	colors: {
 		primary_color: 0,
 		secondary_color: 0,
-		tertiary_color: 0
-	}
+		tertiary_color: 0,
+	},
 };
 
 const guildObject = {
@@ -105,7 +105,7 @@ const guildObject = {
 	premium_tier: 0,
 	preferred_locale: 'en-US',
 	nsfw_level: 0,
-	premium_progress_bar_enabled: false
+	premium_progress_bar_enabled: false,
 } as unknown as APIGuild;
 
 const memberObject: APIGuildMember = {
@@ -114,7 +114,7 @@ const memberObject: APIGuildMember = {
 	deaf: false,
 	mute: false,
 	user: userObject,
-	flags: GuildMemberFlags.CompletedOnboarding
+	flags: GuildMemberFlags.CompletedOnboarding,
 };
 
 const channelObject: APIChannel = {
@@ -123,7 +123,7 @@ const channelObject: APIChannel = {
 	type: 0,
 	topic: 'A test channel',
 	position: 1,
-	guild_id: '933368398996447292'
+	guild_id: '933368398996447292',
 };
 
 const channel2Object: APIChannel = {
@@ -133,7 +133,7 @@ const channel2Object: APIChannel = {
 	position: 2,
 	nsfw: false,
 	rate_limit_per_user: 0,
-	guild_id: '933368398996447292'
+	guild_id: '933368398996447292',
 };
 
 export const attachment: APIAttachment = {
@@ -141,7 +141,7 @@ export const attachment: APIAttachment = {
 	filename: 'test.png',
 	proxy_url: 'https://media.discordapp.net/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
 	size: 4_096,
-	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp'
+	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
 };
 const interactionObject: APIApplicationCommandInteraction = {
 	id: '933368398996447292',
@@ -155,12 +155,12 @@ const interactionObject: APIApplicationCommandInteraction = {
 			users: { '758880890159235081': userObject2, '758880890159235083': userObject },
 			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
 			channels: {
-				'933395546138357800': { ...channelObject, permissions: '8', name: 'test' }
+				'933395546138357800': { ...channelObject, permissions: '8', name: 'test' },
 			},
 			roles: { '933378013154906142': roleObject },
 			attachments: {
-				'933368398996447291': attachment
-			}
+				'933368398996447291': attachment,
+			},
 		},
 		options: [
 			{
@@ -170,9 +170,9 @@ const interactionObject: APIApplicationCommandInteraction = {
 					{
 						name: 'member',
 						type: ApplicationCommandOptionType.User,
-						value: '758880890159235083'
-					}
-				]
+						value: '758880890159235083',
+					},
+				],
 			},
 			{
 				name: 'sub-command-group',
@@ -185,63 +185,63 @@ const interactionObject: APIApplicationCommandInteraction = {
 							{
 								name: 'channel',
 								type: ApplicationCommandOptionType.Channel,
-								value: '933395546138357800'
-							}
-						]
-					}
-				]
+								value: '933395546138357800',
+							},
+						],
+					},
+				],
 			},
 			{
 				name: 'string',
 				type: ApplicationCommandOptionType.String,
-				value: 'Hello'
+				value: 'Hello',
 			},
 			{
 				name: 'channel',
 				type: ApplicationCommandOptionType.Channel,
-				value: '933395546138357800'
+				value: '933395546138357800',
 			},
 			{
 				name: 'role',
 				type: ApplicationCommandOptionType.Role,
-				value: '933378013154906142'
+				value: '933378013154906142',
 			},
 			{
 				name: 'mentionable',
 				type: ApplicationCommandOptionType.Mentionable,
-				value: '933378013154906142'
+				value: '933378013154906142',
 			},
 			{
 				name: 'mentionable-2',
 				type: ApplicationCommandOptionType.Mentionable,
-				value: '758880890159235081'
+				value: '758880890159235081',
 			},
 			{
 				name: 'boolean',
 				type: ApplicationCommandOptionType.Boolean,
-				value: true
+				value: true,
 			},
 			{
 				name: 'number',
 				type: ApplicationCommandOptionType.Number,
-				value: 1.1
+				value: 1.1,
 			},
 			{
 				name: 'integer',
 				type: ApplicationCommandOptionType.Integer,
-				value: 1
+				value: 1,
 			},
 			{
 				name: 'attachment',
 				type: ApplicationCommandOptionType.Attachment,
-				value: '933368398996447291'
+				value: '933368398996447291',
 			},
 			{
 				name: 'user',
 				type: ApplicationCommandOptionType.User,
-				value: '758880890159235081'
-			}
-		]
+				value: '758880890159235081',
+			},
+		],
 	},
 	guild_id: '933368398996447292',
 	channel_id: '933395546138357800',
@@ -255,7 +255,7 @@ const interactionObject: APIApplicationCommandInteraction = {
 	app_permissions: '8',
 	channel: channelObject,
 	authorizing_integration_owners: {},
-	attachment_size_limit: 8_388_608
+	attachment_size_limit: 8_388_608,
 };
 
 // @ts-expect-error(2674) using protected constructor to test

@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { StringFormatParser, Interpreter, Response, OrdinalFormatParser } from '../../src';
 
 describe('FormatParser', () => {

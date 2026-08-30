@@ -43,7 +43,7 @@ export const escapeContent = (content: string): string => content.replaceAll(esc
 export const implicitBool = (str: string) => {
 	const booleans = {
 		true: true,
-		false: false
+		false: false,
 	};
 	const lower = str.toLowerCase();
 	return lower in booleans ? booleans[lower as keyof typeof booleans] : null;

@@ -18,7 +18,9 @@ export interface SafeValues<T> {
  *
  * @typeParam T - The base type.
  */
-export abstract class BaseTransformer<T extends CommandInteraction | Guild | GuildChannel | GuildMember | Role | User> implements ITransformer {
+export abstract class BaseTransformer<
+	T extends CommandInteraction | Guild | GuildChannel | GuildMember | Role | User,
+> implements ITransformer {
 	protected base: T;
 
 	protected safeValues: SafeValues<T> = {};
@@ -26,7 +28,6 @@ export abstract class BaseTransformer<T extends CommandInteraction | Guild | Gui
 	public constructor(base: T, safeValues: SafeValues<T> = {}) {
 		this.base = base;
 		this.safeValues.id = this.base.id;
-		// eslint-disable-next-line @typescript-eslint/no-base-to-string
 		this.safeValues.mention = base.toString();
 		this.safeValues.name = 'name' in base ? base.name : '';
 		this.updateSafeValues();

@@ -20,7 +20,7 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 	const path = `apps/website/content/docs/${page.path}`;
 	const footer = path.includes('/api/') ? null : (
 		<a
-			className="inline-flex items-center justify-center font-medium ring-offset-fd-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-fd-ring disabled:pointer-events-none disabled:opacity-50 border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-secondary/80 h-9 rounded-md px-3 text-xs gap-1.5"
+			className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border bg-fd-secondary px-3 text-xs font-medium text-fd-secondary-foreground ring-offset-fd-background transition-colors hover:bg-fd-secondary/80 focus-visible:ring-2 focus-visible:ring-fd-ring focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
 			href={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`}
 			rel="noreferrer noopener"
 			target="_blank"
@@ -40,9 +40,12 @@ export default async function Page(props: { readonly params: Promise<{ slugs?: s
 		>
 			<DocsTitle>{page.data.title}</DocsTitle>
 			<DocsDescription>{page.data.description}</DocsDescription>
-			<div className="flex flex-row gap-2 items-center border-b pb-6">
+			<div className="flex flex-row items-center gap-2 border-b pb-6">
 				<LLMCopyButton markdownUrl={`${page.url}.mdx`} />
-				<ViewOptions githubUrl={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`} markdownUrl={`${page.url}.mdx`} />
+				<ViewOptions
+					githubUrl={`https://github.com/imranbarbhuiya/TagScript/tree/main/${path}`}
+					markdownUrl={`${page.url}.mdx`}
+				/>
 			</div>
 			<DocsBody>
 				<Mdx components={getMDXComponents()} />
@@ -69,13 +72,16 @@ export async function generateMetadata(props: { params: Promise<{ slugs?: string
 
 	const imageParams = new URLSearchParams();
 	imageParams.set('title', page.data.title);
-	imageParams.set('description', page.data.description ?? 'Tagscript is a simple, lightweight, and easy to use templating language.');
+	imageParams.set(
+		'description',
+		page.data.description ?? 'Tagscript is a simple, lightweight, and easy to use templating language.',
+	);
 
 	const image = {
 		alt: 'Banner',
 		url: `/api/og/?${imageParams.toString()}`,
 		width: 1_200,
-		height: 630
+		height: 630,
 	};
 
 	return {
@@ -85,25 +91,25 @@ export async function generateMetadata(props: { params: Promise<{ slugs?: string
 			title: page.data.title,
 			description: page.data.description,
 			url: `/docs/${page.slugs.join('/')}`,
-			images: image
+			images: image,
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: page.data.title,
 			description: page.data.description,
 			images: image,
-			site: 'https://tagscript.js.org'
+			site: 'https://tagscript.js.org',
 		},
 		alternates: {
 			canonical: `https://tagscript.js.org/${page.url}`,
 			languages: {
-				en: `https://tagscript.js.org/${page.url}`
-			}
+				en: `https://tagscript.js.org/${page.url}`,
+			},
 		},
 		appleWebApp: {
 			capable: true,
 			title: 'Tagscript',
-			statusBarStyle: 'default'
-		}
+			statusBarStyle: 'default',
+		},
 	};
 }

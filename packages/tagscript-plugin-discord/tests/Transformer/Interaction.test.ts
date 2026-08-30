@@ -1,3 +1,5 @@
+import { describe, expect, it, test } from 'bun:test';
+
 import { Interpreter, StrictVarsParser } from 'tagscript';
 
 import { InteractionTransformer } from '../../src';

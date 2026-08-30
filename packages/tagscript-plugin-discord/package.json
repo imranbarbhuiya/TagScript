@@ -2,12 +2,39 @@
 	"name": "@tagscript/plugin-discord",
 	"version": "3.1.0",
 	"description": "A plugin for tagscript to work with discord.js.",
+	"keywords": [
+		"bot tag",
+		"discord.js",
+		"safe string",
+		"string parser",
+		"tag",
+		"tagscript",
+		"tagscript discord",
+		"template",
+		"template engine",
+		"template string",
+		"typescript"
+	],
+	"homepage": "https://tagscript.js.org/",
+	"bugs": {
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	},
+	"license": "MIT",
+	"author": "@imranbarbhuiya",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
+		"directory": "packages/tagscript-plugin-discord"
+	},
+	"files": [
+		"dist/**/*.cjs*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"sideEffects": false,
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.cts",
-	"publishConfig": {
-		"access": "public"
-	},
 	"exports": {
 		"import": {
 			"types": "./dist/index.d.mts",
@@ -18,37 +45,22 @@
 			"default": "./dist/index.cjs"
 		}
 	},
-	"sideEffects": false,
-	"author": "@imranbarbhuiya",
-	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
-		"lint": "TIMING=1 eslint src --fix --cache -c ../../eslint.config.mjs",
 		"build": "tsdown",
-		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "vitest run",
+		"prepack": "bun run build",
+		"test": "bun test",
+		"test:coverage": "bun test --coverage --coverage-reporter=text --coverage-reporter=lcov",
+		"test:watch": "bun test --watch",
 		"typecheck": "tsc -p tsconfig.typecheck.json --noEmit"
 	},
-	"keywords": [
-		"tagscript",
-		"string parser",
-		"safe string",
-		"typescript",
-		"template engine",
-		"template",
-		"template string",
-		"tagscript discord",
-		"discord.js",
-		"tag",
-		"bot tag"
-	],
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.1.0",
 		"discord.js": "^14.26.4",
-		"tagscript": "workspace:^",
-		"tsdown": "^0.22.0",
-		"typescript": "^6.0.3"
+		"tagscript": "workspace:^"
 	},
 	"peerDependencies": {
 		"discord.js": "^14.0.0",
@@ -56,19 +68,5 @@
 	},
 	"engines": {
 		"node": ">=v16.9.0"
-	},
-	"files": [
-		"dist/**/*.cjs*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
-		"directory": "packages/tagscript-plugin-discord"
-	},
-	"bugs": {
-		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
-	},
-	"homepage": "https://tagscript.js.org/"
+	}
 }

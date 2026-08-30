@@ -1,16 +1,16 @@
 name: 'Upload Coverage'
 description: 'Uploads code coverage reports to codecov with separate flags for separate packages'
 runs:
-    using: 'composite'
-    steps:
-        - name: Upload Tagscript Coverage
-          uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5
-          with:
-              files: ./packages/tagscript/coverage/cobertura-coverage.xml
-              flags: tagscript
+  using: 'composite'
+  steps:
+    - name: Upload Tagscript Coverage
+      uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5
+      with:
+        files: ./packages/tagscript/coverage/lcov.info
+        flags: tagscript
 
-        - name: Upload Tagscript Plugin Discord Coverage
-          uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5
-          with:
-              files: ./packages/tagscript-plugin-discord/coverage/cobertura-coverage.xml
-              flags: plugin-discord
+    - name: Upload Tagscript Plugin Discord Coverage
+      uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5
+      with:
+        files: ./packages/tagscript-plugin-discord/coverage/lcov.info
+        flags: plugin-discord

@@ -5,13 +5,17 @@ import {
 	Role,
 	User,
 	type CommandInteractionOption,
-	type CommandInteractionOptionResolver
+	type CommandInteractionOptionResolver,
 } from 'discord.js';
 import { IntegerTransformer, StringTransformer, type ITransformer } from 'tagscript';
 
 import { ChannelTransformer, MemberTransformer, RoleTransformer, UserTransformer } from '../Transformer';
 
-export const mapOptions = (options: readonly CommandInteractionOption[], transformers: Record<string, ITransformer>, prefix = '') => {
+export const mapOptions = (
+	options: readonly CommandInteractionOption[],
+	transformers: Record<string, ITransformer>,
+	prefix = '',
+) => {
 	for (const data of options) {
 		switch (data.type) {
 			case ApplicationCommandOptionType.SubcommandGroup:
@@ -58,7 +62,8 @@ export const mapOptions = (options: readonly CommandInteractionOption[], transfo
 				if (data.role instanceof Role) transformers[prefix + data.name] = new RoleTransformer(data.role);
 				break;
 			case ApplicationCommandOptionType.Channel:
-				if (data.channel instanceof BaseChannel) transformers[prefix + data.name] = new ChannelTransformer(data.channel);
+				if (data.channel instanceof BaseChannel)
+					transformers[prefix + data.name] = new ChannelTransformer(data.channel);
 				break;
 			case ApplicationCommandOptionType.Attachment:
 				transformers[prefix + data.name] = new StringTransformer(data.attachment!.url);

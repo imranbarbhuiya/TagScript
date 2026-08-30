@@ -1,6 +1,6 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
 
-exports[`ChannelTransformer > should match the snapshot 1`] = `
+exports[`ChannelTransformer should match the snapshot 1`] = `
 {
   "createdAt": "2022-01-19T16:20:39.850Z",
   "createdTimestamp": 1642609239850,

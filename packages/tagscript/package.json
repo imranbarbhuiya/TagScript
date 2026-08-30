@@ -2,11 +2,38 @@
 	"name": "tagscript",
 	"version": "1.4.0",
 	"description": "A simple and safe template engine.",
+	"keywords": [
+		"safe string",
+		"string parser",
+		"tag",
+		"tagscript",
+		"template",
+		"template engine",
+		"template string",
+		"typescript"
+	],
+	"homepage": "https://tagscript.js.org/",
+	"bugs": {
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	},
+	"author": "@imranbarbhuiya",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
+		"directory": "packages/tagscript"
+	},
+	"files": [
+		"dist/**/*.cjs*",
+		"dist/**/*.mjs*",
+		"dist/**/*.js*",
+		"dist/**/*.d*"
+	],
+	"sideEffects": false,
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
 	"browser": "dist/index.iife.js",
-	"unpkg": "dist/index.iife.js",
 	"types": "dist/index.d.cts",
+	"unpkg": "dist/index.iife.js",
 	"exports": {
 		"import": {
 			"types": "./dist/index.d.mts",
@@ -17,48 +44,17 @@
 			"default": "./dist/index.cjs"
 		}
 	},
-	"sideEffects": false,
-	"author": "@imranbarbhuiya",
 	"scripts": {
-		"lint": "TIMING=1 eslint src --fix --cache -c ../../eslint.config.mjs",
 		"build": "tsdown",
-		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
-		"test": "vitest run",
+		"prepack": "bun run build",
+		"test": "bun test",
+		"test:coverage": "bun test --coverage --coverage-reporter=text --coverage-reporter=lcov",
+		"test:watch": "bun test --watch",
 		"typecheck": "tsc -p tsconfig.typecheck.json --noEmit"
-	},
-	"keywords": [
-		"tagscript",
-		"string parser",
-		"safe string",
-		"typescript",
-		"template engine",
-		"template",
-		"template string",
-		"tag"
-	],
-	"devDependencies": {
-		"@favware/cliff-jumper": "^6.1.0",
-		"tsdown": "^0.22.0",
-		"typescript": "^6.0.3"
 	},
 	"engines": {
 		"node": ">=v14.0.0"
-	},
-	"files": [
-		"dist/**/*.cjs*",
-		"dist/**/*.mjs*",
-		"dist/**/*.js*",
-		"dist/**/*.d*"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
-		"directory": "packages/tagscript"
-	},
-	"bugs": {
-		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
-	},
-	"homepage": "https://tagscript.js.org/"
+	}
 }

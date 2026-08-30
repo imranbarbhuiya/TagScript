@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { IntegerTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
 
 describe('IntegerTransformer', () => {
@@ -5,12 +7,12 @@ describe('IntegerTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		expect(
 			await ts.run('{number}', {
-				number: new IntegerTransformer('5')
-			})
+				number: new IntegerTransformer('5'),
+			}),
 		).toStrictEqual(
 			new Response({
-				number: new IntegerTransformer('5')
-			}).setValues('5', '{number}')
+				number: new IntegerTransformer('5'),
+			}).setValues('5', '{number}'),
 		);
 	});
 
@@ -18,7 +20,7 @@ describe('IntegerTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{number(++)}';
 		const variables = {
-			number: new IntegerTransformer('4')
+			number: new IntegerTransformer('4'),
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('5', text));
 	});
@@ -27,7 +29,7 @@ describe('IntegerTransformer', () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		const text = '{number(--)}';
 		const variables = {
-			number: new IntegerTransformer('4')
+			number: new IntegerTransformer('4'),
 		};
 		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('3', text));
 	});

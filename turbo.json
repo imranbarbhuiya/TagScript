@@ -15,24 +15,25 @@
 			"dependsOn": [],
 			"outputs": []
 		},
-		"format": {
-			"outputs": []
-		},
-		"lint": {
-			"dependsOn": ["^build"],
-			"outputs": [".eslintcache"]
-		},
 		"typecheck": {
 			"dependsOn": ["^build"],
 			"outputs": []
 		},
 		"test": {
 			"dependsOn": ["^build"],
-			"outputs": ["**/coverage/**"]
+			"inputs": ["src/**", "tests/**", "package.json"],
+			"outputs": []
 		},
 		"test:watch": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["^build"]
+		},
+		"test:coverage": {
 			"dependsOn": ["^build"],
-			"outputs": ["**/coverage/**"]
+			"inputs": ["src/**", "tests/**", "package.json"],
+			"outputs": ["coverage/**"]
 		}
-	}
+	},
+	"ui": "stream"
 }

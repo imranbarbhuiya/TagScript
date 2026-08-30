@@ -23,19 +23,19 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 							tabs: [
 								{
 									title: 'Tagscript',
-									url: '/'
+									url: '/',
 								},
 								{
 									title: 'Tagscript API Docs',
 									description: 'Auto generated api docs for tagscript',
-									url: '/api/tagscript'
+									url: '/api/tagscript',
 								},
 								{
 									title: 'Discord Plugin API Docs',
 									description: 'Auto generated api docs for tagscript',
-									url: '/api/plugins'
-								}
-							]
+									url: '/api/plugins',
+								},
+							],
 						}}
 						tree={source.pageTree}
 					>
@@ -50,20 +50,23 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 export const metadata: Metadata = {
 	title: 'Tagscript',
 	description: 'Tagscript is a simple, lightweight, and easy to use templating language.',
-	metadataBase: process.env.NODE_ENV === 'development' ? new URL('http://localhost:3000') : new URL(`https://${process.env.VERCEL_URL!}`),
+	metadataBase:
+		process.env.NODE_ENV === 'development'
+			? new URL('http://localhost:3000')
+			: new URL(`https://${process.env.VERCEL_URL!}`),
 	openGraph: {
-		images: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png']
+		images: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png'],
 	},
 	twitter: {
-		images: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png']
+		images: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png'],
 	},
-	icons: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png']
+	icons: ['https://raw.githubusercontent.com/imranbarbhuiya/TagScript/main/.github/logo_short.png'],
 };
 
 export const viewport: Viewport = {
 	themeColor: [
 		{ media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
-		{ media: '(prefers-color-scheme: light)', color: '#fff' }
+		{ media: '(prefers-color-scheme: light)', color: '#fff' },
 	],
-	viewportFit: 'cover'
+	viewportFit: 'cover',
 };

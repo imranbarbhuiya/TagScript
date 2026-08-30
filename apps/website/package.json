@@ -4,10 +4,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"build": "yarn run --top-level docs && next build",
+		"build": "bun run --cwd ../.. docs && next build",
 		"start": "next start",
-		"lint": "TIMING=1 eslint . --fix",
-		"format": "prettier --cache --write .",
 		"postinstall": "fumadocs-mdx"
 	},
 	"dependencies": {
@@ -33,7 +31,6 @@
 		"@tailwindcss/postcss": "^4.2.4",
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
-		"eslint-config-mahir": "^1.1.10",
 		"tagscript": "workspace:^",
 		"tailwindcss": "^4.2.4",
 		"tailwindcss-animate": "^1.0.7"

@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter } from 'tagscript';
 
 import { EmbedParser } from '../../src';
@@ -9,7 +11,7 @@ describe('EmbedParser', () => {
 
 		expect((await ts.run(text)).actions.embed).toStrictEqual({
 			title: 'Hello!',
-			description: 'This is a test embed.'
+			description: 'This is a test embed.',
 		});
 	});
 
@@ -17,13 +19,13 @@ describe('EmbedParser', () => {
 		const tText = '{embed(title):Rules}';
 
 		expect((await ts.run(tText)).actions.embed).toStrictEqual({
-			title: 'Rules'
+			title: 'Rules',
 		});
 
 		const dText = '{embed(description):Follow these rules to ensure a good experience in our server!}';
 
 		expect((await ts.run(dText)).actions.embed).toStrictEqual({
-			description: 'Follow these rules to ensure a good experience in our server!'
+			description: 'Follow these rules to ensure a good experience in our server!',
 		});
 
 		const fText = '{embed(field):Rule 1|Respect everyone you speak to.|false}';
@@ -33,9 +35,9 @@ describe('EmbedParser', () => {
 				{
 					name: 'Rule 1',
 					value: 'Respect everyone you speak to.',
-					inline: false
-				}
-			]
+					inline: false,
+				},
+			],
 		});
 
 		const f2Text = '{embed(field):Rule 1}';
@@ -49,14 +51,14 @@ describe('EmbedParser', () => {
 				{
 					name: 'Rule 1',
 					value: 'Respect everyone you speak to.',
-					inline: false
+					inline: false,
 				},
 				{
 					name: 'Rule 2',
 					value: "Don't spam.",
-					inline: true
-				}
-			]
+					inline: true,
+				},
+			],
 		});
 
 		expect((await ts.run(tText + f3Text)).actions.embed).toStrictEqual({
@@ -65,9 +67,9 @@ describe('EmbedParser', () => {
 				{
 					name: 'Rule 2',
 					value: "Don't spam.",
-					inline: true
-				}
-			]
+					inline: true,
+				},
+			],
 		});
 	});
 
@@ -76,22 +78,22 @@ describe('EmbedParser', () => {
 
 		expect((await ts.run(iText)).actions.embed).toStrictEqual({
 			image: {
-				url: 'https://example.com/image.png'
-			}
+				url: 'https://example.com/image.png',
+			},
 		});
 
 		const tText = '{embed(thumbnail):{"url":"https://example.com/image.png"}}';
 
 		expect((await ts.run(tText)).actions.embed).toStrictEqual({
 			thumbnail: {
-				url: 'https://example.com/image.png'
-			}
+				url: 'https://example.com/image.png',
+			},
 		});
 
 		const aText = '{embed(author):{"name":"Mahir", "icon_url":"https://example.com/image.png"}}';
 
 		expect((await ts.run(aText)).actions.embed).toStrictEqual({
-			author: { name: 'Mahir', icon_url: 'https://example.com/image.png' }
+			author: { name: 'Mahir', icon_url: 'https://example.com/image.png' },
 		});
 	});
 
@@ -99,13 +101,13 @@ describe('EmbedParser', () => {
 		const text = '{embed:{"color":"0x00ff00"}}';
 
 		expect((await ts.run(text)).actions.embed).toStrictEqual({
-			color: 65_280
+			color: 65_280,
 		});
 	});
 
 	test.each(['Red', '#ed4245', 0xed4245])('GIVEN color %j in property THEN resolve it to hex color', async (color) => {
 		expect((await ts.run(`{embed(color):${color}}`)).actions.embed).toStrictEqual({
-			color: 0xed4245
+			color: 0xed4245,
 		});
 	});
 });

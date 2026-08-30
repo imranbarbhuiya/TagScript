@@ -19,7 +19,6 @@ const buildNodeTree = (message: string): Node[] => {
 	let previous = '';
 	const starts: number[] = [];
 
-	// eslint-disable-next-line unicorn/no-for-loop -- this is a string
 	for (let index = 0; index < message.length; index++) {
 		const ch = message[index];
 		if (ch === '{' && previous !== '\\') starts.push(index);
@@ -83,7 +82,7 @@ export class Interpreter {
 		charLimit: number | null = null,
 		tagLimit = 2_000,
 		parenType = ParenType.Both,
-		keyValues: IKeyValues = {}
+		keyValues: IKeyValues = {},
 	): Promise<Response> {
 		const response = new Response(seedVariables, keyValues);
 		const nodeOrderedList = buildNodeTree(message);
@@ -95,7 +94,14 @@ export class Interpreter {
 		return asyncFilter(this.parsers, (parser) => parser.willAccept(ctx));
 	}
 
-	private getContext(node: Node, final: string, response: Response, originalMessage: string, tagLimit: number, parenType = ParenType.Both) {
+	private getContext(
+		node: Node,
+		final: string,
+		response: Response,
+		originalMessage: string,
+		tagLimit: number,
+		parenType = ParenType.Both,
+	) {
 		const [start, end] = node.coordinates;
 		node.tag = new Lexer(final.slice(start, end + 1), tagLimit, parenType);
 		return new Context(node.tag, response, this, originalMessage);
@@ -118,8 +124,11 @@ export class Interpreter {
 		if (!charLimit) return;
 
 		const currentWork = totalWork + output.length;
-		if (currentWork > charLimit)
-			throw new Error(`The TS interpreter had its workload exceeded. The total characters attempted were ${currentWork}/${charLimit}`);
+		if (currentWork > charLimit) {
+			throw new Error(
+				`The TS interpreter had its workload exceeded. The total characters attempted were ${currentWork}/${charLimit}`,
+			);
+		}
 
 		return currentWork;
 	}
@@ -153,7 +162,7 @@ export class Interpreter {
 		response: Response,
 		charLimit: number | null,
 		tagLimit = 2_000,
-		parenType = ParenType.Both
+		parenType = ParenType.Both,
 	) {
 		let final = message;
 		let totalWork = 0;

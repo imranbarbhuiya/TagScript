@@ -30,7 +30,7 @@ export abstract class BaseParser {
 		return {
 			acceptedNames: this.acceptedNames,
 			requiredParameter: this.requiredParameter,
-			requiredPayload: this.requiredPayload
+			requiredPayload: this.requiredPayload,
 		};
 	}
 }

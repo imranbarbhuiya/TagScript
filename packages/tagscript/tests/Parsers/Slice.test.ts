@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter, SliceParser } from '../../src';
 
 describe('SliceParser', () => {

@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Interpreter } from 'tagscript';
 
 import { RequiredParser, DenyParser } from '../../src';
@@ -9,8 +11,8 @@ describe('RequiredParser', () => {
 		expect((await ts.run("{require(758880890159235083):You aren't allowed to use this tag.}")).actions).toStrictEqual({
 			require: {
 				ids: ['758880890159235083'],
-				message: "You aren't allowed to use this tag."
-			}
+				message: "You aren't allowed to use this tag.",
+			},
 		});
 	});
 
@@ -18,8 +20,8 @@ describe('RequiredParser', () => {
 		expect((await ts.run('{require(757164765582721054)} {require(758880890159235083)}')).actions).toStrictEqual({
 			require: {
 				ids: ['757164765582721054'],
-				message: null
-			}
+				message: null,
+			},
 		});
 	});
 });
@@ -31,8 +33,8 @@ describe('DenyParser', () => {
 		expect((await ts.run("{deny(758880890159235083):You aren't allowed to use this tag.}")).actions).toStrictEqual({
 			deny: {
 				ids: ['758880890159235083'],
-				message: "You aren't allowed to use this tag."
-			}
+				message: "You aren't allowed to use this tag.",
+			},
 		});
 	});
 
@@ -40,8 +42,8 @@ describe('DenyParser', () => {
 		expect((await ts.run('{deny(757164765582721054)} {deny(758880890159235083)}')).actions).toStrictEqual({
 			deny: {
 				ids: ['757164765582721054'],
-				message: null
-			}
+				message: null,
+			},
 		});
 	});
 });

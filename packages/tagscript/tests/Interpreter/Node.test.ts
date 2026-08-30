@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'bun:test';
+
 import { Node } from '../../src';
 
 describe('Node', () => {
