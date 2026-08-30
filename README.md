@@ -90,7 +90,7 @@ bun run bump
 git push --follow-tags
 ```
 
-Pushing that tag triggers the `Continuous Delivery` workflow, which publishes the matching package to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements) and opens a GitHub release.
+Pushing that tag triggers the `Continuous Delivery` workflow, which publishes the matching package to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements) and opens a GitHub release using that version's section of the package `CHANGELOG.md` as the release notes.
 
 ## Buy me some doughnuts
 

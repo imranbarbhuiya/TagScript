@@ -62,7 +62,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           PACKAGE_NAME: ${{ steps.package.outputs.name }}
           PACKAGE_VERSION: ${{ steps.package.outputs.version }}
+      - name: Extract release notes from the changelog
+        run: bun scripts/extractChangelog.mjs "${{ steps.package.outputs.dir }}" "$GITHUB_REF_NAME" > "$RUNNER_TEMP/release-notes.md" || true
       - name: Create GitHub Release
-        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+        run: |
+          if [ -s "$RUNNER_TEMP/release-notes.md" ]; then
+            gh release create "$GITHUB_REF_NAME" --notes-file "$RUNNER_TEMP/release-notes.md" --verify-tag
+          else
+            echo "No changelog entry found, falling back to generated notes"
+            gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+          fi
         env:
           GH_TOKEN: ${{ github.token }}
