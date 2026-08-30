@@ -3,7 +3,7 @@ title: Command options
 description: Turn slash command options into transformers a template can read.
 ---
 
-`resolveCommandOptions` reads an interaction's options and hands back an object ready to pass as seed variables. Whatever the user typed into the command becomes available to the template by option name.
+`resolveCommandOptions` reads a chat input command's data and hands back an object ready to pass as seed variables. Whatever the user typed into the command becomes available to the template by option name.
 
 ## For developers
 
@@ -13,18 +13,21 @@ import { Interpreter, StrictVarsParser } from 'tagscript';
 
 const ts = new Interpreter(new StrictVarsParser());
 
-const response = await ts.run(template, resolveCommandOptions(interaction.options));
+const response = await ts.run(template, resolveCommandOptions(interaction.data));
 ```
 
-Each option becomes a variable named after it. The type decides which transformer is used:
+The argument is the `data` object off the interaction payload, typed `APIChatInputApplicationCommandInteractionData`. Each option becomes a variable named after it, and its type decides which transformer is used:
 
-| Option type              | Transformer            |
-| ------------------------ | ---------------------- |
-| String, Boolean          | `StringTransformer`    |
-| Integer, Number          | `IntegerTransformer`   |
-| User, Mentionable (user) | `UserTransformer` or `MemberTransformer` |
-| Role, Mentionable (role) | `RoleTransformer`      |
-| Channel                  | `ChannelTransformer`   |
+| Option type              | Transformer                              |
+| ------------------------ | ---------------------------------------- |
+| String, Boolean          | `StringTransformer`                      |
+| Integer, Number          | `IntegerTransformer`                     |
+| User, Mentionable (user) | `MemberTransformer`, or `UserTransformer` outside a guild |
+| Role, Mentionable (role) | `RoleTransformer`                        |
+| Channel                  | `ChannelTransformer`                     |
+| Attachment               | `StringTransformer` holding the file URL |
+
+An option's value is only ever an ID. The objects behind those IDs live in `data.resolved`, which Discord fills in for you, and that is where every transformer above reads from. An option missing from `resolved` is skipped, so the variable is absent rather than holding a bare snowflake.
 
 Subcommands and subcommand groups are flattened with a `-` separated prefix, and the names themselves are exposed as `subCommand` and `subCommandGroup`.
 
@@ -38,13 +41,13 @@ Merge in anything else you want the template to see:
 
 ```ts showLineNumbers
 const response = await ts.run(template, {
-	...resolveCommandOptions(interaction.options),
+	...resolveCommandOptions(interaction.data),
 	member: new MemberTransformer(interaction.member),
-	guild: new GuildTransformer(interaction.guild),
+	guild: new GuildTransformer(guild),
 });
 ```
 
-`mapOptions` is exported too, for the case where you have a `CommandInteractionOption[]` rather than the resolver.
+`mapOptions` is exported too, for the case where you hold the options array and the resolved data separately.
 
 ## For template authors
 
@@ -52,7 +55,7 @@ The names come from the command your bot's authors set up, so ask them which opt
 
 ## Colours
 
-`resolveColor` is also exported. It accepts `0x37b2cb`, `#ed4245`, a plain number, or a Discord colour name such as `Red`, and returns a number. Unlike the discord.js function it wraps, it returns the input unchanged instead of throwing when it cannot resolve a value, which is what keeps a bad colour in a template from ending the render.
+`resolveColor` is also exported. It accepts `0x37b2cb`, `#ed4245`, `ed4245`, a plain number, `Random`, or a Discord colour name such as `Red`, and returns a number. It returns the input unchanged instead of throwing when it cannot resolve a value, which is what keeps a bad colour in a template from ending the render. The names it knows are exported as `Colors`.
 
 ## API reference
 

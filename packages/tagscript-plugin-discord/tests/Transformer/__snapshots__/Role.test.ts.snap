@@ -7,11 +7,10 @@ exports[`RoleTransformer should match the snapshot 1`] = `
   "createdTimestamp": 1642605059661,
   "hoist": false,
   "id": "933378013154906142",
-  "memberCount": 0,
   "mention": "<@&933378013154906142>",
   "mentionable": false,
   "name": ".",
   "permissions": "Administrator",
-  "position": 1,
+  "position": 16,
 }
 `;

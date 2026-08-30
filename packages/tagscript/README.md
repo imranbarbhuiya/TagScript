@@ -227,7 +227,7 @@ class UpperTransformer implements ITransformer {
 
 ## Related
 
-- [`@tagscript/plugin-discord`](https://www.npmjs.com/package/@tagscript/plugin-discord) for discord.js parsers and transformers.
+- [`@tagscript/plugin-discord`](https://www.npmjs.com/package/@tagscript/plugin-discord) for Discord parsers and transformers.
 - Full documentation: **[tagscript.js.org](https://tagscript.js.org/)**
 
 ## Buy me some doughnuts

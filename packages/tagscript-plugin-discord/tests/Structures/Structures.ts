@@ -1,51 +1,44 @@
 import {
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
-	ChatInputCommandInteraction,
-	Client,
-	Guild,
-	GuildMember,
 	GuildMemberFlags,
 	InteractionType,
 	Locale,
-	Role,
 	RoleFlags,
-	TextChannel,
-	User,
 	type APIApplicationCommandInteraction,
 	type APIAttachment,
-	type APIChannel,
+	type APIChatInputApplicationCommandInteractionData,
 	type APIGuild,
+	type APIGuildChannel,
 	type APIGuildMember,
 	type APIRole,
 	type APIUser,
-} from 'discord.js';
+	type GuildChannelType,
+} from 'discord-api-types/v10';
 
-export const client = new Client({ intents: [] });
-
-const userObject: APIUser = {
+export const user: APIUser = {
 	id: '758880890159235083',
 	username: 'parbez',
 	global_name: 'Parbez',
-	discriminator: '0000',
+	discriminator: '0',
 	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
 	bot: false,
 	system: false,
 	mfa_enabled: false,
 };
 
-const userObject2: APIUser = {
+export const user2: APIUser = {
 	id: '758880890159235081',
 	username: 'parbez2',
 	global_name: 'Parbez Two',
-	discriminator: '0001',
-	avatar: '17ac5f89d5f8b08b5bbd6cc43c930399',
+	discriminator: '0',
+	avatar: null,
 	bot: false,
 	system: false,
 	mfa_enabled: false,
 };
 
-const roleObject: APIRole = {
+export const role: APIRole = {
 	unicode_emoji: null,
 	id: '933378013154906142',
 	name: '.',
@@ -63,7 +56,7 @@ const roleObject: APIRole = {
 	},
 };
 
-const everyoneRoleObject: APIRole = {
+export const everyoneRole: APIRole = {
 	icon: null,
 	unicode_emoji: null,
 	id: '933368398996447292',
@@ -82,7 +75,7 @@ const everyoneRoleObject: APIRole = {
 	},
 };
 
-const guildObject = {
+export const guild = {
 	id: '933368398996447292',
 	name: 'My Guild',
 	icon: '396ee43e3064f8ec805fede6f3bcdc6d',
@@ -94,8 +87,9 @@ const guildObject = {
 	verification_level: 0,
 	default_message_notifications: 0,
 	explicit_content_filter: 0,
-	roles: [roleObject, everyoneRoleObject],
+	roles: [role, everyoneRole],
 	emojis: [],
+	stickers: [],
 	features: [],
 	mfa_level: 0,
 	system_channel_flags: 0,
@@ -106,27 +100,28 @@ const guildObject = {
 	preferred_locale: 'en-US',
 	nsfw_level: 0,
 	premium_progress_bar_enabled: false,
+	approximate_member_count: 1_204,
 } as unknown as APIGuild;
 
-const memberObject: APIGuildMember = {
+export const member: APIGuildMember = {
 	roles: ['933378013154906142', '933368398996447292'],
 	joined_at: '2022-01-19T16:52:53.953Z',
 	deaf: false,
 	mute: false,
-	user: userObject,
+	user,
 	flags: GuildMemberFlags.CompletedOnboarding,
 };
 
-const channelObject: APIChannel = {
+export const channel: APIGuildChannel<GuildChannelType> = {
 	id: '933395546138357800',
 	name: 'test',
 	type: 0,
 	topic: 'A test channel',
 	position: 1,
 	guild_id: '933368398996447292',
-};
+} as unknown as APIGuildChannel<GuildChannelType>;
 
-const channel2Object: APIChannel = {
+export const channel2: APIGuildChannel<GuildChannelType> = {
 	id: '870354581115256852',
 	name: 'test-1',
 	type: 0,
@@ -134,7 +129,7 @@ const channel2Object: APIChannel = {
 	nsfw: false,
 	rate_limit_per_user: 0,
 	guild_id: '933368398996447292',
-};
+} as unknown as APIGuildChannel<GuildChannelType>;
 
 export const attachment: APIAttachment = {
 	id: '933368398996447291',
@@ -143,138 +138,118 @@ export const attachment: APIAttachment = {
 	size: 4_096,
 	url: 'https://cdn.discordapp.com/avatars/903690362114158632/bc4edfabfde4397b2e93b598410fde6c.webp',
 };
-const interactionObject: APIApplicationCommandInteraction = {
+
+export const commandData: APIChatInputApplicationCommandInteractionData = {
+	id: '938716130720235601',
+	name: 'ping',
+	type: ApplicationCommandType.ChatInput,
+	resolved: {
+		users: { [user2.id]: user2, [user.id]: user },
+		members: { [user.id]: { ...member, permissions: '8' } },
+		channels: {
+			[channel.id]: { id: channel.id, name: 'test', type: 0, permissions: '8' },
+		},
+		roles: { [role.id]: role },
+		attachments: { [attachment.id]: attachment },
+	},
+	options: [
+		{
+			name: 'sub-command',
+			type: ApplicationCommandOptionType.Subcommand,
+			options: [
+				{
+					name: 'member',
+					type: ApplicationCommandOptionType.User,
+					value: user.id,
+				},
+			],
+		},
+		{
+			name: 'sub-command-group',
+			type: ApplicationCommandOptionType.SubcommandGroup,
+			options: [
+				{
+					name: 'sub-command',
+					type: ApplicationCommandOptionType.Subcommand,
+					options: [
+						{
+							name: 'channel',
+							type: ApplicationCommandOptionType.Channel,
+							value: channel.id,
+						},
+					],
+				},
+			],
+		},
+		{
+			name: 'string',
+			type: ApplicationCommandOptionType.String,
+			value: 'Hello',
+		},
+		{
+			name: 'channel',
+			type: ApplicationCommandOptionType.Channel,
+			value: channel.id,
+		},
+		{
+			name: 'role',
+			type: ApplicationCommandOptionType.Role,
+			value: role.id,
+		},
+		{
+			name: 'mentionable',
+			type: ApplicationCommandOptionType.Mentionable,
+			value: role.id,
+		},
+		{
+			name: 'mentionable-2',
+			type: ApplicationCommandOptionType.Mentionable,
+			value: user2.id,
+		},
+		{
+			name: 'boolean',
+			type: ApplicationCommandOptionType.Boolean,
+			value: true,
+		},
+		{
+			name: 'number',
+			type: ApplicationCommandOptionType.Number,
+			value: 1.1,
+		},
+		{
+			name: 'integer',
+			type: ApplicationCommandOptionType.Integer,
+			value: 1,
+		},
+		{
+			name: 'attachment',
+			type: ApplicationCommandOptionType.Attachment,
+			value: attachment.id,
+		},
+		{
+			name: 'user',
+			type: ApplicationCommandOptionType.User,
+			value: user2.id,
+		},
+	],
+};
+
+export const interaction: APIApplicationCommandInteraction = {
 	id: '933368398996447292',
 	application_id: '938716130720235601',
 	type: InteractionType.ApplicationCommand,
-	data: {
-		id: '938716130720235601',
-		name: 'ping',
-		type: ApplicationCommandType.ChatInput,
-		resolved: {
-			users: { '758880890159235081': userObject2, '758880890159235083': userObject },
-			members: { '758880890159235083': { ...memberObject, permissions: '8' } },
-			channels: {
-				'933395546138357800': { ...channelObject, permissions: '8', name: 'test' },
-			},
-			roles: { '933378013154906142': roleObject },
-			attachments: {
-				'933368398996447291': attachment,
-			},
-		},
-		options: [
-			{
-				name: 'sub-command',
-				type: ApplicationCommandOptionType.Subcommand,
-				options: [
-					{
-						name: 'member',
-						type: ApplicationCommandOptionType.User,
-						value: '758880890159235083',
-					},
-				],
-			},
-			{
-				name: 'sub-command-group',
-				type: ApplicationCommandOptionType.SubcommandGroup,
-				options: [
-					{
-						name: 'sub-command',
-						type: ApplicationCommandOptionType.Subcommand,
-						options: [
-							{
-								name: 'channel',
-								type: ApplicationCommandOptionType.Channel,
-								value: '933395546138357800',
-							},
-						],
-					},
-				],
-			},
-			{
-				name: 'string',
-				type: ApplicationCommandOptionType.String,
-				value: 'Hello',
-			},
-			{
-				name: 'channel',
-				type: ApplicationCommandOptionType.Channel,
-				value: '933395546138357800',
-			},
-			{
-				name: 'role',
-				type: ApplicationCommandOptionType.Role,
-				value: '933378013154906142',
-			},
-			{
-				name: 'mentionable',
-				type: ApplicationCommandOptionType.Mentionable,
-				value: '933378013154906142',
-			},
-			{
-				name: 'mentionable-2',
-				type: ApplicationCommandOptionType.Mentionable,
-				value: '758880890159235081',
-			},
-			{
-				name: 'boolean',
-				type: ApplicationCommandOptionType.Boolean,
-				value: true,
-			},
-			{
-				name: 'number',
-				type: ApplicationCommandOptionType.Number,
-				value: 1.1,
-			},
-			{
-				name: 'integer',
-				type: ApplicationCommandOptionType.Integer,
-				value: 1,
-			},
-			{
-				name: 'attachment',
-				type: ApplicationCommandOptionType.Attachment,
-				value: '933368398996447291',
-			},
-			{
-				name: 'user',
-				type: ApplicationCommandOptionType.User,
-				value: '758880890159235081',
-			},
-		],
-	},
+	data: commandData,
 	guild_id: '933368398996447292',
-	channel_id: '933395546138357800',
-	member: { ...memberObject, permissions: '8', user: userObject },
-	user: userObject,
+	channel_id: channel.id,
+	member: { ...member, permissions: '8' },
+	user,
 	token: '',
 	version: 1,
 	locale: Locale.EnglishUS,
 	guild_locale: Locale.EnglishUS,
 	entitlements: [],
 	app_permissions: '8',
-	channel: channelObject,
+	channel,
 	authorizing_integration_owners: {},
 	attachment_size_limit: 8_388_608,
-};
-
-// @ts-expect-error(2674) using protected constructor to test
-export const user: User = new User(client, userObject);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const guild: Guild = new Guild(client, guildObject);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const role: Role = new Role(client, roleObject, guild);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const member: GuildMember = new GuildMember(client, memberObject, guild);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const channel: TextChannel = new TextChannel(guild, channelObject, client);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const channel2: TextChannel = new TextChannel(guild, channel2Object, client);
-
-// @ts-expect-error(2674) using protected constructor to test
-export const interaction: ChatInputCommandInteraction = new ChatInputCommandInteraction(client, interactionObject);
+} as unknown as APIApplicationCommandInteraction;

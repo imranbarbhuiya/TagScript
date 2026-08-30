@@ -1,27 +1,57 @@
 ---
 title: Discord plugin
-description: discord.js parsers and transformers for TagScript.
+description: Library agnostic Discord parsers and transformers for TagScript.
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 
 `@tagscript/plugin-discord` is what makes TagScript useful inside a Discord bot. It adds tags for embeds, cooldowns, permissions and timestamps, and transformers that let a template read a member, role, channel or guild.
 
-Two rules shape the whole package.
+Three rules shape the whole package.
 
 **Templates ask, your bot decides.** No parser here sends a message, deletes anything or applies a cooldown. Each one records a request on `response.actions` and renders an empty string. Your code reads that object and picks what to honour.
 
-**Structures stay behind a transformer.** A `GuildMember` reaches a template through `MemberTransformer`, which answers with a fixed list of keys. `{member.displayName}` works, and there is no key that hands back the client, the token, or a method.
+**Structures stay behind a transformer.** A member reaches a template through `MemberTransformer`, which answers with a fixed list of keys. `{member.displayName}` works, and there is no key that hands back the client, the token, or a method.
+
+**Payloads in, payloads out.** The only Discord dependency is [`discord-api-types`](https://discord-api-types.dev). Transformers read the raw objects Discord sends, and `EmbedParser` writes an `APIEmbed`. Any library that hands you those objects works.
 
 ## Installation
 
-Install it alongside `tagscript` and `discord.js`:
+Install it alongside `tagscript`:
 
 ```package-install
-@tagscript/plugin-discord tagscript discord.js
+@tagscript/plugin-discord tagscript
 ```
 
-It needs discord.js v14 and Node 16.9 or newer, and ships ESM and CJS builds.
+It needs Node 18 or newer, and ships ESM and CJS builds.
+
+## Working with discord.js
+
+Nothing here imports discord.js, so the two meet at the API payload.
+
+On the way in, a transformer wants the raw object, not the wrapper class. discord.js `toJSON()` will not do: it returns a flattened camelCase blob and turns collections into ID arrays, so `roles` comes back as a list of IDs with the names gone. Use a payload you already have. Raw gateway events, `@discordjs/core`, an interaction's `data.resolved`, and REST calls through `client.rest` all give you one.
+
+```ts showLineNumbers
+import { Routes, type APIUser } from 'discord-api-types/v10';
+import { UserTransformer } from '@tagscript/plugin-discord';
+
+const payload = (await client.rest.get(Routes.user(id))) as APIUser;
+
+await ts.run('Hi {user}!', { user: new UserTransformer(payload) });
+```
+
+On the way out, `response.actions.embed` is an `APIEmbed`, the same object [`EmbedBuilder.toJSON()`](https://discord.js.org/docs/packages/discord.js/main/EmbedBuilder:Class#toJSON) produces. Hand it to [`EmbedBuilder.from()`](https://discord.js.org/docs/packages/discord.js/main/EmbedBuilder:Class#from) and send it.
+
+```ts showLineNumbers
+const embed = EmbedBuilder.from(response.actions.embed);
+```
+
+<Callout type="info">
+	Everything below is written against raw payloads, which is what `@discordjs/core`, Oceanic, Seyfert and a
+	plain gateway connection hand you. If you are on discord.js, read `interaction.data` and
+	`interaction.data.resolved` off the payload you received rather than the structures discord.js built from
+	it.
+</Callout>
 
 ## A complete example
 
@@ -86,7 +116,7 @@ if (cooldown && isOnCooldown(tagName, interaction.user.id)) {
 
 await interaction.reply({
 	content: silentResponse ? undefined : response.body!,
-	embeds: embed ? [new EmbedBuilder(embed)] : [],
+	embeds: embed ? [EmbedBuilder.from(embed)] : [],
 });
 
 if (deleteMessage && channel.permissionsFor(client.user).has('ManageMessages')) {

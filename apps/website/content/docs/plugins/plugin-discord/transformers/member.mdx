@@ -3,7 +3,7 @@ title: MemberTransformer
 description: Expose a guild member to a template.
 ---
 
-`MemberTransformer` exposes a discord.js `GuildMember`, which is a user plus everything specific to one guild: nickname, roles, join date and timeout.
+`MemberTransformer` reads an `APIGuildMember` payload, which is a user plus everything specific to one guild: nickname, roles, join date and timeout.
 
 ## For template authors
 
@@ -30,25 +30,21 @@ Welcome {member}, you joined {date(R):{member(joinedTimestamp)}}.
 | --- | ----- |
 | `id` | The user ID. |
 | `mention` | A mention. |
-| `name` | Empty, since `GuildMember` has no `name`. |
+| `name` | Empty, since a member payload has no `name`. |
 | `username` | The username. |
 | `discriminator` | The legacy discriminator. |
-| `tag` | Username and discriminator. |
-| `avatar` | The custom avatar URL, or empty. |
-| `displayAvatar` | The avatar URL with a fallback. |
+| `tag` | Username and discriminator, or just the username on a migrated account. |
+| `avatar` | The account avatar URL, or empty. |
+| `displayAvatar` | The avatar URL, falling back to the default avatar. |
 | `nickname` | The guild nickname. |
-| `displayName` | Nickname if set, otherwise username. |
+| `displayName` | Nickname if set, then global name, then username. |
 | `joinedAt` | Join date as an ISO string. |
 | `joinedTimestamp` | Join time in milliseconds. |
 | `createdAt` | Account creation date. |
 | `createdTimestamp` | Account creation time in milliseconds. |
 | `bot` | `true` or `false`. |
-| `color` | The highest role colour. |
-| `position` | The highest role position. |
-| `roles` | The roles. |
+| `roles` | A mention per role. |
 | `roleIds` | The role IDs. |
-| `roleNames` | The role names. |
-| `topRole` | The highest role. |
 | `timeoutUntil` | When a timeout ends. |
 | `timeoutUntilTimestamp` | Timeout end in milliseconds. |
 
@@ -73,12 +69,24 @@ A [variable parser](/tagscript/parsers/variables) has to be registered for the t
 
 ### Adding your own fields
 
-Pass a second argument to expose extra keys. A function receives the GuildMember and runs when the tag renders.
+Pass a second argument to expose extra keys. A function receives the payload and runs when the tag renders.
 
 ```ts showLineNumbers
-new MemberTransformer(guildmember, {
+new MemberTransformer(member, {
 	custom: 'a fixed value',
-	computed: (base) => `${base.id} was looked up at render time`,
+	computed: (base) => `${base.user.id} was looked up at render time`,
+});
+```
+
+A member payload lists role IDs and carries no guild ID, so role names, the top role, the member colour and
+the per-guild avatar all need the guild alongside the member. Work them out once and pass them in:
+
+```ts showLineNumbers
+const roles = guild.roles.filter((role) => member.roles.includes(role.id));
+
+new MemberTransformer(member, {
+	roleNames: roles.map((role) => role.name).join(', '),
+	topRole: roles.reduce((highest, role) => (role.position > highest.position ? role : highest)).name,
 });
 ```
 

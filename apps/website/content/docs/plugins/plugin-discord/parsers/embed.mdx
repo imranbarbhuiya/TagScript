@@ -39,11 +39,22 @@ The property form, easier to read and to edit one line at a time:
 {embed(title):Rules}
 {embed(description):Follow these to keep the server pleasant.}
 {embed(field):Rule 1|Be nice.|false}
+{embed(image):https://random-d.uk/api/randomimg}
+{embed(footer):Posted by the mods|https://example.com/icon.png}
 ```
 
-Repeated tags merge, so the four above build one embed. `field` takes a name, a value and whether it sits inline, split by pipes, and each `field` tag adds another one.
+Repeated tags merge, so the six above build one embed.
 
-Colours accept `0x37b2cb`, `#ed4245`, a plain number, or a Discord colour name such as `Red`.
+Four properties take more than a plain value:
+
+| Property | Written as | Becomes |
+| -------- | ---------- | ------- |
+| `field` | `name\|value\|inline` | Another entry in `fields`. |
+| `image`, `thumbnail` | a URL | `{ "url": "..." }`. |
+| `author` | `name\|url\|iconUrl`, the last two optional | `{ "name": ..., "url": ..., "icon_url": ... }`. |
+| `footer` | `text\|iconUrl`, the icon optional | `{ "text": ..., "icon_url": ... }`. |
+
+Colours accept `0x37b2cb`, `#ed4245`, `ed4245`, a plain number, `Random`, or a Discord colour name such as `Red`.
 
 ## For developers
 
@@ -70,19 +81,24 @@ The payload is required. `parse` merges into `ctx.response.actions.embed` and re
 
 Colours go through the exported `resolveColor`, which returns the input unchanged instead of throwing when it cannot resolve, so a bad colour reaches you as a string rather than a number.
 
+`response.actions.embed` is an `APIEmbed`: the shape Discord's API takes, the shape
+[`EmbedBuilder.toJSON()`](https://discord.js.org/docs/packages/discord.js/main/EmbedBuilder:Class#toJSON)
+produces, and the shape [`EmbedBuilder.from()`](https://discord.js.org/docs/packages/discord.js/main/EmbedBuilder:Class#from)
+reads. Nothing needs reshaping on the way out.
+
 ```ts showLineNumbers
 const response = await ts.run(template);
 
 if (response.actions.embed) {
-	await interaction.reply({ embeds: [new EmbedBuilder(response.actions.embed)] } );
+	await interaction.reply({ embeds: [EmbedBuilder.from(response.actions.embed)] });
 }
 ```
 
 <Callout type="warn">
-	The value is typed `APIEmbed | EmbedData`, but it is assembled from text a user wrote, so the type is a
-	convenience and not a guarantee. A template can set any property name to any string. Validate it before
-	handing it to `EmbedBuilder`, which throws on malformed input, and check field counts and lengths
-	against Discord's limits.
+	The value is typed `APIEmbed`, but it is assembled from text a user wrote, so the type is a convenience
+	and not a guarantee. A template can set any property name to any string. Validate it before handing it to
+	`EmbedBuilder`, which throws on malformed input, and check field counts and lengths against Discord's
+	limits.
 </Callout>
 
 The JSON form is parsed by the `protected parseEmbedJSON` method. Subclass `EmbedParser` and override it to validate, to strip properties you do not allow, or to resolve image URLs yourself.

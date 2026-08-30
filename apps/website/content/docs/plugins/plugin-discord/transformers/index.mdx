@@ -1,9 +1,9 @@
 ---
 title: Transformers
-description: Expose discord.js structures to a template without exposing the objects themselves.
+description: Expose Discord payloads to a template without exposing the objects themselves.
 ---
 
-Each transformer wraps one discord.js structure and answers with a fixed list of keys. `{member.displayName}` works. There is no key that returns the client, the token, or a method, because the transformer only ever returns strings it built itself.
+Each transformer reads one raw Discord payload and answers with a fixed list of keys. `{member.displayName}` works. There is no key that returns the client, the token, or a method, because the transformer only ever returns strings it built itself.
 
 ```ts showLineNumbers
 import { GuildTransformer, MemberTransformer } from '@tagscript/plugin-discord';
@@ -13,7 +13,7 @@ const ts = new Interpreter(new StrictVarsParser());
 
 const response = await ts.run('Hi {member.displayName}, welcome to {guild(name)}!', {
 	member: new MemberTransformer(interaction.member),
-	guild: new GuildTransformer(interaction.guild),
+	guild: new GuildTransformer(guild),
 });
 ```
 
@@ -21,35 +21,61 @@ The names on the left, `member` and `guild` here, are what template authors type
 
 ## Available transformers
 
-| Page                                                            | Wraps                | Notable keys                                                      |
-| ---------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------ |
-| [User](/plugins/plugin-discord/transformers/user)               | `User`               | `username`, `globalName`, `tag`, `displayAvatar`, `bot`           |
-| [Member](/plugins/plugin-discord/transformers/member)           | `GuildMember`        | `displayName`, `nickname`, `joinedAt`, `topRole`, `roleNames`     |
-| [Role](/plugins/plugin-discord/transformers/role)               | `Role`               | `color`, `permissions`, `memberCount`, `mentionable`              |
-| [Channel](/plugins/plugin-discord/transformers/channel)         | Guild channels       | `topic`, `type`, `nsfw`, `parentName`, `slowmode`                 |
-| [Guild](/plugins/plugin-discord/transformers/guild)             | `Guild`              | `memberCount`, `ownerId`, `channelCount`, `random`                |
-| [Interaction](/plugins/plugin-discord/transformers/interaction) | `CommandInteraction` | `commandName`, `channelId`, `guildId`, `locale`                   |
+| Page                                                            | Reads                              | Notable keys                                              |
+| ---------------------------------------------------------------- | ---------------------------------- | ----------------------------------------------------------- |
+| [User](/plugins/plugin-discord/transformers/user)               | `APIUser`                          | `username`, `globalName`, `tag`, `displayAvatar`, `bot`   |
+| [Member](/plugins/plugin-discord/transformers/member)           | `APIGuildMember`                   | `displayName`, `nickname`, `joinedAt`, `roleIds`, `roles` |
+| [Role](/plugins/plugin-discord/transformers/role)               | `APIRole`                          | `color`, `permissions`, `position`, `mentionable`         |
+| [Channel](/plugins/plugin-discord/transformers/channel)         | `APIGuildChannel`                  | `topic`, `type`, `nsfw`, `parentId`, `slowmode`           |
+| [Guild](/plugins/plugin-discord/transformers/guild)             | `APIGuild`                         | `ownerId`, `roleNames`, `roleCount`, `emojiCount`         |
+| [Interaction](/plugins/plugin-discord/transformers/interaction) | `APIApplicationCommandInteraction` | `commandName`, `channelId`, `guildId`, `locale`           |
 
 Every one of them exposes `id`, `mention` and `name` on top of its own keys, because `BaseTransformer` sets those three in its constructor.
 
+## What a payload does not carry
+
+A transformer sees exactly what Discord sent and nothing more. A member payload lists role IDs, not role objects. A role does not know who holds it. A guild payload has no channel list, and its `approximate_member_count` is only there when you fetched the guild with `with_counts`.
+
+Anything that needs a second object is yours to pass, through the same second argument you use for your own keys. A function is called with the payload at render time.
+
+```ts showLineNumbers
+const roles = guild.roles.filter((role) => member.roles.includes(role.id));
+
+new MemberTransformer(member, {
+	roleNames: roles.map((role) => role.name).join(', '),
+	topRole: roles.reduce((highest, role) => (role.position > highest.position ? role : highest)).name,
+	warnings: () => warningCountFor(member.user.id),
+});
+```
+
 ## Writing your own
 
-Extend `BaseTransformer` and override `updateSafeValues` to fill in the keys.
+Extend `BaseTransformer` and implement `resolveId`, `resolveMention` and `updateSafeValues`.
 
 ```ts showLineNumbers
 import { BaseTransformer } from '@tagscript/plugin-discord';
 
-import type { Message } from 'discord.js';
+import type { APIMessage } from 'discord-api-types/v10';
 
-export class MessageTransformer extends BaseTransformer<Message> {
+export class MessageTransformer extends BaseTransformer<APIMessage> {
+	protected resolveId() {
+		return this.base.id;
+	}
+
+	protected resolveMention() {
+		return this.base.content;
+	}
+
 	protected override updateSafeValues() {
 		this.safeValues.content = this.base.content;
 		this.safeValues.pinned = this.base.pinned;
-		this.safeValues.attachmentCount = this.base.attachments.size;
+		this.safeValues.attachmentCount = this.base.attachments.length;
 	}
 }
 ```
 
-A value can be a string, a number, a boolean, `null`, `undefined`, or a function taking the wrapped structure. Functions run when the tag renders, so use one for anything expensive or anything that changes during the render.
+`resolveId` fills `{thing.id}`, and `resolveMention` decides what a bare `{thing}` renders to: a mention for anything Discord can mention, and something readable for anything else.
+
+A value can be a string, a number, a boolean, `null`, `undefined`, or a function taking the payload. Functions run when the tag renders, so use one for anything expensive or anything that changes during the render.
 
 Values render with a template literal, so keep them to primitives. Assigning an object gives the template `[object Object]`.

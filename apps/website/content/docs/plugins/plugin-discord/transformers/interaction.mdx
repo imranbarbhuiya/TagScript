@@ -3,7 +3,7 @@ title: InteractionTransformer
 description: Expose a slash command interaction to a template.
 ---
 
-`InteractionTransformer` exposes the interaction that triggered the tag, which lets a template mention which command was used and where.
+`InteractionTransformer` reads an `APIApplicationCommandInteraction` payload, which lets a template say which command was used and where.
 
 ## For template authors
 
@@ -15,13 +15,16 @@ description: Expose a slash command interaction to a template.
 {{command.key}}
 ```
 
-The bare tag renders the mention. A parameter picks one field.
+The bare tag renders a command mention, which Discord turns into a clickable `/ping` in the client. A parameter picks one field.
 
 ### Examples
 
 ```yaml
 You used the {command(commandName)} command.
 # You used the ping command.
+
+Run {command} again to try.
+# Run </ping:938716130720235601> again to try.
 ```
 
 ### Fields
@@ -29,7 +32,8 @@ You used the {command(commandName)} command.
 | Key | Gives |
 | --- | ----- |
 | `id` | The interaction ID. |
-| `mention` | The command mention. |
+| `name` | The command name. |
+| `mention` | A clickable command mention. |
 | `applicationId` | The application ID. |
 | `channelId` | The channel ID. |
 | `guildId` | The guild ID. |
@@ -59,10 +63,10 @@ A [variable parser](/tagscript/parsers/variables) has to be registered for the t
 
 ### Adding your own fields
 
-Pass a second argument to expose extra keys. A function receives the CommandInteraction and runs when the tag renders.
+Pass a second argument to expose extra keys. A function receives the payload and runs when the tag renders.
 
 ```ts showLineNumbers
-new InteractionTransformer(commandinteraction, {
+new InteractionTransformer(interaction, {
 	custom: 'a fixed value',
 	computed: (base) => `${base.id} was looked up at render time`,
 });

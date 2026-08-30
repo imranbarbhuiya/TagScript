@@ -3,7 +3,7 @@ title: UserTransformer
 description: Expose a Discord user to a template.
 ---
 
-`UserTransformer` exposes a discord.js `User`. The template gets the fields below and nothing else, so there is no path from a template to the client or to any method on the user.
+`UserTransformer` reads an `APIUser` payload. The template gets the fields below and nothing else, so there is no path from a template to the client or to any method on the user.
 
 ## For template authors
 
@@ -30,11 +30,11 @@ Hi {user}, your account was made on {user(createdAt)}.
 | --- | ----- |
 | `id` | The user ID. |
 | `mention` | A mention, the same as the bare tag. |
-| `name` | Empty for a user, since `User` has no `name`. |
+| `name` | Empty, since a user payload has no `name`. |
 | `username` | The username. |
 | `globalName` | The display name, or empty. |
 | `discriminator` | The legacy discriminator. |
-| `tag` | Username and discriminator together. |
+| `tag` | Username and discriminator together, or just the username on a migrated account. |
 | `avatar` | The custom avatar URL, or empty when they have none. |
 | `displayAvatar` | The avatar URL, falling back to the default avatar. |
 | `createdAt` | Account creation date as an ISO string. |
@@ -62,7 +62,7 @@ A [variable parser](/tagscript/parsers/variables) has to be registered for the t
 
 ### Adding your own fields
 
-Pass a second argument to expose extra keys. A function receives the User and runs when the tag renders.
+Pass a second argument to expose extra keys. A function receives the payload and runs when the tag renders.
 
 ```ts showLineNumbers
 new UserTransformer(user, {

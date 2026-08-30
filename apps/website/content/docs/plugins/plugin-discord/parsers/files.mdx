@@ -49,7 +49,7 @@ The payload is required. `parse` splits it with the exported `split(payload, tru
 
 <Callout type="warn">
 	The array holds raw strings from a template. Nothing checks that they are URLs, that the host is one you
-	trust, or that the file is a reasonable size. Passing them to discord.js unchecked makes your bot fetch
+	trust, or that the file is a reasonable size. Passing them to your Discord library unchecked makes your bot fetch
 	whatever a template author names, including addresses on your own network. Match them against an
 	allowlist of hosts before you send.
 </Callout>
