@@ -25,6 +25,14 @@ export default defineConfig({
 	env: {
 		node: true,
 	},
+	rules: {
+		// Bridge until @imranbarbhuiya/oxc-config ships this. The shared config used
+		// `multi-or-nest`, which fights oxfmt: the formatter wraps a body longer than
+		// `printWidth` in braces and the linter then asks for them back. `multi-line` leaves
+		// line breaking to the formatter and still catches a body sitting on its own line
+		// without braces. Drop this once the dependency is bumped.
+		curly: [2, 'multi-line'],
+	},
 	options: {
 		typeAware: true,
 	},

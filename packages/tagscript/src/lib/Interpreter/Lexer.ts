@@ -114,8 +114,9 @@ export class Lexer {
 		if (token === Part.dot && !this.parenDecDepth) {
 			this.usedParenType = ParenType.Dot;
 			this.openParameter(index);
-		} else if (this.dotDecDepth && (token === Part.colon || index === this.parsedLength - 1))
+		} else if (this.dotDecDepth && (token === Part.colon || index === this.parsedLength - 1)) {
 			return this.closeParameter(token === Part.colon ? index : index + 1);
+		}
 
 		return false;
 	}

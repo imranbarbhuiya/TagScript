@@ -184,8 +184,9 @@ export class Interpreter<E = never, R = never> {
 
 				node.output = outcome;
 				totalWork += outcome.length;
-				if (charLimit !== null && totalWork > charLimit)
+				if (charLimit !== null && totalWork > charLimit) {
 					return yield* new WorkloadExceededError({ limit: charLimit, attempted: totalWork });
+				}
 
 				const [nextFinal, differential] = textDeform(start, end, final, outcome);
 				final = nextFinal;

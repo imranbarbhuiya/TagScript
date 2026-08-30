@@ -22,8 +22,9 @@ export class SliceParser extends BaseParser implements IParser {
 	}
 
 	public parse(ctx: Context) {
-		if (!ctx.tag.parameter!.includes('-') && !ctx.tag.parameter!.includes(','))
+		if (!ctx.tag.parameter!.includes('-') && !ctx.tag.parameter!.includes(',')) {
 			return ctx.tag.payload!.slice(Number.parseInt(ctx.tag.parameter!, 10));
+		}
 
 		const spl = ctx.tag.parameter!.includes('-') ? ctx.tag.parameter!.split('-') : ctx.tag.parameter!.split(',');
 		const start = Number.parseInt(spl[0], 10);
