@@ -5,11 +5,14 @@
  * separate child process with its own cwd. They run one at a time because every bump creates its own
  * commit and tag.
  */
-import { spawn } from 'node:child_process';
+import { execFile as execFileCallback, spawn } from 'node:child_process';
 import { access, readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { promisify } from 'node:util';
 
 import prompts from 'prompts';
+
+const execFile = promisify(execFileCallback);
 
 const PACKAGES_DIR = 'packages';
 
@@ -56,6 +59,31 @@ const bump = async ({ name, path }) =>
 		});
 	});
 
+const revParseHead = async () => (await execFile('git', ['rev-parse', 'HEAD'])).stdout.trim();
+
+/**
+ * cliff-jumper only ever creates lightweight tags, and `git push --follow-tags` pushes annotated tags
+ * exclusively, so release tags silently stay local. Re-create them as annotated once the bump commit
+ * lands. A HEAD that didn't move means nothing was committed (`--dry-run`, `--skip-tag`, a failure
+ * before the commit), and any tag pointing at it predates this run.
+ */
+const annotateNewTags = async (headBeforeBump) => {
+	const head = await revParseHead();
+
+	if (head === headBeforeBump) return;
+
+	const { stdout } = await execFile('git', ['tag', '--points-at', head]);
+
+	for (const tag of stdout.split('\n').filter(Boolean)) {
+		const { stdout: objectType } = await execFile('git', ['cat-file', '-t', tag]);
+
+		if (objectType.trim() !== 'commit') continue;
+
+		await execFile('git', ['tag', '--annotate', '--force', '--message', tag, tag, head]);
+		console.info(`\u{1F3F7}\uFE0F  Re-created ${tag} as an annotated tag`);
+	}
+};
+
 const packages = await findReleasablePackages();
 
 if (packages.length === 0) {
@@ -89,7 +117,11 @@ if (selected.length === 0) {
 
 for (const pkg of selected) {
 	console.info(`\nBumping ${pkg.name} (${pkg.path})`);
+
+	const headBeforeBump = await revParseHead();
+
 	await bump(pkg);
+	await annotateNewTags(headBeforeBump);
 }
 
 console.info(`\nBumped ${selected.length} package${selected.length === 1 ? '' : 's'}.`);
