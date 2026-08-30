@@ -48,7 +48,7 @@ Hello Parbez
 
 The parameter is required. The payload is optional and defaults to an empty string.
 
-`parse` throws a `StopSignal` carrying the payload. The interpreter catches it, abandons the remaining tags and returns the text rendered so far plus the message. Nothing propagates to your `await ts.run(...)` call, so you do not need a `try` block for this, and nothing is added to `response.errors` — a stop is control flow, not a failure.
+`parse` throws a `StopSignal` carrying the payload. The interpreter catches it, abandons the remaining tags and returns the text rendered so far plus the message. Nothing propagates to your `await ts.run(...)` call, so you do not need a `try` block for this, and nothing is added to `response.errors`, because a stop is control flow rather than a failure.
 
 `StopSignal` is exported, so your own parsers can end a render the same way:
 

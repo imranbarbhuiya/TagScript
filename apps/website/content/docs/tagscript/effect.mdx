@@ -1,0 +1,203 @@
+---
+title: Effect
+description: The tagscript/effect entry point, where a parser can declare what it needs and what it can fail with.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+`tagscript/effect` is a second way to use the same interpreter. Templates, syntax and transformers
+are unchanged. What changes is the type of a parser.
+
+```ts showLineNumbers
+import { Interpreter, builtinParsers } from 'tagscript/effect';
+import * as Effect from 'effect/Effect';
+
+const ts = new Interpreter(...builtinParsers);
+const response = await Effect.runPromise(ts.run('{upper:hello}'));
+```
+
+Install `effect` yourself. It is an optional peer dependency, so the classic entry point keeps its
+zero dependencies and nothing is installed for you.
+
+```sh
+npm install effect@rc
+```
+
+<Callout>
+	This needs Node `^20.19.0 || >=22.12.0`. `effect` ships ESM only, and those are the versions where
+	`require(esm)` is stable, so the CommonJS build reaches it too.
+</Callout>
+
+## Why it exists
+
+A classic parser can only return a string. It cannot ask for a database, and it cannot report a
+failure that the calling code has to deal with.
+
+`CooldownParser` in the Discord plugin shows the gap. It cannot enforce a cooldown, because it has
+no way to reach Redis. It writes to `response.actions.cooldown` and leaves the real work to the bot
+author.
+
+Here it is as an Effect parser, doing the job itself:
+
+```ts showLineNumbers
+import * as Context from 'effect/Context';
+import * as Data from 'effect/Data';
+import * as Effect from 'effect/Effect';
+import { definePlugin } from 'tagscript/effect';
+
+class OnCooldown extends Data.TaggedError('OnCooldown')<{ readonly retryAfter: number }> {}
+
+class CooldownStore extends Context.Service<CooldownStore, {
+	readonly check: (key: string, seconds: number) => Effect.Effect<number | null>;
+}>()('myapp/CooldownStore') {}
+
+export const cooldownParser = definePlugin({
+	names: ['cooldown', 'cd'],
+	requiredParameter: true,
+	parse: Effect.fnUntraced(function* (ctx) {
+		const store = yield* CooldownStore;
+		const retryAfter = yield* store.check(ctx.response.keyValues.tagName, Number(ctx.tag.parameter));
+		if (retryAfter !== null) return yield* new OnCooldown({ retryAfter });
+		return '';
+	}),
+});
+```
+
+Its type is `Parser<OnCooldown, CooldownStore>`. The two parameters carry what it can fail with and
+what it needs. Register it and the interpreter carries them too, so the call site has to supply the
+service and handle the error:
+
+```ts showLineNumbers
+const body = await Effect.runPromise(
+	ts.run(template).pipe(
+		Effect.map((response) => response.body),
+		Effect.catchTag('OnCooldown', (error) => Effect.succeed(`Try again in ${error.retryAfter}s.`)),
+		Effect.provide(CooldownStore.redis(client)),
+	),
+);
+```
+
+Drop the `Effect.provide` line and it does not compile.
+
+## Writing a parser
+
+`definePlugin` takes the names to answer to and a body. Name matching is case insensitive, and
+`requiredParameter` and `requiredPayload` work as they do on `BaseParser`.
+
+```ts showLineNumbers
+export const upperParser = definePlugin({
+	names: ['upper'],
+	requiredPayload: true,
+	parse: (ctx) => Effect.succeed(ctx.tag.payload!.toUpperCase()),
+});
+```
+
+A parser that yields nothing does not need a generator. Use `Effect.succeed` for a pure result,
+`Effect.sync` when it writes to the response, and `Effect.fnUntraced` when it yields.
+
+Returning `null` means this parser did not handle the tag after all, and the interpreter moves on to
+the next one that accepted it.
+
+For full control, write the object yourself:
+
+```ts showLineNumbers
+export const strictVarsParser: Parser = {
+	willAccept: (ctx) => Effect.succeed(Object.hasOwn(ctx.response.variables, ctx.tag.declaration!)),
+	parse: (ctx) => Effect.sync(() => ctx.response.variables[ctx.tag.declaration!].transform(ctx.tag)),
+};
+```
+
+## Errors
+
+Four things can happen when a parser fails, and they are deliberately different.
+
+| The parser fails with | The body gets                       | Where it goes                     |
+| --------------------- | ----------------------------------- | --------------------------------- |
+| `TemplateError`       | the message, as written             | `response.errors`                 |
+| a defect, so a throw  | `GENERIC_PARSER_ERROR_MESSAGE`      | `response.errors`, as `ParserError` |
+| `StopSignal`          | the render so far, then its message | nowhere, this is control flow     |
+| anything else         | nothing, the render fails           | the error channel                 |
+
+The split is about who reads the output. A template author has no console, so a mistake they can
+fix is worth showing them. Raise a `TemplateError` for those:
+
+```ts showLineNumbers
+return yield* new TemplateError({ message: 'cooldown needs a number of seconds', tag: 'cooldown' });
+```
+
+A bug in your parser is not theirs to fix, and its message can leak internals into a public channel.
+Those become a `ParserError` with the real error on `cause`, and the body gets a generic line.
+
+Everything else your parser declares reaches the caller. That is the whole point, so keep those
+errors specific.
+
+## Configuration
+
+The character limit, the tag limit and the parameter syntax are `Context.Reference` values. Provide
+them once for an application rather than at every call.
+
+```ts showLineNumbers
+import { CharLimit, ParameterSyntax, TagLimit } from 'tagscript/effect';
+import { ParenType } from 'tagscript';
+
+ts.run(template).pipe(
+	Effect.provideService(CharLimit, 2_000),
+	Effect.provideService(TagLimit, 500),
+	Effect.provideService(ParameterSyntax, ParenType.Dot),
+);
+```
+
+Going over `CharLimit` fails with a `WorkloadExceededError` carrying `limit` and `attempted`.
+`CharLimit` defaults to `null`, which means no limit, so set it whenever the template author is
+untrusted.
+
+## Seeded randomness
+
+`{random}`, `{5050}`, `{range}` and `{rangef}` draw from Effect's `Random` rather than
+`Math.random`. A test can seed it and assert on the result, which the classic parsers never allowed.
+
+```ts showLineNumbers
+import * as Random from 'effect/Random';
+
+const render = (seed: string) => Effect.runPromise(Random.withSeed(seed)(ts.run('{range:1-1000}')));
+
+// the same seed gives the same number every time
+```
+
+## Using both entry points
+
+Three adapters cover the gap, so you do not have to move everything at once.
+
+`fromClassic` lifts a classic parser, including anything from `@tagscript/plugin-discord`. Actions
+and variables it writes still land on the response.
+
+```ts showLineNumbers
+import { CooldownParser } from '@tagscript/plugin-discord';
+import { fromClassic } from 'tagscript/effect';
+
+const ts = new Interpreter(fromClassic(new CooldownParser()));
+```
+
+`toClassic` goes the other way, but only for a parser that needs no services:
+
+```ts showLineNumbers
+const classicTs = new ClassicInterpreter(toClassic(upperParser));
+```
+
+A parser that declares a requirement will not compile here. That is the compiler telling you it has
+nowhere to get the service from, rather than letting it fail at runtime.
+
+`toPromise` runs a whole interpreter from code that is not on Effect:
+
+```ts showLineNumbers
+const render = toPromise(new Interpreter(...builtinParsers));
+const response = await render('{upper:hello}');
+```
+
+## What is not here
+
+Transformers are unchanged. They read from a payload you already fetched, so they stay synchronous
+and both entry points share them.
+
+`Response` has the same fields as the classic one. Only `errors` differs, holding tagged errors
+rather than the classic classes.

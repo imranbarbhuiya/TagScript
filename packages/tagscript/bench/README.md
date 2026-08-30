@@ -40,7 +40,7 @@ produces occasional very slow samples, and those move a mean much further than a
 
 Treat CI numbers as a trend, not an absolute. GitHub-hosted runners vary by tens of percent between
 runs depending on which host you land on, which is why `alert-threshold` is set to 150% and
-`fail-on-alert` is off — the workflow reports, it does not gate. For a real before/after comparison,
+`fail-on-alert` is off. The workflow reports, it does not gate. For a real before/after comparison,
 run both sides locally on the same machine.
 
 ## Adding a benchmark

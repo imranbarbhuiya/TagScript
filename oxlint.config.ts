@@ -57,7 +57,7 @@ export default defineConfig({
 		{
 			// Effect's generator APIs take anonymous generators, and its `Effect.catch` combinator
 			// is not a promise `.catch`, which is what the two promise rules think they are seeing.
-			files: ['**/src/effect/**'],
+			files: ['**/src/effect/**', '**/tests/effect/**'],
 			rules: {
 				'eslint/func-names': 'off',
 				'promise/prefer-await-to-callbacks': 'off',

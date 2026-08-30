@@ -140,7 +140,7 @@ export const stopParser: Parser<StopSignal> = definePlugin<StopSignal>({
  * Picks a random item from a list split by `~` or `,`.
  *
  * Unlike the classic parser this draws from Effect's `Random`, so a test can seed it and a render
- * becomes reproducible.
+ * becomes reproducible. `nextIntBetween` includes both bounds, so the top index is `length - 1`.
  *
  * Aliases: `random`, `rand`
  */
@@ -149,7 +149,7 @@ export const randomParser: Parser = definePlugin({
 	requiredPayload: true,
 	parse: Effect.fnUntraced(function* (ctx) {
 		const options = split(ctx.tag.payload!, true);
-		return options[yield* Random.nextIntBetween(0, options.length)];
+		return options[yield* Random.nextIntBetween(0, options.length - 1)];
 	}),
 });
 
@@ -191,8 +191,8 @@ export const rangeParser: Parser<TemplateError> = definePlugin<TemplateError>({
 			});
 		}
 
-		if (float) return `${(yield* Random.nextIntBetween(lower * 10, upper * 10 + 1)) / 10}`;
-		return `${yield* Random.nextIntBetween(lower, upper + 1)}`;
+		if (float) return `${(yield* Random.nextIntBetween(lower * 10, upper * 10)) / 10}`;
+		return `${yield* Random.nextIntBetween(lower, upper)}`;
 	}),
 });
 

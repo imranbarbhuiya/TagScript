@@ -102,13 +102,13 @@ The positional form, `run(message, seedVariables, charLimit, tagLimit, parenType
 
 ### Errors
 
-A parser failing does not reject and does not end the render — the interpreter replaces that one tag and carries on, recording what happened on `response.errors`.
+A parser failing does not reject and does not end the render. The interpreter replaces that one tag and carries on, recording what happened on `response.errors`.
 
-| The parser raises | The body gets                       | `response.errors` gets                          |
-| ----------------- | ----------------------------------- | ----------------------------------------------- |
-| `TemplateError`   | the error's message, as written     | the `TemplateError`                             |
-| anything else     | a generic message                   | a `ParserError`, with the real error on `cause` |
-| `StopSignal`      | the render so far, then its message | nothing — this is control flow, not a failure   |
+| The parser raises | The body gets                       | `response.errors` gets                              |
+| ----------------- | ----------------------------------- | --------------------------------------------------- |
+| `TemplateError`   | the error's message, as written     | the `TemplateError`                                 |
+| anything else     | a generic message                   | a `ParserError`, with the real error on `cause`     |
+| `StopSignal`      | the render so far, then its message | nothing, this is control flow rather than a failure |
 
 The person who wrote the template usually has no console, so raise a `TemplateError` for a mistake **they** can fix and its message is shown to them. Anything else is a bug in your parser, so the body gets a generic line and the real error is kept on `response.errors` for you.
 
@@ -239,6 +239,34 @@ class UpperTransformer implements ITransformer {
 	}
 }
 ```
+
+## Effect
+
+`tagscript/effect` is a second entry point where a parser declares what it can fail with and what
+services it needs. `effect` is an optional peer dependency, so nothing changes for the classic entry
+point.
+
+```sh
+npm install effect@rc
+```
+
+A parser typed `Parser<OnCooldown, CooldownStore>` cannot run until the application provides that
+service, and its error reaches the caller:
+
+```ts
+const body = await Effect.runPromise(
+	ts.run(template).pipe(
+		Effect.map((response) => response.body),
+		Effect.catchTag('OnCooldown', (error) => Effect.succeed(`Try again in ${error.retryAfter}s.`)),
+		Effect.provide(CooldownStore.redis(client)),
+	),
+);
+```
+
+`{random}`, `{5050}` and `{range}` draw from Effect's `Random` there, so a seeded test can assert on
+them. `fromClassic`, `toClassic` and `toPromise` let the two entry points mix.
+
+Needs Node `^20.19.0 || >=22.12.0`. Full details: **[tagscript.js.org/tagscript/effect](https://tagscript.js.org/tagscript/effect)**
 
 ## Related
 

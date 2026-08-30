@@ -1,5 +1,12 @@
 {
 	"title": "Getting Started",
 	"defaultOpen": true,
-	"pages": ["index", "syntax", "interpreter", "parsers", "transformers"]
+	"pages": [
+		"index",
+		"syntax",
+		"interpreter",
+		"effect",
+		"parsers",
+		"transformers"
+	]
 }

@@ -86,11 +86,11 @@ What lands in the body depends on whose mistake it was.
 | ---------------------- | --------------------------------- | ----------------------------------------------- |
 | `TemplateError`        | the error's message, as written   | the `TemplateError`                             |
 | anything else          | a generic message                 | a `ParserError`, with the real error on `cause` |
-| `StopSignal`           | the render so far, then its message | nothing — this is control flow, not a failure |
+| `StopSignal`           | the render so far, then its message | nothing, this is control flow rather than a failure |
 
 The split exists because the person who wrote the template is usually not the person running the
-process. They have no console and no stack trace, so a mistake **they** can fix — malformed JSON in
-an `{embed}`, a parameter that is not a number — is worth putting in front of them. Raise a
+process. They have no console and no stack trace, so a mistake **they** can fix is worth putting in
+front of them. Malformed JSON in an `{embed}`, or a parameter that is not a number. Raise a
 `TemplateError` for those:
 
 ```ts showLineNumbers
