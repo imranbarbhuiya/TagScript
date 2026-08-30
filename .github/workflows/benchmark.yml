@@ -39,7 +39,7 @@ jobs:
         run: bun run bench -- --out bench-results.json
 
       # Pushes to main become the baseline every later run is compared against, and feed the chart
-      # published at https://imranbarbhuiya.github.io/tagscript/dev/bench.
+      # published at https://imranbarbhuiya.github.io/TagScript/dev/bench/.
       - name: Record baseline
         if: github.event_name == 'push'
         uses: benchmark-action/github-action-benchmark@v1
