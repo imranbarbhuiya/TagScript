@@ -30,6 +30,11 @@ jobs:
           node-version: 22
       - name: Install Dependencies
         run: bun install --frozen-lockfile
+      # The plugin benchmarks import `tagscript` by name, which resolves to the workspace
+      # package's dist. The bench script runs the packages directly rather than through turbo,
+      # so nothing else builds them first.
+      - name: Build packages
+        run: bun run build --filter="./packages/*"
       - name: Run benchmarks
         run: bun run bench -- --out bench-results.json
 
