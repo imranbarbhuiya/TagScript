@@ -1,0 +1,95 @@
+---
+title: Variables
+description: Read values your app seeded, or that an earlier tag defined.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+A variable tag has no fixed name. `{user}`, `{args}` and `{guild}` all work if the app running the template put something under that name. Register `StrictVarsParser` or `LooseVarsParser` to turn variable tags on. Without one of them, `{user}` renders as the literal text `{user}`.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{name}
+{name(parameter)}
+{name.parameter}
+```
+
+The bare form gives you the whole value. What the parameter means depends on the kind of value: a word index for text, a property name for an object, a mention or a field name for a Discord structure. The page for each [transformer](/tagscript/transformers) spells that out.
+
+### Examples
+
+```yaml
+Hi {args}
+# Hi, How are you?
+
+{args(2)}
+# How
+```
+
+Variable names are case sensitive, so `{user}` and `{User}` are different names. Tag names like `upper` are not, which is why `{UPPER:hi}` works.
+
+An unknown name is left alone rather than replaced with an empty string:
+
+```yaml
+Hi {unknown}
+# Hi {unknown}
+```
+
+That is deliberate. A typo shows up in the output instead of quietly disappearing.
+
+### Defining your own
+
+[`{=(name):value}`](/tagscript/parsers/define) and [`{json(name):...}`](/tagscript/parsers/json) create variables from inside the template.
+
+## For developers
+
+### Register a variable parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, StrictVarsParser } from 'tagscript';
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, StrictVarsParser } = require('tagscript');
+	const ts = new Interpreter(new StrictVarsParser());
+	```
+</Tabs>
+
+Seed the values on each `run` call. The keys are the names templates use.
+
+```ts showLineNumbers
+import { Interpreter, StrictVarsParser, StringTransformer } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('Hi {args}', { args: new StringTransformer('How are you?') });
+response.body; // 'Hi How are you?'
+```
+
+Seeded variables land on `response.variables`, alongside anything the template defined during the render.
+
+### Strict or loose?
+
+The two parsers resolve the same variables and differ only in when they check the name.
+
+| Parser              | Checks the name in | Effect                                                                                   |
+| ------------------- | ------------------ | ----------------------------------------------------------------------------------------- |
+| `StrictVarsParser`  | `willAccept`       | Declines unknown names outright, so a later parser sees the tag untouched.                |
+| `LooseVarsParser`   | `parse`            | Accepts every tag, then returns `null` for unknown names so the next parser still runs.   |
+
+Prefer `StrictVarsParser`. `LooseVarsParser` accepts every tag it is offered, so if you register it before another parser it is consulted first for every single tag in the template.
+
+<Callout type="warn">
+	Never seed a transformer that wraps something you would not hand the template author. Transformers
+	expose a fixed key list, so `SafeObjectTransformer` and the Discord transformers are safe by design.
+	A transformer you write yourself is only as safe as the keys you put in it.
+</Callout>
+
+### API reference
+
+[StrictVarsParser](/api/tagscript/classes/StrictVarsParser), [LooseVarsParser](/api/tagscript/classes/LooseVarsParser)

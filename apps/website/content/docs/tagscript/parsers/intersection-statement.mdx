@@ -1,54 +1,55 @@
 ---
 title: IntersectionStatementParser
+description: Return the first branch only when every expression is true.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The intersection parser checks that all of the passed expressions are true.
-Multiple expressions can be passed to the parameter by splitting them with pipe (`|`).
-The payload is a required message that must be split by pipe (`|`).
-If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
+`all` takes a list of expressions and returns the first branch only if every one of them is true. It is the counterpart to [`any`](/tagscript/parsers/union-statement).
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM" 
-	import { Interpreter, IntersectionStatementParser } from 'tagscript';
-	const ts = new Interpreter(new IntersectionStatementParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter, IntersectionStatementParser } = require('tagscript');
-	const ts = new Interpreter(new IntersectionStatementParser());
-	```
-</Tabs>
-
-## API
-
-Check [IntersectionStatementParser](../../typedoc-api/tagscript/classes/IntersectionStatementParser) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
-{/* prettier-ignore-start */}
+
 ```yaml
-{all(expression|expression|...):message}
+{all(expression|expression|...):true message|false message}
 ```
-{/* prettier-ignore-end */}
 
 ### Examples
 
+Range checks are the common case, since `if` only compares two values at a time:
+
 ```yaml
-{all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
-# if {args} is 52
-You must provide a number between 100 and 1000.
-# if {args} is 282
+{all({n}>=100|{n}<=999):You picked {n}.|Pick a number between 100 and 999.}
+# when n is 52
+Pick a number between 100 and 999.
+# when n is 282
 You picked 282.
 ```
 
 ### Aliases
 
-`intersection`, `all`, `and`
+`all`, `and`, `intersection`
 
-</Callout>
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, IntersectionStatementParser } from 'tagscript';
+	const ts = new Interpreter(new IntersectionStatementParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, IntersectionStatementParser } = require('tagscript');
+	const ts = new Interpreter(new IntersectionStatementParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Both the parameter and the payload are required. Every expression is evaluated, then the results are AND-ed together, with no short circuit.
+
+### API reference
+
+[IntersectionStatementParser](/api/tagscript/classes/IntersectionStatementParser)

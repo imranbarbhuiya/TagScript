@@ -22,7 +22,7 @@ import type { Context } from '../Interpreter';
  * {index(there):Hi there!}
  * 	    # 1
  * {lindex(t):Hi there!}
- * # 4
+ * # 3
  * ```
  */
 export class IncludesParser extends BaseParser implements IParser {

@@ -1,75 +1,136 @@
 ---
-title: TagScript Parsers
-description: Tagscript parsers are used to parse a tag and return a value based on the tag.
+title: Parsers
+description: Every tag the interpreter understands comes from a parser you registered.
 ---
 
-# Parsers
-
+import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-Parsers are used to parse a tag and return a value based on the tag. You can use [builtin parsers](#builtin-parsers) or write your [own parser](#custom-parser).
+A parser implements one tag, or a family of related tags. The interpreter has none of its own, so a fresh `new Interpreter()` renders plain text and leaves every `{tag}` exactly as written. What a template can do is precisely the list of parsers you pass in.
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	// [!code word:Parser]
-	import { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
-	const ts = new Interpreter(new
-	SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+```ts showLineNumbers
+import { Interpreter, RandomParser } from 'tagscript';
+
+const ts = new Interpreter(new RandomParser());
+
+(await ts.run('{random:heads,tails}')).body; // 'tails'
+(await ts.run('{if(1==1):yes|no}')).body; // '{if(1==1):yes|no}'
+```
+
+Add or replace them later with `ts.addParsers(...)` and `ts.setParsers(...)`.
+
+## Built-in parsers
+
+### Logic and control flow
+
+| Page                                                                | Tags                             | What it does                                        |
+| ------------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------- |
+| [If statement](/tagscript/parsers/if-statement)                     | `if`                             | Pick one of two messages from a comparison.         |
+| [Union statement](/tagscript/parsers/union-statement)               | `any`, `or`, `union`             | True when any expression holds.                     |
+| [Intersection statement](/tagscript/parsers/intersection-statement) | `all`, `and`, `intersection`     | True when every expression holds.                   |
+| [Stop](/tagscript/parsers/stop)                                     | `stop`, `halt`, `error`          | End the render and return a message.                |
+| [Break](/tagscript/parsers/break)                                   | `break`                          | Replace the output but keep parsing.                |
+
+### Variables
+
+| Page                                        | Tags                          | What it does                                |
+| ------------------------------------------- | ----------------------------- | -------------------------------------------- |
+| [Variables](/tagscript/parsers/variables)   | any seeded name               | Read values your app supplied.              |
+| [Define](/tagscript/parsers/define)         | `=`, `assign`, `let`, `var`   | Name a value and reuse it later.            |
+| [JSON](/tagscript/parsers/json)             | `json`                        | Turn a JSON payload into a named variable.  |
+
+### Text
+
+| Page                                            | Tags                                             | What it does                          |
+| ----------------------------------------------- | ------------------------------------------------ | -------------------------------------- |
+| [Formatting](/tagscript/parsers/format)         | `lower`, `upper`, `capitalize`, `escape`, `ord`  | Change case, escape syntax, ordinals.  |
+| [Includes](/tagscript/parsers/includes)         | `in`, `contain`, `index`, `lindex`               | Search text and report position.       |
+| [Replace](/tagscript/parsers/replace)           | `replace`                                        | Swap one string for another.           |
+| [Slice](/tagscript/parsers/slice)               | `slice`, `substr`, `substring`                   | Cut out a substring.                   |
+| [URL encoding](/tagscript/parsers/url-encoding) | `urlencode`, `encodeuri`, `urldecode`            | Encode text for a URL.                 |
+
+### Randomness
+
+| Page                                          | Tags                | What it does                        |
+| --------------------------------------------- | ------------------- | ------------------------------------ |
+| [Random](/tagscript/parsers/random)           | `random`, `rand`    | Pick one item from a list.          |
+| [Range](/tagscript/parsers/range)             | `range`, `rangef`   | Pick a number between two bounds.   |
+| [Fifty fifty](/tagscript/parsers/fifty-fifty) | `5050`, `50`, `?`   | Render the payload on a coin flip.  |
+
+For Discord specific tags such as `embed`, `cooldown` and `require`, see the [Discord plugin](/plugins/plugin-discord/parsers).
+
+## Writing your own
+
+Implement `IParser`, or extend `BaseParser` to get tag name matching and the parameter and payload checks for free.
+
+<Tabs items={['TypeScript', 'CommonJS']}>
+	```ts showLineNumbers tab="TypeScript"
+	import { BaseParser, type Context, type IParser } from 'tagscript';
+
+	export class FetchParser extends BaseParser implements IParser {
+		public constructor() {
+			// accepted names, requires a parameter, requires a payload
+			super(['fetch'], false, true);
+		}
+
+		public async parse(ctx: Context) {
+			const response = await fetch(ctx.tag.payload!.trim());
+			return response.text();
+		}
+	}
 	```
-	```js showLineNumbers tab="CommonJs" 
-	// [!code word:Parser] 
-	const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
-	const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+	```js showLineNumbers tab="CommonJS"
+	const { BaseParser } = require('tagscript');
+
+	module.exports = class FetchParser extends BaseParser {
+		constructor() {
+			super(['fetch'], false, true);
+		}
+
+		async parse(ctx) {
+			const response = await fetch(ctx.tag.payload.trim());
+			return response.text();
+		}
+	};
 	```
 </Tabs>
 
-## Builtin Parsers
+`BaseParser` takes three constructor arguments: the tag names it answers to, whether a parameter is required, and whether a payload is required. When a requirement is not met the parser declines the tag, and the interpreter leaves it in the output as written.
 
-Following is the list of builtin parsers:
+Both `parse` and `willAccept` may return a promise. `parse` returns the string that replaces the tag, or `null` to decline it after the fact, in which case the next parser that accepted the tag gets a turn.
 
--   [BreakParser](/tagscript/parsers/break)
--   [FiftyFiftyParser](/tagscript/parsers/fifty-fifty) 
--   [IfStatementParser](/tagscript/parsers/if-statement)
--   [IntersectionStatementParser](/tagscript/parsers/intersection-statement)
--   [RandomParser](/tagscript/parsers/random)
--   [RangeParser](/tagscript/parsers/range)
--   [ReplaceParser](/tagscript/parsers/replace)
--   [SliceParser](/tagscript/parsers/slice)
--   [StopParser](/tagscript/parsers/stop)
--   [UnionStatementParser](/tagscript/parsers/union-statement)
+<Callout type="warn">
+	A parser runs on text an untrusted author wrote. The `FetchParser` above will happily request any URL
+	the template names, including one on your internal network. Validate the payload before acting on it.
+</Callout>
 
-## Custom Parser
+### Recording an action instead of text
 
-You can write your own parsers by implementing [IParser](/typedoc-api/tagscript/interfaces/IParser) interface.
+To ask the host app to do something, write to `ctx.response.actions` and return an empty string. The interpreter never acts on it, so your code stays in control of what actually happens.
 
-<Tabs items={['Typescript', 'CommonJs']}>
-		```ts showLineNumbers tab="Typescript"
-			// [!code word:Parser]
-			import { BaseParser, type Context, type IParser } from 'tagscript';
+```ts showLineNumbers
+import { BaseParser, type Context, type IParser } from 'tagscript';
 
-    		export class FetchParser extends BaseParser implements IParser {
-    			public constructor() {
-    				super(['fetch'], false, true);
-    			}
+declare module 'tagscript' {
+	interface IActions {
+		notify?: { channel: string };
+	}
+}
 
-    			public parse(ctx: Context) {
-    				return fetch(ctx.tag.payload!.trim()).then((res) => res.text());
-    			}
-    		}
-    	```
-    	```js showLineNumbers tab="CommonJs"
-    		// [!code word:Parser]
-    		const { BaseParser } = require('tagscript');
+export class NotifyParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['notify'], true);
+	}
 
-    		module.exports = class FetchParser extends BaseParser {
-    			constructor() {
-    				super(['fetch'], false, true);
-    			}
+	public parse(ctx: Context) {
+		ctx.response.actions.notify = { channel: ctx.tag.parameter! };
+		return '';
+	}
+}
+```
 
-    			parse(ctx) {
-    				return fetch(ctx.tag.payload.trim()).then((res) => res.text());
-    			}
-    		}
-    	```
+Read `response.actions.notify` after the render and decide whether to honour it.
 
-</Tabs>
+## API reference
+
+[IParser](/api/tagscript/interfaces/IParser), [BaseParser](/api/tagscript/classes/BaseParser), [Context](/api/tagscript/classes/Context)

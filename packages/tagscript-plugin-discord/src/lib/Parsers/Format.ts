@@ -7,7 +7,7 @@ export class DateFormatParser extends BaseParser implements IParser {
 
 	public parse(ctx: Context) {
 		const { declaration } = ctx.tag;
-		if (['unix', 'currenttime'].includes(declaration!)) return Date.now().toString();
+		if (['unix', 'currenttime'].includes(declaration!.toLowerCase())) return Date.now().toString();
 
 		const parameter = ctx.tag.parameter ?? 'f';
 		if (!['f', 'F', 't', 'T', 'R'].includes(parameter)) return null;

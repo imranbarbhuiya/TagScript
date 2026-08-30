@@ -1,115 +1,92 @@
 ---
 title: EmbedParser
+description: Build a Discord embed from a template.
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The embed tag creates Discord embeds that can be sent along with messages.
-There are two ways to use the embed tag: either by using properly formatted embed JSON or by manually inputting the accepted embed properties.
+`embed` describes an embed. It renders nothing into the message body. Instead it collects the embed onto `response.actions.embed` for the bot to send.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	import { Interpreter } from 'tagscript';
-	import { EmbedParser } from '@tagscript/plugin-discord';
-	const ts = new Interpreter(new EmbedParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter } = require('tagscript');
-	const { EmbedParser } = require('@tagscript/plugin-discord');
-	const ts = new Interpreter(new EmbedParser());
-	```
-</Tabs>
-
-## API
-
-Check [EmbedParser](../../../typedoc-api/@tagscript/plugin-discord/classes/EmbedParser) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
 
-**Using JSON:**
+Either paste a whole embed as JSON:
+
 ```yaml
 {embed:json}
 ```
 
-**Using properties:**
+or set one property per tag:
+
 ```yaml
 {embed(property):value}
 ```
 
 ### Examples
 
-**JSON Format:**
-```yaml
-{embed:{"title": "Hello!", "description": "This is a test embed."}}
-```
+The JSON form, useful when you have built the embed somewhere else:
 
 ```yaml
-{embed:{
-    "title": "Here's a random duck!",
-    "image": {"url": "https://random-d.uk/api/randomimg"},
-    "color": 15194415
-}}
+{embed:{"title":"Hello!","description":"A test embed.","color":"Red"}}
 ```
 
-**Property Format:**
+The property form, easier to read and to edit one line at a time:
+
 ```yaml
 {embed(color):0x37b2cb}
 {embed(title):Rules}
-{embed(description):Follow these rules to ensure a good experience in our server!}
-{embed(field):Rule 1|Respect everyone you speak to.|false}
+{embed(description):Follow these to keep the server pleasant.}
+{embed(field):Rule 1|Be nice.|false}
 ```
 
-```yaml
-{embed(author):Author Name}
-{embed(thumbnail):https://example.com/image.png}
-{embed(footer):Footer text}
-{embed(timestamp):true}
-```
+Repeated tags merge, so the four above build one embed. `field` takes a name, a value and whether it sits inline, split by pipes, and each `field` tag adds another one.
 
-### Available Properties
+Colours accept `0x37b2cb`, `#ed4245`, a plain number, or a Discord colour name such as `Red`.
 
-- `title` - The embed title
-- `description` - The embed description
-- `color` - The embed color (hex code or number)
-- `author` - The embed author name
-- `thumbnail` - URL for the thumbnail image
-- `image` - URL for the main image
-- `footer` - The footer text
-- `timestamp` - Set to `true` to add current timestamp
-- `field` - Add a field with format: `name|value|inline`
+## For developers
 
-### Field Format
+### Register the parser
 
-Fields use the format: `{embed(field):name|value|inline}`
-- `name` - The field name
-- `value` - The field value
-- `inline` - `true` or `false` for inline display
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { EmbedParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
 
-### Notes
+	const ts = new Interpreter(new EmbedParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { EmbedParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
 
-- Multiple embed tags in the same TagScript will merge properties
-- Color values can be hex codes (0x37b2cb) or decimal numbers
-- JSON format allows for more complex embed structures
-- Developers need to construct the embed builder with the parser output
+	const ts = new Interpreter(new EmbedParser());
+	```
+</Tabs>
 
-</Callout>
+### Behaviour
 
-## Developer Example
+The payload is required. `parse` merges into `ctx.response.actions.embed` and returns an empty string, so nothing reaches the message body.
+
+Colours go through the exported `resolveColor`, which returns the input unchanged instead of throwing when it cannot resolve, so a bad colour reaches you as a string rather than a number.
 
 ```ts showLineNumbers
-import { Interpreter } from 'tagscript';
-import { EmbedParser } from '@tagscript/plugin-discord';
-import { EmbedBuilder } from 'discord.js';
+const response = await ts.run(template);
 
-const ts = new Interpreter(new EmbedParser());
-const result = await ts.run('{embed:{"title": "Hello!", "description": "This is a test embed."}}');
-
-// You might need to modify the embed object before passing to EmbedBuilder
-const embed = new EmbedBuilder(result.actions.embed);
+if (response.actions.embed) {
+	await interaction.reply({ embeds: [new EmbedBuilder(response.actions.embed)] } );
+}
 ```
+
+<Callout type="warn">
+	The value is typed `APIEmbed | EmbedData`, but it is assembled from text a user wrote, so the type is a
+	convenience and not a guarantee. A template can set any property name to any string. Validate it before
+	handing it to `EmbedBuilder`, which throws on malformed input, and check field counts and lengths
+	against Discord's limits.
+</Callout>
+
+The JSON form is parsed by the `protected parseEmbedJSON` method. Subclass `EmbedParser` and override it to validate, to strip properties you do not allow, or to resolve image URLs yourself.
+
+### API reference
+
+[EmbedParser](/api/plugins/classes/EmbedParser)

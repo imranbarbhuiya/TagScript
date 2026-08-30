@@ -1,0 +1,79 @@
+---
+title: DateFormatParser
+description: Render a Discord timestamp that shows in each reader's own timezone.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`date` renders a Discord timestamp such as `<t:1577836800:f>`. Discord shows it in each reader's local timezone. Unlike the other parsers in this plugin, this one writes into the message body rather than onto `response.actions`.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{date:when}
+{date(style):when}
+{unix}
+```
+
+`when` is either a date string or a timestamp. Leave it off to use the current time.
+
+### Styles
+
+| Style | Shows                       |
+| ----- | ---------------------------- |
+| `f`   | Date and short time, default |
+| `F`   | Day, date and time           |
+| `t`   | Short time                   |
+| `T`   | Long time with seconds       |
+| `R`   | Relative, such as "2 years ago" |
+
+### Examples
+
+```yaml
+{date:2020-01-01}
+# <t:1577836800:f>
+
+{date(R):2020-01-01}
+# <t:1577836800:R>
+
+Joined {date(R):{member(joinedTimestamp)}}
+```
+
+`{unix}` and `{currenttime}` render the current time in milliseconds as a plain number, with no formatting.
+
+### Aliases
+
+`date`, `unix`, `currenttime`
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { DateFormatParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
+
+	const ts = new Interpreter(new DateFormatParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { DateFormatParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
+
+	const ts = new Interpreter(new DateFormatParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Neither the parameter nor the payload is required. The parameter is the style and defaults to `f`. A parameter that is not one of the five styles makes `parse` return `null`, so the tag stays in the output as written rather than rendering a broken timestamp.
+
+A payload of only digits is treated as a timestamp, anything else goes through `new Date(...)`. Values longer than 10 digits are divided by 1000, which converts milliseconds to the seconds Discord expects.
+
+An unparseable date produces `<t:NaN:f>`. Validate the payload in a subclass if templates in your app take dates from users.
+
+### API reference
+
+[DateFormatParser](/api/plugins/classes/DateFormatParser)

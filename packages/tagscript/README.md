@@ -12,9 +12,9 @@
 
 ## What is TagScript?
 
-TagScript is a template language for the case where **the person writing the template is not the person who wrote the app** — a Discord server admin building a custom command, a user customising their profile, a support team editing an auto-reply.
+TagScript is a template language for the case where **the person writing the template is not the person who wrote the app**. A Discord server admin building a custom command. A user customising their profile. A support team editing an auto-reply.
 
-A template is plain text sprinkled with `{tags}`, and the interpreter knows nothing except the parsers you explicitly register. There is no host object to reach, no prototype to walk, no `require` to find. An unknown tag is not an error and not a crash — it is left in the output as literal text.
+A template is plain text sprinkled with `{tags}`, and the interpreter knows nothing except the parsers you explicitly register. There is no host object to reach, no prototype to walk, no `require` to find. An unknown tag is not an error and not a crash. It stays in the output as literal text.
 
 ```ts
 import { Interpreter, RandomParser } from 'tagscript';
@@ -22,7 +22,7 @@ import { Interpreter, RandomParser } from 'tagscript';
 const ts = new Interpreter(new RandomParser());
 
 (await ts.run('{random:heads,tails}')).body; // -> 'tails'
-(await ts.run('{if(1==1):yes|no}')).body; // -> '{if(1==1):yes|no}' — no IfStatementParser registered
+(await ts.run('{if(1==1):yes|no}')).body; // -> '{if(1==1):yes|no}', no IfStatementParser registered
 ```
 
 Ships ESM, CJS and an IIFE build (global `TagScript`). No runtime dependencies.
@@ -46,9 +46,9 @@ npm install tagscript
 | **parameter**   | `(...)` or `.` form. The `.` form ends at the `:` or at the end of the tag. Often optional. |
 | **payload**     | Everything after the first un-nested `:`, up to the closing `}`. Often optional.            |
 
-Tags nest, and inner tags resolve first — `{upper:{lower:ABC}}` renders `lower` before `upper`. Anything outside braces is plain text. Prefix a `{`, `}`, `(`, `)`, `:` or `|` with a backslash to stop it being read as syntax.
+Tags nest, and inner tags resolve first, so `{upper:{lower:ABC}}` renders `lower` before `upper`. Anything outside braces is plain text. Prefix a `{`, `}`, `(`, `)`, `:` or `|` with a backslash to stop it being read as syntax.
 
-Which parameter forms are legal is configurable per render via `ParenType` — see [`run()` options](#run-options).
+`ParenType` decides which parameter forms are legal per render. See [`run()` options](#run-options).
 
 ## Running a template
 
@@ -84,11 +84,11 @@ ts.run(message, seedVariables?, charLimit?, tagLimit?, parenType?, keyValues?);
 
 | Argument        | Default          | Description                                                                                      |
 | --------------- | ---------------- | ------------------------------------------------------------------------------------------------ |
-| `message`       | —                | The template to render.                                                                          |
+| `message`       | required         | The template to render.                                                                          |
 | `seedVariables` | `{}`             | Variables available to `StrictVarsParser` / `LooseVarsParser`, as name → transformer.            |
 | `charLimit`     | `null`           | Max characters a render may produce. Exceeding it **throws** out of `run()`. `null` disables it. |
 | `tagLimit`      | `2000`           | Max characters read from inside a single `{...}`; the rest of that tag body is truncated.        |
-| `parenType`     | `ParenType.Both` | `Both`, `Parenthesis` or `Dot` — which parameter syntaxes are accepted.                          |
+| `parenType`     | `ParenType.Both` | Which parameter syntaxes are accepted: `Both`, `Parenthesis` or `Dot`.                           |
 | `keyValues`     | `{}`             | Arbitrary data for your own parsers, reachable at `ctx.response.keyValues`.                      |
 
 `charLimit` is your defence against a template that expands cheaply into a huge string, so set it whenever the template author is untrusted:
@@ -119,8 +119,8 @@ Comparison operators are `==`, `!=`, `>`, `<`, `>=` and `<=`. A bare `true`/`fal
 
 | Parser             | Aliases                     | Example                                        | Result                                                   |
 | ------------------ | --------------------------- | ---------------------------------------------- | -------------------------------------------------------- |
-| `StrictVarsParser` | —                           | `{user}`, `{user(2)}`                          | Resolves seeded/defined variables. Prefer this one.      |
-| `LooseVarsParser`  | —                           | `{user}`                                       | Same, but the name is checked while parsing, not before. |
+| `StrictVarsParser` | none                        | `{user}`, `{user(2)}`                          | Resolves seeded/defined variables. Prefer this one.      |
+| `LooseVarsParser`  | none                        | `{user}`                                       | Same, but the name is checked while parsing, not before. |
 | `DefineParser`     | `=`, `assign`, `let`, `var` | `{=(prefix):!}` then `{prefix}`                | Defines a variable for the rest of the render.           |
 | `JSONVarParser`    | `json`                      | `{json(u):{"name":"Parbez"}}` then `{u(name)}` | Defines a variable from a JSON payload.                  |
 
@@ -141,10 +141,10 @@ You need one of `StrictVarsParser` or `LooseVarsParser` registered for `{variabl
 `IncludesParser` covers four different questions depending on the alias:
 
 ```yaml
-{in(there):Hi there!}      # true  — substring anywhere
-{contain(there):Hi there!} # false — whole word only ("there!" is the word)
-{index(there!):Hi there!}  # 1     — word index
-{lindex(t):Hi there!}      # 3     — character index
+{in(there):Hi there!}      # true, substring anywhere
+{contain(there):Hi there!} # false, whole word only ("there!" is the word)
+{index(there!):Hi there!}  # 1, word index
+{lindex(t):Hi there!}      # 3, character index
 ```
 
 Pass `+` as the parameter to `urlencode`/`urldecode` to use `+` for spaces instead of `%20`.
@@ -177,7 +177,7 @@ const ts = new Interpreter(new StrictVarsParser());
 // -> 'Hi Parbez Barbhuiya, your surname is Barbhuiya'
 ```
 
-`StringTransformer` indexes from 1, splits on whitespace by default (or on the payload if you give one), and supports `+` for ranges — `{args(2+)}` is "the second word onwards", `{args(+2)}` is "up to and including the second word".
+`StringTransformer` indexes from 1, splits on whitespace unless the payload gives another separator, and supports `+` for ranges. `{args(2+)}` is "the second word onwards", `{args(+2)}` is "up to and including the second word".
 
 ## Writing your own
 
@@ -199,7 +199,7 @@ class ShoutParser extends BaseParser implements IParser {
 (await new Interpreter(new ShoutParser()).run('{shout:hello}')).body; // -> 'HELLO!!!'
 ```
 
-Return `null` from `parse` to decline the tag — the interpreter moves on to the next parser that accepted it, and if none produce a value the tag is left in the output verbatim. `parse` and `willAccept` may both be async.
+Return `null` from `parse` to decline the tag. The interpreter moves on to the next parser that accepted it, and if none produce a value the tag is left in the output verbatim. `parse` and `willAccept` may both be async.
 
 To record a side effect instead of producing text, write to `ctx.response.actions` and return `''`. Declaration-merge `IActions` so your field is typed:
 
@@ -211,7 +211,7 @@ declare module 'tagscript' {
 }
 ```
 
-Transformers are simpler still — implement `transform(tag)` and return a string, or `null` to leave the tag alone:
+Transformers are simpler. Implement `transform(tag)` and return a string, or `null` to leave the tag alone:
 
 ```ts
 import type { ITransformer, Lexer } from 'tagscript';
@@ -227,7 +227,7 @@ class UpperTransformer implements ITransformer {
 
 ## Related
 
-- [`@tagscript/plugin-discord`](https://www.npmjs.com/package/@tagscript/plugin-discord) — discord.js parsers and transformers.
+- [`@tagscript/plugin-discord`](https://www.npmjs.com/package/@tagscript/plugin-discord) for discord.js parsers and transformers.
 - Full documentation: **[tagscript.js.org](https://tagscript.js.org/)**
 
 ## Buy me some doughnuts
@@ -237,7 +237,7 @@ If you want to support me by donating, you can do so by using any of the followi
 <a href="https://www.buymeacoffee.com/parbez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 <a href='https://ko-fi.com/Y8Y1CBIJH' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people:
 
@@ -245,6 +245,6 @@ Thanks goes to these wonderful people:
     <img src="https://contrib.rocks/image?repo=imranbarbhuiya/TagScript" />
 </a>
 
-## Special Thanks
+## Special thanks
 
 - [JonSnowbd](https://github.com/JonSnowbd/) for creating [TagScript](https://github.com/JonSnowbd/TagScript) in Python, which this project is a TypeScript reimagining of.

@@ -1,80 +1,51 @@
 ---
 title: IntegerTransformer
+description: Expose a number that a template can step up or down.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
-import { Tabs } from 'fumadocs-ui/components/tabs';
+`IntegerTransformer` holds a whole number. The parameter `++` increments it and `--` decrements it, and the change sticks for the rest of that render.
 
-Integer transformer transforms an integer based on the given parameters.
+## For template authors
 
-If no parameters are given, the integer will be returned as is.
-If `++` parameter is given, the integer will be incremented.
-If `--` parameter is given, the integer will be decremented.
-
-## Usage
-
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	import { Interpreter, IntegerTransformer, StrictVarsParser } from 'tagscript';
-	const ts = new Interpreter(new StrictVarsParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter, IntegerTransformer, StrictVarsParser } = require('tagscript');
-	const ts = new Interpreter(new StrictVarsParser());
-	```
-</Tabs>
-
-## API
-
-Check [IntegerTransformer](../../typedoc-api/tagscript/classes/IntegerTransformer) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
+
 ```yaml
-{variable}
-{variable(++)}
-{variable(--)}
+{name}
+{name(++)}
+{name(--)}
 ```
 
 ### Examples
 
-```yaml
-# Basic usage - returns the integer as string
-{count}
-# 5
-```
+Given `n` starts at 5:
 
 ```yaml
-# Increment the integer
-{count(++)}
-# 6 (if count was initially 5)
+{n} {n(++)} {n(++)} {n(--)}
+# 5 6 7 6
 ```
 
-```yaml
-# Decrement the integer
-{count(--)}
-# 4 (if count was initially 5)
+Each `++` moves the counter and renders the new value. Reading `{n}` on its own leaves it where it is.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { IntegerTransformer, Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('{count(++)}', { count: new IntegerTransformer('5') });
 ```
 
-```yaml
-# Practical example with counter
-Current count: {counter}
-Incremented: {counter(++)}
-Decremented: {counter(--)}
-# Current count: 10
-# Incremented: 11
-# Decremented: 10
-```
+The constructor takes a numeric string, typed as `` `${bigint | number}` ``, and runs it through `parseInt` with radix 10.
 
-### Notes
+### Behaviour
 
-- The transformer modifies the internal integer value when using `++` or `--`
-- Multiple calls to `{variable(++)}` will continue incrementing the value
-- The integer value persists for the lifetime of the transformer instance
-- Input must be a valid integer string or number
+The counter lives on the transformer instance, not on the response. Reusing one instance across two `run` calls carries the count over, which is almost never what you want. Build a fresh one per render.
 
-</Callout>
+Any parameter other than `++` or `--` renders the current value unchanged.
 
-<Callout type="info">You need to use `StrictVarsParser` parser to use this transformer.</Callout>
+### API reference
+
+[IntegerTransformer](/api/tagscript/classes/IntegerTransformer)

@@ -1,0 +1,70 @@
+---
+title: URL encoding
+description: Encode text for use in a URL, or decode it back.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`urlencode` makes text safe to drop into a URL. `urldecode` reverses it.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{urlencode:text}
+{urlencode(+):text}
+{urldecode:text}
+```
+
+### Examples
+
+```yaml
+{urlencode:Hello World}
+# Hello%20World
+
+{urldecode:Hello%20World}
+# Hello World
+```
+
+Pass `+` as the parameter to use `+` for spaces, which some search URLs expect:
+
+```yaml
+{urlencode(+):Hello World}
+# Hello+World
+```
+
+Building a search link:
+
+```yaml
+https://www.google.com/search?q={urlencode(+):{args}}
+```
+
+### Aliases
+
+`urlencode`, `encodeuri`. Decoding is `urldecode` only.
+
+## For developers
+
+### Register the parsers
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, UrlEncodeParser, UrlDecodeParser } from 'tagscript';
+	const ts = new Interpreter(new UrlEncodeParser(), new UrlDecodeParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, UrlEncodeParser, UrlDecodeParser } = require('tagscript');
+	const ts = new Interpreter(new UrlEncodeParser(), new UrlDecodeParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Both require a payload. They call `encodeURI` and `decodeURI`, not the `Component` variants, so reserved URL characters such as `&`, `=`, `?` and `/` pass through unchanged. That is fine for a whole URL and wrong for a single query parameter value, where an `&` in user input would start a new parameter. Write your own parser around `encodeURIComponent` if you need that.
+
+`decodeURI` throws on a malformed sequence such as `%zz`. The interpreter catches it and the render ends with the error as the body.
+
+### API reference
+
+[UrlEncodeParser](/api/tagscript/classes/UrlEncodeParser), [UrlDecodeParser](/api/tagscript/classes/UrlDecodeParser)

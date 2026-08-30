@@ -1,72 +1,76 @@
 ---
 title: IfStatementParser
+description: Choose between two messages based on a comparison.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The if tag returns a message based on the passed expression to the parameter.
-An expression is represented by two values compared with an operator.
-The payload is a required message that must be split by pipe (`|`).
-If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
+`if` compares two values and returns one of two messages. The payload holds both branches, split by a pipe.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM" 
+### Syntax
+
+```yaml
+{if(expression):true message|false message}
+```
+
+Everything before the first unescaped `|` is the true branch. Everything after it is the false branch. Leave the false branch off to render nothing when the comparison fails.
+
+### Operators
+
+| Operator | Example    | True when                            |
+| -------- | ---------- | -------------------------------------- |
+| `==`     | `a==a`     | The two sides match exactly.          |
+| `!=`     | `a!=b`     | The two sides differ.                 |
+| `>`      | `5>3`      | The left number is larger.            |
+| `<`      | `4<8`      | The left number is smaller.           |
+| `>=`     | `10>=10`   | The left number is larger or equal.   |
+| `<=`     | `5<=6`     | The left number is smaller or equal.  |
+
+Comparisons trim whitespace on both sides. The four numeric operators run both sides through `parseFloat`, so comparing text with `>` gives you `NaN` and a false result. A bare `true` or `false` works on its own. An expression with no operator at all counts as true.
+
+### Examples
+
+```yaml
+{if({args}==63):You guessed it!|Too {if({args}<63):low|high}, try again.}
+# when args is 63
+You guessed it!
+# when args is 73
+Too high, try again.
+# when args is 14
+Too low, try again.
+```
+
+Comparing against an empty value is the usual way to check whether a variable was filled in:
+
+```yaml
+{if({args}!=):Hello {args}|You did not tell me your name.}
+```
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
 	import { Interpreter, IfStatementParser } from 'tagscript';
 	const ts = new Interpreter(new IfStatementParser());
 	```
-	```js showLineNumbers tab="CommonJs" 
+	```js showLineNumbers tab="CommonJS"
 	const { Interpreter, IfStatementParser } = require('tagscript');
 	const ts = new Interpreter(new IfStatementParser());
 	```
 </Tabs>
 
-## API
+### Behaviour
 
-Check [IfStatementParser](../../typedoc-api/tagscript/classes/IfStatementParser) for the API documentation.
+Both the parameter and the payload are required, so `{if(1==1)}` is declined and left in the output.
 
-## For End Users
+Only the first `|` splits the branches. Everything after it, pipes included, becomes the false branch. That is what lets you nest a second `if` inside the false branch, as in the example above.
 
-<Callout type="info" emoji={null}>
+To check several conditions at once, use [`any`](/tagscript/parsers/union-statement) or [`all`](/tagscript/parsers/intersection-statement).
 
-    ### Syntax
-    {/* prettier-ignore-start */}
-    ```yaml
-    {if(expression):message}
-    ```
-    {/* prettier-ignore-end */}
+### API reference
 
-    ### Examples
-
-    ```yaml
-    {if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}
-    # if args is 63
-    You guessed it! The number I was thinking of was 63!
-    # if args is 73
-    Too high, try again.
-    # if args is 14
-    Too low, try again.
-    ```
-
-    ### Operators
-
-    {
-    <table>
-    <tbody>
-    <tr><th>Operator</th><th>Check</th><th>Example</th><th>Description</th></tr>
-    <tr><td>==</td><td>equality</td><td>a==a</td><td>value 1 is equal to value 2</td></tr>
-    <tr><td>!=</td><td>inequality</td><td>a!=b</td><td>value 1 is not equal to value 2</td></tr>
-    <tr><td>&gt;</td><td>greater than</td><td>5&gt;3</td><td>value 1 is greater than value 2</td></tr>
-    <tr><td>&lt;</td><td>less than</td><td>4&lt;8</td><td>value 1 is less than value 2</td></tr>
-    <tr><td>&gt;=</td><td>greater than or equality</td><td>10&gt;=10</td><td>value 1 is greater than or equal to value 2</td></tr>
-    <tr><td>&lt;=</td><td>less than or equality</td><td>5&lt;=6</td><td>value 1 is less than or equal to value 2</td></tr>
-    </tbody>
-    <tfoot>
-
-    </tfoot>
-    </table>
-    }
-
-</Callout>
+[IfStatementParser](/api/tagscript/classes/IfStatementParser)

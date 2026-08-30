@@ -39,3 +39,10 @@ describe('IncludesParser', () => {
 		expect(await ts.run(text2)).toStrictEqual(new Response().setValues('6', text2));
 	});
 });
+
+describe('IncludesParser index positions', () => {
+	test('GIVEN index and lindex THEN return the word index and the character index', async () => {
+		expect((await ts.run('{index(there!):Hi there!}')).body).toBe('1');
+		expect((await ts.run('{lindex(t):Hi there!}')).body).toBe('3');
+	});
+});

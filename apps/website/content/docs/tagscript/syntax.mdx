@@ -1,0 +1,94 @@
+---
+title: Syntax
+description: How a tag is put together. Hand this page to whoever writes your templates.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+A template is ordinary text. Anything outside curly braces renders as it was written. Anything inside them is a tag.
+
+## The shape of a tag
+
+```yaml
+{declaration(parameter):payload}
+{declaration.parameter:payload}
+```
+
+| Part            | What it is                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| **declaration** | The tag name, such as `if`, `random` or `upper`. Always first. Most tags accept several names. |
+| **parameter**   | An option for the tag, in `(...)` or after a `.`. Some tags require one, some ignore it.     |
+| **payload**     | The text the tag works on, after a `:`. Some tags require one, some ignore it.               |
+
+Not every tag uses every part:
+
+```yaml
+{delete}
+{upper:hello}
+{slice(0-5):Hello World}
+{args.2}
+```
+
+Tag names ignore case, so `{upper:hi}` and `{UPPER:hi}` do the same thing. Variable names do not, so `{user}` and `{User}` are two different variables.
+
+## The two parameter forms
+
+`(...)` and `.` mean the same thing. The parenthesis form ends at the closing bracket. The dot form ends at the `:`, or at the end of the tag if there is no payload.
+
+```yaml
+{args(2)}
+{args.2}
+```
+
+Use parentheses when the parameter contains a `:` or a `.` of its own, since the dot form would end too early.
+
+## Nesting
+
+Tags nest, and the inner one renders first. That is how you feed one tag's output into another:
+
+```yaml
+{upper:{lower:ABC}}
+# ABC
+
+{if({random:yes,no}==yes):Sure!|Nope.}
+```
+
+## Escaping
+
+Put a backslash in front of a character to stop it being read as syntax. That works for `{`, `}`, `(`, `)`, `:` and `|`.
+
+```yaml
+Use \{braces\} to write a tag.
+```
+
+<Callout type="info">
+	The backslash stays in the rendered output. If you need clean text, remove the backslashes on your side
+	after the render, or avoid the character.
+</Callout>
+
+The [`escape` tag](/tagscript/parsers/format) does this to a whole piece of text at once, which is the safer option when you are dropping one value into another tag.
+
+## Splitting on pipes
+
+Several tags split their payload on `|`. `if` uses it to separate the true branch from the false one, `any` and `all` use it between expressions, and `embed(field)` uses it between the name, value and inline flag.
+
+```yaml
+{if(1<2):true branch|false branch}
+```
+
+Only the first `|` splits `if`. Everything after it, pipes included, is the false branch, which is what lets you nest a second `if` in there.
+
+## What happens to a tag nobody handles
+
+It stays exactly as you wrote it:
+
+```yaml
+Hi {nobodyImplementedThis}
+# Hi {nobodyImplementedThis}
+```
+
+So if a tag shows up in the output instead of doing something, one of three things is true: the name is misspelled, the app did not register that tag, or the tag needed a parameter or a payload you did not give it.
+
+## Limits
+
+The app running your template can cap how much output it produces. Go over the cap and the render fails rather than returning a truncated message. It can also cap how much text is read from inside a single `{...}`, which defaults to 2000 characters.

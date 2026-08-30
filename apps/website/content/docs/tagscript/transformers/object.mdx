@@ -1,0 +1,71 @@
+---
+title: SafeObjectTransformer
+description: Expose a plain object by dotted path, with private keys refused.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+`SafeObjectTransformer` exposes an object's fields to a template. Nested fields come back through a dotted path, and any key starting with an underscore is refused.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{name(key)}
+{name(nested.key)}
+{name.key}
+```
+
+### Examples
+
+Given `u` holds `{ "name": "Parbez", "address": { "city": "Silchar" } }`:
+
+```yaml
+{u(name)}
+# Parbez
+
+{u(address.city)}
+# Silchar
+```
+
+A key that does not exist, or one starting with an underscore, leaves the tag as written:
+
+```yaml
+{u(_secret)}
+# {u(_secret)}
+```
+
+The [`json` tag](/tagscript/parsers/json) creates one of these from inside a template.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { Interpreter, SafeObjectTransformer, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('Hi {user(name)}', {
+	user: new SafeObjectTransformer({ name: 'Parbez', address: { city: 'Silchar' } }),
+});
+```
+
+The constructor takes an object or a JSON string.
+
+### What makes it safe
+
+The constructor runs the input through `JSON.parse(JSON.stringify(value))`. Methods, getters, prototype links and anything else `JSON.stringify` drops do not survive, so the template gets a data-only copy. `transform` then refuses any parameter starting with `_`.
+
+<Callout type="warn">
+	The copy is made once, in the constructor. Changing the original object after that has no effect on
+	what the template renders. The flip side is that a large object is fully serialised up front, so keep
+	what you seed small.
+</Callout>
+
+Rendering the bare `{name}` with no parameter calls `toString` on the original value, which for a plain object gives `[object Object]`. Point templates at a specific key.
+
+### API reference
+
+[SafeObjectTransformer](/api/tagscript/classes/SafeObjectTransformer)

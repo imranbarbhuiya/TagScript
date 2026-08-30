@@ -1,0 +1,84 @@
+---
+title: RequiredParser and DenyParser
+description: Restrict a tag to certain roles, channels or users, or block it from them.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`require` lists who may run the tag. `deny` lists who may not. Both record the list for the bot to check. Neither one enforces anything on its own.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{require(target,target,...):message}
+{deny(target,target,...):message}
+```
+
+A target is a role, a channel or a user, written as a name or an ID. Separate several with commas. The message is optional and is shown when the check fails.
+
+### Examples
+
+```yaml
+{require(Moderator)}
+{require(#general, #bot-commands):This tag only works in #general and #bot-commands.}
+{deny(757425366209134764):You are not allowed to use this tag.}
+```
+
+Only the first `require` and the first `deny` in a template count. A second one is ignored and stays in the output as plain text, which makes the mistake visible.
+
+### Aliases
+
+`require`, `allowlist`, `whitelist` and `deny`, `denylist`, `blacklist`
+
+## For developers
+
+### Register the parsers
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { RequiredParser, DenyParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
+
+	const ts = new Interpreter(new RequiredParser(), new DenyParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { RequiredParser, DenyParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
+
+	const ts = new Interpreter(new RequiredParser(), new DenyParser());
+	```
+</Tabs>
+
+### Behaviour
+
+The parameter is required. `parse` splits it on commas, trims each entry, and writes `{ ids, message }` to `ctx.response.actions.require` or `.deny`.
+
+If the action is already set, `parse` returns `null` instead of overwriting it, so the first tag wins and the interpreter leaves the later one in the output as literal text.
+
+<Callout type="warn">
+	`ids` holds whatever the template author typed. The parser does no resolution, so the array can contain
+	`Moderator`, `#general` and a snowflake all at once. Resolving those against your guild and running the
+	check is entirely your job. Registering these parsers and ignoring `response.actions` gives you no
+	access control at all.
+</Callout>
+
+```ts showLineNumbers
+const { require: required, deny } = response.actions;
+
+if (required && !matchesAny(member, required.ids)) {
+	return interaction.reply(required.message ?? 'You cannot use this tag.');
+}
+
+if (deny && matchesAny(member, deny.ids)) {
+	return interaction.reply(deny.message ?? 'You cannot use this tag here.');
+}
+```
+
+Decide up front whether a name match is acceptable, or whether you only honour IDs. Names are easier for template authors and are also easy to spoof with a renamed role.
+
+### API reference
+
+[RequiredParser](/api/plugins/classes/RequiredParser), [DenyParser](/api/plugins/classes/DenyParser)

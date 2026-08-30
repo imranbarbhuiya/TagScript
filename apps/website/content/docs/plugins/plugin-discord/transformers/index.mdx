@@ -1,0 +1,55 @@
+---
+title: Transformers
+description: Expose discord.js structures to a template without exposing the objects themselves.
+---
+
+Each transformer wraps one discord.js structure and answers with a fixed list of keys. `{member.displayName}` works. There is no key that returns the client, the token, or a method, because the transformer only ever returns strings it built itself.
+
+```ts showLineNumbers
+import { GuildTransformer, MemberTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('Hi {member.displayName}, welcome to {guild(name)}!', {
+	member: new MemberTransformer(interaction.member),
+	guild: new GuildTransformer(interaction.guild),
+});
+```
+
+The names on the left, `member` and `guild` here, are what template authors type. Pick them once and document them for your users, because a template written against `{member}` breaks if you rename it to `{user}`.
+
+## Available transformers
+
+| Page                                                            | Wraps                | Notable keys                                                      |
+| ---------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------ |
+| [User](/plugins/plugin-discord/transformers/user)               | `User`               | `username`, `globalName`, `tag`, `displayAvatar`, `bot`           |
+| [Member](/plugins/plugin-discord/transformers/member)           | `GuildMember`        | `displayName`, `nickname`, `joinedAt`, `topRole`, `roleNames`     |
+| [Role](/plugins/plugin-discord/transformers/role)               | `Role`               | `color`, `permissions`, `memberCount`, `mentionable`              |
+| [Channel](/plugins/plugin-discord/transformers/channel)         | Guild channels       | `topic`, `type`, `nsfw`, `parentName`, `slowmode`                 |
+| [Guild](/plugins/plugin-discord/transformers/guild)             | `Guild`              | `memberCount`, `ownerId`, `channelCount`, `random`                |
+| [Interaction](/plugins/plugin-discord/transformers/interaction) | `CommandInteraction` | `commandName`, `channelId`, `guildId`, `locale`                   |
+
+Every one of them exposes `id`, `mention` and `name` on top of its own keys, because `BaseTransformer` sets those three in its constructor.
+
+## Writing your own
+
+Extend `BaseTransformer` and override `updateSafeValues` to fill in the keys.
+
+```ts showLineNumbers
+import { BaseTransformer } from '@tagscript/plugin-discord';
+
+import type { Message } from 'discord.js';
+
+export class MessageTransformer extends BaseTransformer<Message> {
+	protected override updateSafeValues() {
+		this.safeValues.content = this.base.content;
+		this.safeValues.pinned = this.base.pinned;
+		this.safeValues.attachmentCount = this.base.attachments.size;
+	}
+}
+```
+
+A value can be a string, a number, a boolean, `null`, `undefined`, or a function taking the wrapped structure. Functions run when the tag renders, so use one for anything expensive or anything that changes during the render.
+
+Values render with a template literal, so keep them to primitives. Assigning an object gives the template `[object Object]`.

@@ -1,0 +1,63 @@
+---
+title: FilesParser
+description: Attach files to the reply by URL.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`files` lists URLs to send as attachments. The list lands on `response.actions.files`.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{files:url,url,...}
+```
+
+Separate URLs with `~` or `,`.
+
+### Examples
+
+```yaml
+{files:https://example.com/a.png,https://example.com/b.png}
+```
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { FilesParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
+
+	const ts = new Interpreter(new FilesParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { FilesParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
+
+	const ts = new Interpreter(new FilesParser());
+	```
+</Tabs>
+
+### Behaviour
+
+The payload is required. `parse` splits it with the exported `split(payload, true)` helper and sets `ctx.response.actions.files` to the resulting array, then returns an empty string.
+
+<Callout type="warn">
+	The array holds raw strings from a template. Nothing checks that they are URLs, that the host is one you
+	trust, or that the file is a reasonable size. Passing them to discord.js unchecked makes your bot fetch
+	whatever a template author names, including addresses on your own network. Match them against an
+	allowlist of hosts before you send.
+</Callout>
+
+```ts showLineNumbers
+const files = (response.actions.files ?? []).filter(isAllowedAttachmentUrl);
+```
+
+### API reference
+
+[FilesParser](/api/plugins/classes/FilesParser)

@@ -110,8 +110,8 @@ export class Interpreter {
 	private async processTags(ctx: Context, node: Node) {
 		const acceptors = await this.getAcceptors(ctx);
 		for (const b of acceptors) {
-			const value = await b.parse(ctx);
-			if (value !== null) {
+			const value: string | null | undefined = await b.parse(ctx);
+			if (value !== null && value !== undefined) {
 				node.output = value;
 				return value;
 			}

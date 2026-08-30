@@ -1,66 +1,111 @@
 ---
-title: Plugin Discord
-description: Tagscript plugin to work with discord.js
+title: Discord plugin
+description: discord.js parsers and transformers for TagScript.
 ---
 
-<div className="flex justify-center items-center flex-col">
+import { Callout } from 'fumadocs-ui/components/callout';
 
-# @tagscript/plugin-discord
+`@tagscript/plugin-discord` is what makes TagScript useful inside a Discord bot. It adds tags for embeds, cooldowns, permissions and timestamps, and transformers that let a template read a member, role, channel or guild.
 
-**A tagscript plugin to work with discord.js**
+Two rules shape the whole package.
 
-</div>
+**Templates ask, your bot decides.** No parser here sends a message, deletes anything or applies a cooldown. Each one records a request on `response.actions` and renders an empty string. Your code reads that object and picks what to honour.
 
-## Description
-
-A Plugin for [TagScript](https://www.npmjs.com/package/tagscript) to work with discord.js related structures.
-
-## Features
-
--   Written In Typescript
--   Offers CJS, and ESM builds
--   Full TypeScript & JavaScript support
+**Structures stay behind a transformer.** A `GuildMember` reaches a template through `MemberTransformer`, which answers with a fixed list of keys. `{member.displayName}` works, and there is no key that hands back the client, the token, or a method.
 
 ## Installation
 
-`@tagscript/plugin-discord` depends on the following packages. Be sure to install these along with this package!
-
--   [tagscript](https://www.npmjs.com/package/tagscript)
--   [discord.js](https://www.npmjs.com/package/discord.js)
-
-You can use the following command to install this package, or replace npm install with your package manager of choice.
+Install it alongside `tagscript` and `discord.js`:
 
 ```package-install
-@tagscript/plugin-discord
+@tagscript/plugin-discord tagscript discord.js
 ```
 
-## Usage
+It needs discord.js v14 and Node 16.9 or newer, and ships ESM and CJS builds.
+
+## A complete example
 
 ```ts showLineNumbers
-import { Interpreter, StrictVarsParser } from 'tagscript';
-import { MemberTransformer } from '@tagscript/plugin-discord';
+import { CooldownParser, DeleteParser, EmbedParser, MemberTransformer, RequiredParser } from '@tagscript/plugin-discord';
+import { EmbedBuilder } from 'discord.js';
+import { IfStatementParser, Interpreter, StrictVarsParser } from 'tagscript';
 
-const ts = new Interpreter(new StrictVarsParser());
+const ts = new Interpreter(
+	new StrictVarsParser(),
+	new IfStatementParser(),
+	new EmbedParser(),
+	new CooldownParser(),
+	new RequiredParser(),
+	new DeleteParser(),
+);
 
-await ts.run('Hi {member.username}', { member: new MemberTransformer(GuildMember) });
-// Hi P<z,x>
+const response = await ts.run(userWrittenTemplate, {
+	member: new MemberTransformer(interaction.member),
+}, 2_000);
 ```
 
-## Buy me some doughnuts
+Given this template:
 
-If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
+```yaml
+{require(Moderator):Moderators only.}
+{cooldown(30):Slow down, try again in {retryAfter}.}
+{embed(title):Server Rules}
+{embed(color):0x37b2cb}
+{embed(field):Rule 1|Be nice.|false}
+{delete}
+Posted by {member.displayName}
+```
 
-<div className="flex justify-center items-center gap-10">
-	<a href="https://www.buymeacoffee.com/parbez" target="_blank" rel="noreferrer">
-		<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
-	</a>
-	<a href="https://ko-fi.com/Y8Y1CBIJH" target="_blank" rel="noreferrer">
-		<img
-			height="36"
-			style={{ border: '0px', height: '36px' }}
-			src="https://cdn.ko-fi.com/cdn/kofi4.png?v=3"
-			border="0"
-			alt="Buy Me a Coffee at ko-fi.com"
-		/>
-	</a>
-</div>
+`response.actions` comes back as:
+
+```jsonc
+{
+	"require": { "ids": ["Moderator"], "message": "Moderators only." },
+	"cooldown": { "cooldown": 30, "message": "Slow down, try again in {retryAfter}." },
+	"embed": {
+		"title": "Server Rules",
+		"color": 3650251,
+		"fields": [{ "name": "Rule 1", "value": "Be nice.", "inline": false }],
+	},
+	"deleteMessage": true,
+}
+```
+
+Nothing has happened yet. Now your handler decides:
+
+```ts showLineNumbers
+const { cooldown, deleteMessage, embed, require: required, silentResponse } = response.actions;
+
+if (required && !matchesAny(interaction.member, required.ids)) {
+	return interaction.reply(required.message ?? 'You cannot use this tag.');
+}
+
+if (cooldown && isOnCooldown(tagName, interaction.user.id)) {
+	return interaction.reply(cooldown.message ?? 'This tag is on cooldown.');
+}
+
+await interaction.reply({
+	content: silentResponse ? undefined : response.body!,
+	embeds: embed ? [new EmbedBuilder(embed)] : [],
+});
+
+if (deleteMessage && channel.permissionsFor(client.user).has('ManageMessages')) {
+	await interaction.channel.messages.delete(triggerMessageId);
+}
+```
+
+<Callout type="warn">
+	Registering these parsers and ignoring `response.actions` gives you no access control at all. `require`
+	and `deny` record a list of names your bot has to resolve and check. The plugin never does that for you,
+	because only your bot knows what a name means in your guild.
+</Callout>
+
+Set a `charLimit` on every `run` call that handles a template you did not write. The third argument above caps the render at 2000 characters, which also happens to be Discord's message limit.
+
+## What is in the package
+
+- [Parsers](/plugins/plugin-discord/parsers) for embeds, cooldowns, permissions, attachments and timestamps.
+- [Transformers](/plugins/plugin-discord/transformers) for users, members, roles, channels, guilds and interactions.
+- [Command options](/plugins/plugin-discord/command-options) for turning slash command input into variables.
+
+The [core parsers](/tagscript/parsers) and [transformers](/tagscript/transformers) work alongside all of it.

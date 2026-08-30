@@ -1,0 +1,87 @@
+---
+title: MemberTransformer
+description: Expose a guild member to a template.
+---
+
+`MemberTransformer` exposes a discord.js `GuildMember`, which is a user plus everything specific to one guild: nickname, roles, join date and timeout.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{{member}}
+{{member(key)}}
+{{member.key}}
+```
+
+The bare tag renders the mention. A parameter picks one field.
+
+### Examples
+
+```yaml
+Welcome {member}, you joined {date(R):{member(joinedTimestamp)}}.
+# Welcome <@758880890159235083>, you joined <t:1642605059:R>.
+```
+
+### Fields
+
+| Key | Gives |
+| --- | ----- |
+| `id` | The user ID. |
+| `mention` | A mention. |
+| `name` | Empty, since `GuildMember` has no `name`. |
+| `username` | The username. |
+| `discriminator` | The legacy discriminator. |
+| `tag` | Username and discriminator. |
+| `avatar` | The custom avatar URL, or empty. |
+| `displayAvatar` | The avatar URL with a fallback. |
+| `nickname` | The guild nickname. |
+| `displayName` | Nickname if set, otherwise username. |
+| `joinedAt` | Join date as an ISO string. |
+| `joinedTimestamp` | Join time in milliseconds. |
+| `createdAt` | Account creation date. |
+| `createdTimestamp` | Account creation time in milliseconds. |
+| `bot` | `true` or `false`. |
+| `color` | The highest role colour. |
+| `position` | The highest role position. |
+| `roles` | The roles. |
+| `roleIds` | The role IDs. |
+| `roleNames` | The role names. |
+| `topRole` | The highest role. |
+| `timeoutUntil` | When a timeout ends. |
+| `timeoutUntilTimestamp` | Timeout end in milliseconds. |
+
+A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { MemberTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, {
+	member: new MemberTransformer(interaction.member),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Adding your own fields
+
+Pass a second argument to expose extra keys. A function receives the GuildMember and runs when the tag renders.
+
+```ts showLineNumbers
+new MemberTransformer(guildmember, {
+	custom: 'a fixed value',
+	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+### API reference
+
+[MemberTransformer](/api/plugins/classes/MemberTransformer)

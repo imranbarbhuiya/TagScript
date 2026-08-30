@@ -1,0 +1,65 @@
+---
+title: DeleteParser and SilentParser
+description: Ask the bot to delete the triggering message, or to send no visible reply.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+Two flag tags. Both render nothing and set a boolean on `response.actions`.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{delete}
+{silent}
+```
+
+`delete` asks the bot to remove the message that triggered the tag. `silent` asks it not to send the tag output at all, which is useful when the point of the tag is an embed or a side effect rather than text.
+
+### Examples
+
+```yaml
+{delete}{embed(title):Announcement}{embed(description):The server restarts at 8pm.}
+```
+
+That posts an embed and removes the command message, leaving only the embed behind.
+
+### Aliases
+
+`delete`, `del`. `silent` has no alias.
+
+## For developers
+
+### Register the parsers
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { DeleteParser, SilentParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
+
+	const ts = new Interpreter(new DeleteParser(), new SilentParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { DeleteParser, SilentParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
+
+	const ts = new Interpreter(new DeleteParser(), new SilentParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Neither takes a parameter or a payload. `parse` sets `actions.deleteMessage` or `actions.silentResponse` to `true` and returns an empty string. Both are absent rather than `false` when the tag was not used, so check with `if (response.actions.deleteMessage)`.
+
+```ts showLineNumbers
+if (!response.actions.silentResponse) await message.reply(response.body!);
+if (response.actions.deleteMessage) await message.delete();
+```
+
+Check your own permissions before deleting. A template can ask, and the request tells you nothing about whether the bot may actually do it.
+
+### API reference
+
+[DeleteParser](/api/plugins/classes/DeleteParser), [SilentParser](/api/plugins/classes/SilentParser)

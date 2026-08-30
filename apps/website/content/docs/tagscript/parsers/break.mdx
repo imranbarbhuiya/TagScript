@@ -1,44 +1,67 @@
 ---
 title: BreakParser
+description: Replace the whole output with a message when a condition holds, without stopping the render.
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The break tag will force the tag output to only be the payload of this tag, if the passed expression evaluates true.
-If no message is provided to the payload, the tag output will be empty.
-This differs from the [StopParser](/tagscript/parser/stop) as the stop tag stops all TagScript parsing and returns its message while the break tag continues to parse tags.
-If any other tags exist after the break tag, they will still execute.
+`break` throws away everything the template has produced so far and replaces it with the payload, but the render keeps going. Tags after the `break` still run.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM" 
+### Syntax
+
+```yaml
+{break(expression):message}
+```
+
+The parameter is an expression, written the same way as in [`if`](/tagscript/parsers/if-statement). The payload is the message to use as the output. Leave the payload off to end up with an empty output.
+
+### Examples
+
+```yaml
+Hi {args}{break({args}==):No input given.}
+# when args is empty
+No input given.
+# when args is "Parbez"
+Hi Parbez
+```
+
+### break or stop?
+
+Both replace the output, but they stop at different points.
+
+| Tag                    | Later tags still run | Use it when                                                     |
+| ---------------------- | -------------------- | ---------------------------------------------------------------- |
+| `{break(...):message}` | Yes                  | You still want side effects like `{delete}` or `{embed}` to apply. |
+| `{stop(...):message}`  | No                   | You want the render to end right there.                          |
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
 	import { Interpreter, BreakParser } from 'tagscript';
 	const ts = new Interpreter(new BreakParser());
 	```
-	```js showLineNumbers tab="CommonJs" 
+	```js showLineNumbers tab="CommonJS"
 	const { Interpreter, BreakParser } = require('tagscript');
 	const ts = new Interpreter(new BreakParser());
 	```
 </Tabs>
 
-## API
+### Behaviour
 
-Check [BreakParser](../../typedoc-api/tagscript/classes/BreakParser) for the API documentation.
+The parameter is required. `{break}` and `{break:message}` are declined, so the interpreter leaves them in the output as literal text.
 
-## For End Users
+`parse` writes to `ctx.response.body` and returns an empty string. Because `Response.setValues` keeps an already set `body`, whatever `break` wrote survives to the end of the render.
 
-<Callout type="info" emoji={null}>
-### Syntax
-```yaml
-{break(expression):message}
-```
-
-### Examples
-
-```yaml
-{break({args}==):You did not provide any input.}
-```
-
+<Callout type="warn">
+	The last `break` whose expression is true wins, since each one overwrites `ctx.response.body`.
 </Callout>
+
+### API reference
+
+[BreakParser](/api/tagscript/classes/BreakParser)

@@ -1,4 +1,5 @@
 {
 	"title": "Getting Started",
-	"defaultOpen": true
+	"defaultOpen": true,
+	"pages": ["index", "syntax", "interpreter", "parsers", "transformers"]
 }

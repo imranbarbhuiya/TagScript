@@ -1,0 +1,78 @@
+---
+title: ChannelTransformer
+description: Expose a guild channel to a template.
+---
+
+`ChannelTransformer` exposes a guild channel. Fields that only some channel types have, such as `topic` and `slowmode`, fall back to an empty string or `0` rather than failing.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{{channel}}
+{{channel(key)}}
+{{channel.key}}
+```
+
+The bare tag renders the mention. A parameter picks one field.
+
+### Examples
+
+```yaml
+Please move this to {channel}.
+# Please move this to <#870354581115256852>.
+```
+
+### Fields
+
+| Key | Gives |
+| --- | ----- |
+| `id` | The channel ID. |
+| `mention` | A channel link. |
+| `name` | The channel name. |
+| `topic` | The topic, or empty. |
+| `type` | The channel type. |
+| `position` | The position in the channel list. |
+| `nsfw` | `true` or `false`. |
+| `parentId` | The category ID. |
+| `parentName` | The category name. |
+| `parentType` | The category type. |
+| `parentPosition` | The category position. |
+| `createdAt` | Creation date as an ISO string. |
+| `createdTimestamp` | Creation time in milliseconds. |
+| `slowmode` | Slowmode in seconds, or `0`. |
+
+A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { ChannelTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, {
+	channel: new ChannelTransformer(message.channel),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Adding your own fields
+
+Pass a second argument to expose extra keys. A function receives the GuildChannel and runs when the tag renders.
+
+```ts showLineNumbers
+new ChannelTransformer(guildchannel, {
+	custom: 'a fixed value',
+	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+### API reference
+
+[ChannelTransformer](/api/plugins/classes/ChannelTransformer)

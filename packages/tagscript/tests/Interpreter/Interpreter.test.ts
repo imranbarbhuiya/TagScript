@@ -2,6 +2,8 @@ import { describe, expect, test } from 'bun:test';
 
 import { Interpreter, Response, IfStatementParser, StringTransformer, DefineParser, StrictVarsParser } from '../../src';
 
+import type { IParser } from '../../src';
+
 const ts = new Interpreter(new IfStatementParser(), new DefineParser(), new StrictVarsParser());
 describe('Interpreter', () => {
 	test.each(['Parbez', '{test}', '{hi(hello)}', '{a.b}'])('GIVEN a string THEN returns the string', async (input) => {
@@ -34,5 +36,29 @@ describe('Interpreter', () => {
 		tagscript.setParsers(new DefineParser());
 		// eslint-disable-next-line @typescript-eslint/dot-notation
 		expect(tagscript['parsers']).toHaveLength(1);
+	});
+});
+
+describe('Interpreter with a parser that returns nothing', () => {
+	class UndefinedParser implements IParser {
+		public willAccept() {
+			return true;
+		}
+
+		public parse() {
+			return undefined as unknown as string;
+		}
+	}
+
+	test('GIVEN a parser that returns undefined THEN fall through to the next parser', async () => {
+		const interpreter = new Interpreter(new UndefinedParser(), new IfStatementParser());
+
+		expect((await interpreter.run('{if(1<2):yes|no}')).body).toBe('yes');
+	});
+
+	test('GIVEN only a parser that returns undefined THEN leave the tag untouched', async () => {
+		const interpreter = new Interpreter(new UndefinedParser());
+
+		expect((await interpreter.run('a {tag} b')).body).toBe('a {tag} b');
 	});
 });

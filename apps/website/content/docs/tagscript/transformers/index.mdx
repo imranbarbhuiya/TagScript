@@ -1,101 +1,61 @@
 ---
-title: TagScript Transformers
-description: Tagscript transformers are used to transform a value based on the tag at runtime.
+title: Transformers
+description: Transformers decide what a variable tag renders, and which parts of a value a template can reach.
 ---
 
-# Transformers
+Where a parser implements a tag, a transformer supplies a value. Your app seeds them by name on each `run` call, and a [variable parser](/tagscript/parsers/variables) hands the tag to the matching one.
 
-import { Tabs } from 'fumadocs-ui/components/tabs';
+```ts showLineNumbers
+import { Interpreter, StrictVarsParser, StringTransformer } from 'tagscript';
 
-Transformers are used to transform a value based on the tag at runtime. You can use [builtin transformers](#builtin-transformers) or write your [own transformer](#custom-transformer).
+const ts = new Interpreter(new StrictVarsParser());
 
-<Tabs items={['ESM', 'CommonJs']}>
-		```ts showLineNumbers tab="ESM"
-			// [!code word:Transformer]
-			import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
-			const ts = new Interpreter(new StrictVarsParser());
+const response = await ts.run('Hi {args}', { args: new StringTransformer('How are you?') });
+response.body; // 'Hi How are you?'
+```
 
-    		await ts.run('Hi {user}', { user: new StringTransformer(args) });
-    		// Hi Parbez
-    	```
-    	```js showLineNumbers tab="CommonJs"
-			// [!code word:Transformer]
-    		const { Interpreter, StringTransformer, StrictVarsParser } = require('tagscript');
-    		const ts = new Interpreter(new StrictVarsParser());
+A transformer receives the whole tag, so the parameter can mean whatever suits the value. `StringTransformer` reads it as a word index, `SafeObjectTransformer` reads it as a property path, and the Discord transformers read it as a field name.
 
-    		await ts.run('Hi {user}', { user: new StringTransformer(args) });
-    		// Hi Parbez
-    	```
-</Tabs>
+This is also the boundary that keeps a template away from your objects. A transformer answers with the keys it chooses to expose and nothing else, so seeding `new MemberTransformer(member)` gives the template `{member.displayName}` without giving it the client, the token, or any method on the member.
 
-## Builtin Transformers
+## Built-in transformers
 
-Following is the list of builtin transformers:
+| Page                                                        | Use it for                                                                   |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [String](/tagscript/transformers/string)                    | Text, with word and segment indexing through the parameter.                  |
+| [Integer](/tagscript/transformers/integer)                  | A number that a template can increment or decrement.                         |
+| [Safe object](/tagscript/transformers/object)               | A plain object, reachable by dotted path, with private keys refused.         |
+| [Function](/tagscript/transformers/function)                | A value you compute at render time.                                          |
 
--   [IntegerTransformer](/tagscript/transformers/integer)
--   [StringTransformer](/tagscript/transformers/string)
+The [Discord plugin](/plugins/plugin-discord/transformers) adds transformers for users, members, roles, channels, guilds and interactions.
 
-## Custom Transformer
+## Writing your own
 
-You can write your own transformer by implementing [ITransformer](/typedoc-api/tagscript/interfaces/ITransformer) interface.
+Implement `ITransformer`. The one method takes the tag and returns a string, or `null` to decline, which leaves the tag in the output as written.
 
-<Tabs items={['Typescript', 'CommonJs']}>
-		```ts showLineNumbers /ITransformer/ tab="Typescript"
-			import type { ITransformer, Lexer } from 'tagscript';
+```ts showLineNumbers
+import type { ITransformer, Lexer } from 'tagscript';
 
-    		/**
-    		* Integer transformer transforms an integer based on the given parameters.
-    		*
-    		* If no parameters are given, the integer will be returned as is.
-    		*
-    		* if `++` parameter is given, the integer will be incremented.
-    		* if `--` parameter is given, the integer will be decremented.
-    		*/
-    		export class IntegerTransformer implements ITransformer {
-    			private integer: number;
+export class TemperatureTransformer implements ITransformer {
+	public constructor(private readonly celsius: number) {}
 
-    			public constructor(int: `${bigint | number}`) {
-    				this.integer = Number.parseInt(int, 10);
-    			}
+	public transform(tag: Lexer) {
+		if (tag.parameter === 'f') return `${(this.celsius * 9) / 5 + 32}`;
+		if (tag.parameter === null) return `${this.celsius}`;
+		return null;
+	}
+}
+```
 
-    			public transform(tag: Lexer) {
-    				if (tag.parameter === '++') {
-    					return `${++this.integer}`;
-    				}
+```yaml
+{temp} is {temp(f)} in Fahrenheit
+# 20 is 68 in Fahrenheit
+```
 
-    				if (tag.parameter === '--') {
-    					return `${--this.integer}`;
-    				}
+Returning `null` for anything you do not recognise is the right default. It keeps unknown parameters visible in the output instead of rendering an empty string, and it lets another parser handle the tag instead.
 
-    				return `${this.integer}`;
-    			}
-    		}
-    	```
-    	```js showLineNumbers tab="CommonJs"
-    		/**
-    		* Integer transformer transforms an integer based on the given parameters.
-    		*
-    		* If no parameters are given, the integer will be returned as is.
-    		*
-    		* if `++` parameter is given, the integer will be incremented.
-    		* if `--` parameter is given, the integer will be decremented.
-    		*/
-    		module.exports = class IntegerTransformer {
-    			constructor(int) {
-    				this.integer = Number.parseInt(int, 10);
-    			}
+`transform` is synchronous. Anything that needs to await belongs in a parser.
 
-    			transform(tag) {
-    				if (tag.parameter === '++') {
-    					return `${++this.integer}`;
-    				}
+## API reference
 
-    				if (tag.parameter === '--') {
-    					return `${--this.integer}`;
-    				}
-
-    				return `${this.integer}`;
-    			}
-    		}
-    	```
-</Tabs>
+[ITransformer](/api/tagscript/interfaces/ITransformer), [Lexer](/api/tagscript/classes/Lexer)

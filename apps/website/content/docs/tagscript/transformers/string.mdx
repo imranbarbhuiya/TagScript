@@ -1,101 +1,89 @@
 ---
 title: StringTransformer
+description: Expose a piece of text, whole or split into words.
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
-import { Tabs } from 'fumadocs-ui/components/tabs';
 
-String transformer transforms a string based on the given parameters.
+`StringTransformer` holds text. Without a parameter the whole string renders. With one, the template picks out words or a run of words.
 
-If no parameters are given, the string will be returned as is.
-If an integer parameter is given, the string will be split into an array of strings using payload or space as a separator,
-and will return the element at the given index (integer parameter).
+## For template authors
 
-Use a `+` before the index to reference every element up to and including the index value.
-
-Use a `+` after the index to reference the index value and every element after it.
-
-## Usage
-
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	import { Interpreter, StringTransformer, StrictVarsParser } from 'tagscript';
-	const ts = new Interpreter(new StrictVarsParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter, StringTransformer, StrictVarsParser } = require('tagscript');
-	const ts = new Interpreter(new StrictVarsParser());
-	```
-</Tabs>
-
-## API
-
-Check [StringTransformer](../../typedoc-api/tagscript/classes/StringTransformer) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
+
 ```yaml
-{variable}
-{variable(index)}
-{variable(+index)}
-{variable(index+)}
-{variable.index:separator}
+{name}
+{name(index)}
+{name(+index)}
+{name(index+)}
+{name(index):separator}
 ```
+
+Indexes start at 1. The text splits on runs of whitespace unless the payload gives a different separator.
 
 ### Examples
 
-```yaml
-# Basic usage
-{args}
-# Hi, How are you?
-```
+Given `args` holds `Hi, How are you?`:
 
 ```yaml
-# Get specific index (1-based)
+{args}
+# Hi, How are you?
+
 {args(1)}
 # Hi,
 
 {args(2)}
 # How
-```
 
-```yaml
-# Get everything up to and including index
-{args(+2)}
-# Hi, How
-
-{args(+3)}
-# Hi, How are
-```
-
-```yaml
-# Get everything from index onwards
 {args(2+)}
 # How are you?
 
-{args(3+)}
-# are you?
+{args(+2)}
+# Hi, How
 ```
+
+Use `+` after the index for "this word onwards", and before it for "up to and including this word".
+
+Pass a separator as the payload to split on something else. Given `args` holds `a,b,c`:
 
 ```yaml
-# Using custom separator
-{args.1:|}
-# If args contains "apple|banana|cherry"
-# apple
-
-{args.2+:|}
-# banana|cherry
+{args(2):,}
+# b
 ```
 
-### Notes
+An index past the end gives the whole string back rather than an empty result.
 
-- Index is 1-based (first element is index 1)
-- Default separator is space when splitting
-- You can specify custom separators using the payload syntax
-- Returns the original string if index is out of bounds
+## For developers
 
+### Seeding one
+
+```ts showLineNumbers
+import { Interpreter, StrictVarsParser, StringTransformer } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('Hi {args}, first word {args(1)}', {
+	args: new StringTransformer('How are you?'),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Escaping
+
+The second constructor argument escapes TagScript syntax in the value before it renders.
+
+```ts showLineNumbers
+new StringTransformer(userInput, true);
+```
+
+With it on, a `{`, `}`, `(`, `)`, `:` or `|` in the value comes out with a backslash in front, so text a user typed cannot turn into syntax that a later tag reads. Turn it on for anything a person typed.
+
+<Callout type="warn">
+	Escaping is off by default. Seeding raw user input without it means a value containing `{stop(1==1)}`
+	is treated as a tag by any parser registered after the variable resolves.
 </Callout>
 
-<Callout type="info">You need to use `StrictVarsParser` parser to use this transformer.</Callout>
+### API reference
+
+[StringTransformer](/api/tagscript/classes/StringTransformer)

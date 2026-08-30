@@ -1,26 +1,38 @@
 ---
-title: TagScript Plugins
-description: Plugins for TagScript
+title: Plugins
+description: Packages that add parsers and transformers for a particular host application.
 ---
 
-import Image from 'next/image';
+A plugin is a package of parsers and transformers built for one place TagScript gets embedded. Nothing about a plugin is special to the interpreter. It exports classes, you register the ones you want, and they behave exactly like the built-in ones.
 
-import Logo from '../../../../../.github/logo_short.png';
+## Official plugins
 
-<div className="flex justify-center items-center flex-col">
+| Plugin                                                                     | Adds                                                                       |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`@tagscript/plugin-discord`](/plugins/plugin-discord)                     | discord.js tags for embeds, cooldowns, permissions, attachments and timestamps, plus transformers for members, roles, channels and guilds. |
 
-<Image src={Logo} alt="TagScript Logo" width={250} height={250} placeholder="blur" />
+## Writing one
 
-# TagScript Plugins
+There is no plugin API to learn. A plugin is a package that exports [parsers](/tagscript/parsers#writing-your-own) and [transformers](/tagscript/transformers#writing-your-own), and the host app decides which to register.
 
-</div>
+Two conventions are worth following, both of which the Discord plugin uses.
 
-Tagscript supports plugins to better customize your experience. You can create your own plugins or use the ones that are already available.
+**Record actions rather than performing them.** If your tag needs the host app to do something, write it to `ctx.response.actions` and return an empty string. That keeps the host in control and keeps your parser testable without mocking whatever it would otherwise call.
 
-## Built-in Plugins
+**Declaration-merge `IActions` so your fields are typed.**
 
--   [Plugin Discord](/plugins/plugin-discord) - Provides Discord.js related parsers and transformers.
+```ts showLineNumbers
+import 'tagscript';
 
-## Creating Plugins
+declare module 'tagscript' {
+	export interface IActions {
+		sendSms?: { body: string; to: string };
+	}
+}
+```
 
-A guide will be added in future. For now you can check source code of [plugin-discord](https://github.com/imranbarbhuiya/TagScript/tree/main/packages/tagscript-plugin-discord) for an example.
+Importing your package is then enough for `response.actions.sendSms` to be typed in the host app, with no setup on their side.
+
+`IKeyValues` merges the same way, for data the host passes into `run` for your parsers to read.
+
+The [plugin-discord source](https://github.com/imranbarbhuiya/TagScript/tree/main/packages/tagscript-plugin-discord) is about 600 lines and is a reasonable thing to copy from.

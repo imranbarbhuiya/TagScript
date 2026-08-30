@@ -1,0 +1,3 @@
+{
+	"pages": ["index", "user", "member", "role", "channel", "guild", "interaction"]
+}

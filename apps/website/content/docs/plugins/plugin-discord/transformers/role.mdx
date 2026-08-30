@@ -1,0 +1,75 @@
+---
+title: RoleTransformer
+description: Expose a role to a template.
+---
+
+`RoleTransformer` exposes a discord.js `Role`.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{{role}}
+{{role(key)}}
+{{role.key}}
+```
+
+The bare tag renders the mention. A parameter picks one field.
+
+### Examples
+
+```yaml
+The {role(name)} role has {role(memberCount)} members.
+# The Moderator role has 4 members.
+```
+
+### Fields
+
+| Key | Gives |
+| --- | ----- |
+| `id` | The role ID. |
+| `mention` | A role mention. |
+| `name` | The role name. |
+| `color` | The colour as a number in a string. |
+| `hoist` | Whether the role shows separately in the member list. |
+| `mentionable` | `true` or `false`. |
+| `position` | The position in the role list. |
+| `permissions` | The permission names, comma separated. |
+| `createdAt` | Creation date as an ISO string. |
+| `createdTimestamp` | Creation time in milliseconds. |
+| `memberCount` | How many members hold the role. |
+
+A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { RoleTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, {
+	role: interaction.guild.roles.cache.get(id) && new RoleTransformer(role),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Adding your own fields
+
+Pass a second argument to expose extra keys. A function receives the Role and runs when the tag renders.
+
+```ts showLineNumbers
+new RoleTransformer(role, {
+	custom: 'a fixed value',
+	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+### API reference
+
+[RoleTransformer](/api/plugins/classes/RoleTransformer)

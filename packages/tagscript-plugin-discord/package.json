@@ -1,7 +1,7 @@
 {
 	"name": "@tagscript/plugin-discord",
 	"version": "3.1.0",
-	"description": "discord.js parsers and transformers for TagScript — embeds, cooldowns, permissions and mentions from user-written templates.",
+	"description": "discord.js parsers and transformers for TagScript: embeds, cooldowns, permissions and mentions from user-written templates.",
 	"keywords": [
 		"bot tag",
 		"discord-bot",

@@ -1,0 +1,77 @@
+---
+title: Text formatting
+description: Change the case of text, escape TagScript syntax, and write ordinal numbers.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+Two parsers cover text formatting. `StringFormatParser` handles casing and escaping, `OrdinalFormatParser` turns a number into `1st`, `2nd`, `3rd`.
+
+## For template authors
+
+### Casing and escaping
+
+```yaml
+{lower:Hello Parbez!}
+# hello parbez!
+
+{upper:Hello Parbez!}
+# HELLO PARBEZ!
+
+{capitalize:hello PARBEZ!}
+# Hello parbez!
+
+{escape:Hello| Parbez!}
+# Hello\| Parbez!
+```
+
+`capitalize` uppercases the first character and lowercases everything else, so it is a sentence case, not a title case.
+
+`escape` puts a backslash in front of every `(`, `)`, `:`, `{`, `|` and `}` so the result is treated as plain text rather than as syntax. Reach for it when you drop user input into a place a later tag will read, such as the payload of an `if`.
+
+### Ordinal numbers
+
+```yaml
+{ord:1} {ord:2} {ord:3} {ord:11} {ord:22}
+# 1st 2nd 3rd 11th 22nd
+```
+
+Anything that is not a number comes back untouched:
+
+```yaml
+{ord:hello}
+# hello
+```
+
+### Aliases
+
+Casing: `lower`, `upper`, `capitalize`, `escape`. Ordinals: `ord`, `ordinal`.
+
+Tag names ignore case, so `{UPPER:hi}` and `{Upper:hi}` both work.
+
+## For developers
+
+### Register the parsers
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, StringFormatParser, OrdinalFormatParser } from 'tagscript';
+	const ts = new Interpreter(new StringFormatParser(), new OrdinalFormatParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, StringFormatParser, OrdinalFormatParser } = require('tagscript');
+	const ts = new Interpreter(new StringFormatParser(), new OrdinalFormatParser());
+	```
+</Tabs>
+
+They are separate classes, so you can register the casing tags without the ordinal one.
+
+### Behaviour
+
+Both require a payload and take no parameter. `StringFormatParser` picks its behaviour from the declaration, and `escape` calls the exported `escapeContent` helper, which you can import and use directly.
+
+`OrdinalFormatParser` returns the payload unchanged when `Number(payload)` is `NaN`, and applies the English exception for 11, 12 and 13 in every hundred, so 111 renders as `111th` rather than `111st`.
+
+### API reference
+
+[StringFormatParser](/api/tagscript/classes/StringFormatParser), [OrdinalFormatParser](/api/tagscript/classes/OrdinalFormatParser)

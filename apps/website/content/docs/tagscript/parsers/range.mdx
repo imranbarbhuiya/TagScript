@@ -1,69 +1,72 @@
 ---
 title: RangeParser
+description: Pick a random number between two bounds.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The range tag picks a random number from a range of numbers separated by `-` or `,`.
-The number range is inclusive, so it can pick the starting/ending number as well.
-Using the `rangef` tag will pick a number to the tenth decimal place for floating-point values.
+`range` picks a whole number between two bounds. `rangef` picks one with a single decimal place.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
+### Syntax
+
+```yaml
+{range:min-max}
+{range:min,max}
+{rangef:min-max}
+```
+
+Both bounds are included, so `{range:1-6}` can return 1 and can return 6.
+
+### Examples
+
+```yaml
+Your lucky number is {range:10-30}!
+# Your lucky number is 14!
+
+Dice roll: {range:1,6}
+# Dice roll: 6
+
+I am guessing your height is {rangef:5-7}ft.
+# I am guessing your height is 5.3ft.
+```
+
+Roll once and reuse it with [`=`](/tagscript/parsers/define):
+
+```yaml
+{=(roll):{range:1-6}}You rolled {roll}. {if({roll}>4):Nice!|Bad luck.}
+```
+
+### Aliases
+
+`range` for whole numbers, `rangef` for one decimal place.
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
 	```ts showLineNumbers tab="ESM"
 	import { Interpreter, RangeParser } from 'tagscript';
 	const ts = new Interpreter(new RangeParser());
 	```
-	```js showLineNumbers tab="CommonJs"
+	```js showLineNumbers tab="CommonJS"
 	const { Interpreter, RangeParser } = require('tagscript');
 	const ts = new Interpreter(new RangeParser());
 	```
 </Tabs>
 
-## API
+### Behaviour
 
-Check [RangeParser](../../typedoc-api/tagscript/classes/RangeParser) for the API documentation.
+The payload is required and no parameter is used. The payload splits on `-` when it contains one, otherwise on `,`.
 
-## For End Users
+Because `-` is the separator, negative bounds do not parse. `{range:-5-5}` is read as an empty lower bound. Use `,` if you need one, and be aware the whole range still has to be numbers `parseInt` accepts.
 
-<Callout type="info" emoji={null}>
-### Syntax
-```yaml
-{range:min-max}
-{range:min,max}
-{rangef:min-max}
-{rangef:min,max}
-```
+Both ends are inclusive. `rangef` works in tenths internally and divides by 10, so it returns one decimal place.
 
-### Examples
+Values come from `Math.random()` and are not suitable for anything security related.
 
-```yaml
-{range:1-10}
-# 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10
-```
+### API reference
 
-```yaml
-Your lucky number is {range:10-30}!
-# Your lucky number is 14!
-# Your lucky number is 25!
-```
-
-```yaml
-{rangef:5.0-7.0}
-I am guessing your height is {rangef:5-7}ft.
-# I am guessing your height is 5.3ft.
-# I am guessing your height is 6.8ft.
-```
-
-```yaml
-Dice roll: {range:1,6}
-# Dice roll: 4
-```
-
-### Aliases
-
-`rangef` (for floating-point numbers)
-
-</Callout>
+[RangeParser](/api/tagscript/classes/RangeParser)

@@ -1,0 +1,75 @@
+---
+title: InteractionTransformer
+description: Expose a slash command interaction to a template.
+---
+
+`InteractionTransformer` exposes the interaction that triggered the tag, which lets a template mention which command was used and where.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{{command}}
+{{command(key)}}
+{{command.key}}
+```
+
+The bare tag renders the mention. A parameter picks one field.
+
+### Examples
+
+```yaml
+You used the {command(commandName)} command.
+# You used the ping command.
+```
+
+### Fields
+
+| Key | Gives |
+| --- | ----- |
+| `id` | The interaction ID. |
+| `mention` | The command mention. |
+| `applicationId` | The application ID. |
+| `channelId` | The channel ID. |
+| `guildId` | The guild ID. |
+| `commandId` | The command ID. |
+| `commandName` | The command name. |
+| `locale` | The user's locale. |
+| `guildLocale` | The guild's locale. |
+
+A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { InteractionTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, {
+	command: new InteractionTransformer(interaction),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Adding your own fields
+
+Pass a second argument to expose extra keys. A function receives the CommandInteraction and runs when the tag renders.
+
+```ts showLineNumbers
+new InteractionTransformer(commandinteraction, {
+	custom: 'a fixed value',
+	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+To expose the options a user passed to the command, use [`resolveCommandOptions`](/plugins/plugin-discord/command-options) instead.
+
+### API reference
+
+[InteractionTransformer](/api/plugins/classes/InteractionTransformer)

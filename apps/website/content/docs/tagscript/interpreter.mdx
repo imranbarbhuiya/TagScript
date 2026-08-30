@@ -1,0 +1,100 @@
+---
+title: Running templates
+description: The run method, its options, and the Response object it returns.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+`Interpreter` holds a list of parsers and renders templates with them.
+
+```ts showLineNumbers
+import { IfStatementParser, Interpreter, RandomParser } from 'tagscript';
+
+const ts = new Interpreter(new RandomParser(), new IfStatementParser());
+```
+
+One interpreter can render any number of templates, and it holds no per-render state, so build it once at startup rather than per request. Change the parser list later with `ts.addParsers(...)` and `ts.setParsers(...)`.
+
+## run
+
+```ts
+ts.run(message, seedVariables?, charLimit?, tagLimit?, parenType?, keyValues?);
+```
+
+| Argument        | Default          | What it does                                                                                  |
+| --------------- | ---------------- | ----------------------------------------------------------------------------------------------- |
+| `message`       | required         | The template to render.                                                                        |
+| `seedVariables` | `{}`             | Variables the template can read, as name to [transformer](/tagscript/transformers).            |
+| `charLimit`     | `null`           | Maximum characters the render may produce. Going over throws. `null` means no limit.           |
+| `tagLimit`      | `2000`           | Maximum characters read from inside one `{...}`. The rest of that tag body is dropped.         |
+| `parenType`     | `ParenType.Both` | Which parameter syntaxes are allowed: `Both`, `Parenthesis` or `Dot`.                          |
+| `keyValues`     | `{}`             | Arbitrary data for your own parsers, readable at `ctx.response.keyValues`.                     |
+
+## Response
+
+`run` resolves to a `Response`, not a string.
+
+| Property    | Type                           | What it holds                                                        |
+| ----------- | ------------------------------ | --------------------------------------------------------------------- |
+| `body`      | `string \| null`               | The rendered output, trimmed.                                        |
+| `raw`       | `string`                       | The template exactly as passed in.                                   |
+| `actions`   | `IActions`                     | Side effects the template requested. Your code decides what to do.   |
+| `variables` | `Record<string, ITransformer>` | Seeded variables plus anything the template defined during the render. |
+| `keyValues` | `IKeyValues`                   | Whatever you passed in. The interpreter never touches it.            |
+
+## Limits
+
+`charLimit` is the one that matters for untrusted templates. Without it, a template that expands cheaply into a very large string is the remaining way a template author can cause trouble.
+
+```ts showLineNumbers
+await ts.run(template, vars, 2_000);
+```
+
+Going over the limit throws out of `run`, so wrap the call:
+
+```ts showLineNumbers
+try {
+	const response = await ts.run(template, vars, 2_000);
+	return response.body;
+} catch (error) {
+	return 'That tag produced too much output.';
+}
+```
+
+<Callout type="warn">
+	A parser error behaves differently. When a parser throws, the interpreter catches it and returns the text
+	rendered so far plus the error message as the body. That is how [`stop`](/tagscript/parsers/stop) works.
+	So a `try` block around `run` catches the character limit, and a body containing a parser's error message
+	is something you check for separately.
+</Callout>
+
+`tagLimit` caps how much of a single tag's body the lexer reads, at 2000 characters by default. It truncates rather than throwing, which can turn a long tag into a different, shorter tag, so lower it only when you have a reason.
+
+## Restricting the parameter syntax
+
+`ParenType` decides which of the two parameter forms are legal for a render.
+
+```ts showLineNumbers
+import { Interpreter, ParenType, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+await ts.run('{args.2}', vars, null, 2_000, ParenType.Parenthesis);
+// '{args.2}', the dot form was not accepted
+```
+
+`Both` is the default. Pick one form when your templates sit inside something else that already gives `.` or `(` a meaning.
+
+## How a render works
+
+1. `buildNodeTree` scans the template for brace pairs, ignoring any escaped with a backslash. Nodes come out ordered by closing brace, which is why inner tags render before outer ones.
+2. For each node, a `Lexer` splits the text into declaration, parameter and payload.
+3. `willAccept` runs on every parser, and the ones that accept are tried in registration order.
+4. The first parser to return a non-null value wins, and its string replaces the tag. Every later node's coordinates shift by the length difference.
+5. If no parser returns a value, the tag is left in place.
+
+Registration order decides which parser wins a tag two parsers both accept, so register the more specific one first.
+
+## API reference
+
+[Interpreter](/api/tagscript/classes/Interpreter), [Response](/api/tagscript/classes/Response), [Context](/api/tagscript/classes/Context), [Lexer](/api/tagscript/classes/Lexer)

@@ -1,65 +1,63 @@
 ---
 title: RandomParser
+description: Pick one item at random from a list.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The random tag picks a random item from a list of strings, split by either `~` or `,`.
-This parser is useful for selecting random messages, responses, or values from a predefined list.
+`random` picks a single item from a list and renders it.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
+### Syntax
+
+```yaml
+{random:one,two,three}
+```
+
+The list splits on `~` if the payload contains one, otherwise on `,`, otherwise on `|`. Use `~` when the items themselves contain commas.
+
+### Examples
+
+```yaml
+{random:foo,bar,baz}
+# foo
+
+{random:Have a great day~Hope you're well, friend~Welcome back}
+# Hope you're well, friend
+```
+
+Each `random` tag rolls on its own. To pick once and reuse the result, store it with [`=`](/tagscript/parsers/define):
+
+```yaml
+{=(who):{random:Parbez,Rkn,Priyansh}}{who} opens the door. {who} looks around.
+```
+
+### Aliases
+
+`random`, `rand`
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
 	```ts showLineNumbers tab="ESM"
 	import { Interpreter, RandomParser } from 'tagscript';
 	const ts = new Interpreter(new RandomParser());
 	```
-	```js showLineNumbers tab="CommonJs"
+	```js showLineNumbers tab="CommonJS"
 	const { Interpreter, RandomParser } = require('tagscript');
 	const ts = new Interpreter(new RandomParser());
 	```
 </Tabs>
 
-## API
+### Behaviour
 
-Check [RandomParser](../../typedoc-api/tagscript/classes/RandomParser) for the API documentation.
+The payload is required and no parameter is used. `parse` splits with the exported `split(payload, true)` helper, then indexes with `Math.random()`.
 
-## For End Users
+The randomness comes from `Math.random()`, so do not use this tag to pick anything that needs to be unguessable.
 
-<Callout type="info" emoji={null}>
-### Syntax
-```yaml
-{random:item1,item2,item3}
-{random:item1~item2~item3}
-```
+### API reference
 
-### Examples
-
-```yaml
-{random:foo, bar, baz}
-# foo
-# bar
-# baz
-```
-
-```yaml
-{random:Hello, Hi, Hey} there!
-# Hello there!
-# Hi there!
-# Hey there!
-```
-
-```yaml
-{random:apple~banana~cherry~date}
-# apple
-# banana
-# cherry
-# date
-```
-
-### Aliases
-
-`rand`
-
-</Callout>
+[RandomParser](/api/tagscript/classes/RandomParser)

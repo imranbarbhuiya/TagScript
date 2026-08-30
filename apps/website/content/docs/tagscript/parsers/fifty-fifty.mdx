@@ -1,62 +1,59 @@
 ---
 title: FiftyFiftyParser
+description: Render the payload half the time, and nothing the other half.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The fifty-fifty tag has a 50% chance of returning the payload, and a 50% chance of returning an empty string.
-This parser is useful for creating random events or decisions with equal probability.
+`5050` renders its payload on a coin flip. The other half of the time it renders nothing at all.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	import { Interpreter, FiftyFiftyParser } from 'tagscript';
-	const ts = new Interpreter(new FiftyFiftyParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter, FiftyFiftyParser } = require('tagscript');
-	const ts = new Interpreter(new FiftyFiftyParser());
-	```
-</Tabs>
-
-## API
-
-Check [FiftyFiftyParser](../../typedoc-api/tagscript/classes/FiftyFiftyParser) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
+
 ```yaml
 {5050:message}
-{50:message}
-{?:message}
 ```
 
 ### Examples
 
 ```yaml
-{5050:You got lucky!}
-# 50% chance: You got lucky!
-# 50% chance: (empty string)
+Hello!{5050: Nice to see you again.}
+# Hello! Nice to see you again.
+# Hello!
 ```
+
+Because the tag renders an empty string on a miss, comparing it against empty gives you a plain coin flip:
 
 ```yaml
 I pick {if({5050:.}!=):heads|tails}
-# 50% chance: I pick heads
-# 50% chance: I pick tails
-```
-
-```yaml
-{?:Rare event occurred!} Welcome to the server!
-# 50% chance: Rare event occurred! Welcome to the server!
-# 50% chance: Welcome to the server!
+# I pick heads
+# I pick tails
 ```
 
 ### Aliases
 
 `5050`, `50`, `?`
 
-</Callout>
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, FiftyFiftyParser } from 'tagscript';
+	const ts = new Interpreter(new FiftyFiftyParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, FiftyFiftyParser } = require('tagscript');
+	const ts = new Interpreter(new FiftyFiftyParser());
+	```
+</Tabs>
+
+### Behaviour
+
+The payload is required and no parameter is used. `parse` picks between `''` and the payload with `Math.random()`, so the odds are an even split and not configurable. For other odds, compare a [`range`](/tagscript/parsers/range) roll with [`if`](/tagscript/parsers/if-statement).
+
+### API reference
+
+[FiftyFiftyParser](/api/tagscript/classes/FiftyFiftyParser)

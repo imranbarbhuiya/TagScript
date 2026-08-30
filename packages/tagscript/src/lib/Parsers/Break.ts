@@ -6,8 +6,8 @@ import type { IParser } from '../interfaces';
 import type { Context } from '../Interpreter';
 
 /**
- * The break parser will force the tag output to only be the payload of this tag, if the passed
- * expression evaluates true.
+ * The break parser will force the tag output to only be the payload of this tag, if the expression
+ * passed to the required parameter evaluates true.
  * If no message is provided to the payload, the tag output will be empty.
  * This differs from the `StopParser` as the stop tag stops all TagScript parsing and returns
  * its message while the break tag continues to parse tags. If any other tags exist after
@@ -24,7 +24,7 @@ import type { Context } from '../Interpreter';
  */
 export class BreakParser extends BaseParser implements IParser {
 	public constructor() {
-		super(['break']);
+		super(['break'], true);
 	}
 
 	public parse(ctx: Context) {

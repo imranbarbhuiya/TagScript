@@ -30,3 +30,15 @@ describe('DateFormat', () => {
 		expect((await ts.run('{date(R):1577836800}')).body).toBe('<t:1577836800:R>');
 	});
 });
+
+describe('DateFormatParser casing', () => {
+	afterEach(() => {
+		setSystemTime();
+	});
+
+	test('GIVEN a declaration in any casing THEN resolve the same tag', async () => {
+		setSystemTime(new Date(2_022, 1, 1, 13));
+		expect(Number((await ts.run('{UNIX}')).body)).toBeCloseTo(Date.now(), -1);
+		expect(Number((await ts.run('{CurrentTime}')).body)).toBeCloseTo(Date.now(), -1);
+	});
+});

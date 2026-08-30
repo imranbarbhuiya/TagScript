@@ -1,0 +1,94 @@
+---
+title: GuildTransformer
+description: Expose a guild to a template.
+---
+
+`GuildTransformer` exposes a discord.js `Guild`, including a few counts and a `random` key that picks a member each time it renders.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{{guild}}
+{{guild(key)}}
+{{guild.key}}
+```
+
+The bare tag renders the mention. A parameter picks one field.
+
+### Examples
+
+```yaml
+Welcome to {guild(name)}, member number {guild(memberCount)}.
+# Welcome to My Server, member number 1204.
+```
+
+### Fields
+
+| Key | Gives |
+| --- | ----- |
+| `id` | The guild ID. |
+| `name` | The guild name. |
+| `description` | The guild description. |
+| `icon` | The icon. |
+| `splash` | The invite splash. |
+| `banner` | The banner. |
+| `features` | The guild features. |
+| `ownerId` | The owner ID. |
+| `createdAt` | Creation date as an ISO string. |
+| `createdTimestamp` | Creation time in milliseconds. |
+| `large` | `true` or `false`. |
+| `memberCount` | The member count. |
+| `random` | A random member, rolled per tag. |
+| `roles` | The roles. |
+| `roleIds` | The role IDs. |
+| `roleNames` | The role names. |
+| `roleCount` | How many roles. |
+| `channels` | The channels. |
+| `channelIds` | The channel IDs. |
+| `channelNames` | The channel names. |
+| `channelCount` | How many channels. |
+| `emojiCount` | How many emojis. |
+| `stickerCount` | How many stickers. |
+| `bots` | How many bots. |
+| `humans` | How many humans. |
+| `afkTimeout` | The AFK timeout. |
+| `afkChannel` | The AFK channel. |
+| `verificationLevel` | The verification level. |
+
+A key that does not exist leaves the tag in the output as written, so a typo is visible rather than silent.
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { GuildTransformer } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, {
+	guild: new GuildTransformer(interaction.guild),
+});
+```
+
+A [variable parser](/tagscript/parsers/variables) has to be registered for the tag to resolve.
+
+### Adding your own fields
+
+Pass a second argument to expose extra keys. A function receives the Guild and runs when the tag renders.
+
+```ts showLineNumbers
+new GuildTransformer(guild, {
+	custom: 'a fixed value',
+	computed: (base) => `${base.id} was looked up at render time`,
+});
+```
+
+Counts such as `memberCount` and `roleCount` read from the cache, so they are only as complete as your intents and cache settings make them.
+
+### API reference
+
+[GuildTransformer](/api/plugins/classes/GuildTransformer)

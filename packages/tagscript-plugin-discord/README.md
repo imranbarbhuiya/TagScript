@@ -90,19 +90,19 @@ if (response.actions.deleteMessage) await message.delete();
 | ------------------ | ----------------------------------- | --------------------------------------------- | ------------------------------------------ |
 | `EmbedParser`      | `embed`                             | `{embed(title):Rules}` or `{embed:{...json}}` | `embed`                                    |
 | `CooldownParser`   | `cooldown`, `cd`                    | `{cooldown(30):Try again in {retryAfter}.}`   | `cooldown`                                 |
-| `RequiredParser`   | `require`, `allowlist`, `whitelist` | `{require(Moderator):Mods only.}`             | `require` — first tag wins                 |
-| `DenyParser`       | `deny`, `denylist`, `blacklist`     | `{deny(#general):Not here.}`                  | `deny` — first tag wins                    |
+| `RequiredParser`   | `require`, `allowlist`, `whitelist` | `{require(Moderator):Mods only.}`             | `require`, first tag wins                  |
+| `DenyParser`       | `deny`, `denylist`, `blacklist`     | `{deny(#general):Not here.}`                  | `deny`, first tag wins                     |
 | `DeleteParser`     | `delete`, `del`                     | `{delete}`                                    | `deleteMessage: true`                      |
 | `SilentParser`     | `silent`                            | `{silent}`                                    | `silentResponse: true`                     |
-| `FilesParser`      | `files`                             | `{files:https://a.png,https://b.png}`         | `files` — a list of URLs                   |
+| `FilesParser`      | `files`                             | `{files:https://a.png,https://b.png}`         | `files`, a list of URLs                    |
 | `DateFormatParser` | `date`, `unix`, `currenttime`       | `{date:2020-01-01}`                           | Nothing; renders `<t:1577836800:f>` inline |
 
 Notes:
 
-- `require` and `deny` collect whatever strings the user wrote — role names, channel names or IDs. Resolving them and enforcing the check is your job; the plugin deliberately does not guess.
+- `require` and `deny` collect whatever strings the user wrote: role names, channel names or IDs. Resolving them and enforcing the check is your job; the plugin deliberately does not guess.
 - `EmbedParser` accepts either a full JSON payload or one property per tag, and merges repeated tags. Colours go through `resolveColor`, which accepts `0x37b2cb`, `#ed4245`, `Red` or a raw number, and returns the input unchanged rather than throwing if it cannot resolve.
 - The output of `EmbedParser` is user-controlled, so validate it before handing it to `EmbedBuilder`.
-- `{date}` takes one of Discord's timestamp styles as the parameter — `f`, `F`, `t`, `T` or `R` — and renders a real Discord timestamp. `{unix}` and `{currenttime}` render the current time in milliseconds.
+- `{date}` takes one of Discord's timestamp styles as the parameter, one of `f`, `F`, `t`, `T` or `R`, and renders a real Discord timestamp. `{unix}` and `{currenttime}` render the current time in milliseconds.
 
 ## Transformers
 
@@ -157,7 +157,7 @@ Subcommand and subcommand-group options are flattened with a `-` separated prefi
 
 ## Related
 
-- [`tagscript`](https://www.npmjs.com/package/tagscript) — the interpreter and its built-in tags.
+- [`tagscript`](https://www.npmjs.com/package/tagscript) for the interpreter and its built-in tags.
 - Full documentation: **[tagscript.js.org](https://tagscript.js.org/)**
 
 ## Buy me some doughnuts
@@ -167,7 +167,7 @@ If you want to support me by donating, you can do so by using any of the followi
 <a href="https://www.buymeacoffee.com/parbez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 <a href='https://ko-fi.com/Y8Y1CBIJH' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people:
 

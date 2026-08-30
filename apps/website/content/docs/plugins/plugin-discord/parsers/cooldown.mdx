@@ -1,0 +1,71 @@
+---
+title: CooldownParser
+description: Ask the bot to rate limit a tag.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`cooldown` records how long the bot should wait before running this tag again. The parser only records the request. Whether the cooldown is applied, and whether the number is allowed at all, is up to the bot.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{cooldown(seconds):message}
+```
+
+The message is optional and is shown when someone hits the cooldown. Two placeholders are available in it, `{retryAfter}` for the time left and `{name}` for the tag name.
+
+### Examples
+
+```yaml
+{cooldown(5):This tag is on cooldown.}
+{cooldown(30):The tag {name} is on cooldown. Try again in {retryAfter}.}
+```
+
+### Aliases
+
+`cooldown`, `cd`
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { CooldownParser } from '@tagscript/plugin-discord';
+	import { Interpreter } from 'tagscript';
+
+	const ts = new Interpreter(new CooldownParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { CooldownParser } = require('@tagscript/plugin-discord');
+	const { Interpreter } = require('tagscript');
+
+	const ts = new Interpreter(new CooldownParser());
+	```
+</Tabs>
+
+### Behaviour
+
+The parameter is required and goes through `parseInt` with radix 10. `parse` sets `ctx.response.actions.cooldown` to `{ cooldown, message }` and returns an empty string. The message is `null` when the template gave no payload.
+
+Nothing validates the number, so a template can ask for `{cooldown(0)}` or `{cooldown(99999999)}`. Clamp it:
+
+```ts showLineNumbers
+const requested = response.actions.cooldown?.cooldown ?? 0;
+const seconds = Math.min(Math.max(requested, MIN_COOLDOWN), MAX_COOLDOWN);
+```
+
+<Callout type="warn">
+	`{retryAfter}` and `{name}` are left in the message as literal text. The parser does not fill them in,
+	because it does not know either value. Substitute them yourself when you send the message.
+</Callout>
+
+Unlike `require` and `deny`, a later `cooldown` tag overwrites an earlier one, so the last one in the template wins.
+
+### API reference
+
+[CooldownParser](/api/plugins/classes/CooldownParser)

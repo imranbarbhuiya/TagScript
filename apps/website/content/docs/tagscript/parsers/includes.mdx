@@ -1,0 +1,77 @@
+---
+title: IncludesParser
+description: Search a piece of text and report whether a value is in it, or where.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+One parser answers four different questions, and the alias you use picks which one. Two of them return `true` or `false`, two return a position.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{in(needle):text}
+{contain(needle):text}
+{index(needle):text}
+{lindex(needle):text}
+```
+
+### What each alias does
+
+| Alias                | Question                                      | `{...(there):Hi there!}` |
+| -------------------- | --------------------------------------------- | ------------------------ |
+| `in`, `includes`     | Does this appear anywhere in the text?        | `true`                   |
+| `contain`            | Is this one of the whitespace separated words? | `false`                  |
+| `index`              | Which word is it, counting from 0?            | `-1`                     |
+| `lindex`             | Which character does it start at?             | `3`                      |
+
+`contain` and `index` compare whole words, so `there` does not match the word `there!`. Both report a miss the way JavaScript does, with `false` and `-1`.
+
+### Examples
+
+```yaml
+{in(there):Hi there!}
+# true
+
+{contain(there!):Hi there!}
+# true
+
+{index(there!):Hi there!}
+# 1
+
+{lindex(t):Hi there!}
+# 3
+```
+
+Pair it with `if` to branch on the answer:
+
+```yaml
+{if({in(discord.gg):{args}}==true):No invite links, please.|{args}}
+```
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, IncludesParser } from 'tagscript';
+	const ts = new Interpreter(new IncludesParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, IncludesParser } = require('tagscript');
+	const ts = new Interpreter(new IncludesParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Both the parameter and the payload are required. The result is always a string, since every tag renders to text, so compare against `true` rather than expecting a boolean.
+
+`in` and `includes` call `String.prototype.includes`. `contain` and `index` split the payload on `/\s+/` first. `lindex` calls `String.prototype.indexOf`.
+
+### API reference
+
+[IncludesParser](/api/tagscript/classes/IncludesParser)

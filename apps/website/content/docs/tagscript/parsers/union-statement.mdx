@@ -1,54 +1,57 @@
 ---
 title: UnionStatementParser
+description: Return the first branch when any one of several expressions is true.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
 import { Tabs } from 'fumadocs-ui/components/tabs';
 
-The union parser checks that any of the passed expressions are true.
-Multiple expressions can be passed to the parameter by splitting them with pipe (`|`).
-The payload is a required message that must be split by pipe (`|`).
-If the expression evaluates true, then the message before the pipe (`|`) is returned, else the message after is returned.
+`any` takes a list of expressions and returns the first branch if at least one of them is true.
 
-## Usage
+## For template authors
 
-<Tabs items={['ESM', 'CommonJs']}>
-	```ts showLineNumbers tab="ESM"
-	import { Interpreter, UnionStatementParser } from 'tagscript';
-	const ts = new Interpreter(new UnionStatementParser());
-	```
-	```js showLineNumbers tab="CommonJs"
-	const { Interpreter, UnionStatementParser } = require('tagscript');
-	const ts = new Interpreter(new UnionStatementParser());
-	```
-</Tabs>
-
-## API
-
-Check [UnionStatementParser](../../typedoc-api/tagscript/classes/UnionStatementParser) for the API documentation.
-
-## For End Users
-
-<Callout type="info" emoji={null}>
 ### Syntax
-{/* prettier-ignore-start */}
+
 ```yaml
-{any(expression|expression|...):message}
+{any(expression|expression|...):true message|false message}
 ```
-{/* prettier-ignore-end */}
+
+Split the expressions with pipes, and split the two branches with a pipe as well. The operators are the same ones [`if`](/tagscript/parsers/if-statement#operators) uses.
 
 ### Examples
 
 ```yaml
-{any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
-# if {args} is hi
-Hello Mr. Priyansh#2063!
-# if {args} is what's up
+{any({args}==hi|{args}==hello|{args}==hey):Hello!|How rude.}
+# when args is "hello"
+Hello!
+# when args is "what's up"
 How rude.
 ```
 
 ### Aliases
 
-`union`, `any`, `or`
+`any`, `or`, `union`
 
-</Callout>
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, UnionStatementParser } from 'tagscript';
+	const ts = new Interpreter(new UnionStatementParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, UnionStatementParser } = require('tagscript');
+	const ts = new Interpreter(new UnionStatementParser());
+	```
+</Tabs>
+
+### Behaviour
+
+Both the parameter and the payload are required.
+
+Every expression is evaluated, then the results are OR-ed together. There is no short circuit, so an expression cannot rely on an earlier one failing.
+
+### API reference
+
+[UnionStatementParser](/api/tagscript/classes/UnionStatementParser)

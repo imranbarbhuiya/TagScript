@@ -15,7 +15,7 @@
 
 ## What is TagScript?
 
-TagScript is a template language for the case where **the person writing the template is not the person who wrote the app** — a Discord server admin building a custom command, a user customising their profile, a support team editing an auto-reply.
+TagScript is a template language for the case where **the person writing the template is not the person who wrote the app**. A Discord server admin building a custom command. A user customising their profile. A support team editing an auto-reply.
 
 You cannot hand those people a JavaScript template literal, Handlebars or EJS: those languages assume the template author is trusted. TagScript assumes the opposite. A template is plain text sprinkled with `{tags}`, and the interpreter knows **nothing** except the parsers you explicitly register.
 
@@ -25,17 +25,17 @@ import { Interpreter, RandomParser } from 'tagscript';
 const ts = new Interpreter(new RandomParser());
 
 (await ts.run('{random:heads,tails}')).body; // -> 'tails'
-(await ts.run('{if(1==1):yes|no}')).body; // -> '{if(1==1):yes|no}' — no IfStatementParser registered
+(await ts.run('{if(1==1):yes|no}')).body; // -> '{if(1==1):yes|no}', no IfStatementParser registered
 ```
 
-There is no host object to reach, no prototype to walk, no `require` to find. An unknown tag is not an error and not a crash — it is left in the output as literal text. The blast radius of a bad template is the template itself.
+There is no host object to reach, no prototype to walk, no `require` to find. An unknown tag is not an error and not a crash. It stays in the output as literal text. The blast radius of a bad template is the template itself.
 
 ### What that buys you
 
 - **A capability allowlist, not a sandbox-escape hunt.** The interpreter has no built-in tags at all. `new Interpreter()` renders plain text and nothing else. Every capability is a parser you passed in.
 - **Templates ask, they never do.** A template cannot send a message, delete a message or set a cooldown. It can only record a _request_ on `response.actions`, which your code reads and decides on. See [Actions](#actions-templates-ask-your-code-decides).
 - **Bounded work.** `charLimit` and `tagLimit` cap how much output a single render may produce and how much of a tag body is read, so nobody hands you a template that expands forever.
-- **Data you choose to expose.** Values reach a template through transformers, which expose a fixed set of keys — never the underlying object.
+- **Data you choose to expose.** Values reach a template through transformers, which expose a fixed set of keys and never the object underneath.
 
 ## Anatomy of a tag
 
@@ -50,7 +50,7 @@ There is no host object to reach, no prototype to walk, no `require` to find. An
 | **parameter**   | varies   | `(...)` or `.` form. The `.` form ends at the `:` or at the end of the tag.                |
 | **payload**     | varies   | Everything after the first un-nested `:`, up to the closing `}`.                           |
 
-Tags nest, and inner tags resolve first — `{upper:{lower:ABC}}` renders `lower` before `upper`. Anything outside braces is plain text. Prefix a `{`, `}`, `(`, `)`, `:` or `|` with a backslash to stop it being read as syntax.
+Tags nest, and inner tags resolve first, so `{upper:{lower:ABC}}` renders `lower` before `upper`. Anything outside braces is plain text. Prefix a `{`, `}`, `(`, `)`, `:` or `|` with a backslash to stop it being read as syntax.
 
 ## Quick start
 
@@ -72,11 +72,11 @@ response.raw; // the original template
 response.actions; // what the template asked for
 ```
 
-`run()` returns a [`Response`](https://tagscript.js.org/api/tagscript/classes/Response), not a string — the rendered text is `response.body`.
+`run()` returns a [`Response`](https://tagscript.js.org/api/tagscript/classes/Response), not a string. The rendered text is `response.body`.
 
 ## The two extension points
 
-**Parsers** implement tags. A parser declares which tag names it accepts and returns the string that replaces the tag — or `null` to decline, letting the next parser try.
+**Parsers** implement tags. A parser declares which tag names it accepts and returns the string that replaces the tag, or `null` to decline, letting the next parser try.
 
 ```ts
 import { BaseParser, type Context, type IParser } from 'tagscript';
@@ -109,7 +109,7 @@ The full list of built-in parsers and transformers is in the [`tagscript` README
 
 ## Actions: templates ask, your code decides
 
-This is the part that makes TagScript usable for untrusted authors. Side effects are never performed by a parser — they are recorded on `response.actions` as a plain, inspectable object. Nothing happens until your code chooses to act on it.
+This is the part that makes TagScript usable for untrusted authors. A parser never performs a side effect. It records one on `response.actions` as a plain, inspectable object. Nothing happens until your code chooses to act on it.
 
 ```ts
 const response = await ts.run(`
@@ -139,16 +139,16 @@ const response = await ts.run(`
 }
 ```
 
-The template asked to post an embed, rate-limit itself, restrict itself to moderators and delete the trigger message. Your bot is free to honour all of that, some of it or none of it — and to enforce its own ceilings on top, such as capping that 30 second cooldown request at whatever the user is actually allowed.
+The template asked to post an embed, rate-limit itself, restrict itself to moderators and delete the trigger message. Your bot is free to honour all of that, some of it or none of it, and to enforce its own ceilings on top. Cap that 30 second cooldown request at whatever the user is actually allowed.
 
 `IActions` is declaration-merged, so plugins and your own parsers add their own typed fields to it.
 
 ## Packages
 
-| Package                                                            | Version                                                                                                                                            | Description                                                                     |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.   |
-| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | discord.js parsers and transformers — embeds, cooldowns, permissions, mentions. |
+| Package                                                            | Version                                                                                                                                            | Description                                                                          |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.        |
+| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | discord.js parsers and transformers for embeds, cooldowns, permissions and mentions. |
 
 `tagscript` ships ESM, CJS and an IIFE build (global `TagScript`), and has no runtime dependencies.
 
@@ -186,7 +186,7 @@ If you want to support me by donating, you can do so by using any of the followi
 <a href="https://www.buymeacoffee.com/parbez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 <a href='https://ko-fi.com/Y8Y1CBIJH' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people:
 
@@ -194,6 +194,6 @@ Thanks goes to these wonderful people:
     <img src="https://contrib.rocks/image?repo=imranbarbhuiya/TagScript" />
 </a>
 
-## Special Thanks
+## Special thanks
 
 - [JonSnowbd](https://github.com/JonSnowbd/) for creating [TagScript](https://github.com/JonSnowbd/TagScript) in Python, which this project is a TypeScript reimagining of.

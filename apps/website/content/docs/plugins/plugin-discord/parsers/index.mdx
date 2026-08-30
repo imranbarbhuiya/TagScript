@@ -1,10 +1,36 @@
 ---
-title: TagScript Parsers
-description: Tagscript parsers are used to parse a tag and return a value based on the tag.
+title: Parsers
+description: Discord specific tags for embeds, cooldowns, permissions and timestamps.
 ---
 
-# Parsers
+Every parser here except [`date`](/plugins/plugin-discord/parsers/date) renders an empty string and records what the template asked for on `response.actions`. Nothing is sent, deleted or restricted until your bot reads that object and acts.
 
-Discord Plugin provides the following parsers which you can use to parse tags.
+```ts showLineNumbers
+const response = await ts.run(template, seedVariables);
 
--   [EmbedParser](/plugins/plugin-discord/parsers/embed)
+// response.body is the text. response.actions is the request list.
+```
+
+## Available parsers
+
+| Page                                                                     | Tags                                | Records                     |
+| ------------------------------------------------------------------------ | ----------------------------------- | ---------------------------- |
+| [Embed](/plugins/plugin-discord/parsers/embed)                           | `embed`                             | `actions.embed`             |
+| [Cooldown](/plugins/plugin-discord/parsers/cooldown)                     | `cooldown`, `cd`                    | `actions.cooldown`          |
+| [Require and deny](/plugins/plugin-discord/parsers/require-deny)         | `require`, `deny` and their aliases | `actions.require`, `actions.deny` |
+| [Delete and silent](/plugins/plugin-discord/parsers/delete-and-silent)   | `delete`, `del`, `silent`           | `actions.deleteMessage`, `actions.silentResponse` |
+| [Files](/plugins/plugin-discord/parsers/files)                           | `files`                             | `actions.files`             |
+| [Date](/plugins/plugin-discord/parsers/date)                             | `date`, `unix`, `currenttime`       | Nothing, renders inline     |
+
+The core [built-in parsers](/tagscript/parsers) work alongside these, so a Discord tag can still use `if`, `random` and the rest.
+
+## Typing
+
+The plugin declaration-merges `IActions`, so importing it types the fields above on `response.actions` without any setup on your side.
+
+```ts showLineNumbers
+import '@tagscript/plugin-discord';
+
+response.actions.embed; // APIEmbed | EmbedData | undefined
+response.actions.cooldown; // { cooldown: number; message: string | null } | undefined
+```

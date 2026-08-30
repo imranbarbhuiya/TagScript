@@ -1,0 +1,59 @@
+---
+title: Command options
+description: Turn slash command options into transformers a template can read.
+---
+
+`resolveCommandOptions` reads an interaction's options and hands back an object ready to pass as seed variables. Whatever the user typed into the command becomes available to the template by option name.
+
+## For developers
+
+```ts showLineNumbers
+import { resolveCommandOptions } from '@tagscript/plugin-discord';
+import { Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run(template, resolveCommandOptions(interaction.options));
+```
+
+Each option becomes a variable named after it. The type decides which transformer is used:
+
+| Option type              | Transformer            |
+| ------------------------ | ---------------------- |
+| String, Boolean          | `StringTransformer`    |
+| Integer, Number          | `IntegerTransformer`   |
+| User, Mentionable (user) | `UserTransformer` or `MemberTransformer` |
+| Role, Mentionable (role) | `RoleTransformer`      |
+| Channel                  | `ChannelTransformer`   |
+
+Subcommands and subcommand groups are flattened with a `-` separated prefix, and the names themselves are exposed as `subCommand` and `subCommandGroup`.
+
+```yaml
+{subCommand}
+{sub-command-member}
+{sub-command-group-sub-command-channel}
+```
+
+Merge in anything else you want the template to see:
+
+```ts showLineNumbers
+const response = await ts.run(template, {
+	...resolveCommandOptions(interaction.options),
+	member: new MemberTransformer(interaction.member),
+	guild: new GuildTransformer(interaction.guild),
+});
+```
+
+`mapOptions` is exported too, for the case where you have a `CommandInteractionOption[]` rather than the resolver.
+
+## For template authors
+
+The names come from the command your bot's authors set up, so ask them which options exist. A command with a `reason` option gives you `{reason}`, and inside a subcommand called `ban` it becomes `{ban-reason}`.
+
+## Colours
+
+`resolveColor` is also exported. It accepts `0x37b2cb`, `#ed4245`, a plain number, or a Discord colour name such as `Red`, and returns a number. Unlike the discord.js function it wraps, it returns the input unchanged instead of throwing when it cannot resolve a value, which is what keeps a bad colour in a template from ending the render.
+
+## API reference
+
+[resolveCommandOptions](/api/plugins/functions/resolveCommandOptions), [mapOptions](/api/plugins/functions/mapOptions), [resolveColor](/api/plugins/functions/resolveColor)

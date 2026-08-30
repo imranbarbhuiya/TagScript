@@ -1,87 +1,87 @@
 ---
-title: TagScript
-description: Tagscript is a simple, lightweight, and easy to use templating language.
+title: Getting started
+description: Install TagScript, render your first template, and understand what the interpreter will and will not do.
 ---
 
-import { Tabs } from 'fumadocs-ui/components/tabs';
-import Image from 'next/image';
+import { Callout } from 'fumadocs-ui/components/callout';
 
-import Logo from '../../../../../.github/logo_short.png';
+TagScript is a template language for the case where the person writing the template is not the person who wrote the app. A Discord server admin building a custom command. A user customising their profile. A support team editing an auto-reply.
 
-<div className="flex justify-center items-center flex-col">
+You cannot hand those people a JavaScript template literal, Handlebars or EJS, because all of them assume the template author is trusted. TagScript assumes the opposite.
 
-<Image src={Logo} alt="TagScript Logo" width={250} height={250} placeholder="blur" />
-
-# TagScript
-
-**A simple and safe template engine.**
-
-</div>
-
-## Description
-
-TagScript is a drop in easy to use string interpreter that lets you provide users with ways of customizing their profiles or chat rooms with interactive text.
-
-Read Full Documentation [here](https://tagscript.js.org/).
-
----
-
-## Features
-
--   Written In Typescript
--   Offers CJS, ESM and UMD builds
--   Full TypeScript & JavaScript support
--   Faster than ⚡
--   Simple, expressive and safe template engine.
--   Supports your own parsers and transformers
-
-## Installation
+## Install
 
 ```package-install
 tagscript
 ```
 
-## Usage
+No runtime dependencies. ESM, CJS and an IIFE build with the global `TagScript`.
 
-<Tabs items={['ESM', 'CommonJs']}>
-		```ts showLineNumbers tab="ESM"
-			import { Interpreter, Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } from 'tagscript';
+## Your first template
 
-    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+```ts showLineNumbers
+import { Interpreter, RandomParser } from 'tagscript';
 
-    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
-    		// Parbez attempts to pick the lock!, I pick heads
-    	```
-    	```js showLineNumbers tab="CommonJs"
-    		const { Interpreter, RandomParser, RangeParser, FiftyFiftyParser, IfStatementParser, SliceParser } = require('tagscript');
+const ts = new Interpreter(new RandomParser());
 
-    		const ts = new Interpreter(new SliceParser(), new FiftyFiftyParser(), new RandomParser(), new IfStatementParser());
+const response = await ts.run('{random:heads,tails}');
+response.body; // 'tails'
+```
 
-    		const result = await ts.run(`{random: Parbez,Rkn,Priyansh} attempts to pick the lock!, I pick {if({5050:.}!=):heads|tails}`);
-    		// Parbez attempts to pick the lock!, I pick heads
-    	```
+Now try a tag you did not register:
 
-</Tabs>
+```ts showLineNumbers
+(await ts.run('{if(1==1):yes|no}')).body; // '{if(1==1):yes|no}'
+```
 
-## Buy me some doughnuts
+The interpreter has no built-in tags. A fresh `new Interpreter()` renders plain text and leaves every `{tag}` exactly as written. What a template can do is precisely the list of [parsers](/tagscript/parsers) you pass in, and nothing else. There is no host object to reach, no prototype to walk, no `require` to find.
 
-If you want to support me by donating, you can do so by using any of the following methods. Thank you very much in advance!
+An unknown tag is not an error and not a crash. It stays in the output as literal text, so a typo shows up instead of vanishing.
 
-<div className="flex justify-center items-center gap-10">
-	<a href="https://www.buymeacoffee.com/parbez" target="_blank" rel="noreferrer">
-		<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174" />
-	</a>
-	<a href="https://ko-fi.com/Y8Y1CBIJH" target="_blank" rel="noreferrer">
-		<img
-			height="36"
-			style={{ border: '0px', height: '36px' }}
-			src="https://cdn.ko-fi.com/cdn/kofi4.png?v=3"
-			border="0"
-			alt="Buy Me a Coffee at ko-fi.com"
-		/>
-	</a>
-</div>
+## Adding data
 
-## Special Thanks
+Templates read values through [transformers](/tagscript/transformers), which you seed per render. A transformer answers with the keys it chooses to expose, so seeding one never hands the template the object underneath.
 
--   [JonSnowbd](https://github.com/JonSnowbd/) for creating TagScript in python.
+```ts showLineNumbers
+import { Interpreter, StrictVarsParser, StringTransformer } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('Hi {user}, your surname is {user(2)}', {
+	user: new StringTransformer('Parbez Barbhuiya'),
+});
+
+response.body; // 'Hi Parbez Barbhuiya, your surname is Barbhuiya'
+```
+
+## Something closer to real
+
+```ts showLineNumbers
+import { DefineParser, IfStatementParser, Interpreter, RangeParser, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser(), new DefineParser(), new RangeParser(), new IfStatementParser());
+
+const response = await ts.run('{=(roll):{range:1-6}}You rolled {roll}. {if({roll}==6):Nice!|Try again.}', {}, 500);
+
+response.body; // 'You rolled 6. Nice!'
+```
+
+The `500` is a character limit. Set one on any template you did not write yourself.
+
+<Callout type="warn">
+	`charLimit` defaults to `null`, which means unlimited. A template that expands cheaply into a huge string
+	is the one denial of service a template author can still cause, so pass a limit whenever the author is
+	untrusted. See [running templates](/tagscript/interpreter#limits).
+</Callout>
+
+## Where to go next
+
+- [Syntax](/tagscript/syntax) is the page to hand to whoever writes your templates.
+- [Running templates](/tagscript/interpreter) covers `run` options, the `Response` object and limits.
+- [Parsers](/tagscript/parsers) lists every built-in tag and shows how to write your own.
+- [Transformers](/tagscript/transformers) covers exposing data safely.
+- The [Discord plugin](/plugins/plugin-discord) adds embeds, cooldowns and permissions.
+
+## Special thanks
+
+[JonSnowbd](https://github.com/JonSnowbd/) wrote [TagScript](https://github.com/JonSnowbd/TagScript) in Python. This project is a TypeScript reimagining of it.

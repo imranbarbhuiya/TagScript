@@ -1,0 +1,41 @@
+---
+title: FunctionTransformer
+description: Compute a value at render time instead of ahead of it.
+---
+
+`FunctionTransformer` calls your function when the tag renders and uses whatever it returns. Use it when the value is expensive to build, or when it depends on the parameter the template wrote.
+
+## For template authors
+
+There is no special syntax. A variable backed by a function looks like any other, and the parameter means whatever the app decided it means.
+
+```yaml
+{now}
+{now(iso)}
+```
+
+## For developers
+
+### Seeding one
+
+```ts showLineNumbers
+import { FunctionTransformer, Interpreter, StrictVarsParser } from 'tagscript';
+
+const ts = new Interpreter(new StrictVarsParser());
+
+const response = await ts.run('It is {now(iso)}', {
+	now: new FunctionTransformer((tag) => (tag.parameter === 'iso' ? new Date().toISOString() : `${Date.now()}`)),
+});
+```
+
+Your function receives the whole `Lexer`, so `tag.parameter` and `tag.payload` are both available.
+
+### Behaviour
+
+The function runs once per tag, not once per render, so a template with three `{now}` tags calls it three times. That is what makes a counter or a per-tag lookup possible, and it is also why the function should stay cheap.
+
+The signature is `(tag: Lexer) => string`. It has to be synchronous and it has to return a string, so return `''` rather than `null` or `undefined` when there is nothing to render. Anything that needs to await belongs in a [parser](/tagscript/parsers#writing-your-own).
+
+### API reference
+
+[FunctionTransformer](/api/tagscript/classes/FunctionTransformer)

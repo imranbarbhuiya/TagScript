@@ -1,0 +1,65 @@
+---
+title: DefineParser
+description: Store a value once and reuse it by name later in the template.
+---
+
+import { Tabs } from 'fumadocs-ui/components/tabs';
+
+`=` gives a value a name. Every later tag with that name renders the value. Use it to pick a random number once and mention it three times, or to keep a long piece of text out of the middle of a sentence.
+
+## For template authors
+
+### Syntax
+
+```yaml
+{=(name):value}
+```
+
+The tag itself renders nothing. Reference the name afterwards with `{name}`.
+
+### Examples
+
+```yaml
+{=(prefix):!}The prefix here is `{prefix}`.
+# The prefix here is `!`.
+```
+
+Define once, use many times. Without this, each `{range}` would roll a different number:
+
+```yaml
+{=(roll):{range:1-6}}You rolled {roll}. {if({roll}==6):Nice!|Try again.}
+# You rolled 6. Nice!
+```
+
+### Aliases
+
+`=`, `assign`, `let`, `var`
+
+## For developers
+
+### Register the parser
+
+<Tabs items={['ESM', 'CommonJS']}>
+	```ts showLineNumbers tab="ESM"
+	import { Interpreter, DefineParser, StrictVarsParser } from 'tagscript';
+	const ts = new Interpreter(new DefineParser(), new StrictVarsParser());
+	```
+	```js showLineNumbers tab="CommonJS"
+	const { Interpreter, DefineParser, StrictVarsParser } = require('tagscript');
+	const ts = new Interpreter(new DefineParser(), new StrictVarsParser());
+	```
+</Tabs>
+
+You need a [variable parser](/tagscript/parsers/variables) as well. `DefineParser` writes the variable, and `StrictVarsParser` reads it back.
+
+### Behaviour
+
+The parameter is required and holds the name. The payload holds the value and is optional, so `{=(name)}` defines an empty string.
+
+`parse` wraps the payload in a `StringTransformer` and stores it on `ctx.response.variables`, then returns an empty string. Definitions are visible to any tag that comes after them in the template, and they show up on `response.variables` once the render finishes.
+
+A definition overwrites a variable your app seeded under the same name. Seed anything the template must not be able to shadow under a name you also check after the render.
+
+### API reference
+
+[DefineParser](/api/tagscript/classes/DefineParser)
