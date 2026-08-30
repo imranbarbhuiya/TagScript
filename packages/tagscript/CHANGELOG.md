@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# [tagscript@1.4.1](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.4.0...tagscript@1.4.1) - (2026-08-30)
+
+## 🐛 Bug Fixes
+
+- Lint and test issues (#609) ([15b4c00](https://github.com/imranbarbhuiya/tagscript/commit/15b4c002b7bc1adf71134c05df598fb80675e348))
+- **deps:** Update all non-major dependencies (#591) ([bc6e1e1](https://github.com/imranbarbhuiya/tagscript/commit/bc6e1e16202d23163b93193cdaa97c922cc0d7df))
+- **deps:** Update all non-major dependencies (#562) ([0cf39eb](https://github.com/imranbarbhuiya/tagscript/commit/0cf39ebc20df223efc1f0906d0e115432d318b6e))
+- **deps:** Update all non-major dependencies (#559) ([2a392d8](https://github.com/imranbarbhuiya/tagscript/commit/2a392d8b65d0eb37ef2f3b2042337e011d9f12b9))
+- **deps:** Update all non-major dependencies (#546) ([3daf6d0](https://github.com/imranbarbhuiya/tagscript/commit/3daf6d0e4b29ed5abe0a8d2caae3e8554595d27d))
+- **deps:** Update all non-major dependencies (#531) ([ffc8e47](https://github.com/imranbarbhuiya/tagscript/commit/ffc8e477654de0d122f99cc7ae3535aee6289d52))
+- Update typedoc ([9fd1ff5](https://github.com/imranbarbhuiya/tagscript/commit/9fd1ff55e1dbee1234d091750a112c8af2562fa0))
+
+## 📝 Documentation
+
+- Update all docs ([534679e](https://github.com/imranbarbhuiya/tagscript/commit/534679e0921a25f2b943b7e909bd1a212a3c3347))
+- Update README and package descriptions for clarity and accuracy ([d3a6ece](https://github.com/imranbarbhuiya/tagscript/commit/d3a6eceda11835980d8133a42fa86edb23c97f9f))
+- Update docs site ([9701368](https://github.com/imranbarbhuiya/tagscript/commit/97013687cf0346e78adf649c0bcf80df48c3a7e0))
+- Update fumadoc and nextjs ([610597f](https://github.com/imranbarbhuiya/tagscript/commit/610597fb8be9a1e7abfb018e33bb661bed1b76ff))
+
 # [tagscript@1.4.0](https://github.com/imranbarbhuiya/tagscript/compare/tagscript@1.3.3...tagscript@1.4.0) - (2024-06-23)
 
 ## 🚀 Features
