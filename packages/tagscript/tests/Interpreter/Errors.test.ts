@@ -5,7 +5,9 @@ import {
 	Interpreter,
 	ParserError,
 	StopParser,
+	StopSignal,
 	StringTransformer,
+	TagScriptError,
 	TemplateError,
 	WorkloadExceededError,
 } from '../../src';
@@ -102,7 +104,7 @@ describe('WorkloadExceededError', () => {
 	const ts = new Interpreter(new TemplateErrorParser());
 
 	test('GIVEN a render over the character limit THEN reject rather than render', async () => {
-		await expect(ts.run('{bad}', { charLimit: 1 })).rejects.toThrowError(WorkloadExceededError);
+		expect(ts.run('{bad}', { charLimit: 1 })).rejects.toThrowError(WorkloadExceededError);
 	});
 
 	test('GIVEN a WorkloadExceededError THEN carry the limit and the attempted count', async () => {
@@ -144,5 +146,67 @@ describe('RunOptions', () => {
 		const response = await ts.run('nothing', { keyValues });
 
 		expect(response.keyValues).toBe(keyValues);
+	});
+});
+
+describe('error classes', () => {
+	test('GIVEN a TemplateError THEN it is a TagScriptError and an Error', () => {
+		const error = new TemplateError('bad', 'mytag');
+
+		expect(error).toBeInstanceOf(TagScriptError);
+		expect(error).toBeInstanceOf(Error);
+		expect(error.name).toBe('TemplateError');
+		expect(error.message).toBe('bad');
+		expect(error.tag).toBe('mytag');
+	});
+
+	test('GIVEN a TemplateError without a tag THEN default the tag to null', () => {
+		expect(new TemplateError('bad').tag).toBeNull();
+	});
+
+	test('GIVEN a TemplateError with a cause THEN keep it', () => {
+		const cause = new SyntaxError('inner');
+
+		expect(new TemplateError('bad', 'mytag', { cause }).cause).toBe(cause);
+	});
+
+	test('GIVEN a ParserError THEN name the tag in its message and keep the cause', () => {
+		const cause = new TypeError('inner');
+		const error = new ParserError('mytag', cause);
+
+		expect(error).toBeInstanceOf(TagScriptError);
+		expect(error.name).toBe('ParserError');
+		expect(error.message).toBe('The parser for {mytag} threw an error.');
+		expect(error.tag).toBe('mytag');
+		expect(error.cause).toBe(cause);
+	});
+
+	test('GIVEN a ParserError with no tag THEN word the message without one', () => {
+		expect(new ParserError(null, new Error('x')).message).toBe('The parser for a tag threw an error.');
+	});
+
+	test('GIVEN a WorkloadExceededError THEN carry the limit, the attempt and a readable message', () => {
+		const error = new WorkloadExceededError(100, 250);
+
+		expect(error).toBeInstanceOf(TagScriptError);
+		expect(error.name).toBe('WorkloadExceededError');
+		expect(error.limit).toBe(100);
+		expect(error.attempted).toBe(250);
+		expect(error.message).toBe(
+			'The TS interpreter had its workload exceeded. The total characters attempted were 250/100',
+		);
+	});
+
+	test('GIVEN a StopSignal THEN it carries its message and is a TagScriptError', () => {
+		const signal = new StopSignal('halted');
+
+		expect(signal).toBeInstanceOf(TagScriptError);
+		expect(signal.name).toBe('StopSignal');
+		expect(signal.message).toBe('halted');
+	});
+
+	test('GIVEN the generic message THEN it names no internals', () => {
+		expect(GENERIC_PARSER_ERROR_MESSAGE).not.toContain('undefined');
+		expect(GENERIC_PARSER_ERROR_MESSAGE).not.toContain('Error:');
 	});
 });

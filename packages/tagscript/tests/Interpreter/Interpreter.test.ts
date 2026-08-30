@@ -13,7 +13,7 @@ describe('Interpreter', () => {
 	test('GIVEN a string with length greater than character limit THEN throws an error', async () => {
 		const input =
 			'{if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}';
-		await expect(ts.run(input, { args: new StringTransformer('60') }, 1)).rejects.toThrowError(
+		expect(ts.run(input, { args: new StringTransformer('60') }, 1)).rejects.toThrowError(
 			new Error('The TS interpreter had its workload exceeded. The total characters attempted were 2/1'),
 		);
 	});

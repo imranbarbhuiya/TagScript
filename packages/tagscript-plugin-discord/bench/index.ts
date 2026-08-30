@@ -20,7 +20,7 @@ import {
 	resolveColor,
 	resolveCommandOptions,
 } from '../src';
-import { channel, guild, interaction, member, role, user } from '../tests/Structures/Structures';
+import { channel, commandData, guild, interaction, member, role, user } from '../tests/Structures/Structures';
 
 import type { IParser } from 'tagscript';
 
@@ -121,7 +121,7 @@ group('utils', () => {
 	});
 
 	bench('resolveCommandOptions', function* () {
-		yield () => do_not_optimize(resolveCommandOptions(interaction.data));
+		yield () => do_not_optimize(resolveCommandOptions(commandData));
 	});
 });
 

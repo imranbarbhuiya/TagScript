@@ -35,7 +35,7 @@ import type { IParser } from '../src';
 
 const seedVariables = () => ({
 	args: new StringTransformer('63'),
-	n: new IntegerTransformer(7),
+	n: new IntegerTransformer('7'),
 	data: new SafeObjectTransformer('{"name":"John Doe","age":30}'),
 	fn: new FunctionTransformer(() => 'called'),
 });
@@ -118,7 +118,7 @@ group('transformers', () => {
 	const dotTag = new Lexer('{data.name}', 2_000, ParenType.Both);
 
 	const string = new StringTransformer('one two three four');
-	const integer = new IntegerTransformer(63);
+	const integer = new IntegerTransformer('63');
 	const object = new SafeObjectTransformer('{"name":"John Doe","age":30}');
 	const fn = new FunctionTransformer(() => 'called');
 

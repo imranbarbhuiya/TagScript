@@ -1,0 +1,7 @@
+{
+	"extends": "../../tsconfig.json",
+	"include": ["src/**/*.ts", "tests/**/*.ts", "bench/**/*.ts"],
+	"compilerOptions": {
+		"noEmit": true
+	}
+}

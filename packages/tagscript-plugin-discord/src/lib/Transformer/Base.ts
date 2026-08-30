@@ -36,6 +36,10 @@ export abstract class BaseTransformer<T extends object> implements ITransformer 
 
 	public transform(tag: Lexer) {
 		if (!tag.parameter) return this.safeValues.mention as string;
+		// Own properties only. `safeValues` is a plain object, so an inherited name such as
+		// `constructor` or `valueOf` would otherwise resolve off `Object.prototype` and render
+		// something the subclass never offered.
+		if (!Object.hasOwn(this.safeValues, tag.parameter)) return null;
 		let value = this.safeValues[tag.parameter];
 		if (typeof value === 'function') value = value(this.base);
 		if (value === undefined) return null;

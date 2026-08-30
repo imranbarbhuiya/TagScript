@@ -17,17 +17,32 @@ export class SafeObjectTransformer implements ITransformer {
 		if (tag.parameter.startsWith('_')) return null;
 
 		const attribute = this.getValue(this.obj, tag.parameter);
+		// `toString` is an own property of the wrapped object so that a bare `{data}` renders, but a
+		// template asking for it by name would otherwise render the function's source.
+		if (typeof attribute === 'function') return null;
 		return attribute ? `${attribute}` : null;
 	}
 
+	/**
+	 *
+	 * Reads `key` off the object, following dots for nested access.
+	 *
+	 * Every step checks own properties only. Reaching inherited ones would let a template read
+	 * `constructor`, `valueOf` or `hasOwnProperty` off `Object.prototype`, which are not values the
+	 * template author put there.
+	 *
+	 * @param obj - The object to read from.
+	 * @param key - The key, optionally dotted.
+	 * @returns The value, or `null` when the key is not there.
+	 */
 	private getValue(obj: Record<string, unknown>, key: string) {
-		if (key in obj) return obj[key];
+		if (Object.hasOwn(obj, key)) return obj[key];
 		if (!key.includes('.')) return null;
 		const keys = key.split('.');
 		let value = obj;
 
 		for (const key of keys) {
-			if (typeof value !== 'object') return null;
+			if (typeof value !== 'object' || !Object.hasOwn(value, key)) return null;
 			value = value[key] as Record<string, unknown>;
 		}
 

@@ -20,9 +20,12 @@ export interface IParser {
 	/**
 	 * Parses the given tag.
 	 *
+	 * Returning `null` or `undefined` means this parser did not handle the tag, and the interpreter
+	 * moves on to the next one that accepted it.
+	 *
 	 * @param ctx - The context of the tag.
 	 */
-	parse: (ctx: Context) => Awaitable<string | null>;
+	parse: (ctx: Context) => Awaitable<string | null | undefined>;
 	/**
 	 * Whether the parser can handle the given tag.
 	 *

@@ -13,9 +13,8 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"declaration": true,
-		"outDir": "dist"
+		"types": ["bun"]
 	},
-	"include": ["packages/**/*.ts"],
-	"exclude": ["packages/**/dist/**"]
+	"include": ["*.config.ts"],
+	"exclude": ["**/dist/**"]
 }
