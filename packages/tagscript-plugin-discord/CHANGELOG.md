@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@tagscript/plugin-discord@4.0.0](https://github.com/imranbarbhuiya/tagscript/compare/@tagscript/plugin-discord@3.1.1...@tagscript/plugin-discord@4.0.0) - (2026-08-30)
+
+## 🏠 Refactor
+
+- Make discord plugin generic ([edc3cef](https://github.com/imranbarbhuiya/tagscript/commit/edc3cef97005d4e9b1b44aced9b2dbf1d1a7a49c))
+  - 💥 **fixes #** 121
+  - 💥 **fixes #** 455
+
 # [@tagscript/plugin-discord@3.1.1](https://github.com/imranbarbhuiya/tagscript/compare/@tagscript/plugin-discord@3.1.0...@tagscript/plugin-discord@3.1.1) - (2026-08-30)
 
 ## 🐛 Bug Fixes
