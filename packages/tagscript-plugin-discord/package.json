@@ -42,13 +42,25 @@
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.cts",
 	"exports": {
-		"import": {
-			"types": "./dist/index.d.mts",
-			"default": "./dist/index.mjs"
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
 		},
-		"require": {
-			"types": "./dist/index.d.cts",
-			"default": "./dist/index.cjs"
+		"./effect": {
+			"import": {
+				"types": "./dist/effect/index.d.mts",
+				"default": "./dist/effect/index.mjs"
+			},
+			"require": {
+				"types": "./dist/effect/index.d.cts",
+				"default": "./dist/effect/index.cjs"
+			}
 		}
 	},
 	"publishConfig": {
@@ -67,10 +79,17 @@
 		"discord-api-types": "^0.38.54"
 	},
 	"devDependencies": {
+		"effect": "^4.0.0-rc.112",
 		"tagscript": "workspace:^"
 	},
 	"peerDependencies": {
+		"effect": "^4.0.0-rc || ^4.0.0",
 		"tagscript": "*"
+	},
+	"peerDependenciesMeta": {
+		"effect": {
+			"optional": true
+		}
 	},
 	"engines": {
 		"node": "^20.19.0 || >=22.12.0"

@@ -63,6 +63,12 @@
       "devDependencies": {
         "effect": "^4.0.0-rc.112",
       },
+      "peerDependencies": {
+        "effect": "^4.0.0-rc || ^4.0.0",
+      },
+      "optionalPeers": [
+        "effect",
+      ],
     },
     "packages/tagscript-plugin-discord": {
       "name": "@tagscript/plugin-discord",
@@ -71,6 +77,7 @@
         "discord-api-types": "^0.38.54",
       },
       "devDependencies": {
+        "effect": "^4.0.0-rc.112",
         "tagscript": "workspace:^",
       },
       "peerDependencies": {

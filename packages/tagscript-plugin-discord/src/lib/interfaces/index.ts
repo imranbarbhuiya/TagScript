@@ -10,6 +10,17 @@ import type {
 } from 'discord-api-types/v10';
 
 declare module 'tagscript' {
+	export interface IKeyValues {
+		/**
+		 * What to key a cooldown by, read by the Effect `cooldownParser`.
+		 *
+		 * A bot rendering many tags sets this per render so they do not share one cooldown. Without
+		 * it the parser falls back to the template itself, which works but treats two tags with the
+		 * same text as one.
+		 */
+		tagName?: string;
+	}
+
 	export interface IActions {
 		cooldown?: {
 			cooldown: number;

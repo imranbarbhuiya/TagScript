@@ -1,3 +1,5 @@
 import { createTsdownConfig } from '../../scripts/tsdown.config.ts';
 
-export default createTsdownConfig({ format: ['esm', 'cjs'] });
+export default createTsdownConfig({
+	entry: ['src/index.ts', 'src/effect/index.ts'],
+});

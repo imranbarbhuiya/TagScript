@@ -180,6 +180,31 @@ Options are matched against `data.resolved`, which is where Discord puts the ful
 
 Subcommand and subcommand-group options are flattened with a `-` separated prefix, so an option `channel` inside `sub-command` is reachable as `{sub-command-channel}`.
 
+## Effect
+
+`@tagscript/plugin-discord/effect` is the same plugin on the [Effect entry point](https://tagscript.js.org/tagscript/effect),
+where `cooldownParser` enforces the cooldown itself instead of writing to `response.actions` and
+leaving it to you.
+
+```ts
+import { CooldownStore, cooldownParser } from '@tagscript/plugin-discord/effect';
+
+const body = await Effect.runPromise(
+	ts.run(template, { keyValues: { tagName: 'rules' } }).pipe(
+		Effect.map((response) => response.body),
+		Effect.catchTag('OnCooldown', (error) => Effect.succeed(error.message ?? 'Slow down.')),
+		Effect.provide(CooldownStore.memory),
+	),
+);
+```
+
+`dateFormatParser` reads the clock through `DateTime`, so a test can pin it, and `embedParser`
+checks Discord's length limits and reports a malformed embed as a `TemplateError` rather than
+letting the API reject it later.
+
+`effect` is an optional peer dependency, so nothing changes if you do not use it. Full details:
+**[tagscript.js.org/plugins/plugin-discord/effect](https://tagscript.js.org/plugins/plugin-discord/effect)**
+
 ## Related
 
 - [`tagscript`](https://www.npmjs.com/package/tagscript) for the interpreter and its built-in tags.

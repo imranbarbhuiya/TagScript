@@ -1,4 +1,10 @@
 {
 	"title": "Discord Plugin",
-	"pages": ["index", "parsers", "transformers", "command-options"]
+	"pages": [
+		"index",
+		"parsers",
+		"transformers",
+		"effect",
+		"command-options"
+	]
 }

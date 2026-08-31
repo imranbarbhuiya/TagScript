@@ -6,6 +6,7 @@
 		"syntax",
 		"interpreter",
 		"effect",
+		"effect-migration",
 		"parsers",
 		"transformers"
 	]

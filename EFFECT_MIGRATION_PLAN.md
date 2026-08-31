@@ -496,21 +496,37 @@ Two things came out differently from the plan. `@effect/vitest` is not used, bec
 all it adds over `bun:test` and a second runner means a second config and coverage report. And the
 performance guess in §2.2 was wrong, see the table there.
 
-### Phase 2: the Discord plugin
+### Phase 2: the Discord plugin (done)
 
-18. `@tagscript/plugin-discord@5`, with the same two entry points.
-19. `CooldownStore` service so `CooldownParser` actually enforces cooldowns; in-memory layer shipped,
-    Redis layer documented.
-20. `DateFormatParser` on `DateTime`/`Clock`.
-21. **Cost out `Schema` for embed validation.** At 19.6 KB gz in a plugin that already depends on
-    `discord-api-types`, validating `APIEmbed` properly instead of casting a `JSON.parse` result may
-    well be worth it. This was ruled out on bad data in the first draft.
+18. `@tagscript/plugin-discord/effect`, the same subpath shape as core. Done.
+19. `CooldownStore` with an in-memory layer, and `cooldownParser` failing with `OnCooldown`. Done.
+    The parser fills `{retryAfter}` and `{name}` into the message the template wrote, and keys the
+    cooldown by `keyValues.tagName`, which the plugin now declares on `IKeyValues`. A Redis layer is
+    documented rather than shipped, because the service is one method and the useful shape is
+    `SET NX EX`, which is not ours to depend on.
+20. `dateFormatParser` on `DateTime`. Done, and `TestClock.setTime` pins it in tests. The classic
+    parser calls `Date.now()` and cannot be pinned at all.
+21. **`Schema` costed out and rejected.** Measured at +12.3 KB gz over the plugin's current Effect
+    footprint of 7.8 KB. For a shape as fixed as `APIEmbed` that buys generic messages that read
+    worse to a template author than four hand-written checks. `embedParser` now checks the four
+    length limits Discord enforces and reports them as `TemplateError`, at no bundle cost. Note
+    `TagLimit` truncates a tag body first, so at its default of 2000 only `title` and `author` are
+    reachable.
 
-### Phase 3: docs and adoption
+53 tests cover it. `Effect.withClockScaled` does not exist, which I found by inventing it; the real
+API is `TestClock.setTime` under `effect/testing`.
 
-22. Website: an Effect section alongside the interpreter docs; §4.3's table as the plugin-author
-    migration guide.
-23. Decide `bun test` + `Effect.runPromise` vs adding `@effect/vitest` for `it.effect`.
+### Phase 3: docs and adoption (done)
+
+22. Website has `/tagscript/effect` for the core entry point, `/tagscript/effect-migration` as the
+    parser author's guide built from §4.3's table, and `/plugins/plugin-discord/effect`. Both package
+    READMEs gained an Effect section. Done.
+23. `bun test` stays, with three helpers in `tests/effect/helpers.ts`. `@effect/vitest` was not added
+    and an `it.effect` wrapper was written then dropped, because the tests read better as
+    `await body(...)`. Done.
+
+Prose across the repo follows the unslop rules now: no em dashes, and "entry point" rather than
+"surface".
 
 ### Phase 4: GA
 

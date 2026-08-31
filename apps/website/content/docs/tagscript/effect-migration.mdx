@@ -1,0 +1,139 @@
+---
+title: Moving a parser to Effect
+description: What changes when you rewrite a classic parser for the Effect entry point, line by line.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+Nothing forces you to move. The classic entry point is not deprecated and is faster. Move a parser
+when it needs something a classic parser cannot have: a service, or an error the caller must handle.
+
+## The table
+
+| Classic                                   | Effect                                                  |
+| ----------------------------------------- | ------------------------------------------------------- |
+| `class X extends BaseParser`               | `definePlugin({ ... })`                                 |
+| `super(names, reqParam, reqPayload)`       | `names`, `requiredParameter`, `requiredPayload`         |
+| `parse(ctx): string \| null`               | `parse: (ctx) => Effect.succeed(...)`                   |
+| `async parse` and `await`                  | `parse: Effect.fnUntraced(function* (ctx) { ... })`     |
+| `throw new TemplateError(msg, tag)`        | `return yield* new TemplateError({ message, tag })`     |
+| `throw new StopSignal(msg)`                | `return yield* new StopSignal({ message })`             |
+| needs a client, so `IKeyValues` augmenting | `yield* MyService`, declared in `R`                     |
+| `ctx.response.actions.foo = x`             | unchanged                                               |
+| `Math.random()`                            | `yield* Random.nextIntBetween(0, n)`                    |
+| `Date.now()`                               | `yield* DateTime.now`                                   |
+| `run(msg, vars, charLimit)`                | `run(msg, { seedVariables })` and `CharLimit` service   |
+
+## A parser with nothing special
+
+Most parsers are a name and an expression. They do not need a generator:
+
+```ts showLineNumbers title="classic"
+export class UpperParser extends BaseParser implements IParser {
+	public constructor() {
+		super(['upper'], false, true);
+	}
+
+	public parse(ctx: Context) {
+		return ctx.tag.payload!.toUpperCase();
+	}
+}
+```
+
+```ts showLineNumbers title="effect"
+export const upperParser = definePlugin({
+	names: ['upper'],
+	requiredPayload: true,
+	parse: (ctx) => Effect.succeed(ctx.tag.payload!.toUpperCase()),
+});
+```
+
+Use `Effect.succeed` for a pure result, `Effect.sync` when it writes to the response, and
+`Effect.fnUntraced` when the body has to `yield*`. Reaching for a generator that never yields costs
+an allocation per tag for nothing.
+
+## A parser that needs something
+
+This is the reason the entry point exists. Declare the service and yield it:
+
+```ts showLineNumbers
+class Translator extends Context.Service<Translator, {
+	readonly to: (text: string, locale: string) => Effect.Effect<string, TranslationFailed>;
+}>()('myapp/Translator') {}
+
+export const translateParser = definePlugin({
+	names: ['translate'],
+	requiredParameter: true,
+	requiredPayload: true,
+	parse: Effect.fnUntraced(function* (ctx) {
+		const translator = yield* Translator;
+		return yield* translator.to(ctx.tag.payload!, ctx.tag.parameter!);
+	}),
+});
+```
+
+Its type is `Parser<TranslationFailed, Translator>`. Register it and the interpreter carries both,
+so the call site provides the layer and handles the error, or it does not compile.
+
+<Callout>
+	On the classic entry point the same parser has to reach the translator through `IKeyValues`, which
+	is global, untyped by construction, and silently `undefined` if the host forgets to pass it.
+</Callout>
+
+## Errors
+
+A classic parser throws. An Effect parser fails, and what it fails with decides what happens.
+
+```ts showLineNumbers title="classic"
+if (Number.isNaN(seconds)) throw new TemplateError('cooldown needs a number of seconds', 'cooldown');
+```
+
+```ts showLineNumbers title="effect"
+if (Number.isNaN(seconds)) {
+	return yield* new TemplateError({ message: 'cooldown needs a number of seconds', tag: 'cooldown' });
+}
+```
+
+`return yield*` rather than a bare `yield*`, so TypeScript knows the function stops there.
+
+A `TemplateError` still renders in place of the tag and lands on `response.errors`. Anything else you
+declare reaches the caller instead, which is the point. Keep those errors specific enough to catch
+by tag.
+
+## Randomness and time
+
+Both were untestable before. A classic parser calling `Math.random()` or `Date.now()` gives a
+different answer every run and nothing can pin it.
+
+```ts showLineNumbers
+parse: Effect.fnUntraced(function* (ctx) {
+	const options = split(ctx.tag.payload!, true);
+	return options[yield* Random.nextIntBetween(0, options.length - 1)];
+});
+```
+
+`Random.nextIntBetween` includes both bounds, unlike `Math.floor(Math.random() * n)`. Getting that
+wrong is how `{random:a,b}` ends up returning nothing, so mind the `- 1`.
+
+Seed it in a test with `Random.withSeed(seed)(effect)`, and pin the clock with
+`TestClock.setTime(millis)`.
+
+## Configuration
+
+`run` took six positional arguments. Now it takes two, and the rest are services provided once for
+the application:
+
+```ts showLineNumbers
+ts.run(template, { seedVariables, keyValues }).pipe(
+	Effect.provideService(CharLimit, 2_000),
+	Effect.provideService(TagLimit, 500),
+);
+```
+
+## Not moving everything
+
+`fromClassic` lifts a classic parser as it is, actions and variables included. `toClassic` goes the
+other way for any parser that needs no services. `toPromise` runs a whole Effect interpreter from
+code that is not on Effect.
+
+Mixing is fine and expected. Move the parsers that gain something and leave the rest.

@@ -1,0 +1,142 @@
+---
+title: Effect
+description: The plugin on the Effect entry point, where the cooldown tag enforces itself.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+`@tagscript/plugin-discord/effect` is the same plugin on the [Effect entry point](/tagscript/effect).
+The parsers are functions rather than classes, and one of them can now do a job it never could.
+
+```ts showLineNumbers
+import * as Effect from 'effect/Effect';
+import { Interpreter } from 'tagscript/effect';
+import { builtinParsers } from '@tagscript/plugin-discord/effect';
+
+const ts = new Interpreter(...builtinParsers);
+const response = await Effect.runPromise(ts.run('{embed(title):Rules}{silent}'));
+```
+
+`effect` is an optional peer dependency. Install it yourself, and the classic entry point stays
+untouched.
+
+## The cooldown tag
+
+`CooldownParser` on the classic entry point cannot enforce a cooldown. It writes what the template
+asked for to `response.actions.cooldown` and leaves the rest to you, because a parser has no way to
+reach Redis or any other store.
+
+`cooldownParser` asks for a `CooldownStore`, so it does the work itself:
+
+```ts showLineNumbers
+import { CooldownStore, cooldownParser } from '@tagscript/plugin-discord/effect';
+
+const ts = new Interpreter(cooldownParser, ...builtinParsers);
+
+const body = await Effect.runPromise(
+	ts.run(template, { keyValues: { tagName: 'rules' } }).pipe(
+		Effect.map((response) => response.body),
+		Effect.catchTag('OnCooldown', (error) => Effect.succeed(error.message ?? 'Slow down.')),
+		Effect.provide(CooldownStore.memory),
+	),
+);
+```
+
+A second render inside the window fails with `OnCooldown`, carrying `retryAfter`, `name` and the
+message the template wrote. `{retryAfter}` and `{name}` in that message are filled in for you.
+
+`tagName` is what the cooldown is keyed by. Set it per render so two different tags do not share one
+cooldown. Without it the parser falls back to the template text, which works but treats two tags
+with the same body as the same tag.
+
+### Providing a store
+
+`CooldownStore.memory` keeps state in a `Map` in this process. It is right for one process and for
+tests, and wrong for a sharded bot, because nothing is shared and nothing is ever evicted.
+
+For anything larger, write a layer. The service is one method, and `hit` records the use and reports
+what is left in one step, which is what stops two concurrent renders both passing the check:
+
+```ts showLineNumbers
+import * as Effect from 'effect/Effect';
+import * as Layer from 'effect/Layer';
+import { CooldownStore } from '@tagscript/plugin-discord/effect';
+
+const redisCooldowns = (redis: Redis) =>
+	Layer.succeed(CooldownStore)(
+		CooldownStore.of({
+			hit: (key, seconds) =>
+				Effect.promise(async () => {
+					const ttl = await redis.set(`cooldown:${key}`, '1', { EX: seconds, NX: true });
+					if (ttl !== null) return null;
+					return (await redis.ttl(`cooldown:${key}`)) ?? 0;
+				}),
+		}),
+	);
+```
+
+<Callout>
+	Untested example. `SET NX EX` is the shape you want, because it claims the cooldown and reports
+	whether it already existed in one round trip.
+</Callout>
+
+## Timestamps
+
+`dateFormatParser` reads the clock through Effect's `DateTime`, so a test can pin it:
+
+```ts showLineNumbers
+import * as TestClock from 'effect/testing/TestClock';
+
+const program = Effect.gen(function* () {
+	yield* TestClock.setTime(1_735_689_600_000);
+	return yield* ts.run('{unix}');
+}).pipe(Effect.provide(TestClock.layer()));
+```
+
+The classic `DateFormatParser` calls `Date.now()` and cannot be pinned at all.
+
+## Embeds
+
+`embedParser` behaves as the classic one does, with two differences.
+
+Malformed JSON raises a `TemplateError`, so the body gets `embed was given something that is not
+valid JSON` rather than a `SyntaxError` describing a character offset.
+
+It also checks the length limits Discord enforces, and reports them in the same way:
+
+| Property      | Limit |
+| ------------- | ----- |
+| `title`       | 256   |
+| `author`      | 256   |
+| `footer`      | 2048  |
+| `description` | 4096  |
+
+A template author sees `embed title is 300 characters, and Discord allows 256` at render time,
+rather than the bot author reading an API rejection later. `TagLimit` truncates a tag body first, so
+at its default of 2000 only `title` and `author` are reachable.
+
+We looked at validating the whole embed with `Schema` and decided against it. It costs 12.3 KB
+gzipped, and for a shape as fixed as `APIEmbed` its generic messages read worse to a template author
+than the four checks above.
+
+## Everything else
+
+`silentParser`, `deleteParser`, `filesParser`, `requiredParser` and `denyParser` record to
+`response.actions` exactly as their classic counterparts do. Transformers are unchanged and shared,
+so import them from either entry point.
+
+## Mixing with the classic plugin
+
+Nothing forces a full move. `fromClassic` lifts any classic parser onto the Effect interpreter, and
+anything it writes to `response.actions` still lands there:
+
+```ts showLineNumbers
+import { CooldownParser } from '@tagscript/plugin-discord';
+import { fromClassic } from 'tagscript/effect';
+
+const ts = new Interpreter(fromClassic(new CooldownParser()));
+```
+
+Going the other way, `toClassic` takes a parser that needs no services. `cooldownParser` will not
+compile there, which is the compiler pointing out that a classic interpreter has nowhere to get a
+`CooldownStore` from.
