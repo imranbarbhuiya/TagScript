@@ -1,6 +1,6 @@
 {
 	"name": "tagscript",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "A sandboxed template language for text your users write.",
 	"keywords": [
 		"interpreter",
