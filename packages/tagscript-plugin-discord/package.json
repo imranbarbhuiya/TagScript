@@ -1,6 +1,6 @@
 {
 	"name": "@tagscript/plugin-discord",
-	"version": "4.0.0",
+	"version": "5.0.0",
 	"description": "Library agnostic Discord parsers and transformers for TagScript: embeds, cooldowns, permissions and mentions from user-written templates.",
 	"keywords": [
 		"bot tag",

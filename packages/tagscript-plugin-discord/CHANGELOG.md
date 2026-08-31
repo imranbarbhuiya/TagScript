@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@tagscript/plugin-discord@5.0.0](https://github.com/imranbarbhuiya/tagscript/compare/@tagscript/plugin-discord@4.0.0...@tagscript/plugin-discord@5.0.0) - (2026-08-31)
+
+## 🏠 Refactor
+
+- Split interfaces for Effect preparations and bug fixes ([79949ab](https://github.com/imranbarbhuiya/tagscript/commit/79949ab5a88c1120d8ef191cdbbd74eba619bfcb))
+  - 💥 **BREAKING CHANGE:** A parser that throws no longer ends the render. The interpreter replaces
+just that tag and carries on, recording what happened on the new `Response.errors`.
+
+`StopParser` now throws `StopSignal` rather than `Error`. A parser that threw a plain `Error`
+to halt a render gets the generic parser message and the render continues, so switch it to
+`throw new StopSignal(message)`.
+
+An error that is not a `TemplateError` is treated as a bug in the parser: the body gets
+`GENERIC_PARSER_ERROR_MESSAGE` instead of the real message, which is kept on the recorded
+`ParserError`'s `cause`. Raise a `TemplateError` for a mistake the template author can fix,
+and its message is rendered as written.
+
+`Response.toJSON()` gains an `errors` key, so a deep equality assertion against it needs
+updating.
+
+`run` now takes an options object, `run(message, options)`. The positional form still works
+and is deprecated. A single second argument whose keys are all option names is read as
+options, so a seed variable named `charLimit`, `tagLimit`, `parenType`, `keyValues` or
+`seedVariables` must use the positional form.
+
+`EmbedParser`, `JSONVarParser` and `UrlDecodeParser` now raise a `TemplateError` instead of
+leaking a `SyntaxError` or `URIError`, so their output text on bad input has changed.
+
+## 🐛 Bug Fixes
+
+- Pin the plugin's peer on tagscript, and order releases by dependency ([ce1450d](https://github.com/imranbarbhuiya/tagscript/commit/ce1450d40343b11dec44d1cbfe73201c3f8fed5f))
+- Stop prototype keys escaping the transformer sandbox ([74a4143](https://github.com/imranbarbhuiya/tagscript/commit/74a41431651443aa9e84e89c39186e86c31037cc))
+  - 💥 **BREAKING CHANGE:** A transformer property that is inherited rather than its own
+now leaves the tag untouched, the same as any other unknown key. Templates
+reading `constructor`, `valueOf`, `toString`, `hasOwnProperty`, `isPrototypeOf`
+or `propertyIsEnumerable` off a transformer rendered a value before and render
+the tag itself now.
+
+`SafeObjectTransformer` no longer renders a value that is a function, so
+`{data.toString}` leaves the tag untouched. A bare `{data}` is unaffected.
+
+`IParser.parse` is typed `Awaitable<string | null | undefined>` rather than
+`Awaitable<string | null>`. The interpreter has always treated `undefined` as
+"not handled, try the next parser" and is tested for it, so the type now says
+what the runtime does. Code that assigned the result to `string | null` needs
+to widen it.
+
+## 🚀 Features
+
+- Give the discord plugin an effect entry point, and let cooldowns work ([3ecd8e1](https://github.com/imranbarbhuiya/tagscript/commit/3ecd8e1abb5834ae92dea3689dfe2fb199c556c3))
+  - 💥 **BREAKING CHANGE:** `engines.node` is `^20.19.0 || >=22.12.0`, up from `>=18.0.0`.
+That is the floor for `require(esm)`, which is how the CommonJS build reaches
+the ESM-only `effect`.
+- Add the tagscript/effect entry point ([409d13d](https://github.com/imranbarbhuiya/tagscript/commit/409d13d83d0c19bd5d44d997d7eef1d73e80adb5))
+  - 💥 **BREAKING CHANGE:** The IIFE build is gone and the `browser` field with it.
+`unpkg` now points at the ESM build. A `<script src="unpkg.com/tagscript">` tag
+that relied on the `TagScript` global needs esm.sh or jsdelivr instead.
+
+`engines.node` is now `^20.19.0 || >=22.12.0` on both packages, replacing
+`>=v14.0.0` on tagscript and `>=18.0.0` on the plugin.
+
 # [@tagscript/plugin-discord@4.0.0](https://github.com/imranbarbhuiya/tagscript/compare/@tagscript/plugin-discord@3.1.1...@tagscript/plugin-discord@4.0.0) - (2026-08-30)
 
 ## 🏠 Refactor
