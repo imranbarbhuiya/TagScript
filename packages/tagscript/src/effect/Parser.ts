@@ -3,9 +3,9 @@ import * as Effect from 'effect/Effect';
 import type { ParseContext } from './Context';
 
 /**
- * A parser on the Effect surface.
+ * A parser on the Effect entry point.
  *
- * The two type parameters are what the classic surface cannot express. `E` is what this parser can
+ * The two type parameters are what the classic entry point cannot express. `E` is what this parser can
  * fail with, and `R` is what it needs to be given before it can run, so a parser that reads from
  * Redis or an HTTP API declares that in its type and the compiler makes the application supply it.
  *

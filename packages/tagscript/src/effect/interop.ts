@@ -25,7 +25,7 @@ import type { Response } from './Response';
  * `ParserError` with a generic message, the same as it treats a defect from a native parser.
  *
  * @param error - Whatever the classic parser threw.
- * @returns The tagged error, or `null` when it is not one the Effect surface models.
+ * @returns The tagged error, or `null` when it is not one the Effect entry point models.
  */
 const translate = (error: unknown) => {
 	if (error instanceof ClassicStopSignal) return new StopSignal({ message: error.message });
@@ -35,10 +35,10 @@ const translate = (error: unknown) => {
 
 /**
  *
- * Lifts a classic parser onto the Effect surface.
+ * Lifts a classic parser onto the Effect entry point.
  *
  * The response is copied across in both directions, so a classic parser that writes to
- * `ctx.response.actions` or defines a variable behaves exactly as it does on the classic surface.
+ * `ctx.response.actions` or defines a variable behaves exactly as it does on the classic entry point.
  *
  * The result is typed `Parser<StopSignal | TemplateError>` with no requirements, because a classic
  * parser has no way to ask for a service.
@@ -87,7 +87,7 @@ export const fromClassic = (parser: IParser): Parser<StopSignal | TemplateError>
 
 /**
  *
- * Lowers an Effect parser onto the classic surface.
+ * Lowers an Effect parser onto the classic entry point.
  *
  * Only a parser that needs no services can make the trip, which is why `R` is pinned to `never`.
  * That constraint is the point: a parser that declares a requirement will not compile here, rather

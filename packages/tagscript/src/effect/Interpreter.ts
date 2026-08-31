@@ -36,7 +36,7 @@ export interface RunOptions {
 type InterpreterError = WorkloadExceededError;
 
 /**
- * The TagScript interpreter, on the Effect surface.
+ * The TagScript interpreter, on the Effect entry point.
  *
  * The difference from the classic `Interpreter` is in the type: the errors its parsers can fail
  * with and the services they need travel with it, so the caller has to handle them.

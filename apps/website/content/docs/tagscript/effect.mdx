@@ -194,6 +194,30 @@ const render = toPromise(new Interpreter(...builtinParsers));
 const response = await render('{upper:hello}');
 ```
 
+## What it costs
+
+Measured on an M3 with `bun run bench`, the same eighteen parsers and the same templates on both
+entry points.
+
+| Template            | Classic   | Effect    | Classic is |
+| ------------------- | --------- | --------- | ---------- |
+| plain text, no tags | 228 ns    | 1.22 µs   | 5.4x faster |
+| single tag          | 1.85 µs   | 2.64 µs   | 1.4x faster |
+| nested tags         | 6.58 µs   | 8.77 µs   | 1.3x faster |
+| typical template    | 9.28 µs   | 12.22 µs  | 1.3x faster |
+| fifty tags          | 91.9 µs   | 116.2 µs  | 1.3x faster |
+
+The shape is a fixed cost of roughly 1 µs for the fiber each `run` starts, plus about 0.5 µs per
+tag. A template with no tags pays only the fixed cost, which is why it looks worst in relative
+terms and is 1 µs in absolute terms.
+
+`Effect.runSync` works, because every built-in parser is synchronous, but it is only 4% faster than
+`Effect.runPromise`. The cost is in the fiber, not in the promise.
+
+For a Discord bot rendering a tag per command this does not matter. Pick the entry point for the
+type safety, not the speed, and stay on the classic one if you are rendering templates in a hot
+loop and do not need services or typed errors.
+
 ## What is not here
 
 Transformers are unchanged. They read from a payload you already fetched, so they stay synchronous

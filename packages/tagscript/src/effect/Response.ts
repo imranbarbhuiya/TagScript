@@ -22,7 +22,7 @@ export class Response {
 	 * Side effects the template requested. Your code decides what to do with them.
 	 *
 	 * Extend it with [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
-	 * on `IActions`, the same interface the classic surface uses.
+	 * on `IActions`, the same interface the classic entry point uses.
 	 */
 	public actions: IActions;
 

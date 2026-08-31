@@ -366,7 +366,7 @@ export const jsonVarParser: Parser<TemplateError> = definePlugin<TemplateError>(
 });
 
 /**
- * Every built-in parser, in the order the classic surface registers them.
+ * Every built-in parser, in the order the classic entry point registers them.
  */
 export const builtinParsers: readonly Parser<StopSignal | TemplateError>[] = [
 	defineParser,

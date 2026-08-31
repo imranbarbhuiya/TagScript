@@ -1,4 +1,5 @@
-import { bench, group, do_not_optimize } from 'mitata';
+import * as Effect from 'effect/Effect';
+import { bench, group, summary, do_not_optimize } from 'mitata';
 
 import { emitResults, runBenchmarks } from '../../../scripts/bench/harness';
 import {
@@ -30,8 +31,14 @@ import {
 	UrlEncodeParser,
 	buildNodeTree,
 } from '../src';
+import {
+	Interpreter as EffectInterpreter,
+	builtinParsers as effectBuiltinParsers,
+	looseVarsParser as effectLooseVarsParser,
+} from '../src/effect';
 
 import type { IParser } from '../src';
+import type { Response as EffectResponse } from '../src/effect';
 
 const seedVariables = () => ({
 	args: new StringTransformer('63'),
@@ -184,6 +191,58 @@ group('interpreter', () => {
 	bench('construction, eighteen parsers', function* () {
 		yield () => do_not_optimize(everyParser());
 	});
+});
+
+// The two entry points, same templates, same eighteen parsers, so the cost of the Effect runtime
+// is the only difference being measured. The Effect side pays for a fiber per `run`, which is what
+// a caller actually pays.
+group('classic vs effect', () => {
+	const classic = new Interpreter(
+		new DefineParser(),
+		new IfStatementParser(),
+		new UnionStatementParser(),
+		new IntersectionStatementParser(),
+		new RandomParser(),
+		new RangeParser(),
+		new ReplaceParser(),
+		new SliceParser(),
+		new IncludesParser(),
+		new StringFormatParser(),
+		new OrdinalFormatParser(),
+		new UrlEncodeParser(),
+		new UrlDecodeParser(),
+		new JSONVarParser(),
+		new BreakParser(),
+		new StopParser(),
+		new StrictVarsParser(),
+		new LooseVarsParser(),
+	);
+
+	const effect = new EffectInterpreter(...effectBuiltinParsers, effectLooseVarsParser);
+	const variables = seedVariables();
+
+	for (const [name, template] of [
+		['plain text, no tags', 'Just some text with no tags in it at all.'],
+		['single tag', '{if(1<2):yes|no}'],
+		['typical template', '{=(a):hello} {if({a}==hello):yes|no} {random:1,2,3} {a} {=(b):x}{b}'],
+		['nested tags', '{if({args}==63):You guessed it!|Too {if({args}<63):low|high}, try again.}'],
+		['fifty tags', Array.from({ length: 50 }, (_, index) => `{random:${index},${index + 1}}`).join(' ')],
+	] as const) {
+		summary(() => {
+			bench(`classic, ${name}`, function* () {
+				yield async () => do_not_optimize(await classic.run(template, { seedVariables: variables }));
+			}).baseline(true);
+
+			bench(`effect, ${name}`, function* () {
+				yield async () =>
+					do_not_optimize(
+						await Effect.runPromise(
+							effect.run(template, { seedVariables: variables }) as Effect.Effect<EffectResponse, never, never>,
+						),
+					);
+			});
+		});
+	}
 });
 
 await emitResults(await runBenchmarks('tagscript'));
