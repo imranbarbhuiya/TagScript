@@ -15,6 +15,7 @@ import prompts from 'prompts';
 const execFile = promisify(execFileCallback);
 
 const PACKAGES_DIR = 'packages';
+const DEPENDENCY_FIELDS = ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies'];
 
 const args = process.argv.slice(2);
 const skipPrompt = args.includes('--yes') || args.includes('-y') || Boolean(process.env.CI) || !process.stdin.isTTY;
@@ -40,12 +41,52 @@ const findReleasablePackages = async () => {
 
 		if (!(await exists(join(path, '.cliff-jumperrc.yml')))) continue;
 
-		const { name, version } = JSON.parse(await readFile(join(path, 'package.json'), 'utf8'));
+		const manifest = JSON.parse(await readFile(join(path, 'package.json'), 'utf8'));
+		const { name, version } = manifest;
 
-		packages.push({ name, path, version });
+		const dependsOn = new Set(
+			DEPENDENCY_FIELDS.flatMap((field) =>
+				Object.entries(manifest[field] ?? {})
+					.filter(([, range]) => String(range).startsWith('workspace:'))
+					.map(([dependency]) => dependency),
+			),
+		);
+
+		packages.push({ name, path, version, dependsOn });
 	}
 
-	return packages;
+	return sortByDependency(packages);
+};
+
+/**
+ * Orders packages so a package is bumped after anything it depends on.
+ *
+ * The release workflow rewrites `workspace:` ranges to the version it reads at that tag's commit,
+ * so bumping a dependent first would publish it pointing at the dependency's old version. Without
+ * this the order is whatever `readdir` returns, which happens to be right here and is not promised.
+ *
+ * @param packages - The releasable packages.
+ * @returns The same packages, dependencies first.
+ */
+const sortByDependency = (packages) => {
+	const byName = new Map(packages.map((pkg) => [pkg.name, pkg]));
+	const ordered = [];
+	const seen = new Set();
+
+	const visit = (pkg) => {
+		if (seen.has(pkg.name)) return;
+		seen.add(pkg.name);
+
+		for (const dependency of pkg.dependsOn) {
+			const next = byName.get(dependency);
+			if (next) visit(next);
+		}
+
+		ordered.push(pkg);
+	};
+
+	for (const pkg of [...packages].sort((a, b) => a.name.localeCompare(b.name))) visit(pkg);
+	return ordered;
 };
 
 const bump = async ({ name, path }) =>
