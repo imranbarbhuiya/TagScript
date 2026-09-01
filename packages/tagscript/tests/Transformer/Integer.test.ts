@@ -1,18 +1,23 @@
 import { describe, expect, test } from 'bun:test';
 
 import { IntegerTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
+import { rendered } from '../rendered';
 
 describe('IntegerTransformer', () => {
 	test('GIVEN a string in as a variable THEN returns the value instead of the variable', async () => {
 		const ts = new Interpreter(new StrictVarsParser());
 		expect(
-			await ts.run('{number}', {
-				number: new IntegerTransformer('5'),
-			}),
+			rendered(
+				await ts.run('{number}', {
+					number: new IntegerTransformer('5'),
+				}),
+			),
 		).toStrictEqual(
-			new Response({
-				number: new IntegerTransformer('5'),
-			}).setValues('5', '{number}'),
+			rendered(
+				new Response({
+					number: new IntegerTransformer('5'),
+				}).setValues('5', '{number}'),
+			),
 		);
 	});
 
@@ -22,7 +27,9 @@ describe('IntegerTransformer', () => {
 		const variables = {
 			number: new IntegerTransformer('4'),
 		};
-		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('5', text));
+		expect(rendered(await ts.run(text, variables))).toStrictEqual(
+			rendered(new Response(variables).setValues('5', text)),
+		);
 	});
 
 	test('GIVEN a string in as a variable with parameter -- THEN returns the value by decrementing it', async () => {
@@ -31,6 +38,8 @@ describe('IntegerTransformer', () => {
 		const variables = {
 			number: new IntegerTransformer('4'),
 		};
-		expect(await ts.run(text, variables)).toStrictEqual(new Response(variables).setValues('3', text));
+		expect(rendered(await ts.run(text, variables))).toStrictEqual(
+			rendered(new Response(variables).setValues('3', text)),
+		);
 	});
 });

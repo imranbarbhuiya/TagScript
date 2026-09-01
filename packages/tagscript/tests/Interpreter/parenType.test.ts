@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'bun:test';
 
 import { Interpreter, ReplaceParser, ParenType, Response } from '../../src';
+import { rendered } from '../rendered';
 
 const ts = new Interpreter(new ReplaceParser());
 describe('ParenType', () => {
 	test('GIVEN a string with dot param in param type dot THEN parse as dot param', async () => {
-		expect(await ts.run('{replace.Mahrin,Mahir:Hi Mahrin}', {}, null, 2_000, ParenType.Dot)).toStrictEqual(
-			new Response().setValues('Hi Mahir', '{replace.Mahrin,Mahir:Hi Mahrin}'),
+		expect(rendered(await ts.run('{replace.Mahrin,Mahir:Hi Mahrin}', {}, null, 2_000, ParenType.Dot))).toStrictEqual(
+			rendered(new Response().setValues('Hi Mahir', '{replace.Mahrin,Mahir:Hi Mahrin}')),
 		);
 	});
 

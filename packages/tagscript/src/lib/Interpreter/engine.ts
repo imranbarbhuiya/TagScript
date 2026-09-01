@@ -2,6 +2,8 @@ import { Node } from './Node';
 
 import { WorkloadExceededError } from '../Errors';
 
+import type { OutputSpan } from './Response';
+
 /**
  *
  * Finds every bracketed tag in a string, innermost first.
@@ -90,4 +92,54 @@ export const translateNodes = (nodeOrderedList: Node[], index: number, start: nu
 
 		futureN.coordinates = [newStart, newEnd];
 	}
+};
+
+/**
+ *
+ * Records the range a tag's output now occupies, and keeps every range already recorded pointing at
+ * its own text.
+ *
+ * Tags run innermost first, so by the time an outer tag is replaced its inner tags' ranges sit
+ * inside the text about to be overwritten. A nested tag in the payload is folded into the new range,
+ * because a parser generally passes its payload through and that text is still in there. A nested
+ * tag in the parameter is not, because a parameter is read rather than emitted, and treating
+ * `\{if(\{user\}==yes):**sure**\}` as though the branch came from the user would be wrong.
+ *
+ * That is a rule about where the text came from, not proof of what a parser did with it. A parser
+ * that writes its own parameter into its output is the case this gets wrong, so anything using
+ * these ranges for safety should treat such a parser as untrusted by name.
+ *
+ * @param spans - The ranges recorded so far, modified in place.
+ * @param start - Where the tag started.
+ * @param end - Where the tag ended, inclusive.
+ * @param output - What replaced it.
+ * @param declaration - The tag that produced it.
+ * @param payload - Where the tag's payload sat, so nested tags inside it can be told from nested
+ * tags in the parameter.
+ */
+export const recordSpan = (
+	spans: OutputSpan[],
+	start: number,
+	end: number,
+	output: string,
+	declaration: string | null,
+	payload: { start: number; end: number } | null = null,
+): void => {
+	const differential = output.length - (end + 1 - start);
+	const nested: (string | null)[] = [];
+
+	for (let index = spans.length - 1; index >= 0; index--) {
+		const span = spans[index];
+		if (span.end <= start) continue;
+		if (span.start > end) {
+			span.start += differential;
+			span.end += differential;
+			continue;
+		}
+
+		if (payload && span.start >= payload.start && span.end <= payload.end) nested.unshift(...span.tags);
+		spans.splice(index, 1);
+	}
+
+	if (output.length) spans.push({ start, end: start + output.length, tags: [declaration, ...nested] });
 };

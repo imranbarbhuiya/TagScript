@@ -1,4 +1,5 @@
 import type { IActions, IKeyValues, ITransformer } from '../lib/interfaces';
+import type { OutputSpan, TraceStep } from '../lib/Interpreter/Response';
 import type { ParserError, TemplateError } from './Errors';
 
 /**
@@ -48,18 +49,50 @@ export class Response {
 	 */
 	public errors: (ParserError | TemplateError)[];
 
+	/**
+	 * Which ranges of {@link Response.body} came from a tag rather than from the template author.
+	 *
+	 * The same shape the classic entry point produces, so anything reading them works with both.
+	 * `null` unless `spans` was on.
+	 */
+	public spans: OutputSpan[] | null;
+
+	/**
+	 * Every step of the render, or `null` unless `trace` was on.
+	 */
+	public trace: TraceStep[] | null;
+
 	public constructor(variables: { [key: string]: ITransformer } = {}, keyValues: IKeyValues = {}) {
 		this.body = null;
 		this.actions = {};
 		this.variables = variables;
 		this.keyValues = keyValues;
 		this.errors = [];
+		this.spans = null;
+		this.trace = null;
 	}
 
 	public setValues(output: string, raw: string) {
-		this.body = this.body === null ? output.trim() : this.body.trim();
+		const source = this.body ?? output;
+		this.body = source.trim();
+		if (this.spans !== null) this.shiftSpans(source.length - source.trimStart().length);
 		this.raw = raw;
 		return this;
+	}
+
+	/**
+	 *
+	 * Moves every recorded range to match the trimmed body, and drops any that the trim removed.
+	 *
+	 * @param offset - How many characters came off the front.
+	 */
+	private shiftSpans(offset: number) {
+		if (this.spans === null) return;
+		const length = this.body?.length ?? 0;
+		this.spans = this.spans
+			.map((span) => ({ ...span, start: span.start - offset, end: span.end - offset }))
+			.map((span) => ({ ...span, start: Math.max(span.start, 0), end: Math.min(span.end, length) }))
+			.filter((span) => span.start < span.end);
 	}
 
 	public toJSON() {

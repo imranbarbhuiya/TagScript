@@ -4,7 +4,7 @@ import { CharLimit, ParameterSyntax, TagLimit } from './Config';
 import { GENERIC_PARSER_ERROR_MESSAGE, ParserError, StopSignal, TemplateError, WorkloadExceededError } from './Errors';
 import { Response } from './Response';
 
-import { buildNodeTree, textDeform, translateNodes } from '../lib/Interpreter/engine';
+import { buildNodeTree, recordSpan, textDeform, translateNodes } from '../lib/Interpreter/engine';
 import { Lexer } from '../lib/Interpreter/Lexer';
 
 import type { IKeyValues, ITransformer } from '../lib/interfaces';
@@ -28,6 +28,22 @@ export interface RunOptions {
 	 * Variables the template can read, as name to transformer.
 	 */
 	readonly seedVariables?: { [key: string]: ITransformer };
+	/**
+	 * Record which ranges of the body came from a tag, on {@link Response.spans}.
+	 *
+	 * Off by default. The bookkeeping costs time proportional to the square of the tag count, and
+	 * a render that only wants the body should not pay for it.
+	 *
+	 * @defaultValue false
+	 */
+	readonly spans?: boolean;
+	/**
+	 * Record every step of the render on {@link Response.trace}. Off by default, because it keeps a
+	 * copy of the body per tag.
+	 *
+	 * @defaultValue false
+	 */
+	readonly trace?: boolean;
 }
 
 /**
@@ -102,6 +118,8 @@ export class Interpreter<E = never, R = never> {
 	): Effect.Effect<Response, Exclude<E, TemplateError> | InterpreterError, R> {
 		return Effect.gen({ self: this }, function* () {
 			const response = new Response(options.seedVariables ?? {}, options.keyValues ?? {});
+			if (options.spans) response.spans = [];
+			if (options.trace) response.trace = [];
 			const output = yield* this.solve(message, response);
 			return response.setValues(output, message);
 		}) as Effect.Effect<Response, Exclude<E, TemplateError> | InterpreterError, R>;
@@ -177,10 +195,27 @@ export class Interpreter<E = never, R = never> {
 				node.tag = new Lexer(final.slice(start, end + 1), tagLimit, parenType);
 				const ctx: ParseContext = { tag: node.tag, response, originalMessage: message };
 
+				const raw = response.trace ? final.slice(start, end + 1) : '';
+				const errorCount = response.errors.length;
 				const outcome = yield* this.recoverTag(ctx, this.processTags(ctx));
 
-				if (outcome instanceof StopSignal) return `${final.slice(0, start)} ${outcome.message}`;
-				if (outcome === null) continue;
+				if (outcome instanceof StopSignal) {
+					final = `${final.slice(0, start)} ${outcome.message}`;
+					if (response.spans) {
+						response.spans = response.spans.filter((span) => span.end <= start);
+						if (outcome.message.length) {
+							response.spans.push({ start: start + 1, end: final.length, tags: [node.tag.declaration] });
+						}
+					}
+
+					response.trace?.push({ tag: raw, start, end, output: outcome.message, body: final, error: null });
+					return final;
+				}
+
+				if (outcome === null) {
+					response.trace?.push({ tag: raw, start, end, output: null, body: final, error: null });
+					continue;
+				}
 
 				node.output = outcome;
 				totalWork += outcome.length;
@@ -188,9 +223,28 @@ export class Interpreter<E = never, R = never> {
 					return yield* new WorkloadExceededError({ limit: charLimit, attempted: totalWork });
 				}
 
+				if (response.spans) {
+					const { payload } = node.tag.spans;
+					recordSpan(
+						response.spans,
+						start,
+						end,
+						outcome,
+						node.tag.declaration,
+						payload && { start: payload.start + start, end: payload.end + start },
+					);
+				}
 				const [nextFinal, differential] = textDeform(start, end, final, outcome);
 				final = nextFinal;
 				translateNodes(nodeOrderedList, index, start, differential);
+				response.trace?.push({
+					tag: raw,
+					start,
+					end,
+					output: outcome,
+					body: final,
+					error: response.errors.length > errorCount ? response.errors.at(-1)! : null,
+				});
 			}
 
 			return final;

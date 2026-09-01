@@ -1,40 +1,57 @@
 import { describe, expect, test } from 'bun:test';
 
 import { StringFormatParser, Interpreter, Response, OrdinalFormatParser } from '../../src';
+import { rendered } from '../rendered';
 
 describe('FormatParser', () => {
 	test('GIVEN a string in format parser THEN return formatted string', async () => {
 		const ts = new Interpreter(new StringFormatParser());
 		const text1 = '{lower:Hello Parbez!}';
-		expect(await ts.run(text1)).toStrictEqual(new Response().setValues('hello parbez!', text1));
+		expect(rendered(await ts.run(text1))).toStrictEqual(rendered(new Response().setValues('hello parbez!', text1)));
 
 		const text2 = '{upper:Hello Parbez!}';
-		expect(await ts.run(text2)).toStrictEqual(new Response().setValues('HELLO PARBEZ!', text2));
+		expect(rendered(await ts.run(text2))).toStrictEqual(rendered(new Response().setValues('HELLO PARBEZ!', text2)));
 
 		const text3 = '{capitalize:hello parbez!}';
-		expect(await ts.run(text3)).toStrictEqual(new Response().setValues('Hello parbez!', text3));
+		expect(rendered(await ts.run(text3))).toStrictEqual(rendered(new Response().setValues('Hello parbez!', text3)));
 
 		const text4 = '{capitalize:HELLO}';
-		expect(await ts.run(text4)).toStrictEqual(new Response().setValues('Hello', text4));
+		expect(rendered(await ts.run(text4))).toStrictEqual(rendered(new Response().setValues('Hello', text4)));
 
 		const text5 = '{escape:Hello| Parbez!}';
-		expect(await ts.run(text5)).toStrictEqual(new Response().setValues('Hello\\| Parbez!', text5));
+		expect(rendered(await ts.run(text5))).toStrictEqual(rendered(new Response().setValues('Hello\\| Parbez!', text5)));
 
 		const text6 = '{anything:Hello| Parbez!}';
-		expect(await ts.run(text6)).toStrictEqual(new Response().setValues('{anything:Hello| Parbez!}', text6));
+		expect(rendered(await ts.run(text6))).toStrictEqual(
+			rendered(new Response().setValues('{anything:Hello| Parbez!}', text6)),
+		);
 	});
 });
 
 describe('OrdinalFormatParser', () => {
 	test('GIVEN a string in ordinal format parser THEN return formatted string', async () => {
 		const ts = new Interpreter(new OrdinalFormatParser());
-		expect(await ts.run('{ordinal:1}')).toStrictEqual(new Response().setValues('1st', '{ordinal:1}'));
-		expect(await ts.run('{ordinal:2}')).toStrictEqual(new Response().setValues('2nd', '{ordinal:2}'));
-		expect(await ts.run('{ordinal:3}')).toStrictEqual(new Response().setValues('3rd', '{ordinal:3}'));
-		expect(await ts.run('{ordinal:4}')).toStrictEqual(new Response().setValues('4th', '{ordinal:4}'));
-		expect(await ts.run('{ordinal:101}')).toStrictEqual(new Response().setValues('101st', '{ordinal:101}'));
-		expect(await ts.run('{ordinal:1002}')).toStrictEqual(new Response().setValues('1002nd', '{ordinal:1002}'));
-		expect(await ts.run('{ordinal:hello}')).toStrictEqual(new Response().setValues('hello', '{ordinal:hello}'));
+		expect(rendered(await ts.run('{ordinal:1}'))).toStrictEqual(
+			rendered(new Response().setValues('1st', '{ordinal:1}')),
+		);
+		expect(rendered(await ts.run('{ordinal:2}'))).toStrictEqual(
+			rendered(new Response().setValues('2nd', '{ordinal:2}')),
+		);
+		expect(rendered(await ts.run('{ordinal:3}'))).toStrictEqual(
+			rendered(new Response().setValues('3rd', '{ordinal:3}')),
+		);
+		expect(rendered(await ts.run('{ordinal:4}'))).toStrictEqual(
+			rendered(new Response().setValues('4th', '{ordinal:4}')),
+		);
+		expect(rendered(await ts.run('{ordinal:101}'))).toStrictEqual(
+			rendered(new Response().setValues('101st', '{ordinal:101}')),
+		);
+		expect(rendered(await ts.run('{ordinal:1002}'))).toStrictEqual(
+			rendered(new Response().setValues('1002nd', '{ordinal:1002}')),
+		);
+		expect(rendered(await ts.run('{ordinal:hello}'))).toStrictEqual(
+			rendered(new Response().setValues('hello', '{ordinal:hello}')),
+		);
 	});
 
 	test('GIVEN 11, 12 or 13 in any hundred THEN use the th suffix', async () => {

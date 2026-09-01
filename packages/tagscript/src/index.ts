@@ -1,5 +1,6 @@
 export * from './lib/Errors';
 export * from './lib/Interpreter';
+export * from './lib/manifest';
 export * from './lib/Transformer';
 export * from './lib/Parsers';
 export type * from './lib/interfaces';

@@ -8,6 +8,7 @@ import {
 	StrictVarsParser,
 	TemplateError,
 } from '../../src';
+import { rendered } from '../rendered';
 
 describe('JSONVar', () => {
 	test('GIVEN a JSON in json var THEN store it as an object and show results using the parameter', async () => {
@@ -15,18 +16,22 @@ describe('JSONVar', () => {
 
 		const text = '{json(data):{"name": "John Doe", "age": 30}}';
 
-		expect(await ts.run(text)).toStrictEqual(
-			new Response({
-				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
-			}).setValues('', text),
+		expect(rendered(await ts.run(text))).toStrictEqual(
+			rendered(
+				new Response({
+					data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
+				}).setValues('', text),
+			),
 		);
 
 		const text1 = `${text}{data.name}`;
 
-		expect(await ts.run(text1)).toStrictEqual(
-			new Response({
-				data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
-			}).setValues('John Doe', text1),
+		expect(rendered(await ts.run(text1))).toStrictEqual(
+			rendered(
+				new Response({
+					data: new SafeObjectTransformer('{"name": "John Doe", "age": 30}'),
+				}).setValues('John Doe', text1),
+			),
 		);
 	});
 

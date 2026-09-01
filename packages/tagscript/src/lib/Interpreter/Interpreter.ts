@@ -1,5 +1,5 @@
 import { Context } from './Context';
-import { buildNodeTree, checkWorkload, textDeform, translateNodes } from './engine';
+import { buildNodeTree, checkWorkload, recordSpan, textDeform, translateNodes } from './engine';
 import { Lexer, ParenType } from './Lexer';
 import { Response } from './Response';
 
@@ -46,9 +46,25 @@ export interface RunOptions {
 	 * @defaultValue 2000
 	 */
 	tagLimit?: number;
+	/**
+	 * Record which ranges of the body came from a tag, on {@link Response.spans}.
+	 *
+	 * Off by default. The bookkeeping costs time proportional to the square of the tag count, and
+	 * a render that only wants the body should not pay for it.
+	 *
+	 * @defaultValue false
+	 */
+	spans?: boolean;
+	/**
+	 * Record every step of the render on {@link Response.trace}. Off by default, because it keeps a
+	 * copy of the body per tag.
+	 *
+	 * @defaultValue false
+	 */
+	trace?: boolean;
 }
 
-const RUN_OPTION_KEYS = new Set(['charLimit', 'keyValues', 'parenType', 'seedVariables', 'tagLimit']);
+const RUN_OPTION_KEYS = new Set(['charLimit', 'keyValues', 'parenType', 'seedVariables', 'spans', 'tagLimit', 'trace']);
 
 /**
  *
@@ -141,6 +157,8 @@ export class Interpreter {
 					};
 
 		const response = new Response(options.seedVariables ?? {}, options.keyValues ?? {});
+		if (options.spans) response.spans = [];
+		if (options.trace) response.trace = [];
 		const nodeOrderedList = buildNodeTree(message);
 		const output = await this.solve(
 			message,
@@ -221,20 +239,56 @@ export class Interpreter {
 			const node = nodeOrderedList[index];
 			const [start, end] = node.coordinates;
 			const ctx = this.getContext(node, final, response, message, tagLimit, parenType);
+			const raw = response.trace ? final.slice(start, end + 1) : '';
+			const errorCount = response.errors.length;
 			let output: string | null;
 			try {
 				output = await this.processTags(ctx, node);
 			} catch (error) {
-				if (error instanceof StopSignal) return `${final.slice(0, start)} ${error.message}`;
+				if (error instanceof StopSignal) {
+					final = `${final.slice(0, start)} ${error.message}`;
+					if (response.spans) {
+						response.spans = response.spans.filter((span) => span.end <= start);
+						if (error.message.length) {
+							response.spans.push({ start: start + 1, end: final.length, tags: [ctx.tag.declaration] });
+						}
+					}
+
+					response.trace?.push({ tag: raw, start, end, output: error.message, body: final, error: null });
+					return final;
+				}
+
 				output = this.recordError(response, ctx, error);
 			}
 
-			if (output === null) continue;
+			if (output === null) {
+				response.trace?.push({ tag: raw, start, end, output: null, body: final, error: null });
+				continue;
+			}
 
 			totalWork = checkWorkload(charLimit, totalWork, output);
+			if (response.spans) {
+				const { payload } = ctx.tag.spans;
+				recordSpan(
+					response.spans,
+					start,
+					end,
+					output,
+					ctx.tag.declaration,
+					payload && { start: payload.start + start, end: payload.end + start },
+				);
+			}
 			const [fMessage, differential] = textDeform(start, end, final, output);
 			final = fMessage;
 			translateNodes(nodeOrderedList, index, start, differential);
+			response.trace?.push({
+				tag: raw,
+				start,
+				end,
+				output,
+				body: final,
+				error: response.errors.length > errorCount ? response.errors.at(-1)! : null,
+			});
 		}
 
 		return final;

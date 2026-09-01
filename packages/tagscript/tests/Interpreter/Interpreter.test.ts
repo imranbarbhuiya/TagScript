@@ -1,13 +1,14 @@
 import { describe, expect, test } from 'bun:test';
 
 import { Interpreter, Response, IfStatementParser, StringTransformer, DefineParser, StrictVarsParser } from '../../src';
+import { rendered } from '../rendered';
 
 import type { IParser } from '../../src';
 
 const ts = new Interpreter(new IfStatementParser(), new DefineParser(), new StrictVarsParser());
 describe('Interpreter', () => {
 	test.each(['Parbez', '{test}', '{hi(hello)}', '{a.b}'])('GIVEN a string THEN returns the string', async (input) => {
-		expect(await ts.run(input)).toStrictEqual(new Response().setValues(input, input));
+		expect(rendered(await ts.run(input))).toStrictEqual(rendered(new Response().setValues(input, input)));
 	});
 
 	test('GIVEN a string with length greater than character limit THEN throws an error', async () => {
@@ -20,7 +21,7 @@ describe('Interpreter', () => {
 
 	test('GIVEN a string with length less than given character limit THEN returns the result', async () => {
 		const input = 'Parbez';
-		expect(await ts.run(input, {}, 7)).toStrictEqual(new Response().setValues(input, input));
+		expect(rendered(await ts.run(input, {}, 7))).toStrictEqual(rendered(new Response().setValues(input, input)));
 	});
 
 	test('GIVEN parser at construction or using method THEN store them at parsers property', () => {
