@@ -1,0 +1,118 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "tagscript",
+	"displayName": "TagScript",
+	"scopeName": "source.tagscript",
+	"fileTypes": [
+		"tagscript",
+		"ts-tag"
+	],
+	"patterns": [
+		{
+			"include": "#escape"
+		},
+		{
+			"include": "#tag"
+		}
+	],
+	"repository": {
+		"escape": {
+			"name": "constant.character.escape.tagscript",
+			"match": "\\\\[{}():|\\\\]"
+		},
+		"tag": {
+			"name": "meta.tag.tagscript",
+			"begin": "(\\{)([^\\\\{}():.]*)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.tagscript"
+				},
+				"2": {
+					"name": "entity.name.function.tagscript"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.tag.end.tagscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#parenParameter"
+				},
+				{
+					"include": "#dotParameter"
+				},
+				{
+					"include": "#payload"
+				},
+				{
+					"include": "#escape"
+				},
+				{
+					"include": "#tag"
+				}
+			]
+		},
+		"parenParameter": {
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameter.begin.tagscript"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.parameter.end.tagscript"
+				}
+			},
+			"contentName": "variable.parameter.tagscript",
+			"patterns": [
+				{
+					"include": "#escape"
+				},
+				{
+					"include": "#tag"
+				}
+			]
+		},
+		"dotParameter": {
+			"begin": "(\\.)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.parameter.begin.tagscript"
+				}
+			},
+			"end": "(?=[:}])",
+			"contentName": "variable.parameter.tagscript",
+			"patterns": [
+				{
+					"include": "#escape"
+				},
+				{
+					"include": "#tag"
+				}
+			]
+		},
+		"payload": {
+			"begin": "(:)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.separator.key-value.tagscript"
+				}
+			},
+			"end": "(?=\\})",
+			"contentName": "string.unquoted.payload.tagscript",
+			"patterns": [
+				{
+					"include": "#escape"
+				},
+				{
+					"include": "#tag"
+				}
+			]
+		}
+	}
+}

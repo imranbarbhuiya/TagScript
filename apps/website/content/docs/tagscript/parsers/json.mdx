@@ -12,27 +12,27 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {json(name):{"key": "value"}}
 ```
 
 ### Examples
 
-```yaml
+```tagscript
 {json(user):{"name":"Parbez","age":30}}Your age is {user(age)}.
 # Your age is 30.
 ```
 
 Reach nested fields with a dot:
 
-```yaml
+```tagscript
 {json(u):{"address":{"city":"Silchar"}}}You live in {u(address.city)}.
 # You live in Silchar.
 ```
 
 Any key starting with an underscore is refused and the tag is left as written:
 
-```yaml
+```tagscript
 {u(_secret)}
 # {u(_secret)}
 ```

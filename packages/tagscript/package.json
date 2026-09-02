@@ -30,7 +30,8 @@
 	"files": [
 		"dist/**/*.cjs*",
 		"dist/**/*.mjs*",
-		"dist/**/*.d*"
+		"dist/**/*.d*",
+		"language/*.json"
 	],
 	"sideEffects": false,
 	"main": "dist/index.cjs",
@@ -57,7 +58,18 @@
 				"types": "./dist/effect/index.d.cts",
 				"default": "./dist/effect/index.cjs"
 			}
-		}
+		},
+		"./language": {
+			"import": {
+				"types": "./dist/language/index.d.mts",
+				"default": "./dist/language/index.mjs"
+			},
+			"require": {
+				"types": "./dist/language/index.d.cts",
+				"default": "./dist/language/index.cjs"
+			}
+		},
+		"./language/tagscript.tmLanguage.json": "./language/tagscript.tmLanguage.json"
 	},
 	"scripts": {
 		"bench": "bun bench/index.ts",
@@ -69,7 +81,8 @@
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
 	"devDependencies": {
-		"effect": "^4.0.0-rc.112"
+		"effect": "^4.0.0-rc.112",
+		"shiki": "^4.4.3"
 	},
 	"peerDependencies": {
 		"effect": "^4.0.0-rc || ^4.0.0"

@@ -1,0 +1,5 @@
+name: markdown
+org: tagscript
+monoRepo: true
+packagePath: packages/tagscript-markdown
+tagTemplate: '{{full-name}}@{{new-version}}'

@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {if(expression):true message|false message}
 ```
 
@@ -32,7 +32,7 @@ Comparisons trim whitespace on both sides. The four numeric operators run both s
 
 ### Examples
 
-```yaml
+```tagscript
 {if({args}==63):You guessed it!|Too {if({args}<63):low|high}, try again.}
 # when args is 63
 You guessed it!
@@ -44,7 +44,7 @@ Too low, try again.
 
 Comparing against an empty value is the usual way to check whether a variable was filled in:
 
-```yaml
+```tagscript
 {if({args}!=):Hello {args}|You did not tell me your name.}
 ```
 

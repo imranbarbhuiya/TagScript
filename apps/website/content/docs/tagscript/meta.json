@@ -5,6 +5,7 @@
 		"index",
 		"syntax",
 		"interpreter",
+		"markdown",
 		"effect",
 		"effect-migration",
 		"parsers",

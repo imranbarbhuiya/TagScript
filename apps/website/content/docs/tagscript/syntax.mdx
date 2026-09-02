@@ -9,7 +9,7 @@ A template is ordinary text. Anything outside curly braces renders as it was wri
 
 ## The shape of a tag
 
-```yaml
+```tagscript
 {declaration(parameter):payload}
 {declaration.parameter:payload}
 ```
@@ -22,7 +22,7 @@ A template is ordinary text. Anything outside curly braces renders as it was wri
 
 Not every tag uses every part:
 
-```yaml
+```tagscript
 {delete}
 {upper:hello}
 {slice(0-5):Hello World}
@@ -35,7 +35,7 @@ Tag names ignore case, so `{upper:hi}` and `{UPPER:hi}` do the same thing. Varia
 
 `(...)` and `.` mean the same thing. The parenthesis form ends at the closing bracket. The dot form ends at the `:`, or at the end of the tag if there is no payload.
 
-```yaml
+```tagscript
 {args(2)}
 {args.2}
 ```
@@ -46,7 +46,7 @@ Use parentheses when the parameter contains a `:` or a `.` of its own, since the
 
 Tags nest, and the inner one renders first. That is how you feed one tag's output into another:
 
-```yaml
+```tagscript
 {upper:{lower:ABC}}
 # ABC
 
@@ -57,7 +57,7 @@ Tags nest, and the inner one renders first. That is how you feed one tag's outpu
 
 Put a backslash in front of a character to stop it being read as syntax. That works for `{`, `}`, `(`, `)`, `:` and `|`.
 
-```yaml
+```tagscript
 Use \{braces\} to write a tag.
 ```
 
@@ -72,7 +72,7 @@ The [`escape` tag](/tagscript/parsers/format) does this to a whole piece of text
 
 Several tags split their payload on `|`. `if` uses it to separate the true branch from the false one, `any` and `all` use it between expressions, and `embed(field)` uses it between the name, value and inline flag.
 
-```yaml
+```tagscript
 {if(1<2):true branch|false branch}
 ```
 
@@ -82,7 +82,7 @@ Only the first `|` splits `if`. Everything after it, pipes included, is the fals
 
 It stays exactly as you wrote it:
 
-```yaml
+```tagscript
 Hi {nobodyImplementedThis}
 # Hi {nobodyImplementedThis}
 ```

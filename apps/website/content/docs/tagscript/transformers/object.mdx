@@ -11,7 +11,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 ### Syntax
 
-```yaml
+```tagscript
 {name(key)}
 {name(nested.key)}
 {name.key}
@@ -21,7 +21,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 Given `u` holds `{ "name": "Parbez", "address": { "city": "Silchar" } }`:
 
-```yaml
+```tagscript
 {u(name)}
 # Parbez
 
@@ -31,7 +31,7 @@ Given `u` holds `{ "name": "Parbez", "address": { "city": "Silchar" } }`:
 
 A key that does not exist, or one starting with an underscore, leaves the tag as written:
 
-```yaml
+```tagscript
 {u(_secret)}
 # {u(_secret)}
 ```

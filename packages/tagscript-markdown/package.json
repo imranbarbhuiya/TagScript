@@ -1,0 +1,73 @@
+{
+	"name": "@tagscript/markdown",
+	"version": "0.1.0",
+	"description": "Escape TagScript output for markdown, so a value someone else supplied cannot plant formatting in a template you wrote.",
+	"keywords": [
+		"commonmark",
+		"discord",
+		"escape",
+		"gfm",
+		"injection",
+		"markdown",
+		"safe string",
+		"sanitize",
+		"tagscript",
+		"template",
+		"template engine",
+		"templating",
+		"typescript",
+		"user-generated-content"
+	],
+	"homepage": "https://tagscript.js.org/",
+	"bugs": {
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	},
+	"license": "MIT",
+	"author": "@imranbarbhuiya",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
+		"directory": "packages/tagscript-markdown"
+	},
+	"files": [
+		"dist/**/*.cjs*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"sideEffects": false,
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"prepack": "bun run build",
+		"test": "bun test",
+		"test:coverage": "bun test --coverage --coverage-reporter=text --coverage-reporter=lcov",
+		"test:watch": "bun test --watch",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"devDependencies": {
+		"tagscript": "workspace:^"
+	},
+	"peerDependencies": {
+		"tagscript": "workspace:^"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.12.0"
+	}
+}

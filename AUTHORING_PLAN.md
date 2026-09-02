@@ -181,7 +181,7 @@ asserts `builtinTags` still matches what the parsers accept, so the two cannot d
 
 Needed by: TipTap picker, host-side validation, playground parser list, docs generation.
 
-## 4. Package A: @tagscript/markdown
+## 4. Package A: @tagscript/markdown (done)
 
 Named without `plugin-` because it exports no parsers. It is an output policy.
 
@@ -203,7 +203,20 @@ const message = markdownSafe(response, Flavour.GFM);
 ```
 
 `markdownSafe` reads `response.spans` and escapes only the untrusted ranges. Flavours: `CommonMark`,
-`GFM`, `Discord`, `Text`. The escape table is a few characters per flavour.
+`GFM` and `Discord`. `Text` was dropped, since escaping nothing is not a feature.
+
+It throws when `spans` is `null`, rather than returning the body unescaped, since a response without
+ranges is indistinguishable from one where nothing was generated.
+
+Trust is decided by the §3.4 manifest rather than a hardcoded list: a tag in `builtinTags` produced
+the author's own payload, and anything else is a variable holding data the application supplied.
+`trust` and `untrust` override it, the second being for a variable an author defined with
+`\{=(name):value\}`.
+
+Escaping is positional. A character that only means something at the start of a line, such as `#`
+or `-`, is escaped only there, so a phone number keeps its hyphens and a sentence keeps its full
+stops. `escapeMarkdown(text, flavour)` exposes the same rules for a value on its own, which is what
+a host hand-rolls today.
 
 ### 4.3 Why escaping at input does not work
 

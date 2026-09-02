@@ -1,5 +1,5 @@
 import { createTsdownConfig } from '../../scripts/tsdown.config.ts';
 
 export default createTsdownConfig({
-	entry: ['src/index.ts', 'src/effect/index.ts'],
+	entry: ['src/index.ts', 'src/effect/index.ts', 'src/language/index.ts'],
 });

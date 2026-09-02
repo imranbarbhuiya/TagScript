@@ -12,7 +12,7 @@ A variable tag has no fixed name. `{user}`, `{args}` and `{guild}` all work if t
 
 ### Syntax
 
-```yaml
+```tagscript
 {name}
 {name(parameter)}
 {name.parameter}
@@ -22,7 +22,7 @@ The bare form gives you the whole value. What the parameter means depends on the
 
 ### Examples
 
-```yaml
+```tagscript
 Hi {args}
 # Hi, How are you?
 
@@ -34,7 +34,7 @@ Variable names are case sensitive, so `{user}` and `{User}` are different names.
 
 An unknown name is left alone rather than replaced with an empty string:
 
-```yaml
+```tagscript
 Hi {unknown}
 # Hi {unknown}
 ```

@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {range:min-max}
 {range:min,max}
 {rangef:min-max}
@@ -21,7 +21,7 @@ Both bounds are included, so `{range:1-6}` can return 1 and can return 6.
 
 ### Examples
 
-```yaml
+```tagscript
 Your lucky number is {range:10-30}!
 # Your lucky number is 14!
 
@@ -34,7 +34,7 @@ I am guessing your height is {rangef:5-7}ft.
 
 Roll once and reuse it with [`=`](/tagscript/parsers/define):
 
-```yaml
+```tagscript
 {=(roll):{range:1-6}}You rolled {roll}. {if({roll}>4):Nice!|Bad luck.}
 ```
 

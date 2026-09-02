@@ -11,7 +11,7 @@ One parser answers four different questions, and the alias you use picks which o
 
 ### Syntax
 
-```yaml
+```tagscript
 {in(needle):text}
 {contain(needle):text}
 {index(needle):text}
@@ -31,7 +31,7 @@ One parser answers four different questions, and the alias you use picks which o
 
 ### Examples
 
-```yaml
+```tagscript
 {in(there):Hi there!}
 # true
 
@@ -47,7 +47,7 @@ One parser answers four different questions, and the alias you use picks which o
 
 Pair it with `if` to branch on the answer:
 
-```yaml
+```tagscript
 {if({in(discord.gg):{args}}==true):No invite links, please.|{args}}
 ```
 

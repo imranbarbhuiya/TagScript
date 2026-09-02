@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {urlencode:text}
 {urlencode(+):text}
 {urldecode:text}
@@ -19,7 +19,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Examples
 
-```yaml
+```tagscript
 {urlencode:Hello World}
 # Hello%20World
 
@@ -29,14 +29,14 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 Pass `+` as the parameter to use `+` for spaces, which some search URLs expect:
 
-```yaml
+```tagscript
 {urlencode(+):Hello World}
 # Hello+World
 ```
 
 Building a search link:
 
-```yaml
+```tagscript
 https://www.google.com/search?q={urlencode(+):{args}}
 ```
 

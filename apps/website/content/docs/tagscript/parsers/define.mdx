@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {=(name):value}
 ```
 
@@ -19,14 +19,14 @@ The tag itself renders nothing. Reference the name afterwards with `{name}`.
 
 ### Examples
 
-```yaml
+```tagscript
 {=(prefix):!}The prefix here is `{prefix}`.
 # The prefix here is `!`.
 ```
 
 Define once, use many times. Without this, each `{range}` would roll a different number:
 
-```yaml
+```tagscript
 {=(roll):{range:1-6}}You rolled {roll}. {if({roll}==6):Nice!|Try again.}
 # You rolled 6. Nice!
 ```

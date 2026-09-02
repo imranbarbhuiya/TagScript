@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {replace(find,replacement):text}
 ```
 
@@ -19,7 +19,7 @@ Only the first comma splits the two halves. Everything after it is the replaceme
 
 ### Examples
 
-```yaml
+```tagscript
 {replace(o,i):welcome to the server}
 # welcime ti the server
 
@@ -29,7 +29,7 @@ Only the first comma splits the two halves. Everything after it is the replaceme
 
 Leave the first half empty to insert the replacement between every character:
 
-```yaml
+```tagscript
 {replace(, ):Test}
 # T e s t
 ```

@@ -9,7 +9,7 @@ description: Expose a guild member to a template.
 
 ### Syntax
 
-```yaml
+```tagscript
 {{member}}
 {{member(key)}}
 {{member.key}}
@@ -19,7 +19,7 @@ The bare tag renders the mention. A parameter picks one field.
 
 ### Examples
 
-```yaml
+```tagscript
 Welcome {member}, you joined {date(R):{member(joinedTimestamp)}}.
 # Welcome <@758880890159235083>, you joined <t:1642605059:R>.
 ```

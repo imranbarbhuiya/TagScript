@@ -14,13 +14,13 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 Either paste a whole embed as JSON:
 
-```yaml
+```tagscript
 {embed:json}
 ```
 
 or set one property per tag:
 
-```yaml
+```tagscript
 {embed(property):value}
 ```
 
@@ -28,13 +28,13 @@ or set one property per tag:
 
 The JSON form, useful when you have built the embed somewhere else:
 
-```yaml
+```tagscript
 {embed:{"title":"Hello!","description":"A test embed.","color":"Red"}}
 ```
 
 The property form, easier to read and to edit one line at a time:
 
-```yaml
+```tagscript
 {embed(color):0x37b2cb}
 {embed(title):Rules}
 {embed(description):Follow these to keep the server pleasant.}

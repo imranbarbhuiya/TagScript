@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {random:one,two,three}
 ```
 
@@ -19,7 +19,7 @@ The list splits on `~` if the payload contains one, otherwise on `,`, otherwise 
 
 ### Examples
 
-```yaml
+```tagscript
 {random:foo,bar,baz}
 # foo
 
@@ -29,7 +29,7 @@ The list splits on `~` if the payload contains one, otherwise on `,`, otherwise 
 
 Each `random` tag rolls on its own. To pick once and reuse the result, store it with [`=`](/tagscript/parsers/define):
 
-```yaml
+```tagscript
 {=(who):{random:Parbez,Rkn,Priyansh}}{who} opens the door. {who} looks around.
 ```
 

@@ -11,7 +11,7 @@ Two parsers cover text formatting. `StringFormatParser` handles casing and escap
 
 ### Casing and escaping
 
-```yaml
+```tagscript
 {lower:Hello Parbez!}
 # hello parbez!
 
@@ -31,14 +31,14 @@ Two parsers cover text formatting. `StringFormatParser` handles casing and escap
 
 ### Ordinal numbers
 
-```yaml
+```tagscript
 {ord:1} {ord:2} {ord:3} {ord:11} {ord:22}
 # 1st 2nd 3rd 11th 22nd
 ```
 
 Anything that is not a number comes back untouched:
 
-```yaml
+```tagscript
 {ord:hello}
 # hello
 ```

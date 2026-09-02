@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {slice(start):text}
 {slice(start-end):text}
 {slice(start,end):text}
@@ -21,7 +21,7 @@ With one number you get everything from that position onwards. With two you get 
 
 ### Examples
 
-```yaml
+```tagscript
 {slice(3):Hello World}
 # lo World
 
@@ -34,7 +34,7 @@ With one number you get everything from that position onwards. With two you get 
 
 Trimming a value to a maximum length is the common use:
 
-```yaml
+```tagscript
 {slice(0-100):{args}}
 ```
 

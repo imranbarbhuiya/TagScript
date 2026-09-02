@@ -12,7 +12,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {require(target,target,...):message}
 {deny(target,target,...):message}
 ```
@@ -21,7 +21,7 @@ A target is a role, a channel or a user, written as a name or an ID. Separate se
 
 ### Examples
 
-```yaml
+```tagscript
 {require(Moderator)}
 {require(#general, #bot-commands):This tag only works in #general and #bot-commands.}
 {deny(757425366209134764):You are not allowed to use this tag.}

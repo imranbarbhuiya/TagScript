@@ -11,13 +11,13 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {5050:message}
 ```
 
 ### Examples
 
-```yaml
+```tagscript
 Hello!{5050: Nice to see you again.}
 # Hello! Nice to see you again.
 # Hello!
@@ -25,7 +25,7 @@ Hello!{5050: Nice to see you again.}
 
 Because the tag renders an empty string on a miss, comparing it against empty gives you a plain coin flip:
 
-```yaml
+```tagscript
 I pick {if({5050:.}!=):heads|tails}
 # I pick heads
 # I pick tails

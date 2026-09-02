@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {all(expression|expression|...):true message|false message}
 ```
 
@@ -19,7 +19,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 Range checks are the common case, since `if` only compares two values at a time:
 
-```yaml
+```tagscript
 {all({n}>=100|{n}<=999):You picked {n}.|Pick a number between 100 and 999.}
 # when n is 52
 Pick a number between 100 and 999.

@@ -11,7 +11,7 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ### Syntax
 
-```yaml
+```tagscript
 {any(expression|expression|...):true message|false message}
 ```
 
@@ -19,7 +19,7 @@ Split the expressions with pipes, and split the two branches with a pipe as well
 
 ### Examples
 
-```yaml
+```tagscript
 {any({args}==hi|{args}==hello|{args}==hey):Hello!|How rude.}
 # when args is "hello"
 Hello!
