@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788203178259,
+  "lastUpdate": 1788315267812,
   "repoUrl": "https://github.com/imranbarbhuiya/TagScript",
   "entries": {
     "TagScript": [
@@ -4102,6 +4102,632 @@ window.BENCHMARK_DATA = {
             "range": "± 332.012",
             "unit": "ns/op",
             "extra": "avg 17846.0ns, min 17423.2ns, p99 18329.3ns"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "imranbarbhuiya.fsd@gmail.com",
+            "name": "parbez",
+            "username": "imranbarbhuiya"
+          },
+          "committer": {
+            "email": "imranbarbhuiya.fsd@gmail.com",
+            "name": "parbez",
+            "username": "imranbarbhuiya"
+          },
+          "distinct": true,
+          "id": "9c377377eb613f578fd06955dcb5a37450e2930a",
+          "message": "feat: use the same grammar in docs",
+          "timestamp": "2026-09-02T07:42:37+05:30",
+          "tree_id": "535f23de65d1dab7a4591df186ce729ead47a43b",
+          "url": "https://github.com/imranbarbhuiya/TagScript/commit/9c377377eb613f578fd06955dcb5a37450e2930a"
+        },
+        "date": 1788315267128,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "tagscript / lexer / declaration only",
+            "value": 323.641,
+            "range": "± 73.481",
+            "unit": "ns/op",
+            "extra": "avg 367.5ns, min 315.3ns, p99 696.8ns"
+          },
+          {
+            "name": "tagscript / lexer / parenthesis parameter",
+            "value": 476.488,
+            "range": "± 8.682",
+            "unit": "ns/op",
+            "extra": "avg 492.5ns, min 464.8ns, p99 583.1ns"
+          },
+          {
+            "name": "tagscript / lexer / dot parameter",
+            "value": 624.649,
+            "range": "± 12.856",
+            "unit": "ns/op",
+            "extra": "avg 643.4ns, min 615.0ns, p99 729.4ns"
+          },
+          {
+            "name": "tagscript / lexer / payload",
+            "value": 747.277,
+            "range": "± 72.49",
+            "unit": "ns/op",
+            "extra": "avg 773.6ns, min 731.5ns, p99 904.4ns"
+          },
+          {
+            "name": "tagscript / lexer / parameter and payload",
+            "value": 714.406,
+            "range": "± 69.425",
+            "unit": "ns/op",
+            "extra": "avg 738.8ns, min 696.8ns, p99 870.2ns"
+          },
+          {
+            "name": "tagscript / lexer / nested braces in payload",
+            "value": 2317.987,
+            "range": "± 34.04",
+            "unit": "ns/op",
+            "extra": "avg 2314.3ns, min 2215.0ns, p99 2435.6ns"
+          },
+          {
+            "name": "tagscript / lexer / escaped characters",
+            "value": 1147.122,
+            "range": "± 57.666",
+            "unit": "ns/op",
+            "extra": "avg 1164.4ns, min 1095.1ns, p99 1320.7ns"
+          },
+          {
+            "name": "tagscript / node tree / no tags",
+            "value": 82.131,
+            "range": "± 1.531",
+            "unit": "ns/op",
+            "extra": "avg 84.4ns, min 78.9ns, p99 160.3ns"
+          },
+          {
+            "name": "tagscript / node tree / one tag",
+            "value": 87.114,
+            "range": "± 1.863",
+            "unit": "ns/op",
+            "extra": "avg 91.1ns, min 84.9ns, p99 165.0ns"
+          },
+          {
+            "name": "tagscript / node tree / nested tags",
+            "value": 159.649,
+            "range": "± 1.976",
+            "unit": "ns/op",
+            "extra": "avg 166.2ns, min 154.5ns, p99 240.1ns"
+          },
+          {
+            "name": "tagscript / node tree / fifty tags",
+            "value": 2291.337,
+            "range": "± 20.996",
+            "unit": "ns/op",
+            "extra": "avg 2293.3ns, min 2230.1ns, p99 2371.1ns"
+          },
+          {
+            "name": "tagscript / parsers / BreakParser",
+            "value": 5539,
+            "range": "± 711",
+            "unit": "ns/op",
+            "extra": "avg 6354.4ns, min 4257.0ns, p99 15653.0ns"
+          },
+          {
+            "name": "tagscript / parsers / DefineParser",
+            "value": 2392.98,
+            "range": "± 75.52",
+            "unit": "ns/op",
+            "extra": "avg 2415.9ns, min 2235.5ns, p99 2725.8ns"
+          },
+          {
+            "name": "tagscript / parsers / FiftyFiftyParser",
+            "value": 1967.545,
+            "range": "± 38.952",
+            "unit": "ns/op",
+            "extra": "avg 1967.4ns, min 1831.0ns, p99 2173.3ns"
+          },
+          {
+            "name": "tagscript / parsers / IfStatementParser",
+            "value": 5167.242,
+            "range": "± 176.287",
+            "unit": "ns/op",
+            "extra": "avg 5206.2ns, min 4899.5ns, p99 5573.5ns"
+          },
+          {
+            "name": "tagscript / parsers / IncludesParser",
+            "value": 3194.794,
+            "range": "± 38.238",
+            "unit": "ns/op",
+            "extra": "avg 3207.0ns, min 3041.5ns, p99 3584.9ns"
+          },
+          {
+            "name": "tagscript / parsers / IntersectionStatementParser",
+            "value": 4445.72,
+            "range": "± 82.547",
+            "unit": "ns/op",
+            "extra": "avg 4487.1ns, min 4213.2ns, p99 4807.5ns"
+          },
+          {
+            "name": "tagscript / parsers / JSONVarParser",
+            "value": 6645.707,
+            "range": "± 103.002",
+            "unit": "ns/op",
+            "extra": "avg 6665.1ns, min 6452.0ns, p99 6848.5ns"
+          },
+          {
+            "name": "tagscript / parsers / LooseVarsParser",
+            "value": 2083.064,
+            "range": "± 49.693",
+            "unit": "ns/op",
+            "extra": "avg 2085.6ns, min 1943.9ns, p99 2228.0ns"
+          },
+          {
+            "name": "tagscript / parsers / OrdinalFormatParser",
+            "value": 2343.011,
+            "range": "± 49.236",
+            "unit": "ns/op",
+            "extra": "avg 2350.0ns, min 2203.0ns, p99 2476.0ns"
+          },
+          {
+            "name": "tagscript / parsers / RandomParser",
+            "value": 2794.37,
+            "range": "± 73.984",
+            "unit": "ns/op",
+            "extra": "avg 2819.0ns, min 2662.3ns, p99 3030.2ns"
+          },
+          {
+            "name": "tagscript / parsers / RangeParser",
+            "value": 2665.475,
+            "range": "± 28.375",
+            "unit": "ns/op",
+            "extra": "avg 2660.4ns, min 2502.3ns, p99 2848.8ns"
+          },
+          {
+            "name": "tagscript / parsers / ReplaceParser",
+            "value": 3643.508,
+            "range": "± 102.863",
+            "unit": "ns/op",
+            "extra": "avg 3672.6ns, min 3475.8ns, p99 3887.9ns"
+          },
+          {
+            "name": "tagscript / parsers / SliceParser",
+            "value": 3575.832,
+            "range": "± 50.4",
+            "unit": "ns/op",
+            "extra": "avg 3589.1ns, min 3488.6ns, p99 3718.1ns"
+          },
+          {
+            "name": "tagscript / parsers / StopParser",
+            "value": 5262.47,
+            "range": "± 93.298",
+            "unit": "ns/op",
+            "extra": "avg 5326.4ns, min 5107.7ns, p99 5737.9ns"
+          },
+          {
+            "name": "tagscript / parsers / StrictVarsParser",
+            "value": 2035.655,
+            "range": "± 33.981",
+            "unit": "ns/op",
+            "extra": "avg 2018.6ns, min 1887.1ns, p99 2166.3ns"
+          },
+          {
+            "name": "tagscript / parsers / StringFormatParser",
+            "value": 2569.448,
+            "range": "± 36.938",
+            "unit": "ns/op",
+            "extra": "avg 2564.7ns, min 2431.7ns, p99 2687.4ns"
+          },
+          {
+            "name": "tagscript / parsers / UnionStatementParser",
+            "value": 4830.167,
+            "range": "± 111.692",
+            "unit": "ns/op",
+            "extra": "avg 4846.1ns, min 4603.5ns, p99 5073.1ns"
+          },
+          {
+            "name": "tagscript / parsers / UrlDecodeParser",
+            "value": 3235.928,
+            "range": "± 48.443",
+            "unit": "ns/op",
+            "extra": "avg 3226.5ns, min 3090.7ns, p99 3391.4ns"
+          },
+          {
+            "name": "tagscript / parsers / UrlEncodeParser",
+            "value": 3194.03,
+            "range": "± 49.185",
+            "unit": "ns/op",
+            "extra": "avg 3196.3ns, min 3045.1ns, p99 3307.2ns"
+          },
+          {
+            "name": "tagscript / transformers / StringTransformer",
+            "value": 33.348,
+            "range": "± 0.531",
+            "unit": "ns/op",
+            "extra": "avg 35.7ns, min 32.6ns, p99 78.3ns"
+          },
+          {
+            "name": "tagscript / transformers / IntegerTransformer",
+            "value": 0.538,
+            "range": "± 0.002",
+            "unit": "ns/op",
+            "extra": "avg 0.6ns, min 0.5ns, p99 5.1ns"
+          },
+          {
+            "name": "tagscript / transformers / SafeObjectTransformer",
+            "value": 9.922,
+            "range": "± 0.022",
+            "unit": "ns/op",
+            "extra": "avg 10.1ns, min 9.9ns, p99 15.1ns"
+          },
+          {
+            "name": "tagscript / transformers / FunctionTransformer",
+            "value": 4.89,
+            "range": "± 0.073",
+            "unit": "ns/op",
+            "extra": "avg 5.0ns, min 4.5ns, p99 7.1ns"
+          },
+          {
+            "name": "tagscript / interpreter / plain text, no tags",
+            "value": 463.932,
+            "range": "± 74.578",
+            "unit": "ns/op",
+            "extra": "avg 487.9ns, min 453.4ns, p99 578.4ns"
+          },
+          {
+            "name": "tagscript / interpreter / single tag",
+            "value": 4765.868,
+            "range": "± 76.486",
+            "unit": "ns/op",
+            "extra": "avg 4778.2ns, min 4603.2ns, p99 4932.3ns"
+          },
+          {
+            "name": "tagscript / interpreter / typical template",
+            "value": 23143.035,
+            "range": "± 191.009",
+            "unit": "ns/op",
+            "extra": "avg 23477.2ns, min 22754.4ns, p99 24533.9ns"
+          },
+          {
+            "name": "tagscript / interpreter / nested tags",
+            "value": 15787.698,
+            "range": "± 228.237",
+            "unit": "ns/op",
+            "extra": "avg 15871.6ns, min 15522.3ns, p99 16067.4ns"
+          },
+          {
+            "name": "tagscript / interpreter / deeply nested",
+            "value": 17612.389,
+            "range": "± 596.624",
+            "unit": "ns/op",
+            "extra": "avg 17825.3ns, min 16979.7ns, p99 18471.2ns"
+          },
+          {
+            "name": "tagscript / interpreter / fifty tags",
+            "value": 217343,
+            "range": "± 7180",
+            "unit": "ns/op",
+            "extra": "avg 226337.4ns, min 203051.0ns, p99 343710.0ns"
+          },
+          {
+            "name": "tagscript / interpreter / long text, few tags",
+            "value": 20029.647,
+            "range": "± 260.511",
+            "unit": "ns/op",
+            "extra": "avg 20437.0ns, min 19900.6ns, p99 21619.5ns"
+          },
+          {
+            "name": "tagscript / interpreter / escaped braces only",
+            "value": 2414.077,
+            "range": "± 23.071",
+            "unit": "ns/op",
+            "extra": "avg 2450.7ns, min 2383.8ns, p99 2805.8ns"
+          },
+          {
+            "name": "tagscript / interpreter / charLimit enforced",
+            "value": 4543.49,
+            "range": "± 62.224",
+            "unit": "ns/op",
+            "extra": "avg 4539.6ns, min 4333.6ns, p99 4734.6ns"
+          },
+          {
+            "name": "tagscript / interpreter / construction, eighteen parsers",
+            "value": 156.208,
+            "range": "± 5.005",
+            "unit": "ns/op",
+            "extra": "avg 173.5ns, min 141.2ns, p99 264.6ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / classic, plain text, no tags",
+            "value": 501.749,
+            "range": "± 15.724",
+            "unit": "ns/op",
+            "extra": "avg 522.9ns, min 490.6ns, p99 631.8ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / effect, plain text, no tags",
+            "value": 3045,
+            "range": "± 610",
+            "unit": "ns/op",
+            "extra": "avg 3727.0ns, min 2013.0ns, p99 11848.0ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / classic, single tag",
+            "value": 4897.662,
+            "range": "± 38.639",
+            "unit": "ns/op",
+            "extra": "avg 4864.5ns, min 4712.3ns, p99 5009.1ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / effect, single tag",
+            "value": 7381,
+            "range": "± 1001",
+            "unit": "ns/op",
+            "extra": "avg 8595.5ns, min 5428.0ns, p99 21192.0ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / classic, typical template",
+            "value": 23124.86,
+            "range": "± 142.338",
+            "unit": "ns/op",
+            "extra": "avg 23058.8ns, min 22562.8ns, p99 23300.7ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / effect, typical template",
+            "value": 31647,
+            "range": "± 3004",
+            "unit": "ns/op",
+            "extra": "avg 34540.8ns, min 25167.0ns, p99 57596.0ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / classic, nested tags",
+            "value": 15919.049,
+            "range": "± 183.097",
+            "unit": "ns/op",
+            "extra": "avg 15965.8ns, min 15608.4ns, p99 16133.7ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / effect, nested tags",
+            "value": 21792.74,
+            "range": "± 241.624",
+            "unit": "ns/op",
+            "extra": "avg 21940.8ns, min 21116.3ns, p99 22348.2ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / classic, fifty tags",
+            "value": 218124,
+            "range": "± 7792",
+            "unit": "ns/op",
+            "extra": "avg 227227.2ns, min 203943.0ns, p99 308409.0ns"
+          },
+          {
+            "name": "tagscript / classic vs effect / effect, fifty tags",
+            "value": 251724,
+            "range": "± 9454",
+            "unit": "ns/op",
+            "extra": "avg 264288.8ns, min 227037.0ns, p99 980537.0ns"
+          },
+          {
+            "name": "plugin-discord / parsers / CooldownParser",
+            "value": 3064,
+            "range": "± 752",
+            "unit": "ns/op",
+            "extra": "avg 3941.2ns, min 2293.0ns, p99 12999.0ns"
+          },
+          {
+            "name": "plugin-discord / parsers / DateFormatParser",
+            "value": 3471.407,
+            "range": "± 106.528",
+            "unit": "ns/op",
+            "extra": "avg 3501.3ns, min 3333.9ns, p99 3713.2ns"
+          },
+          {
+            "name": "plugin-discord / parsers / DeleteParser",
+            "value": 1945.061,
+            "range": "± 28.302",
+            "unit": "ns/op",
+            "extra": "avg 1941.9ns, min 1849.4ns, p99 2077.4ns"
+          },
+          {
+            "name": "plugin-discord / parsers / DenyParser",
+            "value": 3297.675,
+            "range": "± 78.478",
+            "unit": "ns/op",
+            "extra": "avg 3331.4ns, min 3199.5ns, p99 3526.3ns"
+          },
+          {
+            "name": "plugin-discord / parsers / FilesParser",
+            "value": 2535.915,
+            "range": "± 32.587",
+            "unit": "ns/op",
+            "extra": "avg 2524.6ns, min 2407.8ns, p99 2690.2ns"
+          },
+          {
+            "name": "plugin-discord / parsers / RequiredParser",
+            "value": 3733.723,
+            "range": "± 43.406",
+            "unit": "ns/op",
+            "extra": "avg 3745.3ns, min 3666.9ns, p99 3872.8ns"
+          },
+          {
+            "name": "plugin-discord / parsers / SilentParser",
+            "value": 1953.68,
+            "range": "± 36.338",
+            "unit": "ns/op",
+            "extra": "avg 1954.9ns, min 1842.9ns, p99 2106.5ns"
+          },
+          {
+            "name": "plugin-discord / embed / EmbedParser, json payload",
+            "value": 6650,
+            "range": "± 1042",
+            "unit": "ns/op",
+            "extra": "avg 7942.6ns, min 5097.0ns, p99 27110.0ns"
+          },
+          {
+            "name": "plugin-discord / embed / EmbedParser, property form",
+            "value": 3731.748,
+            "range": "± 22.331",
+            "unit": "ns/op",
+            "extra": "avg 3726.3ns, min 3558.7ns, p99 3866.9ns"
+          },
+          {
+            "name": "plugin-discord / embed / EmbedParser, field form",
+            "value": 3916.534,
+            "range": "± 36.866",
+            "unit": "ns/op",
+            "extra": "avg 3931.6ns, min 3843.9ns, p99 4076.8ns"
+          },
+          {
+            "name": "plugin-discord / embed / EmbedParser, malformed json",
+            "value": 10652.884,
+            "range": "± 131.895",
+            "unit": "ns/op",
+            "extra": "avg 10737.5ns, min 10552.4ns, p99 11016.5ns"
+          },
+          {
+            "name": "plugin-discord / embed / EmbedParser, many properties",
+            "value": 14589.053,
+            "range": "± 253.089",
+            "unit": "ns/op",
+            "extra": "avg 14885.1ns, min 14069.1ns, p99 15450.5ns"
+          },
+          {
+            "name": "plugin-discord / transformers / UserTransformer, mention",
+            "value": 0.536,
+            "range": "± 0.005",
+            "unit": "ns/op",
+            "extra": "avg 0.6ns, min 0.5ns, p99 2.8ns"
+          },
+          {
+            "name": "plugin-discord / transformers / UserTransformer, property",
+            "value": 5.658,
+            "range": "± 0.047",
+            "unit": "ns/op",
+            "extra": "avg 6.1ns, min 5.6ns, p99 9.6ns"
+          },
+          {
+            "name": "plugin-discord / transformers / MemberTransformer, mention",
+            "value": 2.154,
+            "range": "± 0.02",
+            "unit": "ns/op",
+            "extra": "avg 2.8ns, min 2.1ns, p99 6.2ns"
+          },
+          {
+            "name": "plugin-discord / transformers / MemberTransformer, property",
+            "value": 10.137,
+            "range": "± 0.024",
+            "unit": "ns/op",
+            "extra": "avg 9.1ns, min 5.8ns, p99 12.5ns"
+          },
+          {
+            "name": "plugin-discord / transformers / RoleTransformer, mention",
+            "value": 8.135,
+            "range": "± 0.007",
+            "unit": "ns/op",
+            "extra": "avg 8.2ns, min 6.6ns, p99 10.6ns"
+          },
+          {
+            "name": "plugin-discord / transformers / RoleTransformer, property",
+            "value": 10.584,
+            "range": "± 0.059",
+            "unit": "ns/op",
+            "extra": "avg 10.7ns, min 10.4ns, p99 13.1ns"
+          },
+          {
+            "name": "plugin-discord / transformers / ChannelTransformer, mention",
+            "value": 5.044,
+            "range": "± 0.032",
+            "unit": "ns/op",
+            "extra": "avg 5.1ns, min 5.0ns, p99 7.1ns"
+          },
+          {
+            "name": "plugin-discord / transformers / ChannelTransformer, property",
+            "value": 10.548,
+            "range": "± 0.063",
+            "unit": "ns/op",
+            "extra": "avg 10.7ns, min 10.4ns, p99 13.0ns"
+          },
+          {
+            "name": "plugin-discord / transformers / GuildTransformer, mention",
+            "value": 5.592,
+            "range": "± 0.027",
+            "unit": "ns/op",
+            "extra": "avg 5.7ns, min 5.5ns, p99 7.7ns"
+          },
+          {
+            "name": "plugin-discord / transformers / GuildTransformer, property",
+            "value": 8.934,
+            "range": "± 0.029",
+            "unit": "ns/op",
+            "extra": "avg 9.1ns, min 8.8ns, p99 11.2ns"
+          },
+          {
+            "name": "plugin-discord / transformers / InteractionTransformer, mention",
+            "value": 6.078,
+            "range": "± 0.044",
+            "unit": "ns/op",
+            "extra": "avg 6.2ns, min 6.0ns, p99 8.2ns"
+          },
+          {
+            "name": "plugin-discord / transformers / InteractionTransformer, property",
+            "value": 9.431,
+            "range": "± 0.029",
+            "unit": "ns/op",
+            "extra": "avg 9.6ns, min 9.3ns, p99 13.7ns"
+          },
+          {
+            "name": "plugin-discord / transformers / UserTransformer, construction",
+            "value": 509.828,
+            "range": "± 3.88",
+            "unit": "ns/op",
+            "extra": "avg 521.3ns, min 500.6ns, p99 619.3ns"
+          },
+          {
+            "name": "plugin-discord / transformers / MemberTransformer, construction",
+            "value": 873.092,
+            "range": "± 24.177",
+            "unit": "ns/op",
+            "extra": "avg 897.5ns, min 848.5ns, p99 1115.6ns"
+          },
+          {
+            "name": "plugin-discord / utils / resolveColor, name",
+            "value": 12.34,
+            "range": "± 0.02",
+            "unit": "ns/op",
+            "extra": "avg 12.5ns, min 12.2ns, p99 15.2ns"
+          },
+          {
+            "name": "plugin-discord / utils / resolveColor, hex",
+            "value": 106.772,
+            "range": "± 1.748",
+            "unit": "ns/op",
+            "extra": "avg 110.6ns, min 103.8ns, p99 201.2ns"
+          },
+          {
+            "name": "plugin-discord / utils / resolveCommandOptions",
+            "value": 13740,
+            "range": "± 1172",
+            "unit": "ns/op",
+            "extra": "avg 14969.1ns, min 11266.0ns, p99 34161.0ns"
+          },
+          {
+            "name": "plugin-discord / interpreter / mentions only",
+            "value": 6617.726,
+            "range": "± 54.85",
+            "unit": "ns/op",
+            "extra": "avg 6643.9ns, min 6436.3ns, p99 6902.2ns"
+          },
+          {
+            "name": "plugin-discord / interpreter / embed plus actions",
+            "value": 14995.941,
+            "range": "± 165.307",
+            "unit": "ns/op",
+            "extra": "avg 15136.0ns, min 14674.3ns, p99 15618.5ns"
+          },
+          {
+            "name": "plugin-discord / interpreter / realistic welcome tag",
+            "value": 19150.406,
+            "range": "± 137.634",
+            "unit": "ns/op",
+            "extra": "avg 19276.0ns, min 18859.0ns, p99 19419.2ns"
           }
         ]
       }
