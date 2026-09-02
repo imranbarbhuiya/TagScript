@@ -3,10 +3,7 @@
 	"name": "tagscript",
 	"displayName": "TagScript",
 	"scopeName": "source.tagscript",
-	"fileTypes": [
-		"tagscript",
-		"ts-tag"
-	],
+	"fileTypes": ["tagscript", "ts-tag"],
 	"patterns": [
 		{
 			"include": "#escape"

@@ -184,7 +184,7 @@ export const tokenize = (message: string, options: TokenizeOptions = {}): Token[
 		push(kind, cursor, to);
 	};
 
-	const region = (from: number, to: number, kind: TokenKind, children: TagNode[]) => {
+	function region(from: number, to: number, kind: TokenKind, children: TagNode[]) {
 		let cursor = from;
 		for (const child of children) {
 			if (child.tag.start < from || child.tag.end >= to) continue;
@@ -194,9 +194,9 @@ export const tokenize = (message: string, options: TokenizeOptions = {}): Token[
 		}
 
 		fill(cursor, to, kind);
-	};
+	}
 
-	const emit = (node: TagNode) => {
+	function emit(node: TagNode) {
 		const { tag, children } = node;
 		const { spans } = tag;
 		push(TokenKind.TagStart, tag.start, tag.start + 1);
@@ -231,7 +231,7 @@ export const tokenize = (message: string, options: TokenizeOptions = {}): Token[
 		// A tag longer than the tag limit is read only that far, so the rest is not any part of it.
 		fill(cursor, tag.end, TokenKind.Payload);
 		push(TokenKind.TagEnd, tag.end, tag.end + 1);
-	};
+	}
 
 	region(0, message.length, TokenKind.Text, toTree(extractTags(message, { parenType, tagLimit })));
 	return tokens;

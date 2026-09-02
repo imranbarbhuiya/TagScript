@@ -300,7 +300,7 @@ class rather than a React node view. A pill needs no framework, and that drops `
 peers entirely and works for the Vue and Svelte bindings too. Peers reduce to `@tiptap/core`,
 `@tiptap/pm` and `@tiptap/suggestion`.
 
-## 6. Package C: tagscript/language
+## 6. Package C: tagscript/language (done)
 
 A subpath rather than a package, for the same reason `tagscript/effect` is one: it depends on
 `Lexer` directly and has to version-lock with it. It stays dependency free.
@@ -353,9 +353,10 @@ The real division is syntactic against semantic:
 | which parser would accept this  | no      | yes       |
 | is a required parameter missing | no      | yes       |
 
-**A conformance test** over a corpus, asserting the grammar's token boundaries agree with the
-tokenizer's. The objection to shipping two implementations is that they drift. The answer is not to
-avoid the second one, it is to fail the build when they disagree.
+**A conformance test** over a corpus, asserting the grammar and the lexer put the same scope on
+every character. The objection to shipping two implementations is that they drift. The answer is
+not to avoid the second one, it is to fail the build when they disagree. Fourteen templates cover
+nesting, both parameter forms, escapes and `\{=(name):value\}`.
 
 ### 6.3 Who consumes which
 
@@ -373,12 +374,17 @@ point `contributes.grammars` straight at it without a build step.
 ### 6.4 Wiring it into the docs
 
 `rehypeCodeOptions` in `apps/website/source.config.ts` takes shiki options, so the grammar goes in
-as a custom lang there and the fences change from `yaml` to `tagscript`. Mechanical, 91 fences.
+as a custom lang there and the fences change from `yaml` to `tagscript`. Done: 92 fences across 37
+files, checked first for any that were really YAML, of which there were none. Verified in a browser
+rather than assumed: `\{if(expression):true message|false message\}` renders with five scopes where
+`yaml` gave two.
 
-One thing to settle first. TagScript has no comment syntax, so `#` is literal template text. A
-grammar rule treating it as a comment would be a lie, though a contained one, and it is the same lie
-`yaml` tells today. The alternatives are shiki's own notation or a small fumadocs component for
-expected output. Listed in §9.
+The JSON import in `source.config.ts` needs `with { type: 'json' }`, since Node will not load it
+otherwise.
+
+The `#` question in §9 is still open, and the grammar takes the honest position for now: no comment
+rule, so the `# output` lines in the docs render as plain text rather than as comments. That is a
+visible change from `yaml` and wants a decision.
 
 ## 7. Playground on the website
 

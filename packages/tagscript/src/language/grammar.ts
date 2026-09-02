@@ -1,5 +1,3 @@
-import tmLanguage from '../../language/tagscript.tmLanguage.json';
-
 /**
  * The TextMate grammar for TagScript.
  *
@@ -7,8 +5,8 @@ import tmLanguage from '../../language/tagscript.tmLanguage.json';
  * Code extension's `contributes.grammars` at the file itself, which is published at
  * `tagscript/language/tagscript.tmLanguage.json` so it needs no build step.
  *
- * It cannot say whether a tag exists, only what shape it has. Use {@link tokenize} for that, which
- * runs the real lexer. A test in this package asserts the two agree on where each part of a tag
- * begins and ends, so the grammar cannot quietly drift from the interpreter.
+ * It cannot say whether a tag exists, only what shape it has. Use `tokenize` for that, which runs
+ * the real lexer. A test in this package asserts the two scope every character the same way, so
+ * the grammar cannot quietly drift from the interpreter.
  */
-export const grammar = tmLanguage;
+export { default as grammar } from '../../language/tagscript.tmLanguage.json';

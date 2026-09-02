@@ -4,7 +4,10 @@ import { createHighlighter } from 'shiki';
 
 import { SCOPES, TokenKind, grammar, tokenize } from '../../src/language';
 
-import type { LanguageRegistration } from 'shiki';
+import type { BundledLanguage, LanguageRegistration } from 'shiki';
+
+// Shiki types `lang` as one of its bundled languages, and ours is registered at runtime instead.
+const LANG = 'tagscript' as BundledLanguage;
 
 /**
  * Templates the grammar and the lexer both have to agree on.
@@ -31,7 +34,7 @@ const CORPUS = [
 ];
 
 const highlighter = await createHighlighter({
-	langs: [grammar as unknown as LanguageRegistration],
+	langs: [grammar satisfies LanguageRegistration],
 	themes: ['github-dark'],
 });
 
@@ -62,7 +65,7 @@ const perCharacter = (length: number, spans: { end: number; scope: string; start
  */
 const fromGrammar = (template: string): string[] => {
 	const { tokens } = highlighter.codeToTokens(template, {
-		lang: 'tagscript',
+		lang: LANG,
 		theme: 'github-dark',
 		includeExplanation: 'scopeName',
 	});
