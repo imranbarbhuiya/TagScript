@@ -35,7 +35,7 @@ npm install tagscript
 
 ## Anatomy of a tag
 
-```yaml
+```tagscript
 {declaration(parameter):payload}
 {declaration.parameter:payload}
 ```
@@ -155,7 +155,7 @@ You need one of `StrictVarsParser` or `LooseVarsParser` registered for `{variabl
 
 `IncludesParser` covers four different questions depending on the alias:
 
-```yaml
+```tagscript
 {in(there):Hi there!}      # true, substring anywhere
 {contain(there):Hi there!} # false, whole word only ("there!" is the word)
 {index(there!):Hi there!}  # 1, word index

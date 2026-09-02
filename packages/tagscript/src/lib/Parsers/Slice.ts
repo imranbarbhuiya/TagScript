@@ -10,7 +10,7 @@ import type { Context } from '../Interpreter';
  * Aliases: slice, substr, substring
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {slice(3): Hello World}
  * {slice(3, 7): Hello World}
  * {slice(3-7): Hello World}

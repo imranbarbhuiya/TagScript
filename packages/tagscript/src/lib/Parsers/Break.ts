@@ -14,11 +14,11 @@ import type { Context } from '../Interpreter';
  * the break tag, they will still execute.
  *
  * @example
- * ```yaml
+ * ```tagscript
  *    {break(expression):message}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  *    {break({args}==):You did not provide any input.}
  * ```
  */

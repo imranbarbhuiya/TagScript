@@ -7,12 +7,12 @@ import type { Context } from '../Interpreter';
  * The fifty-fifty tag has a 50% change of returning the payload, and 50% chance of returning empty string.
  *
  * @example
- * ```yaml
+ * ```tagscript
  *   {5050:message}
  * ```
  * Aliases: 50, ?
  * @example
- * ```yaml
+ * ```tagscript
  *  I pick {if({5050:.}!=):heads|tails}
  * ```
  */

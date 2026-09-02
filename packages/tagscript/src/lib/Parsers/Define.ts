@@ -12,11 +12,11 @@ import type { Context } from '../Interpreter';
  * Aliases:  assign, let, var
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {=(name):value}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {=(prefix):!}
  * The prefix here is `{prefix}`.
  * ```

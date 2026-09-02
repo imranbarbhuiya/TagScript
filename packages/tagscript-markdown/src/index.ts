@@ -1,3 +1,3 @@
-export * from './escape';
+export { escapeMarkdown } from './escape';
 export * from './flavour';
 export * from './markdownSafe';

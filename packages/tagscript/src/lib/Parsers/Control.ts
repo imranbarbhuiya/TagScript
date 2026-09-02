@@ -37,11 +37,11 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  * \}
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {if(expression):message}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {if({args}==63):You guessed it! The number I was thinking of was 63!|Too {if({args}<63):low|high}, try again.}
  * # if args is 63
  * # You guessed it! The number I was thinking of was 63!
@@ -71,11 +71,11 @@ export class IfStatementParser extends BaseParser implements IParser {
  * Aliases: or, union
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {any(expression|expression|...):message}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {any({args}==hi|{args}==hello|{args}==hey):Hello {user}!|How rude.}
  * # if {args} is hi
  * Hello Mr. Priyansh#2063!
@@ -103,11 +103,11 @@ export class UnionStatementParser extends BaseParser implements IParser {
  * Aliases: and, all
  *
  *  @example
- * ```yaml
+ * ```tagscript
  * {all(expression|expression|...):message}
  * ```
  *  @example
- * ```yaml
+ * ```tagscript
  * {all({args}>=100|{args}<=1000):You picked {args}.|You must provide a number between 100 and 1000.}
  * # if {args} is 52
  * You must provide a number between 100 and 1000.

@@ -39,7 +39,7 @@ There is no host object to reach, no prototype to walk, no `require` to find. An
 
 ## Anatomy of a tag
 
-```yaml
+```tagscript
 {declaration(parameter):payload}
 {declaration.parameter:payload}
 ```

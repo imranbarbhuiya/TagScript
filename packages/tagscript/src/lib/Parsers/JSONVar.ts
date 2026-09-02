@@ -10,11 +10,11 @@ import type { Context } from '../Interpreter';
  *  JSON is useful when using fetch. You can get all the properties of a JSON object using parameters.
  *
  *  @example
- * ```yaml
+ * ```tagscript
  * {json(name):value}
  * ```
  *  @example
- * ```yaml
+ * ```tagscript
  * {json(data):{"name": "John Doe", "age": 30}}
  * Your age is `{data.age}`.
  * ```

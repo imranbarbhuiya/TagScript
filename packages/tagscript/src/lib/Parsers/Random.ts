@@ -11,7 +11,7 @@ import type { Context } from '../Interpreter';
  * Aliases: rand
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {random:foo, bar}
  * ```
  */

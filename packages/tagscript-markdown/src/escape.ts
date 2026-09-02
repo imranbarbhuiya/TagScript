@@ -2,8 +2,11 @@ import { Flavour, rulesFor } from './flavour';
 
 /**
  * How far into a line the scanner is, which decides whether a character is syntax.
+ *
+ * Not re-exported from the package index, so it stays out of the public API. A plain enum rather
+ * than a `const enum`, which does not survive being read across a module boundary.
  */
-export const enum LineState {
+export enum LineState {
 	/**
 	 * Only whitespace so far, so a `#` here would be a heading.
 	 */

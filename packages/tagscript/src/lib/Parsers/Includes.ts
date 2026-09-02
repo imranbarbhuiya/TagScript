@@ -12,7 +12,7 @@ import type { Context } from '../Interpreter';
  * Aliases: includes, in, index, lindex, contain,
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {in(there):Hi there!}
  * # true
  * 	    {contain(there):Hi there!}

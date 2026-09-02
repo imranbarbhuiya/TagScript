@@ -9,11 +9,11 @@ import { BaseParser, type IParser, type Context } from 'tagscript';
  * Aliases: allowlist, whitelist
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {require(user,role,channel):response}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {require(Moderator)}
  * {require(#general, #bot-commands):This tag can only be run in #general and #bot-cmds.}
  * {require(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}
@@ -57,12 +57,12 @@ export class RequiredParser extends BaseParser implements IParser {
  * requirements can be given, and should be split by a `,`.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {deny(user,role,channel):response}
  * ```
  * Aliases: denylist, blacklist
  * @example
- * ```yaml
+ * ```tagscript
  * {deny(Moderator)}
  * {deny(#general, #chat):This tag can't be run in #general and #chat.}
  * {deny(757425366209134764, 668713062186090506, 737961895356792882):You aren't allowed to use this tag.}

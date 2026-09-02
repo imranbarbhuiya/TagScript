@@ -29,7 +29,7 @@ const parseIntoOutput = (payload: string, result: boolean) => {
  * Aliases: `=`, `assign`, `let`, `var`
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {=(prefix):!}
  * The prefix here is `{prefix}`.
  * ```
@@ -72,7 +72,7 @@ export const looseVarsParser: Parser = {
  * Returns one of two messages based on the expression in the parameter.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {if({args}==63):You guessed it!|Try again.}
  * ```
  */
@@ -342,7 +342,7 @@ export const urlDecodeParser: Parser<TemplateError> = definePlugin<TemplateError
  * Stores a JSON object as a variable, readable with dotted access.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {json(data):{"name": "John Doe", "age": 30}}
  * Your age is `{data.age}`.
  * ```

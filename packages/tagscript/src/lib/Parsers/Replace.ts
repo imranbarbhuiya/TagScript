@@ -9,7 +9,7 @@ import type { Context } from '../Interpreter';
  * before the command and the replacements after.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {replace(o,i):welcome to the server}
  * # welcime ti the server
  * {replace(1,6):{args}}

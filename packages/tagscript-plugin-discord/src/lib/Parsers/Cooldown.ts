@@ -8,12 +8,12 @@ import { BaseParser, type Context, type IParser } from 'tagscript';
  *  and the name of the tag respectively.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * { cooldown(seconds): response }
  * ```
  * Aliases: cd
  * @example
- * ```yaml
+ * ```tagscript
  * { cooldown(5): This tag is on cooldown. }
  * { cooldown(5): The tag {name} is on cooldown. Please try again in {retryAfter}. }
  * ```

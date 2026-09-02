@@ -35,11 +35,11 @@ const parseJSON = (payload: string, tag: string) => {
  *
  * @example
  *  Using JSON
- * ```yaml
+ * ```tagscript
  * {embed: json}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {embed: { "title": "Hello!", "description": "This is a test embed." } }
  * {embed: {
  *     "title": "Here's a random duck!",
@@ -49,11 +49,11 @@ const parseJSON = (payload: string, tag: string) => {
  * ```
  *  @example
  *  Using properties
- * ```yaml
+ * ```tagscript
  * {embed(property):value}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * {embed(color): 0x37b2cb}
  * {embed(title): Rules}
  * {embed(description): Follow these rules to ensure a good experience in our server!}

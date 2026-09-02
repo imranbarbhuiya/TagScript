@@ -32,7 +32,7 @@ const decode = (value: string, tag: string | null) => {
  * Aliases: - encodeuri
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {urlencode:Hello World}
  * ```
  */
@@ -54,7 +54,7 @@ export class UrlEncodeParser extends BaseParser implements IParser {
  * Using `+` as the parameter will replace `+` with space.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {urldecode:Hello%20World}
  * ```
  */

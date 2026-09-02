@@ -11,11 +11,11 @@ import type { Context } from '../Interpreter';
  * Aliases: rangef
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {range:1-3}
  * ```
  * @example
- * ```yaml
+ * ```tagscript
  * Your lucky number is {range:10-30}!
  * # Your lucky number is 14!
  * # Your lucky number is 25!

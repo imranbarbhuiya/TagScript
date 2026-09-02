@@ -9,7 +9,7 @@ import type { Context } from '../Interpreter';
  * This tag formats a given string.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {lower:Hello Parbez!}
  * # hello parbez!
  * {upper:Hello Parbez!}

@@ -18,6 +18,7 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
 				<RootProvider>
 					<DocsLayout
 						githubUrl="https://github.com/imranbarbhuiya/tagscript"
+						links={[{ text: 'Playground', url: '/playground', active: 'nested-url' }]}
 						nav={{ title: 'Tagscript' }}
 						sidebar={{
 							tabs: [

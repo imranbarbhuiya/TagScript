@@ -7,8 +7,11 @@ import type { TagDefinition } from '../lib/manifest';
 
 /**
  * What one piece of a template is.
+ *
+ * A plain enum rather than a `const enum`, because this is published and a `const enum` cannot be
+ * read across a package boundary under `isolatedModules`, which is every bundler.
  */
-export const enum TokenKind {
+export enum TokenKind {
 	/**
 	 * Text outside any tag.
 	 */

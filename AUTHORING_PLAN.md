@@ -386,7 +386,7 @@ The `#` question in §9 is still open, and the grammar takes the honest position
 rule, so the `# output` lines in the docs render as plain text rather than as comments. That is a
 visible change from `yaml` and wants a decision.
 
-## 7. Playground on the website
+## 7. Playground on the website (done)
 
 Route `/playground` in `apps/website`. Static routes win over the existing `[[...slugs]]` catch-all,
 so no routing change is needed.
@@ -400,6 +400,10 @@ to anyone pasting a real template.
 
 **Input.** Textarea with the §6 tokenizer's output overlaid. Not a bespoke highlighter: the same
 tokenizer a VS Code extension would use, which is the point of putting it in `tagscript/language`.
+
+A tag nothing will handle is underlined. That needed one thing the plan missed: a name the template
+assigns to itself with `\{=(greeting):hi\}` has to count as known, or the warning fires on correct
+templates and nobody trusts it again.
 
 **Structure.** Tree of the parsed nodes. Each shows its declaration, parameter and payload as
 separate labelled parts using the §3.1 spans, which parser accepted it, and what it returned.
@@ -424,8 +428,9 @@ composed rather than built in, which the docs currently have to assert in prose.
 
 ### 7.2 Sharing
 
-Template, selected parsers and seed variables compressed into the URL hash. No storage, no backend.
-Lets the docs link a live example per page, and lets someone paste a repro into an issue.
+Template, selected parsers and seed variables in the URL hash, base64 of the JSON. No dependency,
+no storage, no backend; the link is the storage. Lets the docs link a live example per page, and
+lets someone paste a repro into an issue.
 
 ### 7.3 Effect entry point
 

@@ -52,7 +52,7 @@ const splitList = (payload: string) => {
  * Aliases: `cooldown`, `cd`
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {cooldown(5):This tag is on cooldown, try again in {retryAfter}s.}
  * ```
  */
@@ -91,7 +91,7 @@ export const cooldownParser: Parser<OnCooldown | TemplateError, CooldownStore> =
  * Aliases: `date`, `unix`, `currenttime`
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {date}
  * {date(R):1735689600000}
  * ```
@@ -258,7 +258,7 @@ const mergeEmbed = (ctx: ParseContext, data: APIEmbed) => {
  * for convenience and is not validated. Check it before you send it.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {embed:{"title": "Hello!", "description": "A test embed."}}
  * {embed(title):Rules}
  * {embed(field):Rule 1|Be nice.|false}

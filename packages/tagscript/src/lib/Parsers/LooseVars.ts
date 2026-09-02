@@ -7,7 +7,7 @@ import type { Context } from '../Interpreter';
  * valid during `parsing`, rather than `willAccept`.
  *
  * @example
- * ```yaml
+ * ```tagscript
  * # Note:- this example assumes you are using define parser
  * {=(var):This is my variable.}
  * {var}

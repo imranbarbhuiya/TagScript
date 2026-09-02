@@ -13,7 +13,7 @@ import type { Context } from '../Interpreter';
  * Aliases: halt, stop
  *
  * @example
- * ```yaml
+ * ```tagscript
  * {stop({args}!=10):You didn't provided valid input.}
  * ```
  */
