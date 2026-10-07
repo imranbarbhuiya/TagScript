@@ -10,6 +10,10 @@ plugin:discord:
   - changed-files:
       - any-glob-to-any-file: packages/tagscript-plugin-discord/**
 
+markdown:
+  - changed-files:
+      - any-glob-to-any-file: packages/tagscript-markdown/**
+
 tiptap:
   - changed-files:
       - any-glob-to-any-file: packages/tagscript-tiptap/**
