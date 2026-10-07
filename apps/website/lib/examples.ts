@@ -1,12 +1,11 @@
-import { Interpreter } from 'tagscript';
-
-import { PARSERS, TRANSFORMERS } from './playground/registry';
-import { encodeState, INITIAL } from './playground/state';
-
 import type { TransformerKind } from './playground/registry';
 import type { Variable } from './playground/state';
 import type { Nodes, RootContent } from 'mdast';
-import type { ITransformer } from 'tagscript';
+
+/*
+ * This module is loaded by the remark plugin, and so by `fumadocs-mdx` during `bun install`, before
+ * any workspace package is built. It must not import `tagscript` at runtime.
+ */
 
 /**
  * One rendering of an example template, as an `output` fence after it declares it.
@@ -39,11 +38,7 @@ export interface Example {
 	template: string;
 }
 
-/**
- * Every parser an example runs with. The loose variable parser answers to any name at all, which
- * would hide the point of examples showing an unknown tag left alone.
- */
-export const EXAMPLE_PARSERS = PARSERS.filter((parser) => parser.id !== 'loose').map((parser) => parser.id);
+const KINDS: Record<TransformerKind, true> = { string: true, integer: true, object: true, function: true };
 
 const OPTION = /[\w:]+=(?:"[^"]*"|'[^']*'|\S*)|\S+/g;
 
@@ -73,7 +68,7 @@ export const parseOutputMeta = (meta: string | null | undefined): { illustrative
 		}
 
 		const [, name, kind = 'string', raw] = assignment;
-		if (!(kind in TRANSFORMERS)) throw new Error(`Unknown variable kind "${kind}" in "${option}"`);
+		if (!(kind in KINDS)) throw new Error(`Unknown variable kind "${kind}" in "${option}"`);
 		variables.push({ name, kind: kind as TransformerKind, value: raw.replace(/^(["'])(.*)\1$/s, '$2') });
 	}
 
@@ -137,31 +132,4 @@ export const eachParent = (node: Nodes, visit: (children: RootContent[]) => void
 	if (!('children' in node)) return;
 	for (const child of node.children) eachParent(child, visit);
 	visit(node.children as RootContent[]);
-};
-
-/**
- *
- * Links to the playground with the example loaded and seeded.
- *
- * @param template - The template.
- * @param variables - What to seed.
- * @returns The link.
- */
-export const playgroundLink = (template: string, variables: Variable[]) =>
-	`/playground#${encodeState({ ...INITIAL, template, variables, parsers: EXAMPLE_PARSERS })}`;
-
-/**
- *
- * Renders an example the way the playground would.
- *
- * @param template - The template.
- * @param variables - What to seed.
- * @returns The body.
- */
-export const renderExample = async (template: string, variables: readonly Variable[]) => {
-	const seedVariables: Record<string, ITransformer> = {};
-	for (const variable of variables) seedVariables[variable.name] = TRANSFORMERS[variable.kind].build(variable.value);
-
-	const parsers = PARSERS.filter((parser) => EXAMPLE_PARSERS.includes(parser.id)).map((parser) => parser.create());
-	return (await new Interpreter(...parsers).run(template, { seedVariables })).body;
 };

@@ -4,7 +4,8 @@ import { readFile } from 'node:fs/promises';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, test } from 'vitest';
 
-import { eachParent, findExamples, renderExample } from '../lib/examples';
+import { eachParent, findExamples } from '../lib/examples';
+import { renderExample } from '../lib/run-example';
 
 import type { Example } from '../lib/examples';
 

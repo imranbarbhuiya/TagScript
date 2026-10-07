@@ -4,7 +4,9 @@ import { describe, expect, test } from 'vitest';
 import { describeVariables, parseOutputMeta } from '../lib/examples';
 import { decodeState } from '../lib/playground/state';
 import { remarkExamples } from '../lib/remark-examples';
+import { playgroundLink } from '../lib/run-example';
 
+import type { Variable } from '../lib/playground/state';
 import type { Code } from 'mdast';
 import type { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 
@@ -64,7 +66,14 @@ describe('remarkExamples', () => {
 			['text', 'title="Example output"', 'Hi'],
 		]);
 
-		const link = element.attributes[0].value as string;
+		const example = element.attributes[0].value as string;
+		expect(example).not.toMatch(/[>\n"]/);
+
+		const { template, variables } = JSON.parse(decodeURIComponent(example)) as {
+			template: string;
+			variables: Variable[];
+		};
+		const link = playgroundLink(template, variables);
 		const state = decodeState(link.slice(link.indexOf('#')));
 		expect([state.template, state.variables]).toStrictEqual([
 			'Hi {args}',
