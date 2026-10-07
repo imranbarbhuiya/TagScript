@@ -23,13 +23,26 @@ With one number you get everything from that position onwards. With two you get 
 
 ```tagscript
 {slice(3):Hello World}
-# lo World
+```
 
+```output
+lo World
+```
+
+```tagscript
 {slice(0-5):Hello World}
-# Hello
+```
 
+```output
+Hello
+```
+
+```tagscript
 {slice(0,5):Hello World}
-# Hello
+```
+
+```output
+Hello
 ```
 
 Trimming a value to a maximum length is the common use:

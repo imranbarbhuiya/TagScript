@@ -6,6 +6,8 @@
 		"dev": "next dev --turbopack",
 		"build": "bun run --cwd ../.. docs && next build",
 		"start": "next start",
+		"test": "vitest run",
+		"test:coverage": "vitest run",
 		"postinstall": "fumadocs-mdx"
 	},
 	"dependencies": {
@@ -29,8 +31,11 @@
 		"@fumadocs/cli": "^1.4.1",
 		"@tagscript/plugin-discord": "workspace:^",
 		"@tailwindcss/postcss": "^4.3.3",
+		"@types/mdast": "^4.0.4",
 		"@types/react": "19.2.18",
 		"@types/react-dom": "19.2.5",
+		"mdast-util-from-markdown": "^2.1.0",
+		"mdast-util-mdx-jsx": "^3.2.0",
 		"tagscript": "workspace:^",
 		"tailwindcss": "^4.3.3",
 		"tailwindcss-animate": "^1.0.7"

@@ -3,6 +3,8 @@ import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
 import lastModified from 'fumadocs-mdx/plugins/last-modified';
 import grammar from 'tagscript/language/tagscript.tmLanguage.json' with { type: 'json' };
 
+import { remarkExamples } from './lib/remark-examples';
+
 export const docs = defineDocs({
 	dir: 'content/docs',
 	docs: {
@@ -21,6 +23,6 @@ export default defineConfig({
 			// The grammar ships with the library, so a fence here and an editor read the same rules.
 			langs: [grammar],
 		},
-		remarkPlugins: [[remarkNpm, { Tabs: 'InstallTabs' }]],
+		remarkPlugins: [[remarkNpm, { Tabs: 'InstallTabs' }], remarkExamples],
 	},
 });

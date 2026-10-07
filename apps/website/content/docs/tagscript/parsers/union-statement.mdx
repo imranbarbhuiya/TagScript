@@ -21,9 +21,13 @@ Split the expressions with pipes, and split the two branches with a pipe as well
 
 ```tagscript
 {any({args}==hi|{args}==hello|{args}==hey):Hello!|How rude.}
-# when args is "hello"
+```
+
+```output args="hello"
 Hello!
-# when args is "what's up"
+```
+
+```output args="what's up"
 How rude.
 ```
 

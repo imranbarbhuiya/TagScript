@@ -22,9 +22,13 @@ The parameter is an expression, written the same way as in [`if`](/tagscript/par
 
 ```tagscript
 Hi {args}{break({args}==):No input given.}
-# when args is empty
+```
+
+```output args=""
 No input given.
-# when args is "Parbez"
+```
+
+```output args="Parbez"
 Hi Parbez
 ```
 

@@ -4,6 +4,8 @@ import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 
+import { TagScriptExample } from './components/example';
+
 import type { MDXComponents } from 'mdx/types';
 import type { ReactNode } from 'react';
 
@@ -19,6 +21,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		),
 		Tab,
 		Tabs,
+		TagScriptExample,
 		InstallTabs: ({ items, children }: { readonly children: ReactNode; readonly items: string[] }) => (
 			<Tabs id="package-manager" items={items}>
 				{children}

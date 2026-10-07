@@ -20,21 +20,30 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ```tagscript
 {json(user):{"name":"Parbez","age":30}}Your age is {user(age)}.
-# Your age is 30.
+```
+
+```output
+Your age is 30.
 ```
 
 Reach nested fields with a dot:
 
 ```tagscript
 {json(u):{"address":{"city":"Silchar"}}}You live in {u(address.city)}.
-# You live in Silchar.
+```
+
+```output
+You live in Silchar.
 ```
 
 Any key starting with an underscore is refused and the tag is left as written:
 
 ```tagscript
+{json(u):{"_secret":"hidden"}}{u(_secret)}
+```
+
+```output
 {u(_secret)}
-# {u(_secret)}
 ```
 
 ## For developers

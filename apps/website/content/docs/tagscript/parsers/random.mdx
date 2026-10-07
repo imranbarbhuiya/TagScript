@@ -21,10 +21,18 @@ The list splits on `~` if the payload contains one, otherwise on `,`, otherwise 
 
 ```tagscript
 {random:foo,bar,baz}
-# foo
+```
 
+```output example
+foo
+```
+
+```tagscript
 {random:Have a great day~Hope you're well, friend~Welcome back}
-# Hope you're well, friend
+```
+
+```output example
+Hope you're well, friend
 ```
 
 Each `random` tag rolls on its own. To pick once and reuse the result, store it with [`=`](/tagscript/parsers/define):

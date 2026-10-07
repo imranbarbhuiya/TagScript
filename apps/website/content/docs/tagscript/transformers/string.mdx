@@ -27,19 +27,42 @@ Given `args` holds `Hi, How are you?`:
 
 ```tagscript
 {args}
-# Hi, How are you?
+```
 
+```output args="Hi, How are you?"
+Hi, How are you?
+```
+
+```tagscript
 {args(1)}
-# Hi,
+```
 
+```output args="Hi, How are you?"
+Hi,
+```
+
+```tagscript
 {args(2)}
-# How
+```
 
+```output args="Hi, How are you?"
+How
+```
+
+```tagscript
 {args(2+)}
-# How are you?
+```
 
+```output args="Hi, How are you?"
+How are you?
+```
+
+```tagscript
 {args(+2)}
-# Hi, How
+```
+
+```output args="Hi, How are you?"
+Hi, How
 ```
 
 Use `+` after the index for "this word onwards", and before it for "up to and including this word".
@@ -48,7 +71,10 @@ Pass a separator as the payload to split on something else. Given `args` holds `
 
 ```tagscript
 {args(2):,}
-# b
+```
+
+```output args="a,b,c"
+b
 ```
 
 An index past the end gives the whole string back rather than an empty result.

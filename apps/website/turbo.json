@@ -1,0 +1,12 @@
+{
+	"$schema": "https://turborepo.com/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"test": {
+			"inputs": ["content/**", "lib/**", "tests/**", "package.json", "vitest.config.mts"]
+		},
+		"test:coverage": {
+			"inputs": ["content/**", "lib/**", "tests/**", "package.json", "vitest.config.mts"]
+		}
+	}
+}

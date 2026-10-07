@@ -170,6 +170,8 @@ bun run lint       # oxlint, autofixing what it can (type-aware, so run `bun run
 bun run format     # oxfmt
 ```
 
+Docs examples put their expected output in an `output` fence after the `tagscript` fence, never in the template. `bun run test` renders every one and fails if the docs show something the interpreter does not produce.
+
 `@tagscript/tiptap` runs its tests in Chromium through Vitest browser mode, so install the browser once with `bunx playwright install chromium`.
 
 ### Releasing

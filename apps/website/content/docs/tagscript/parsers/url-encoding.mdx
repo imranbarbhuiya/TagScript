@@ -21,17 +21,28 @@ import { Tabs } from 'fumadocs-ui/components/tabs';
 
 ```tagscript
 {urlencode:Hello World}
-# Hello%20World
+```
 
+```output
+Hello%20World
+```
+
+```tagscript
 {urldecode:Hello%20World}
-# Hello World
+```
+
+```output
+Hello World
 ```
 
 Pass `+` as the parameter to use `+` for spaces, which some search URLs expect:
 
 ```tagscript
 {urlencode(+):Hello World}
-# Hello+World
+```
+
+```output
+Hello+World
 ```
 
 Building a search link:

@@ -23,17 +23,28 @@ Given `u` holds `{ "name": "Parbez", "address": { "city": "Silchar" } }`:
 
 ```tagscript
 {u(name)}
-# Parbez
+```
 
+```output u:object='{"name":"Parbez","address":{"city":"Silchar"}}'
+Parbez
+```
+
+```tagscript
 {u(address.city)}
-# Silchar
+```
+
+```output u:object='{"name":"Parbez","address":{"city":"Silchar"}}'
+Silchar
 ```
 
 A key that does not exist, or one starting with an underscore, leaves the tag as written:
 
 ```tagscript
 {u(_secret)}
-# {u(_secret)}
+```
+
+```output u:object='{"name":"Parbez","address":{"city":"Silchar"}}'
+{u(_secret)}
 ```
 
 The [`json` tag](/tagscript/parsers/json) creates one of these from inside a template.

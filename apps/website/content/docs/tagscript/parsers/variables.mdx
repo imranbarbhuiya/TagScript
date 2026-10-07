@@ -24,10 +24,18 @@ The bare form gives you the whole value. What the parameter means depends on the
 
 ```tagscript
 Hi {args}
-# Hi, How are you?
+```
 
+```output args="Ada Lovelace"
+Hi Ada Lovelace
+```
+
+```tagscript
 {args(2)}
-# How
+```
+
+```output args="Ada Lovelace"
+Lovelace
 ```
 
 Variable names are case sensitive, so `{user}` and `{User}` are different names. Tag names like `upper` are not, which is why `{UPPER:hi}` works.
@@ -36,7 +44,10 @@ An unknown name is left alone rather than replaced with an empty string:
 
 ```tagscript
 Hi {unknown}
-# Hi {unknown}
+```
+
+```output
+Hi {unknown}
 ```
 
 That is deliberate. A typo shows up in the output instead of quietly disappearing.

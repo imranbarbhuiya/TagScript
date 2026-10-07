@@ -49,7 +49,10 @@ export class TemperatureTransformer implements ITransformer {
 
 ```tagscript
 {temp} is {temp(f)} in Fahrenheit
-# 20 is 68 in Fahrenheit
+```
+
+```output example
+20 is 68 in Fahrenheit
 ```
 
 Returning `null` for anything you do not recognise is the right default. It keeps unknown parameters visible in the output instead of rendering an empty string, and it lets another parser handle the tag instead.

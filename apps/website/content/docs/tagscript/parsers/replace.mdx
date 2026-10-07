@@ -21,17 +21,28 @@ Only the first comma splits the two halves. Everything after it is the replaceme
 
 ```tagscript
 {replace(o,i):welcome to the server}
-# welcime ti the server
+```
 
+```output
+welcime ti the server
+```
+
+```tagscript
 {replace(1,6):1637812}
-# 6637862
+```
+
+```output
+6637862
 ```
 
 Leave the first half empty to insert the replacement between every character:
 
 ```tagscript
 {replace(, ):Test}
-# T e s t
+```
+
+```output
+T e s t
 ```
 
 ## For developers

@@ -48,8 +48,13 @@ Tags nest, and the inner one renders first. That is how you feed one tag's outpu
 
 ```tagscript
 {upper:{lower:ABC}}
-# ABC
+```
 
+```output
+ABC
+```
+
+```tagscript
 {if({random:yes,no}==yes):Sure!|Nope.}
 ```
 
@@ -84,7 +89,10 @@ It stays exactly as you wrote it:
 
 ```tagscript
 Hi {nobodyImplementedThis}
-# Hi {nobodyImplementedThis}
+```
+
+```output
+Hi {nobodyImplementedThis}
 ```
 
 So if a tag shows up in the output instead of doing something, one of three things is true: the name is misspelled, the app did not register that tag, or the tag needed a parameter or a payload you did not give it.

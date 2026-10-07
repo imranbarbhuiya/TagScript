@@ -34,11 +34,17 @@ Comparisons trim whitespace on both sides. The four numeric operators run both s
 
 ```tagscript
 {if({args}==63):You guessed it!|Too {if({args}<63):low|high}, try again.}
-# when args is 63
+```
+
+```output args=63
 You guessed it!
-# when args is 73
+```
+
+```output args=73
 Too high, try again.
-# when args is 14
+```
+
+```output args=14
 Too low, try again.
 ```
 

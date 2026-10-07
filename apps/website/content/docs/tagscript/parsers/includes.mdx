@@ -33,16 +33,34 @@ One parser answers four different questions, and the alias you use picks which o
 
 ```tagscript
 {in(there):Hi there!}
-# true
+```
 
+```output
+true
+```
+
+```tagscript
 {contain(there!):Hi there!}
-# true
+```
 
+```output
+true
+```
+
+```tagscript
 {index(there!):Hi there!}
-# 1
+```
 
+```output
+1
+```
+
+```tagscript
 {lindex(t):Hi there!}
-# 3
+```
+
+```output
+3
 ```
 
 Pair it with `if` to branch on the answer:

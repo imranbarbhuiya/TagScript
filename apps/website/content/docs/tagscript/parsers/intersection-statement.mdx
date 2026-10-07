@@ -21,9 +21,13 @@ Range checks are the common case, since `if` only compares two values at a time:
 
 ```tagscript
 {all({n}>=100|{n}<=999):You picked {n}.|Pick a number between 100 and 999.}
-# when n is 52
+```
+
+```output n=52
 Pick a number between 100 and 999.
-# when n is 282
+```
+
+```output n=282
 You picked 282.
 ```
 

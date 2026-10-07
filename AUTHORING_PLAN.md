@@ -397,9 +397,13 @@ rather than assumed: `\{if(expression):true message|false message\}` renders wit
 The JSON import in `source.config.ts` needs `with { type: 'json' }`, since Node will not load it
 otherwise.
 
-The `#` question in §9 is still open, and the grammar takes the honest position for now: no comment
-rule, so the `# output` lines in the docs render as plain text rather than as comments. That is a
-visible change from `yaml` and wants a decision.
+The grammar has no comment rule, because `#` is ordinary text in TagScript and a heading in a
+markdown template. Expected output therefore left the template: it goes in an `output` fence after
+it, with the seeded variables on the fence line (`output args="Ada"`, `output n:integer=5`), and
+`output example` for anything random. A remark plugin renders each as a titled block with a link to
+the playground, and a test in the website runs every non-illustrative example with the playground's
+parsers, so the docs cannot drift from the interpreter. Writing that test found one example whose
+output could not be produced by any input.
 
 ## 7. Playground on the website (done)
 
@@ -479,4 +483,4 @@ work to schedule now.
 | `skipRanges` in core, or preprocessing in `@tagscript/markdown`?      | Core. Every flavour needs it and only the lexer can do it. |
 | Ship §3 before or after the pending `tagscript@3.0.0` release?        | After. Additive, so it does not need the major.            |
 | Does the playground get its own nav entry or live under docs?         | Own top-level entry. It is a tool, not a page.             |
-| How do docs show expected output, now that `#` is not a real comment? | Unresolved. Grammar rule, shiki notation, or a component.  |
+| How do docs show expected output, now that `#` is not a real comment? | An `output` fence after the template, checked by a test.   |

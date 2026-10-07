@@ -13,16 +13,34 @@ Two parsers cover text formatting. `StringFormatParser` handles casing and escap
 
 ```tagscript
 {lower:Hello Parbez!}
-# hello parbez!
+```
 
+```output
+hello parbez!
+```
+
+```tagscript
 {upper:Hello Parbez!}
-# HELLO PARBEZ!
+```
 
+```output
+HELLO PARBEZ!
+```
+
+```tagscript
 {capitalize:hello PARBEZ!}
-# Hello parbez!
+```
 
+```output
+Hello parbez!
+```
+
+```tagscript
 {escape:Hello| Parbez!}
-# Hello\| Parbez!
+```
+
+```output
+Hello\| Parbez!
 ```
 
 `capitalize` uppercases the first character and lowercases everything else, so it is a sentence case, not a title case.
@@ -33,14 +51,20 @@ Two parsers cover text formatting. `StringFormatParser` handles casing and escap
 
 ```tagscript
 {ord:1} {ord:2} {ord:3} {ord:11} {ord:22}
-# 1st 2nd 3rd 11th 22nd
+```
+
+```output
+1st 2nd 3rd 11th 22nd
 ```
 
 Anything that is not a number comes back untouched:
 
 ```tagscript
 {ord:hello}
-# hello
+```
+
+```output
+hello
 ```
 
 ### Aliases
