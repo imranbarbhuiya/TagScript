@@ -1,0 +1,5 @@
+name: tiptap
+org: tagscript
+monoRepo: true
+packagePath: packages/tagscript-tiptap
+tagTemplate: '{{full-name}}@{{new-version}}'

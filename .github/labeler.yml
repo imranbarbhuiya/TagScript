@@ -9,3 +9,7 @@ package:tagscript:
 plugin:discord:
   - changed-files:
       - any-glob-to-any-file: packages/tagscript-plugin-discord/**
+
+tiptap:
+  - changed-files:
+      - any-glob-to-any-file: packages/tagscript-tiptap/**

@@ -244,7 +244,7 @@ Two producers of ranges, one dependency-free scanner for fenced blocks and inlin
 optional `@tagscript/markdown/remark` subpath for full CommonMark accuracy using the remark lexer
 the web consumer already has. Not `marked`, since no known consumer uses it.
 
-## 5. Package B: @tagscript/tiptap
+## 5. Package B: @tagscript/tiptap (done)
 
 ### 5.1 What it buys
 
@@ -292,13 +292,26 @@ possible bug here because it stays invisible until a customer sees the output.
 
 ### 5.5 Costs
 
-**A DOM in CI.** This repo has no browser anything today, just bun tests. A ProseMirror node needs
-jsdom or a browser runner. This is the real decision, more than the code is.
+**A DOM in CI.** Decided: a real browser. The repo moved from `bun test` to Vitest, and this
+package runs in Vitest browser mode on Playwright's Chromium, so typing, backspace and the picker are
+driven by real keystrokes rather than a simulated DOM. The other packages stay on Node.
 
 **TipTap peers, and TipTap moves fast.** Mitigated by using `renderHTML` returning a span with a
 class rather than a React node view. A pill needs no framework, and that drops `@tiptap/react` from
 peers entirely and works for the Vue and Svelte bindings too. Peers reduce to `@tiptap/core`,
 `@tiptap/pm` and `@tiptap/suggestion`.
+
+### 5.6 What implementing it found
+
+`@tiptap/markdown` only applies marks to text, and closes every open mark around any other inline
+node. Taken at face value, `**{name}**` loses its bold on load, and a bold chip saves as
+`**Thanks **{name}**, ...**`. Chips therefore cross the markdown boundary as placeholder text, which
+takes marks like any other text, and turn back into chips on either side.
+
+It also backslash-escapes `_`, `*`, `[`, `]`, `~` and backticks in ordinary text when saving. Chips
+are kept out of that, but a payload typed as text, `{if({x}==a_b):...}`, saves as `a\_b`, and the
+interpreter sees the backslash. Documented rather than fixed, since it is the markdown serializer's
+behaviour for all text.
 
 ## 6. Package C: tagscript/language (done)
 
@@ -460,7 +473,7 @@ work to schedule now.
 | question                                                              | leaning                                                    |
 | --------------------------------------------------------------------- | ---------------------------------------------------------- |
 | Does the manifest live in core or its own package?                    | Core. Types plus a const array, no dependency.             |
-| Does this repo take on jsdom or a browser runner for §5?              | Unresolved. It is the gate on the TipTap package.          |
+| Does this repo take on jsdom or a browser runner for §5?              | Browser runner: Vitest browser mode with Playwright.       |
 | `skipRanges` in core, or preprocessing in `@tagscript/markdown`?      | Core. Every flavour needs it and only the lexer can do it. |
 | Ship §3 before or after the pending `tagscript@3.0.0` release?        | After. Additive, so it does not need the major.            |
 | Does the playground get its own nav entry or live under docs?         | Own top-level entry. It is a tool, not a page.             |

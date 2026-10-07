@@ -145,10 +145,12 @@ The template asked to post an embed, rate-limit itself, restrict itself to moder
 
 ## Packages
 
-| Package                                                            | Version                                                                                                                                            | Description                                                                       |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`tagscript`](./packages/tagscript)                                | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.     |
-| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord) | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | Discord parsers and transformers for embeds, cooldowns, permissions and mentions. |
+| Package                                                              | Version                                                                                                                                            | Description                                                                           |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`tagscript`](./packages/tagscript)                                  | [![npm](https://img.shields.io/npm/v/tagscript?style=flat-square&label=)](https://www.npmjs.com/package/tagscript)                                 | The interpreter, plus the built-in parsers and transformers. No dependencies.         |
+| [`@tagscript/plugin-discord`](./packages/tagscript-plugin-discord)   | [![npm](https://img.shields.io/npm/v/@tagscript/plugin-discord?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/plugin-discord) | Discord parsers and transformers for embeds, cooldowns, permissions and mentions.     |
+| [`@tagscript/markdown`](https://tagscript.js.org/tagscript/markdown) | [![npm](https://img.shields.io/npm/v/@tagscript/markdown?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/markdown)             | Escapes what a tag produced, so a supplied value cannot plant markdown in a template. |
+| [`@tagscript/tiptap`](https://tagscript.js.org/tagscript/tiptap)     | [![npm](https://img.shields.io/npm/v/@tagscript/tiptap?style=flat-square&label=)](https://www.npmjs.com/package/@tagscript/tiptap)                 | A TipTap node that shows each tag as a chip, with a picker fed by the tag manifest.   |
 
 `tagscript` ships ESM, CJS and an IIFE build (global `TagScript`), and has no runtime dependencies.
 
@@ -167,6 +169,8 @@ bun run typecheck  # typecheck every workspace
 bun run lint       # oxlint, autofixing what it can (type-aware, so run `bun run build` first)
 bun run format     # oxfmt
 ```
+
+`@tagscript/tiptap` runs its tests in Chromium through Vitest browser mode, so install the browser once with `bunx playwright install chromium`.
 
 ### Releasing
 

@@ -6,6 +6,7 @@
 		"syntax",
 		"interpreter",
 		"markdown",
+		"tiptap",
 		"effect",
 		"effect-migration",
 		"parsers",

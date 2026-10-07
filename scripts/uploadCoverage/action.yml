@@ -14,3 +14,9 @@ runs:
       with:
         files: ./packages/tagscript-plugin-discord/coverage/lcov.info
         flags: plugin-discord
+
+    - name: Upload Tagscript TipTap Coverage
+      uses: codecov/codecov-action@v7
+      with:
+        files: ./packages/tagscript-tiptap/coverage/lcov.info
+        flags: tiptap

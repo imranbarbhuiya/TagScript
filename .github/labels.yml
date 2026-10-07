@@ -64,3 +64,5 @@
   color: '7f00ff'
 - name: 'plugin-discord'
   color: '7f00ff'
+- name: 'tiptap'
+  color: '7f00ff'

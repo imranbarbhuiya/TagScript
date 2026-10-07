@@ -1,0 +1,74 @@
+{
+	"name": "@tagscript/tiptap",
+	"version": "0.1.0",
+	"description": "A TipTap node for TagScript tags, so a template author inserts, sees and deletes a tag as one thing instead of a run of braces.",
+	"keywords": [
+		"editor",
+		"prosemirror",
+		"tagscript",
+		"template",
+		"template engine",
+		"templating",
+		"tiptap",
+		"tiptap-extension",
+		"typescript",
+		"wysiwyg"
+	],
+	"homepage": "https://tagscript.js.org/",
+	"bugs": {
+		"url": "https://github.com/imranbarbhuiya/tagscript/issues"
+	},
+	"license": "MIT",
+	"author": "@imranbarbhuiya",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/imranbarbhuiya/tagscript.git",
+		"directory": "packages/tagscript-tiptap"
+	},
+	"files": [
+		"dist/**/*.cjs*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"sideEffects": false,
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"prepack": "bun run build",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"test:watch": "vitest",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"devDependencies": {
+		"@tiptap/markdown": "^3.31.4",
+		"@tiptap/starter-kit": "^3.31.4",
+		"tagscript": "workspace:^"
+	},
+	"peerDependencies": {
+		"@tiptap/core": "^3.31.4",
+		"@tiptap/pm": "^3.31.4",
+		"@tiptap/suggestion": "^3.31.4",
+		"tagscript": "workspace:^"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.12.0"
+	}
+}

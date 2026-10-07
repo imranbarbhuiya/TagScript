@@ -1,0 +1,115 @@
+# @tagscript/tiptap
+
+A TipTap node for TagScript tags, so a template author inserts, sees and deletes a tag as one thing
+instead of a run of braces.
+
+## The problem
+
+An admin writes a thank-you page in a rich text editor and types `Thanks {fullName}!`. Three things
+go wrong with that as plain text:
+
+- One backspace too many leaves `{fullNam`, which the interpreter leaves in the output exactly as
+  written. The customer sees the braces and nothing reports an error.
+- The admin reads `{fullName}`, an identifier, where they wanted to read "Full name".
+- A tag for a field that has since been deleted looks exactly like a working one.
+
+## Usage
+
+```sh
+npm install @tagscript/tiptap tagscript @tiptap/core @tiptap/pm @tiptap/suggestion
+```
+
+```ts showLineNumbers
+import { Editor } from '@tiptap/core';
+import { Markdown } from '@tiptap/markdown';
+import StarterKit from '@tiptap/starter-kit';
+import { TagScriptNode } from '@tagscript/tiptap';
+
+const editor = new Editor({
+	extensions: [
+		StarterKit,
+		Markdown,
+		TagScriptNode.configure({
+			tags: fields.map((field) => ({ name: field.id, label: field.label, insertable: true })),
+		}),
+	],
+	content: 'Thanks **{fullName}**!',
+	contentType: 'markdown',
+});
+
+editor.getMarkdown(); // 'Thanks **{fullName}**!'
+```
+
+`{fullName}` becomes a chip reading `Full name`. It deletes with one keystroke, renaming the field's
+label relabels every template, and the markdown still holds `{fullName}`, so a render needs nothing
+from this package.
+
+`tags` is a `TagDefinition[]` from `tagscript`, the same manifest `validateTags` reads, so the editor
+and a save-time check agree on which tags exist.
+
+## What becomes a chip
+
+Only `{name}` and `{name(parameter)}`. A tag with a payload, such as `{if(rating==5):Thanks!|Sorry.}`,
+stays text, because the payload is template content the author still edits. Tags inside that text
+are still chips.
+
+Which braces count as a tag is decided by the same lexer the interpreter uses. A tag that would not
+come back out exactly as written, such as `{ name }` or `{name:}`, stays text, so saving never
+rewrites what someone typed. Inline code and code blocks are left alone.
+
+A chip for a tag the manifest does not define gets the `tagscript-tag-unknown` class and a
+`data-unknown` attribute, and shows the tag as written. Style it so a broken template is obvious when
+it is opened rather than when a customer reads it:
+
+```css
+.tagscript-tag {
+	border-radius: 4px;
+	padding: 0 4px;
+	background: #eef2ff;
+}
+
+.tagscript-tag-unknown {
+	background: #fee2e2;
+	color: #991b1b;
+}
+```
+
+Typing a complete tag by hand turns it into a chip when the closing brace goes in, and pasting text
+does the same for every tag in it.
+
+## The picker
+
+Typing `{` opens a picker listing the tags marked `insertable`, filtered by name and label as the
+author types. The picker runs on `@tiptap/suggestion`, and this package draws no list, so it works
+with React, Vue, Svelte or plain DOM. Pass `render` the way you would for any TipTap suggestion:
+
+```ts showLineNumbers
+TagScriptNode.configure({
+	tags,
+	suggestion: {
+		render: () => ({
+			onStart: (props) => list.show(props.items, props.command),
+			onUpdate: (props) => list.show(props.items, props.command),
+			onKeyDown: ({ event }) => list.handleKey(event),
+			onExit: () => list.hide(),
+		}),
+	},
+});
+```
+
+Calling `props.command(tag)` replaces what was typed with a chip. Set `trigger` to another character
+to open it with that instead, or to `null` for no picker at all.
+
+`editor.commands.insertTag({ name: 'fullName' })` inserts a chip directly, for a toolbar button.
+
+## Without markdown
+
+`@tiptap/markdown` is optional. Without it, chips round-trip through `getHTML()` as
+`<span data-tagscript data-name="fullName">`, and `getText()` writes the tag itself, so a plain text
+template works the same way.
+
+## Caveats
+
+`@tiptap/markdown` backslash-escapes ``\ ` * _ [ ] ~`` in ordinary text when it saves, so a payload
+typed as text, such as `{if({answer}==a_b):yes}`, saves as `a\_b`. The interpreter runs before any
+markdown renderer, so it sees the backslash. Chips are not affected.
