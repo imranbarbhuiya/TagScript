@@ -1,6 +1,6 @@
 import { playwright } from '@vitest/browser-playwright';
 
-import { createVitestConfig } from '../../scripts/vitest.config';
+import { createVitestConfig } from '../../scripts/vitest.config.ts';
 
 export default createVitestConfig({
 	test: {

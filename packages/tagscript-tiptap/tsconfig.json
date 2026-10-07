@@ -2,6 +2,7 @@
 	"extends": "../../tsconfig.json",
 	"include": ["src/**/*.ts", "tests/**/*.ts", "vitest.config.mts"],
 	"compilerOptions": {
-		"noEmit": true
+		"noEmit": true,
+		"allowImportingTsExtensions": true
 	}
 }
