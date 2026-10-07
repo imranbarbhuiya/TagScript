@@ -81,11 +81,11 @@
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
 	"devDependencies": {
-		"effect": "^4.0.0-rc.112",
+		"effect": "^4.0.1",
 		"shiki": "^4.4.3"
 	},
 	"peerDependencies": {
-		"effect": "^4.0.0-rc || ^4.0.0"
+		"effect": "^4.0.0"
 	},
 	"peerDependenciesMeta": {
 		"effect": {

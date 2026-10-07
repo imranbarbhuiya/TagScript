@@ -247,7 +247,7 @@ services it needs. `effect` is an optional peer dependency, so nothing changes f
 point.
 
 ```sh
-npm install effect@rc
+npm install effect
 ```
 
 A parser typed `Parser<OnCooldown, CooldownStore>` cannot run until the application provides that
