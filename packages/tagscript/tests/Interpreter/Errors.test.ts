@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 
 import {
 	GENERIC_PARSER_ERROR_MESSAGE,
@@ -104,7 +104,7 @@ describe('WorkloadExceededError', () => {
 	const ts = new Interpreter(new TemplateErrorParser());
 
 	test('GIVEN a render over the character limit THEN reject rather than render', async () => {
-		expect(ts.run('{bad}', { charLimit: 1 })).rejects.toThrowError(WorkloadExceededError);
+		await expect(ts.run('{bad}', { charLimit: 1 })).rejects.toThrowError(WorkloadExceededError);
 	});
 
 	test('GIVEN a WorkloadExceededError THEN carry the limit and the attempted count', async () => {

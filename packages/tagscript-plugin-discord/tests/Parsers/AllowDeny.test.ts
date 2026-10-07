@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { Interpreter } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { RequiredParser, DenyParser } from '../../src';
 

@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { createHighlighter } from 'shiki';
+import { describe, expect, test } from 'vitest';
 
 import { SCOPES, TokenKind, grammar, tokenize } from '../../src/language';
 

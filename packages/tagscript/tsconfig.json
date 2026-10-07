@@ -1,6 +1,6 @@
 {
 	"extends": "../../tsconfig.json",
-	"include": ["src/**/*.ts", "tests/**/*.ts", "bench/**/*.ts"],
+	"include": ["src/**/*.ts", "tests/**/*.ts", "vitest.config.mts", "bench/**/*.ts"],
 	"compilerOptions": {
 		"noEmit": true
 	}

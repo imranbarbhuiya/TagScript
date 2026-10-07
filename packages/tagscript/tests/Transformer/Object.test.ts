@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 
 import { SafeObjectTransformer, Interpreter, Response, StrictVarsParser } from '../../src';
 import { rendered } from '../rendered';

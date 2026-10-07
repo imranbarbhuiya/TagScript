@@ -37,6 +37,7 @@
 		"@types/bun": "^1.4.0",
 		"@types/node": "^22.20.1",
 		"@types/prompts": "^2.4.9",
+		"@vitest/coverage-v8": "^5.0.3",
 		"cz-conventional-changelog": "^3.3.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.4.1",
@@ -50,7 +51,8 @@
 		"typedoc": "^0.28.20",
 		"typedoc-plugin-markdown": "4.13.0",
 		"typedoc-plugin-mdn-links": "^5.1.1",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"vitest": "^5.0.3"
 	},
 	"lint-staged": {
 		"*": "oxfmt",

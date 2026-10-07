@@ -1,17 +1,17 @@
-import { afterEach, describe, expect, setSystemTime, test } from 'bun:test';
-
 import { Interpreter } from 'tagscript';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 
 import { DateFormatParser } from '../../src';
 
 const ts = new Interpreter(new DateFormatParser());
 describe('currentTime', () => {
 	afterEach(() => {
-		setSystemTime();
+		vi.useRealTimers();
 	});
 	test('GIVEN currentTime or unix THEN return current timestamp in ms', async () => {
 		const mockedDate = new Date(2_022, 1, 1, 13);
-		setSystemTime(mockedDate);
+		vi.useFakeTimers({ toFake: ['Date'] });
+		vi.setSystemTime(mockedDate);
 		expect(Number((await ts.run('{unix}')).body)).toBeCloseTo(Date.now(), -1);
 		expect(Number((await ts.run('{currenttime}')).body)).toBeCloseTo(Date.now(), -1);
 	});
@@ -33,11 +33,12 @@ describe('DateFormat', () => {
 
 describe('DateFormatParser casing', () => {
 	afterEach(() => {
-		setSystemTime();
+		vi.useRealTimers();
 	});
 
 	test('GIVEN a declaration in any casing THEN resolve the same tag', async () => {
-		setSystemTime(new Date(2_022, 1, 1, 13));
+		vi.useFakeTimers({ toFake: ['Date'] });
+		vi.setSystemTime(new Date(2_022, 1, 1, 13));
 		expect(Number((await ts.run('{UNIX}')).body)).toBeCloseTo(Date.now(), -1);
 		expect(Number((await ts.run('{CurrentTime}')).body)).toBeCloseTo(Date.now(), -1);
 	});

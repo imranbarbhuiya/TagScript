@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 
 import { Interpreter, ReplaceParser, ParenType, Response } from '../../src';
 import { rendered } from '../rendered';

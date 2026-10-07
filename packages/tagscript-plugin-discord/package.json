@@ -70,9 +70,9 @@
 		"bench": "bun bench/index.ts",
 		"build": "tsdown",
 		"prepack": "bun run build",
-		"test": "bun test",
-		"test:coverage": "bun test --coverage --coverage-reporter=text --coverage-reporter=lcov",
-		"test:watch": "bun test --watch",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"test:watch": "vitest",
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
 	"dependencies": {

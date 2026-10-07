@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { Interpreter, StrictVarsParser } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { UserTransformer } from '../../src';
 import { user, user2 } from '../Structures/Structures';

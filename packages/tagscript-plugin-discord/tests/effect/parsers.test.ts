@@ -1,9 +1,8 @@
-import { describe, expect, test } from 'bun:test';
-
 import * as Effect from 'effect/Effect';
 import * as Layer from 'effect/Layer';
 import * as TestClock from 'effect/testing/TestClock';
 import { Interpreter, TagLimit, TemplateError } from 'tagscript/effect';
+import { describe, expect, test } from 'vitest';
 
 import { CooldownStore, OnCooldown, builtinParsers, cooldownParser, dateFormatParser } from '../../src/effect';
 

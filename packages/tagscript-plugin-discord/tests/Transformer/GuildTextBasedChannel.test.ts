@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { Interpreter, StrictVarsParser } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { ChannelTransformer } from '../../src';
 import { channel, channel2 } from '../Structures/Structures';

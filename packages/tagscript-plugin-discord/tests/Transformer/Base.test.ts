@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { Interpreter, StrictVarsParser } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { BaseTransformer } from '../../src';
 

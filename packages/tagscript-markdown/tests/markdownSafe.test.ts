@@ -1,5 +1,3 @@
-import { describe, expect, test } from 'bun:test';
-
 import {
 	DefineParser,
 	IfStatementParser,
@@ -8,6 +6,7 @@ import {
 	StringTransformer,
 	StrictVarsParser,
 } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { Flavour, markdownSafe } from '../src';
 

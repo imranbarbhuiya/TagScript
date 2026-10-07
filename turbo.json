@@ -12,7 +12,7 @@
 		},
 		"test": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**", "tests/**", "package.json"],
+			"inputs": ["src/**", "tests/**", "package.json", "vitest.config.mts"],
 			"outputs": []
 		},
 		"test:watch": {
@@ -22,9 +22,11 @@
 		},
 		"test:coverage": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**", "tests/**", "package.json"],
+			"inputs": ["src/**", "tests/**", "package.json", "vitest.config.mts"],
 			"outputs": ["coverage/**"]
 		}
 	},
-	"ui": "stream"
+	"ui": "stream",
+	"cacheMaxSize": "2gb",
+	"cacheMaxAge": "7d"
 }

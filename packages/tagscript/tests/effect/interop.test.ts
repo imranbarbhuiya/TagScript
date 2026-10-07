@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import * as Effect from 'effect/Effect';
+import { describe, expect, test } from 'vitest';
 
 import { body, run } from './helpers';
 

@@ -1,6 +1,5 @@
-import { describe, expect, test } from 'bun:test';
-
 import { Interpreter, TemplateError } from 'tagscript';
+import { describe, expect, test } from 'vitest';
 
 import { EmbedParser } from '../../src';
 

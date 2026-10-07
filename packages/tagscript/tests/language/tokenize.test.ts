@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from 'vitest';
 
 import { ParenType, builtinTags } from '../../src';
 import { TokenKind, tokenize } from '../../src/language';
