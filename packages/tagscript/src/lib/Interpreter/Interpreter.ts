@@ -7,6 +7,7 @@ import { GENERIC_PARSER_ERROR_MESSAGE, ParserError, StopSignal, TemplateError } 
 import { asyncFilter } from '../Utils/Util';
 
 import type { ITransformer, IParser, IKeyValues } from '../interfaces';
+import type { SkipRange } from './engine';
 import type { Node } from './Node';
 
 /**
@@ -40,6 +41,13 @@ export interface RunOptions {
 	 */
 	seedVariables?: { [key: string]: ITransformer };
 	/**
+	 * Ranges of the template to leave exactly as written, such as markdown code blocks. A tag that
+	 * starts inside one is not run. Offsets are into the template.
+	 *
+	 * @defaultValue `[]`
+	 */
+	skipRanges?: readonly SkipRange[];
+	/**
 	 * The maximum number of characters read from inside one `\{...\}`. The rest of that tag body
 	 * is dropped.
 	 *
@@ -64,7 +72,16 @@ export interface RunOptions {
 	trace?: boolean;
 }
 
-const RUN_OPTION_KEYS = new Set(['charLimit', 'keyValues', 'parenType', 'seedVariables', 'spans', 'tagLimit', 'trace']);
+const RUN_OPTION_KEYS = new Set([
+	'charLimit',
+	'keyValues',
+	'parenType',
+	'seedVariables',
+	'skipRanges',
+	'spans',
+	'tagLimit',
+	'trace',
+]);
 
 /**
  *
@@ -159,7 +176,7 @@ export class Interpreter {
 		const response = new Response(options.seedVariables ?? {}, options.keyValues ?? {});
 		if (options.spans) response.spans = [];
 		if (options.trace) response.trace = [];
-		const nodeOrderedList = buildNodeTree(message);
+		const nodeOrderedList = buildNodeTree(message, options.skipRanges);
 		const output = await this.solve(
 			message,
 			nodeOrderedList,

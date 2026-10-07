@@ -5,18 +5,37 @@ import { WorkloadExceededError } from '../Errors';
 import type { OutputSpan } from './Response';
 
 /**
+ * A half-open `[start, end)` range of a template that is not template syntax, such as a markdown
+ * code block. A brace inside it neither opens nor closes a tag.
+ */
+export interface SkipRange {
+	end: number;
+	start: number;
+}
+
+/**
  *
  * Finds every bracketed tag in a string, innermost first.
  *
  * @param message - The message to parse.
+ * @param skipRanges - Ranges of the message to treat as plain text.
  * @returns A list of all possible text bracket tags.
  */
-export const buildNodeTree = (message: string): Node[] => {
+export const buildNodeTree = (message: string, skipRanges: readonly SkipRange[] = []): Node[] => {
 	const nodes: Node[] = [];
 	let previous = '';
 	const starts: number[] = [];
+	const skips = [...skipRanges].sort((a, b) => a.start - b.start);
+	let skip = 0;
 
 	for (let index = 0; index < message.length; index++) {
+		while (skip < skips.length && skips[skip].end <= index) skip++;
+		if (skip < skips.length && skips[skip].start <= index) {
+			index = skips[skip].end - 1;
+			previous = '';
+			continue;
+		}
+
 		const ch = message[index];
 		if (ch === '{' && previous !== '\\') starts.push(index);
 

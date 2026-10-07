@@ -29,6 +29,7 @@ ts.run(message, options?);
 | `tagLimit`      | `2000`           | Maximum characters read from inside one `{...}`. The rest of that tag body is dropped.  |
 | `parenType`     | `ParenType.Both` | Which parameter syntaxes are allowed: `Both`, `Parenthesis` or `Dot`.                   |
 | `keyValues`     | `{}`             | Arbitrary data for your own parsers, readable at `ctx.response.keyValues`.              |
+| `skipRanges`    | `[]`             | Ranges of the template left exactly as written, such as [markdown code](/tagscript/markdown#code). |
 
 ```ts showLineNumbers
 const response = await ts.run(template, {

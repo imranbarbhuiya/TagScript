@@ -62,6 +62,7 @@
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
 	"devDependencies": {
+		"mdast-util-from-markdown": "^2.1.0",
 		"tagscript": "workspace:^"
 	},
 	"peerDependencies": {

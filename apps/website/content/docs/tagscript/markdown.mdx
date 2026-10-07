@@ -81,6 +81,34 @@ parameter is not, because a parameter is read rather than written:
 That is a rule about provenance, not proof of what a parser did. A parser that writes its own
 parameter into its output is the case it gets wrong, so name such a parser in `untrust`.
 
+## Code
+
+A template that documents TagScript, or shows a snippet, has tags in its code that should stay as
+written. Pass the code's ranges as `skipRanges` and a tag that starts inside one is not run:
+
+```ts showLineNumbers
+import { codeRanges } from '@tagscript/markdown';
+
+const response = await ts.run(template, { seedVariables, skipRanges: codeRanges(template) });
+```
+
+`codeRanges` finds fenced code blocks and inline code without parsing the markdown, so it adds no
+dependency. It misses indented code blocks and can be fooled by unusual nesting. Pass
+`Flavour.Discord` for Discord, where a ```` ``` ```` block closes at the next ```` ``` ```` wherever
+it is.
+
+If you already parse with remark, hand it the tree instead for the exact answer:
+
+```ts showLineNumbers
+import { codeRangesFromMdast } from '@tagscript/markdown';
+import { fromMarkdown } from 'mdast-util-from-markdown';
+
+const skipRanges = codeRangesFromMdast(fromMarkdown(template));
+```
+
+Pass the same ranges to `extractTags` and `validateTags`, so a save-time check does not report a tag
+in an example as unknown.
+
 ## Escaping a value on its own
 
 When you have a value rather than a render:

@@ -233,16 +233,18 @@ Nodes come out of `buildNodeTree` innermost first, so a naive per-output escape 
 `{upper:{user}}` and escape its own backslashes. Escaping recorded ranges once at the end avoids it,
 because the outer range subsumes the inner one.
 
-### 4.5 Code regions
+### 4.5 Code regions (done)
 
 `skipRanges` on `RunOptions`, telling `buildNodeTree` not to open a node inside those ranges.
 
 Backslash escaping cannot be the mechanism here. The docs already record that "the backslash stays
 in the rendered output", so escaping and unescaping would leave debris.
 
-Two producers of ranges, one dependency-free scanner for fenced blocks and inline spans, and an
-optional `@tagscript/markdown/remark` subpath for full CommonMark accuracy using the remark lexer
-the web consumer already has. Not `marked`, since no known consumer uses it.
+Two producers of ranges: `codeRanges`, a dependency-free scanner for fenced blocks and inline spans,
+and `codeRangesFromMdast` for full CommonMark accuracy. The second takes a tree the host already
+parsed with remark rather than parsing itself, so neither adds a dependency and no `/remark` subpath
+is needed. Not `marked`, since no known consumer uses it. `extractTags` and `validateTags` take the
+same ranges, so a save-time check agrees with the render.
 
 ## 5. Package B: @tagscript/tiptap (done)
 

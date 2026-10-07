@@ -1,6 +1,7 @@
 import { buildNodeTree } from './engine';
 import { Lexer, ParenType } from './Lexer';
 
+import type { SkipRange } from './engine';
 import type { TagSpans } from './Lexer';
 
 /**
@@ -44,6 +45,12 @@ export interface ExtractOptions {
 	 * @defaultValue ParenType.Both
 	 */
 	parenType?: ParenType;
+	/**
+	 * Ranges of the template that are not template syntax, as on a render.
+	 *
+	 * @defaultValue `[]`
+	 */
+	skipRanges?: readonly SkipRange[];
 	/**
 	 * The maximum number of characters read from inside one tag.
 	 *
@@ -89,9 +96,9 @@ const absolute = (spans: TagSpans, start: number): TagSpans => ({
  * ```
  */
 export const extractTags = (message: string, options: ExtractOptions = {}): ExtractedTag[] => {
-	const { tagLimit = 2_000, parenType = ParenType.Both } = options;
+	const { tagLimit = 2_000, parenType = ParenType.Both, skipRanges } = options;
 
-	const tags = buildNodeTree(message).map((node, order) => {
+	const tags = buildNodeTree(message, skipRanges).map((node, order) => {
 		const [start, end] = node.coordinates;
 		const tag = new Lexer(message.slice(start, end + 1), tagLimit, parenType);
 		return { tag, start, end, order, depth: 0, spans: absolute(tag.spans, start) };

@@ -8,6 +8,7 @@ import { buildNodeTree, recordSpan, textDeform, translateNodes } from '../lib/In
 import { Lexer } from '../lib/Interpreter/Lexer';
 
 import type { IKeyValues, ITransformer } from '../lib/interfaces';
+import type { SkipRange } from '../lib/Interpreter/engine';
 import type { Node } from '../lib/Interpreter/Node';
 import type { ParseContext } from './Context';
 import type { Parser } from './Parser';
@@ -28,6 +29,13 @@ export interface RunOptions {
 	 * Variables the template can read, as name to transformer.
 	 */
 	readonly seedVariables?: { [key: string]: ITransformer };
+	/**
+	 * Ranges of the template to leave exactly as written, such as markdown code blocks. A tag that
+	 * starts inside one is not run. Offsets are into the template.
+	 *
+	 * @defaultValue `[]`
+	 */
+	readonly skipRanges?: readonly SkipRange[];
 	/**
 	 * Record which ranges of the body came from a tag, on {@link Response.spans}.
 	 *
@@ -120,7 +128,7 @@ export class Interpreter<E = never, R = never> {
 			const response = new Response(options.seedVariables ?? {}, options.keyValues ?? {});
 			if (options.spans) response.spans = [];
 			if (options.trace) response.trace = [];
-			const output = yield* this.solve(message, response);
+			const output = yield* this.solve(message, response, options.skipRanges);
 			return response.setValues(output, message);
 		}) as Effect.Effect<Response, Exclude<E, TemplateError> | InterpreterError, R>;
 	}
@@ -178,13 +186,13 @@ export class Interpreter<E = never, R = never> {
 		);
 	}
 
-	private solve(message: string, response: Response) {
+	private solve(message: string, response: Response, skipRanges?: readonly SkipRange[]) {
 		return Effect.gen({ self: this }, function* () {
 			const charLimit = yield* CharLimit;
 			const tagLimit = yield* TagLimit;
 			const parenType = yield* ParameterSyntax;
 
-			const nodeOrderedList: Node[] = buildNodeTree(message);
+			const nodeOrderedList: Node[] = buildNodeTree(message, skipRanges);
 			let final = message;
 			let totalWork = 0;
 

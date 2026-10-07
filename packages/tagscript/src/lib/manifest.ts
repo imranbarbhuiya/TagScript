@@ -1,5 +1,6 @@
 import { extractTags } from './Interpreter/extract';
 
+import type { ExtractOptions } from './Interpreter/extract';
 import type { BaseParser } from './Parsers/Base';
 
 /**
@@ -118,6 +119,7 @@ export interface UnknownTag {
  *
  * @param message - The template to check.
  * @param tags - Every tag that is allowed to appear.
+ * @param options - The same settings a render uses, so a tag in a skipped range is not reported.
  * @returns The offending tags, in document order.
  * @example
  * ```ts showLineNumbers
@@ -125,8 +127,12 @@ export interface UnknownTag {
  * // [{ declaration: 'naem', start: 3, end: 8 }]
  * ```
  */
-export const validateTags = (message: string, tags: readonly TagDefinition[]): UnknownTag[] =>
-	extractTags(message)
+export const validateTags = (
+	message: string,
+	tags: readonly TagDefinition[],
+	options: ExtractOptions = {},
+): UnknownTag[] =>
+	extractTags(message, options)
 		.filter((tag) => !findTag(tags, tag.tag.declaration))
 		.map((tag) => ({ declaration: tag.tag.declaration, start: tag.start, end: tag.end }));
 
