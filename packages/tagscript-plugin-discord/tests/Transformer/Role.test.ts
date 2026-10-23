@@ -88,7 +88,9 @@ describe('RoleTransformer', () => {
 
 	describe('toJSON', () => {
 		test('GIVEN a transformer THEN expose exactly its safe values', () => {
-			expect(Object.keys(new RoleTransformer(everyoneRole).toJSON()).sort((a, b) => a.localeCompare(b))).toStrictEqual([
+			expect(
+				Object.keys(new RoleTransformer(everyoneRole).toJSON()).sort((a, b) => a.localeCompare(b)),
+			).toStrictEqual([
 				'color',
 				'createdAt',
 				'createdTimestamp',

@@ -19,7 +19,9 @@ describe('FormatParser', () => {
 		expect(rendered(await ts.run(text4))).toStrictEqual(rendered(new Response().setValues('Hello', text4)));
 
 		const text5 = '{escape:Hello| Parbez!}';
-		expect(rendered(await ts.run(text5))).toStrictEqual(rendered(new Response().setValues('Hello\\| Parbez!', text5)));
+		expect(rendered(await ts.run(text5))).toStrictEqual(
+			rendered(new Response().setValues('Hello\\| Parbez!', text5)),
+		);
 
 		const text6 = '{anything:Hello| Parbez!}';
 		expect(rendered(await ts.run(text6))).toStrictEqual(

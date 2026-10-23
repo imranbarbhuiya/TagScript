@@ -34,7 +34,9 @@ describe('buildNodeTree', () => {
 	test('GIVEN a tag inside a skipped range THEN do not open a node for it', () => {
 		const template = 'a `{x}` {y}';
 		const nodes = buildNodeTree(template, [range(template, '`{x}`')]);
-		expect(nodes.map((node) => template.slice(node.coordinates[0], node.coordinates[1] + 1))).toStrictEqual(['{y}']);
+		expect(nodes.map((node) => template.slice(node.coordinates[0], node.coordinates[1] + 1))).toStrictEqual([
+			'{y}',
+		]);
 	});
 
 	test('GIVEN a closing brace inside a skipped range THEN it does not close a tag opened outside', () => {
@@ -45,8 +47,14 @@ describe('buildNodeTree', () => {
 
 	test('GIVEN ranges out of order or overlapping THEN skip all of them', () => {
 		const template = '{a} {b} {c} {d}';
-		const nodes = buildNodeTree(template, [range(template, '{c}'), range(template, '{a} {b}'), { start: 1, end: 6 }]);
-		expect(nodes.map((node) => template.slice(node.coordinates[0], node.coordinates[1] + 1))).toStrictEqual(['{d}']);
+		const nodes = buildNodeTree(template, [
+			range(template, '{c}'),
+			range(template, '{a} {b}'),
+			{ start: 1, end: 6 },
+		]);
+		expect(nodes.map((node) => template.slice(node.coordinates[0], node.coordinates[1] + 1))).toStrictEqual([
+			'{d}',
+		]);
 	});
 
 	test('GIVEN a backslash at the end of a skipped range THEN it does not escape the next brace', () => {

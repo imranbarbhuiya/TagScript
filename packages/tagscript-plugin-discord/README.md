@@ -37,8 +37,8 @@ Nothing in this package imports discord.js, so the two meet at the API payload.
 On the way in, transformers want the raw object, not the wrapper class. discord.js `toJSON()` will not do it: it returns a flattened camelCase blob and turns collections into ID arrays. Reach for the payload you already have instead. A raw gateway or REST response, `@discordjs/core`, or a `client.rest.get(Routes.user(id))` call all give you one:
 
 ```ts
-import { Routes, type APIUser } from 'discord-api-types/v10';
 import { UserTransformer } from '@tagscript/plugin-discord';
+import { Routes, type APIUser } from 'discord-api-types/v10';
 
 const payload = (await client.rest.get(Routes.user(id))) as APIUser;
 

@@ -76,9 +76,12 @@ describe('BaseParser', () => {
 			expect(parser.willAccept(contextFor('{test(param):payload}'))).toBe(true);
 		});
 
-		test.each(['{test}', '{test(param)}', '{test:payload}'])('GIVEN only part of it in %s THEN reject it', (tag) => {
-			expect(parser.willAccept(contextFor(tag))).toBe(false);
-		});
+		test.each(['{test}', '{test(param)}', '{test:payload}'])(
+			'GIVEN only part of it in %s THEN reject it',
+			(tag) => {
+				expect(parser.willAccept(contextFor(tag))).toBe(false);
+			},
+		);
 	});
 
 	describe('toJSON', () => {

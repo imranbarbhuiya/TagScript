@@ -20,10 +20,10 @@ npm install @tagscript/tiptap tagscript @tiptap/core @tiptap/pm @tiptap/suggesti
 ```
 
 ```ts showLineNumbers
+import { TagScriptNode } from '@tagscript/tiptap';
 import { Editor } from '@tiptap/core';
 import { Markdown } from '@tiptap/markdown';
 import StarterKit from '@tiptap/starter-kit';
-import { TagScriptNode } from '@tagscript/tiptap';
 
 const editor = new Editor({
 	extensions: [

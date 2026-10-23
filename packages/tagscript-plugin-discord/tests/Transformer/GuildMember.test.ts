@@ -124,7 +124,9 @@ describe('MemberTransformer', () => {
 			const plain = new MemberTransformer({ ...base, user: { ...user, avatar: null } });
 
 			expect(await render('{member(avatar)}', plain)).toBe('');
-			expect(await render('{member(displayAvatar)}', plain)).toBe('https://cdn.discordapp.com/embed/avatars/3.png');
+			expect(await render('{member(displayAvatar)}', plain)).toBe(
+				'https://cdn.discordapp.com/embed/avatars/3.png',
+			);
 		});
 	});
 

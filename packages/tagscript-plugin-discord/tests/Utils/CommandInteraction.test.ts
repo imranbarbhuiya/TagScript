@@ -13,7 +13,9 @@ describe('resolveCommandOptions', () => {
 		expect((await ts.run('{subCommand}', transformers)).body).toBe('sub-command');
 		expect((await ts.run('{subCommandGroup}', transformers)).body).toBe('sub-command-group');
 		expect((await ts.run('{sub-command-member}', transformers)).body).toBe('<@758880890159235083>');
-		expect((await ts.run('{sub-command-group-sub-command-channel}', transformers)).body).toBe('<#933395546138357800>');
+		expect((await ts.run('{sub-command-group-sub-command-channel}', transformers)).body).toBe(
+			'<#933395546138357800>',
+		);
 		expect((await ts.run('{string}', transformers)).body).toBe('Hello');
 		expect((await ts.run('{channel}', transformers)).body).toBe('<#933395546138357800>');
 		expect((await ts.run('{role}', transformers)).body).toBe('<@&933378013154906142>');

@@ -48,7 +48,9 @@ const parsers: BaseParser[] = [
 
 describe('builtinTags', () => {
 	test('GIVEN the built-in parsers THEN the manifest lists exactly the names they accept', () => {
-		const fromParsers = parsers.flatMap((parser) => parser.toJSON().acceptedNames).sort((a, b) => a.localeCompare(b));
+		const fromParsers = parsers
+			.flatMap((parser) => parser.toJSON().acceptedNames)
+			.sort((a, b) => a.localeCompare(b));
 		expect(builtinTags.map((tag) => tag.name).sort((a, b) => a.localeCompare(b))).toStrictEqual(fromParsers);
 	});
 
@@ -76,7 +78,13 @@ describe('describeParser', () => {
 	test('GIVEN a parser THEN read its names and requirements off it', () => {
 		expect(describeParser(new SliceParser())).toStrictEqual([
 			{ name: 'slice', label: 'slice', parameter: { required: true }, payload: { required: true } },
-			{ name: 'substr', label: 'substr', aliasOf: 'slice', parameter: { required: true }, payload: { required: true } },
+			{
+				name: 'substr',
+				label: 'substr',
+				aliasOf: 'slice',
+				parameter: { required: true },
+				payload: { required: true },
+			},
 			{
 				name: 'substring',
 				label: 'substring',

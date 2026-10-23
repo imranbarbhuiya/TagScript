@@ -21,7 +21,9 @@ describe('IntersectionStatementParser', () => {
 		);
 
 		const text2 = '{all(282>=100|282<=1000):You picked 282.|You must provide a number between 100 and 1000.}';
-		expect(rendered(await ts.run(text2))).toStrictEqual(rendered(new Response().setValues('You picked 282.', text2)));
+		expect(rendered(await ts.run(text2))).toStrictEqual(
+			rendered(new Response().setValues('You picked 282.', text2)),
+		);
 	});
 });
 

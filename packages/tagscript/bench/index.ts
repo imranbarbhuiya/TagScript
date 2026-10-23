@@ -237,7 +237,11 @@ group('classic vs effect', () => {
 				yield async () =>
 					do_not_optimize(
 						await Effect.runPromise(
-							effect.run(template, { seedVariables: variables }) as Effect.Effect<EffectResponse, never, never>,
+							effect.run(template, { seedVariables: variables }) as Effect.Effect<
+								EffectResponse,
+								never,
+								never
+							>,
 						),
 					);
 			});

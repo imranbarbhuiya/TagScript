@@ -147,11 +147,14 @@ describe('EmbedParser', () => {
 		});
 	});
 
-	test.each(['Red', '#ed4245', 0xed4245])('GIVEN color %j in property THEN resolve it to hex color', async (color) => {
-		expect((await ts.run(`{embed(color):${color}}`)).actions.embed).toStrictEqual({
-			color: 0xed4245,
-		});
-	});
+	test.each(['Red', '#ed4245', 0xed4245])(
+		'GIVEN color %j in property THEN resolve it to hex color',
+		async (color) => {
+			expect((await ts.run(`{embed(color):${color}}`)).actions.embed).toStrictEqual({
+				color: 0xed4245,
+			});
+		},
+	);
 
 	test('GIVEN malformed JSON THEN report it as a TemplateError instead of leaking the SyntaxError', async () => {
 		const response = await ts.run('{embed:{"title": }}');
@@ -164,6 +167,8 @@ describe('EmbedParser', () => {
 	});
 
 	test('GIVEN malformed JSON THEN keep rendering the rest of the template', async () => {
-		expect((await ts.run('a {embed:{"title": }} b')).body).toBe('a embed was given something that is not valid JSON b');
+		expect((await ts.run('a {embed:{"title": }} b')).body).toBe(
+			'a embed was given something that is not valid JSON b',
+		);
 	});
 });

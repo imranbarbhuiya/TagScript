@@ -111,7 +111,10 @@ export const dateFormatParser: Parser<TemplateError> = definePlugin<TemplateErro
 		const payload = ctx.tag.payload ?? `${nowMillis}`;
 		const millis = /^\d+$/.test(payload) ? Number(payload) : new Date(payload).getTime();
 		if (Number.isNaN(millis)) {
-			return yield* new TemplateError({ message: `${declaration} was given a date it cannot read`, tag: declaration });
+			return yield* new TemplateError({
+				message: `${declaration} was given a date it cannot read`,
+				tag: declaration,
+			});
 		}
 
 		// Discord takes seconds, and a value long enough to be milliseconds is converted.
@@ -302,7 +305,9 @@ export const embedParser: Parser<TemplateError> = definePlugin<TemplateError>({
 			case 'author': {
 				const [name, url, iconUrl] = payload.split('|');
 				if (!name) return '';
-				return mergeEmbed(ctx, { author: { name, ...(url && { url }), ...(iconUrl && { icon_url: iconUrl }) } });
+				return mergeEmbed(ctx, {
+					author: { name, ...(url && { url }), ...(iconUrl && { icon_url: iconUrl }) },
+				});
 			}
 
 			case 'footer': {

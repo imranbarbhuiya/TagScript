@@ -194,7 +194,9 @@ describe('Interpreter', () => {
 
 		test('GIVEN Dot only THEN a parenthesis parameter is not read as one', async () => {
 			const rendered = await body(
-				varsTs.run('{args(1)}', { seedVariables: vars }).pipe(Effect.provideService(ParameterSyntax, ParenType.Dot)),
+				varsTs
+					.run('{args(1)}', { seedVariables: vars })
+					.pipe(Effect.provideService(ParameterSyntax, ParenType.Dot)),
 			);
 
 			expect(rendered).not.toBe('one');
@@ -219,7 +221,9 @@ describe('Interpreter', () => {
 				CooldownStore.of({ check: () => Effect.succeed(42) }),
 			);
 
-			static readonly free = Layer.sync(CooldownStore)(() => CooldownStore.of({ check: () => Effect.succeed(null) }));
+			static readonly free = Layer.sync(CooldownStore)(() =>
+				CooldownStore.of({ check: () => Effect.succeed(null) }),
+			);
 		}
 
 		const cooldown = definePlugin<OnCooldown, CooldownStore>({

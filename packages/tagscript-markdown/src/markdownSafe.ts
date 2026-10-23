@@ -92,7 +92,9 @@ export const markdownSafe = (
 	options: MarkdownSafeOptions = {},
 ): string | null => {
 	if (response.spans === null) {
-		throw new Error('markdownSafe needs to know which parts of the body came from a tag. Render with `spans: true`.');
+		throw new Error(
+			'markdownSafe needs to know which parts of the body came from a tag. Render with `spans: true`.',
+		);
 	}
 
 	const { body } = response;

@@ -7,7 +7,9 @@ describe('RequiredParser', () => {
 	const ts = new Interpreter(new RequiredParser());
 
 	test('GIVEN a require tag THEN return empty string and require info', async () => {
-		expect((await ts.run("{require(758880890159235083):You aren't allowed to use this tag.}")).actions).toStrictEqual({
+		expect(
+			(await ts.run("{require(758880890159235083):You aren't allowed to use this tag.}")).actions,
+		).toStrictEqual({
 			require: {
 				ids: ['758880890159235083'],
 				message: "You aren't allowed to use this tag.",

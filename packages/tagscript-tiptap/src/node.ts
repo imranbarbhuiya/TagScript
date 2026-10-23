@@ -112,7 +112,8 @@ export const TagScriptNode = Node.create<TagScriptNodeOptions>({
 			parameter: {
 				default: null,
 				parseHTML: (element) => element.getAttribute('data-parameter'),
-				renderHTML: (attributes) => (attributes.parameter === null ? {} : { 'data-parameter': attributes.parameter }),
+				renderHTML: (attributes) =>
+					attributes.parameter === null ? {} : { 'data-parameter': attributes.parameter },
 			},
 		};
 	},
@@ -157,7 +158,9 @@ export const TagScriptNode = Node.create<TagScriptNodeOptions>({
 		start: (src) => src.indexOf('{'),
 		tokenize: (src) => {
 			const chip = readTag(src);
-			return chip ? { type: 'tagscript', raw: chip.source, name: chip.name, parameter: chip.parameter } : undefined;
+			return chip
+				? { type: 'tagscript', raw: chip.source, name: chip.name, parameter: chip.parameter }
+				: undefined;
 		},
 	},
 
@@ -194,7 +197,9 @@ export const TagScriptNode = Node.create<TagScriptNodeOptions>({
 				find: (text) => {
 					const index = text.lastIndexOf('{');
 					const chip = index === -1 ? null : readTag(text.slice(index));
-					return chip && index + chip.source.length === text.length ? { index, text: chip.source, data: chip } : null;
+					return chip && index + chip.source.length === text.length
+						? { index, text: chip.source, data: chip }
+						: null;
 				},
 				handler: ({ state, range, match }) => {
 					const { name, parameter } = match.data as TagScriptAttributes;
@@ -236,7 +241,8 @@ export const TagScriptNode = Node.create<TagScriptNodeOptions>({
 				items: ({ query }) => {
 					const needle = query.toLowerCase();
 					return this.options.tags.filter(
-						(tag) => tag.insertable && (tag.name.includes(needle) || tag.label.toLowerCase().includes(needle)),
+						(tag) =>
+							tag.insertable && (tag.name.includes(needle) || tag.label.toLowerCase().includes(needle)),
 					);
 				},
 				command: ({ editor, range, props }) => {

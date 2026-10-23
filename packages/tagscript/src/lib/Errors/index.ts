@@ -81,7 +81,9 @@ export class WorkloadExceededError extends TagScriptError {
 	public readonly attempted: number;
 
 	public constructor(limit: number, attempted: number) {
-		super(`The TS interpreter had its workload exceeded. The total characters attempted were ${attempted}/${limit}`);
+		super(
+			`The TS interpreter had its workload exceeded. The total characters attempted were ${attempted}/${limit}`,
+		);
 		this.limit = limit;
 		this.attempted = attempted;
 	}

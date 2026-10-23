@@ -76,7 +76,9 @@ describe('ChannelTransformer', () => {
 		});
 
 		test('GIVEN a different channel THEN derive a different creation date', async () => {
-			expect(await render('{channel(createdAt)}', new ChannelTransformer(channel2))).toBe('2021-07-29T17:18:22.544Z');
+			expect(await render('{channel(createdAt)}', new ChannelTransformer(channel2))).toBe(
+				'2021-07-29T17:18:22.544Z',
+			);
 		});
 
 		test('GIVEN createdAt and createdTimestamp THEN they describe the same instant', async () => {

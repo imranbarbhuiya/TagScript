@@ -169,7 +169,9 @@ describe('SafeObjectTransformer', () => {
 		});
 
 		test('GIVEN an inherited property behind a dot THEN leave the tag untouched', async () => {
-			expect(await render('{obj.nested.constructor}', { nested: { deep: 'ok' } })).toBe('{obj.nested.constructor}');
+			expect(await render('{obj.nested.constructor}', { nested: { deep: 'ok' } })).toBe(
+				'{obj.nested.constructor}',
+			);
 		});
 
 		test('GIVEN a real nested value THEN still resolve it', async () => {

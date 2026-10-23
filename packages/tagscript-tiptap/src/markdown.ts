@@ -80,8 +80,11 @@ export const restoreChipsInJSON = (node: JSONContent, name: string): JSONContent
 		for (const match of child.text.matchAll(PLACEHOLDER)) {
 			text(child.text.slice(last, match.index));
 			const chip = readTag(match[1]);
-			if (chip) parts.push({ type: name, attrs: { name: chip.name, parameter: chip.parameter }, marks: child.marks });
-			else text(match[1]);
+			if (chip) {
+				parts.push({ type: name, attrs: { name: chip.name, parameter: chip.parameter }, marks: child.marks });
+			} else {
+				text(match[1]);
+			}
 			last = match.index + match[0].length;
 		}
 		text(child.text.slice(last));

@@ -114,7 +114,13 @@ export const PARSERS: ParserEntry[] = [
 	},
 	{ id: 'random', label: 'Random', tags: ['random', 'rand'], group: 'core', create: () => new RandomParser() },
 	{ id: 'range', label: 'Range', tags: ['range', 'rangef'], group: 'core', create: () => new RangeParser() },
-	{ id: '5050', label: 'Fifty fifty', tags: ['5050', '50', '?'], group: 'core', create: () => new FiftyFiftyParser() },
+	{
+		id: '5050',
+		label: 'Fifty fifty',
+		tags: ['5050', '50', '?'],
+		group: 'core',
+		create: () => new FiftyFiftyParser(),
+	},
 	{ id: 'json', label: 'JSON', tags: ['json'], group: 'core', create: () => new JSONVarParser() },
 	{
 		id: 'url',
