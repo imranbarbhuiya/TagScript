@@ -68,7 +68,7 @@ jobs:
       - name: Install Dependencies
         run: bun install --frozen-lockfile
       - name: Install Chromium for browser tests
-        run: bunx playwright install --with-deps chromium
+        run: bunx playwright install --with-deps chrome
       - name: Run tests
         run: bun run test:coverage
       - name: Upload Coverage

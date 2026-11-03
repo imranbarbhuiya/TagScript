@@ -6,7 +6,7 @@ export default createVitestConfig({
 	test: {
 		browser: {
 			enabled: true,
-			provider: playwright(),
+			provider: playwright({ launchOptions: { channel: 'chrome', chromiumSandbox: true } }),
 			headless: true,
 			instances: [{ browser: 'chromium' }],
 		},
